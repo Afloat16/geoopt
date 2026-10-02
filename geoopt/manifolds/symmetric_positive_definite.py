@@ -106,9 +106,9 @@ class SymmetricPositiveDefinite(Manifold):
         )
 
         def log_det(tensor: torch.Tensor) -> torch.Tensor:
-            return torch.log(torch.det(tensor))
+            return torch.linalg.slogdet(tensor).logabsdet
 
-        ret = log_det((x + y) * 0.5) - 0.5 * log_det(x @ y)
+        ret = log_det((x + y) * 0.5) - 0.5 * (log_det(x) + log_det(y))
         if keepdim:
             return torch.unsqueeze(torch.unsqueeze(ret, -1), -1)
         return ret
