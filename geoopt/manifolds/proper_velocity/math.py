@@ -385,7 +385,10 @@ def dist0(y, *, k, keepdim=False, dim=-1):
 @torch.jit.script
 def _dist0(y, k: torch.Tensor, keepdim: bool = False, dim: int = -1):
     sqrt_k = torch.sqrt(k)
-    return sqrt_k * torch.asinh(torch.norm(y, p=2, dim=dim, keepdim=keepdim) / sqrt_k)
+    distance = sqrt_k * torch.asinh(torch.norm(y, p=2, dim=dim, keepdim=True) / sqrt_k)
+    if not keepdim:
+        distance = distance.squeeze(dim)
+    return distance
 
 
 def parallel_transport0(y, v, *, k, dim=-1):
