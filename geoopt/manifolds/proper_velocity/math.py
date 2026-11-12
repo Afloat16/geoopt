@@ -132,8 +132,20 @@ def inner(x, u, v, *, k, keepdim=False, dim=-1):
 
 @torch.jit.script
 def _inner(x, u, v, k: torch.Tensor, keepdim: bool = False, dim: int = -1):
-    res = _dot(u, v, dim=dim) - _dot(x, u, dim=dim) * _dot(x, v, dim=dim) / (
-        k + _sqnorm(x, dim=dim)
+    # Resolve the metric into radial and tangential components. Subtracting
+    # two large Euclidean products loses the radial contribution far from zero.
+    squared_norm = _sqnorm(x, dim=dim)
+    large_norm = squared_norm > k
+    direction = x / torch.sqrt(torch.where(large_norm, squared_norm, k))
+    u_radial = _dot(direction, u, dim=dim)
+    v_radial = _dot(direction, v, dim=dim)
+    u_tangent = u - u_radial * direction
+    v_tangent = v - v_radial * direction
+    radial_product = u_radial * v_radial * k / (k + squared_norm)
+    res = torch.where(
+        large_norm,
+        _dot(u_tangent, v_tangent, dim=dim) + radial_product,
+        _dot(u, v, dim=dim) - radial_product,
     )
     if not keepdim:
         res = res.squeeze(dim)
