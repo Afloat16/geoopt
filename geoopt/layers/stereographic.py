@@ -58,7 +58,8 @@ class Distance2StereographicHyperplanes(torch.nn.Module):
         # regular pytorch Parameters, there is no difference. But geoopt optimizer
         # will recognize the manifold and adjust to it
         self.points = geoopt.ManifoldParameter(
-            torch.empty(num_planes, plane_shape), manifold=self.ball
+            torch.empty(num_planes, plane_shape, dtype=self.ball.dtype, device=self.ball.device),
+            manifold=self.ball,
         )
         self.init_std = init_std
         self.reset_parameters()

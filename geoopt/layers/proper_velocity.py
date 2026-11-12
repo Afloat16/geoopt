@@ -47,8 +47,8 @@ class ProperVelocityMLR(torch.nn.Module):
         self.eps = eps
         self.init_std = init_std
 
-        self.z = torch.nn.Parameter(torch.empty(out_features, in_features))
-        self.r = torch.nn.Parameter(torch.empty(out_features))
+        self.z = torch.nn.Parameter(self.manifold.k.new_empty(out_features, in_features))
+        self.r = torch.nn.Parameter(self.manifold.k.new_empty(out_features))
         self.reset_parameters()
 
     def forward(self, input):
@@ -122,7 +122,7 @@ class ProperVelocityFC(ProperVelocityMLR):
     ):
         super().__init__(in_features, out_features, manifold=manifold, eps=eps, init_std=init_std)
         if bias:
-            self.bias = torch.nn.Parameter(torch.zeros(out_features))
+            self.bias = torch.nn.Parameter(self.manifold.k.new_zeros(out_features))
         else:
             self.register_parameter("bias", None)
 
@@ -217,14 +217,14 @@ class GyroProperVelocityBatchNorm(torch.nn.Module):
             self.bias = geoopt.ManifoldParameter(
                 self.manifold.origin(num_features), manifold=self.manifold
             )
-            self.log_scale = torch.nn.Parameter(torch.zeros(()))
+            self.log_scale = torch.nn.Parameter(self.manifold.k.new_zeros(()))
         else:
             self.register_parameter("bias", None)
             self.register_parameter("log_scale", None)
 
         if track_running_stats:
             self.register_buffer("running_mean", self.manifold.origin(num_features).detach())
-            self.register_buffer("running_var", torch.ones(()))
+            self.register_buffer("running_var", self.manifold.k.new_ones(()))
         else:
             self.register_buffer("running_mean", None)
             self.register_buffer("running_var", None)

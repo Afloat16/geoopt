@@ -27,10 +27,10 @@ class LorentzPLFC(torch.nn.Module):
         self.eps = eps
         self.init_std = init_std
 
-        self.z = torch.nn.Parameter(torch.empty(out_features, in_features))
-        self.a = torch.nn.Parameter(torch.empty(out_features))
+        self.z = torch.nn.Parameter(self.manifold.k.new_empty(out_features, in_features))
+        self.a = torch.nn.Parameter(self.manifold.k.new_empty(out_features))
         if bias:
-            self.bias = torch.nn.Parameter(torch.empty(out_features))
+            self.bias = torch.nn.Parameter(self.manifold.k.new_empty(out_features))
         else:
             self.register_parameter("bias", None)
         self.reset_parameters()
@@ -111,7 +111,7 @@ class GyroLorentzBatchNorm(torch.nn.Module):
             self.bias = geoopt.ManifoldParameter(
                 self.manifold.origin(num_features + 1), manifold=self.manifold
             )
-            self.log_scale = torch.nn.Parameter(torch.zeros(()))
+            self.log_scale = torch.nn.Parameter(self.manifold.k.new_zeros(()))
         else:
             self.register_parameter("bias", None)
             self.register_parameter("log_scale", None)
@@ -120,7 +120,7 @@ class GyroLorentzBatchNorm(torch.nn.Module):
             self.register_buffer(
                 "running_mean", self.manifold.origin(num_features + 1).detach()
             )
-            self.register_buffer("running_var", torch.ones(()))
+            self.register_buffer("running_var", self.manifold.k.new_ones(()))
         else:
             self.register_buffer("running_mean", None)
             self.register_buffer("running_var", None)
