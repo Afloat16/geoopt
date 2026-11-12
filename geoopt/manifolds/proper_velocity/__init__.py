@@ -196,7 +196,7 @@ class ProperVelocity(Manifold):
 
     @__scaling__(ScalingInfo(std=-1), "random")
     def random_normal(
-        self, *size, mean=0, std=1, dtype=None, device=None
+        self, *size, mean=0, std=1, dtype=None, device=None, generator=None
     ) -> "geoopt.ManifoldTensor":
         """
         Create a point on the manifold, measure is induced by Normal distribution on the tangent space of zero.
@@ -213,6 +213,9 @@ class ProperVelocity(Manifold):
             target dtype for sample, if not None, should match Manifold dtype
         device: torch.device
             target device for sample, if not None, should match Manifold device
+        generator : torch.Generator, optional
+            Random number generator on the sampling device. If None, uses the
+            default generator for that device.
 
         Returns
         -------
@@ -234,7 +237,9 @@ class ProperVelocity(Manifold):
                 "`dtype` does not match the manifold `dtype`, set the `dtype` argument to None"
             )
         tens = (
-            torch.randn(size, device=self.k.device, dtype=self.k.dtype) * std / size[-1] ** 0.5
+            torch.randn(size, device=self.k.device, dtype=self.k.dtype, generator=generator)
+            * std
+            / size[-1] ** 0.5
             + mean
         )
         return geoopt.ManifoldTensor(self.expmap0(tens), manifold=self)
