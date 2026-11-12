@@ -160,7 +160,18 @@ class SymmetricPositiveDefinite(Manifold):
 
     def projx(self, x: torch.Tensor) -> torch.Tensor:
         symx = linalg.sym(x)
-        return linalg.sym_funcm(symx, torch.abs)
+        eigenvalues, eigenvectors = torch.linalg.eigh(symx, "U")
+        eigenvalues = eigenvalues.abs()
+        scale = eigenvalues.amax(dim=-1, keepdim=True)
+        scale = torch.where(scale > 0, scale, torch.ones_like(scale))
+        # Keep singular inputs inside the positive-definite cone. A relative
+        # floor preserves the scale of well-conditioned covariance matrices.
+        finfo = torch.finfo(x.dtype)
+        floor = (scale * finfo.eps * x.shape[-1]).clamp_min(finfo.tiny)
+        eigenvalues = torch.maximum(eigenvalues, floor)
+        return linalg.sym(
+            eigenvectors @ torch.diag_embed(eigenvalues) @ eigenvectors.transpose(-1, -2)
+        )
 
     def proju(self, x: torch.Tensor, u: torch.Tensor) -> torch.Tensor:
         return linalg.sym(u)
