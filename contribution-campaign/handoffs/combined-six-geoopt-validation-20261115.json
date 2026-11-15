@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "repository": "Afloat16/geoopt",
+  "upstream": "geoopt/geoopt",
+  "status": "combined_validation_success",
+  "base_sha": "4623ea1d2a9808b8e87bf10949cccb2c5ec6233c",
+  "validation_branch": "validation/combined-six-geoopt-fixes-20261115",
+  "validation_sha": "1a5b1870a804ba4451f6cc574a7ab0c13cb9d825",
+  "source_heads": [
+    {
+      "repository": "Afloat16/geoopt",
+      "branch": "fix/product-distance-small-gradients-20261115",
+      "sha": "216ae2ed65aeeea7aab9cebd9140ab7c52ec2b79",
+      "tree": "2823e92c39c09418e9d966438e4d7e9f131498c2",
+      "files": [
+        "geoopt/manifolds/product.py",
+        "tests/test_product_manifold.py"
+      ]
+    },
+    {
+      "repository": "Afloat16/geoopt",
+      "branch": "fix/bounded-domain-metric-gradient-20261115",
+      "sha": "485d6fe2c5c7342d56cb8ff059fd5d4a5e821d26",
+      "tree": "07be1fa0de712517406249fb0ab935d8f624437b",
+      "files": [
+        "geoopt/manifolds/siegel/bounded_domain.py",
+        "tests/test_bounded_domain_gradient.py",
+        "tests/test_manifold_basic.py"
+      ]
+    },
+    {
+      "repository": "Afloat16/geoopt",
+      "branch": "fix/sphere-logmap-near-antipode-20261115",
+      "sha": "d3ed0db93e85c046d59489dbe639d2ecad0fe505",
+      "tree": "bd7f7c4bb2552165f2810b659ee8e84337cc9d14",
+      "files": [
+        "geoopt/manifolds/sphere.py",
+        "tests/test_sphere_logmap_near_antipode.py"
+      ]
+    },
+    {
+      "repository": "Afloat16/geoopt",
+      "branch": "fix/siegel-distance-repeated-spectrum-20261115",
+      "sha": "befc58ef51cf40e43b8f5a8e3671686d920a749c",
+      "tree": "c2fafa7a531b3f15beae88c7c7a10e008f84236c",
+      "files": [
+        "geoopt/manifolds/siegel/siegel.py",
+        "tests/test_siegel_distance_gradients.py",
+        "tests/test_siegel_distance.py"
+      ]
+    },
+    {
+      "repository": "Afloat16/geoopt",
+      "branch": "fix/canonical-stiefel-broadcast-transport-20261115",
+      "sha": "6e060dcdb00c37cb8173cac97ac6a15ade7137b0",
+      "tree": "6912eeab481622a9c294c930311cb6c2ec23d1be",
+      "files": [
+        "geoopt/manifolds/stiefel.py",
+        "tests/test_canonical_stiefel_broadcast_transport.py"
+      ]
+    },
+    {
+      "repository": "Afloat16/geoopt",
+      "branch": "fix/euclidean-cdist-zero-gradients-20261115",
+      "sha": "606d99820a24e8fe5c7e4bc1754f90bcf746ff36",
+      "tree": "60c14699ed86745c47e0aa7b78b6ea6a1fbd8355",
+      "files": [
+        "geoopt/manifolds/euclidean.py",
+        "tests/test_euclidean_cdist_gradients.py"
+      ]
+    }
+  ],
+  "source_files": [
+    "geoopt/manifolds/product.py",
+    "tests/test_product_manifold.py",
+    "geoopt/manifolds/siegel/bounded_domain.py",
+    "tests/test_bounded_domain_gradient.py",
+    "tests/test_manifold_basic.py",
+    "geoopt/manifolds/sphere.py",
+    "tests/test_sphere_logmap_near_antipode.py",
+    "geoopt/manifolds/siegel/siegel.py",
+    "tests/test_siegel_distance_gradients.py",
+    "tests/test_siegel_distance.py",
+    "geoopt/manifolds/stiefel.py",
+    "tests/test_canonical_stiefel_broadcast_transport.py",
+    "geoopt/manifolds/euclidean.py",
+    "tests/test_euclidean_cdist_gradients.py"
+  ],
+  "modules": [
+    "tests/test_product_manifold.py",
+    "tests/test_stereographic_product_manifold.py",
+    "tests/test_manifold_basic.py",
+    "tests/test_bounded_domain_gradient.py",
+    "tests/test_siegel_distance.py",
+    "tests/test_rsgd.py",
+    "tests/test_sphere_logmap_near_antipode.py",
+    "tests/test_sphere_geodesic_distance_precision.py",
+    "tests/test_sphere_zero_step_gradients.py",
+    "tests/test_sphere_subspace_tangent.py",
+    "tests/test_sphere_batched_subspace.py",
+    "tests/test_siegel_distance_gradients.py",
+    "tests/test_cayley_transform.py",
+    "tests/test_takagi_factorization.py",
+    "tests/test_canonical_stiefel_broadcast_transport.py",
+    "tests/test_canonical_stiefel_projection.py",
+    "tests/test_adam.py",
+    "tests/test_scaling.py",
+    "tests/test_tensor_api.py",
+    "tests/test_rlinesearch_retraction_derivative.py",
+    "tests/test_euclidean_cdist_gradients.py",
+    "tests/test_euclidean.py",
+    "tests/test_euclidean_high_dimensional_norms.py",
+    "tests/test_tensor_dist.py"
+  ],
+  "run_id": 43674027375,
+  "run_url": "https://github.com/Afloat16/geoopt/actions/runs/43674027375",
+  "environments": [
+    {
+      "python": "3.8",
+      "torch": "2.0.1+cpu",
+      "job_id": 132690103507,
+      "conclusion": "success",
+      "passed": 7446,
+      "skipped": 310,
+      "ruff": "passed",
+      "junit_artifact_url": "https://github.com/Afloat16/geoopt/actions/runs/43674027375/artifacts/14146035026"
+    },
+    {
+      "python": "3.12",
+      "torch": "2.8.0+cpu",
+      "job_id": 132690103385,
+      "conclusion": "success",
+      "passed": 7446,
+      "skipped": 310,
+      "ruff": "passed",
+      "junit_artifact_url": "https://github.com/Afloat16/geoopt/actions/runs/43674027375/artifacts/14145621425"
+    }
+  ],
+  "notes": "The validation commit combines the exact six independently tested source heads as git parents and contains their nonconflicting 14 source/test files plus an isolated validation workflow. No additional production changes were needed. Full union of 24 affected test modules passed in both environments, with unchanged source verified after testing. This is integration evidence only; it creates no upstream PR and claims no merge."
+}
