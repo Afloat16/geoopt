@@ -1,0 +1,408 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-11-15 04:03:09 UTC",
+  "repository": "geoopt/geoopt",
+  "author": "Afloat16",
+  "status": "commit_and_validation_complete_pr_creation_blocked",
+  "title": "Stabilize Birkhoff tangent projections near permutation matrices",
+  "body": "## Problem\n\nTangent projection can become numerically invalid at strictly positive doubly stochastic matrices close to a permutation matrix. The fixed-gauge constraint system is ill-conditioned there, and solving its normal equations squares that condition number. Even a zero vector can be projected to a large non-tangent value, corrupting natural gradients and optimizer steps.\n\nFor a double-precision 2-by-2 matrix with off-diagonal entries `1e-8`, the existing projection has an error of about `0.08` against the analytic Fisher-metric projection. Solving the same system with QR reduces that error below `3e-9`.\n\n## Change\n\nSolve the existing rectangular least-squares system with the QR-based `gels` driver instead of forming and solving `B.T @ B`. Fixing the existing gauge makes the system full column rank in the strictly positive interior.\n\nThe gauge, projection formula, batch handling, and least-squares interpretation for approximately doubly stochastic inputs are preserved.\n\n## Validation\n\nThe tests use the analytic Fisher projection for 2-by-2 matrices and an independent tangent-basis Gram solve for larger interior matrices. They exercise natural gradients, tangent and zero-vector preservation, broadcasting, noncontiguous inputs, empty batches, differentiation with respect to both inputs, and real RiemannianSGD updates checked against analytic natural gradients. An SVD-based oracle checks the retained least-squares semantics for approximately stochastic inputs.\n\nOn both Python 3.8 / PyTorch 2.0.1 CPU and Python 3.12 / PyTorch 2.8.0 CPU:\n\n- The unchanged implementation produces **19 failures and 8 passing controls**, without collection errors or skips.\n- All **27 new cases** pass with the fix. The complete regression, Birkhoff, Birkhoff-geometry, manifold-basic, Riemannian-SGD, and Adam modules report **2183 passed, 310 existing skips**.\n- Production and regression Ruff checks, `git diff --check`, and the clean-source check pass.\n\n[Baseline and fixed CI results](https://github.com/Afloat16/geoopt/actions/runs/43674701216). The verification workflow is on a separate fork branch.\n",
+  "prefilled_url": "https://github.com/geoopt/geoopt/compare/master...Afloat16:fix/birkhoff-projection-conditioning-20261115?expand=1&title=Stabilize%20Birkhoff%20tangent%20projections%20near%20permutation%20matrices&body=%23%23%20Problem%0A%0ATangent%20projection%20can%20become%20numerically%20invalid%20at%20strictly%20positive%20doubly%20stochastic%20matrices%20close%20to%20a%20permutation%20matrix.%20The%20fixed-gauge%20constraint%20system%20is%20ill-conditioned%20there%2C%20and%20solving%20its%20normal%20equations%20squares%20that%20condition%20number.%20Even%20a%20zero%20vector%20can%20be%20projected%20to%20a%20large%20non-tangent%20value%2C%20corrupting%20natural%20gradients%20and%20optimizer%20steps.%0A%0AFor%20a%20double-precision%202-by-2%20matrix%20with%20off-diagonal%20entries%20%601e-8%60%2C%20the%20existing%20projection%20has%20an%20error%20of%20about%20%600.08%60%20against%20the%20analytic%20Fisher-metric%20projection.%20Solving%20the%20same%20system%20with%20QR%20reduces%20that%20error%20below%20%603e-9%60.%0A%0A%23%23%20Change%0A%0ASolve%20the%20existing%20rectangular%20least-squares%20system%20with%20the%20QR-based%20%60gels%60%20driver%20instead%20of%20forming%20and%20solving%20%60B.T%20%40%20B%60.%20Fixing%20the%20existing%20gauge%20makes%20the%20system%20full%20column%20rank%20in%20the%20strictly%20positive%20interior.%0A%0AThe%20gauge%2C%20projection%20formula%2C%20batch%20handling%2C%20and%20least-squares%20interpretation%20for%20approximately%20doubly%20stochastic%20inputs%20are%20preserved.%0A%0A%23%23%20Validation%0A%0AThe%20tests%20use%20the%20analytic%20Fisher%20projection%20for%202-by-2%20matrices%20and%20an%20independent%20tangent-basis%20Gram%20solve%20for%20larger%20interior%20matrices.%20They%20exercise%20natural%20gradients%2C%20tangent%20and%20zero-vector%20preservation%2C%20broadcasting%2C%20noncontiguous%20inputs%2C%20empty%20batches%2C%20differentiation%20with%20respect%20to%20both%20inputs%2C%20and%20real%20RiemannianSGD%20updates%20checked%20against%20analytic%20natural%20gradients.%20An%20SVD-based%20oracle%20checks%20the%20retained%20least-squares%20semantics%20for%20approximately%20stochastic%20inputs.%0A%0AOn%20both%20Python%203.8%20%2F%20PyTorch%202.0.1%20CPU%20and%20Python%203.12%20%2F%20PyTorch%202.8.0%20CPU%3A%0A%0A-%20The%20unchanged%20implementation%20produces%20**19%20failures%20and%208%20passing%20controls**%2C%20without%20collection%20errors%20or%20skips.%0A-%20All%20**27%20new%20cases**%20pass%20with%20the%20fix.%20The%20complete%20regression%2C%20Birkhoff%2C%20Birkhoff-geometry%2C%20manifold-basic%2C%20Riemannian-SGD%2C%20and%20Adam%20modules%20report%20**2183%20passed%2C%20310%20existing%20skips**.%0A-%20Production%20and%20regression%20Ruff%20checks%2C%20%60git%20diff%20--check%60%2C%20and%20the%20clean-source%20check%20pass.%0A%0A%5BBaseline%20and%20fixed%20CI%20results%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43674701216).%20The%20verification%20workflow%20is%20on%20a%20separate%20fork%20branch.%0A",
+  "base": {
+    "repository": "geoopt/geoopt",
+    "branch": "master",
+    "sha": "4623ea1d2a9808b8e87bf10949cccb2c5ec6233c",
+    "tree": "2ab03d32376b32d44da40bd2525b272bb5ea93ca"
+  },
+  "head": {
+    "repository": "Afloat16/geoopt",
+    "branch": "fix/birkhoff-projection-conditioning-20261115",
+    "sha": "c2d7b286c4c8b28686716e4158b2527afa56be07",
+    "tree": "d1364a5825c5ac3dca645b928eb9e48e495c0010",
+    "files": [
+      "geoopt/manifolds/birkhoff_polytope.py",
+      "tests/test_birkhoff_projection_conditioning.py"
+    ]
+  },
+  "validation": {
+    "branch": "validation/birkhoff-projection-conditioning-20261115",
+    "sha": "709cc3d16bff47721c9d66672043397cd2010525",
+    "workflow_in_upstream_pr": false,
+    "production_source_unchanged_after_tests": true,
+    "runs": [
+      {
+        "run_id": 43674701216,
+        "run_conclusion": "success",
+        "job_id": 132692194264,
+        "job_conclusion": "success",
+        "url": "https://github.com/Afloat16/geoopt/actions/runs/43674701216/job/132692194264",
+        "python": "3.8.18",
+        "torch": "2.0.1+cpu",
+        "numpy": "1.24.4",
+        "scipy": "1.10.1",
+        "baseline": {
+          "failed": 19,
+          "passed": 8,
+          "errors": 0,
+          "skipped": 0
+        },
+        "fixed": {
+          "passed": 2183,
+          "skipped": 310,
+          "new_cases_passed": 27
+        },
+        "lint": "passed",
+        "junit_artifact_url": "https://github.com/Afloat16/geoopt/actions/runs/43674701216/artifacts/14146226184"
+      },
+      {
+        "run_id": 43674701216,
+        "run_conclusion": "success",
+        "job_id": 132692194038,
+        "job_conclusion": "success",
+        "url": "https://github.com/Afloat16/geoopt/actions/runs/43674701216/job/132692194038",
+        "python": "3.12.16",
+        "torch": "2.8.0+cpu",
+        "numpy": "1.26.4",
+        "scipy": "1.13.1",
+        "baseline": {
+          "failed": 19,
+          "passed": 8,
+          "errors": 0,
+          "skipped": 0
+        },
+        "fixed": {
+          "passed": 2183,
+          "skipped": 310,
+          "new_cases_passed": 27
+        },
+        "lint": "passed",
+        "junit_artifact_url": "https://github.com/Afloat16/geoopt/actions/runs/43674701216/artifacts/14145523418"
+      }
+    ],
+    "modules": [
+      "tests/test_birkhoff_projection_conditioning.py",
+      "tests/test_birkhoff.py",
+      "tests/test_birkhoff_geometry.py",
+      "tests/test_manifold_basic.py",
+      "tests/test_rsgd.py",
+      "tests/test_adam.py"
+    ],
+    "new_cases": 27,
+    "independent_oracles": [
+      "Analytic Fisher-metric tangent projection for strictly positive 2-by-2 doubly stochastic matrices",
+      "Independent tangent-basis Gram solve for larger interior matrices",
+      "Analytic natural gradients for real RiemannianSGD updates, including a zero objective",
+      "Gradcheck in both base-point and ambient-vector inputs",
+      "SVD pseudoinverse oracle for approximately stochastic least-squares semantics"
+    ],
+    "checks": [
+      "ruff check geoopt tests/test_birkhoff_projection_conditioning.py",
+      "git diff --check",
+      "git diff --exit-code"
+    ],
+    "initial_run": {
+      "run_id": 43674590643,
+      "conclusion": "failure",
+      "baseline": {
+        "failed": 19,
+        "passed": 8
+      },
+      "reason": "The baseline workflow originally predicted 21 failing cases, but the two analytic backward checks already pass on the original implementation. They were reclassified as passing controls by changing only the workflow count assertion to 19 failures and 8 controls. The production source and all test assertions were unchanged."
+    },
+    "diagnostic_probe": {
+      "run_id": 43674206486,
+      "url": "https://github.com/Afloat16/geoopt/actions/runs/43674206486",
+      "branch": "validation/birkhoff-projection-conditioning-probe-20261115",
+      "sha": "e88a72271ff90a7e1304f68fa19bd9055e4896e5",
+      "notes": "Compared the original public projection, the QR candidate, and the analytic 2-by-2 Fisher projection over multiple strictly positive epsilon values and both floating dtypes on both Torch versions. The final validation above uses the committed production implementation and actual optimizer calls."
+    },
+    "scope": "CPU validation on two versions, including production TorchScript compilation and autograd. No guarantee is made for exact polytope boundary points or arbitrarily ill-conditioned inputs. The improvement avoids squaring the constraint system's condition number and preserves its existing fixed-gauge least-squares semantics."
+  },
+  "eligibility": {
+    "stars": 1103,
+    "own_merged_before": 15,
+    "merged_rank": 2,
+    "first": {
+      "login": "ferrine",
+      "merged": 87
+    },
+    "own_open_before": 3
+  },
+  "dedup": {
+    "upstream_all_state_pr_count": 174,
+    "own_open_prs": [
+      290,
+      291,
+      292
+    ],
+    "own_merged_before": 15,
+    "final_fork_branch_count": 55,
+    "old_fork_branch_count": 33,
+    "all_old_branch_source_files_read": true,
+    "audited_path": "geoopt/manifolds/birkhoff_polytope.py",
+    "old_branch_shas_unchanged_on_final_refresh": true,
+    "old_branch_audit": [
+      {
+        "branch": "build",
+        "sha": "65bb2746ffe09c82758092a4eb6c02e6644aee32",
+        "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix/canonical-stiefel-tangent-projection-20261029",
+        "sha": "a3ea54f9467ab98a958fe5c5ac92d3b19d55a6ac",
+        "blob": "b4012348c1c236ee647210d452ad6f7046074b23",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix/euclidean-high-dimensional-norms-20261029",
+        "sha": "6f54b5724eb3726ed7f5cfd442b573fac19fe2f3",
+        "blob": "b4012348c1c236ee647210d452ad6f7046074b23",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix/layer-manifold-factories-20261112",
+        "sha": "ca193e465cfc19c786063cf5f502d2879f22207f",
+        "blob": "ae0a00009cff874ad20eb03f915d2a203328af67",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix/product-component-inner-broadcast-20261112",
+        "sha": "89d09e239f597246b30624c451ecbf88f2aaa774",
+        "blob": "ae0a00009cff874ad20eb03f915d2a203328af67",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix/proper-velocity-distance-batch-shapes-20261112",
+        "sha": "7ef51c2de94042f759269026171cb258435413de",
+        "blob": "ae0a00009cff874ad20eb03f915d2a203328af67",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix/proper-velocity-product-sampling-20261112",
+        "sha": "85dee4d65e4a92cc3fa8861e73bc8401cbf1e2ab",
+        "blob": "ae0a00009cff874ad20eb03f915d2a203328af67",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix/proper-velocity-radial-metric-20261112",
+        "sha": "60b129ae56b8be73fd9d63f3dbb50b512a72002f",
+        "blob": "ae0a00009cff874ad20eb03f915d2a203328af67",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix/revisited-line-search-derivatives-20261112",
+        "sha": "f8cd4e81e01be2754a33abe89bbb947820fd8800",
+        "blob": "ae0a00009cff874ad20eb03f915d2a203328af67",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix/rhmc-proposal-handling",
+        "sha": "2bd83b2d48da246a7a37698fdbb49a670354fe67",
+        "blob": "ae0a00009cff874ad20eb03f915d2a203328af67",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix/siegel-distance-dimensions-20261112",
+        "sha": "0b643e9889ef33d0d0e51432c74f35492bd2ac5b",
+        "blob": "ae0a00009cff874ad20eb03f915d2a203328af67",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix/spd-expmap-repeated-spectrum-gradients-20261112",
+        "sha": "394acd40c32e64a8fd3d4fd2cf9ae33faf3456e6",
+        "blob": "ae0a00009cff874ad20eb03f915d2a203328af67",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix/spd-projection-positive-interior-20261112",
+        "sha": "608983f8364b292cb3a1da63b3284d5750b23405",
+        "blob": "ae0a00009cff874ad20eb03f915d2a203328af67",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix/stiefel-qr-backward-20261112",
+        "sha": "2775b2b9d21b5c81a4a1a591a37bed9372807b49",
+        "blob": "ae0a00009cff874ad20eb03f915d2a203328af67",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix/stochastic-sampler-step-contract",
+        "sha": "3f370245079e4d22795121789d48df836506d3b8",
+        "blob": "ae0a00009cff874ad20eb03f915d2a203328af67",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix/upper-half-batched-origin-20261029",
+        "sha": "b4ac023cdcf0697e17a5357cebd847e8abc58d30",
+        "blob": "b4012348c1c236ee647210d452ad6f7046074b23",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix-birkhoff-tangent-metric",
+        "sha": "cd906330522feaa3f3b863949e428fbcdfdcea10",
+        "blob": "b4012348c1c236ee647210d452ad6f7046074b23",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix-lorentz-coordinate-dimension",
+        "sha": "de7df453623fffa7838d5b6970512e084aec6ddc",
+        "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix-lorentz-manifold-axis",
+        "sha": "a6e23ca545079149c8058219fb5f5e2975be178d",
+        "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix-optimizer-side-gradient-mutation",
+        "sha": "2f0eeac8783dc68e1b166ef367ef50e2c0d99db4",
+        "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix-riemannian-sgd-first-momentum",
+        "sha": "7f8538e4da396fb6bef95a670d0814239d35f576",
+        "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix-signed-hyperplane-distance-asinh",
+        "sha": "43066828557b3ce0416cdbab74f31a8da8dacd60",
+        "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix-sparse-amsgrad-raw-second-moment",
+        "sha": "3d4ab8c313fe0c8952bd05b7b94135ddededa6ac",
+        "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix-spd-stein-logdet-stability",
+        "sha": "6bd798005c26a6e31c101932ebe69990c993ebdd",
+        "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix-sphere-expmap-zero-gradient",
+        "sha": "f62fb53bcf8fd63ceb7a63cf3c8caedfc037f326",
+        "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix-sphere-expmap-zero-step-gradient",
+        "sha": "f96f804971127e978e47790f30a38c665613c843",
+        "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix-sphere-geodesic-distance-precision",
+        "sha": "2db876bea979d96ff787b7a9977d581e89a8e56d",
+        "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix-sphere-subspace-tangent",
+        "sha": "bb8293cafec3b7c411436e832cae1602c1c67d10",
+        "blob": "0517f4b9206866766bfc426b0887ab60b3fa5efc",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "fix-stein-logdet-scale",
+        "sha": "682e73b0463c15e17c7c4002416e2afdcfad9190",
+        "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "master",
+        "sha": "af5ef91dd987121d03826335ca400c84e8e20800",
+        "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "submission/forms-20261113-ml",
+        "sha": "2d54b3bcab0fbe25d82d04eaad59e6272dd59c51",
+        "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "validation/stein-git-pristine-20261009",
+        "sha": "af5ef91dd987121d03826335ca400c84e8e20800",
+        "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b",
+        "normal_equations_present": true
+      },
+      {
+        "branch": "validation/stein-pristine-20261009",
+        "sha": "71c839d053df33056b166ee7d6533796f9691778",
+        "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b",
+        "normal_equations_present": true
+      }
+    ],
+    "related_prior_prs": [
+      {
+        "number": 266,
+        "url": "https://github.com/geoopt/geoopt/pull/266",
+        "actual_diff_read": true,
+        "scope": "Separated tangent projection from metric-gradient conversion; leaves normal equations unchanged."
+      },
+      {
+        "number": 251,
+        "url": "https://github.com/geoopt/geoopt/pull/251",
+        "actual_diff_read": true,
+        "scope": "Nonnegativity checks, boundary retraction, and Sinkhorn tolerance/iteration hardening; no tangent solver replacement."
+      },
+      {
+        "number": 250,
+        "url": "https://github.com/geoopt/geoopt/pull/250",
+        "actual_diff_read": true,
+        "scope": "Earlier boundary-hardening proposal; same unrelated retraction/check/projection changes."
+      },
+      {
+        "number": 220,
+        "url": "https://github.com/geoopt/geoopt/pull/220",
+        "actual_diff_read": true,
+        "scope": "Allocated the fixed-gauge ones tensor on the point's device; retained normal equations."
+      },
+      {
+        "number": 219,
+        "url": "https://github.com/geoopt/geoopt/pull/219",
+        "actual_diff_read": true,
+        "scope": "Earlier version of the device-allocation fix; retained normal equations."
+      },
+      {
+        "number": 125,
+        "url": "https://github.com/geoopt/geoopt/pull/125",
+        "actual_diff_read": true,
+        "scope": "Original Birkhoff implementation uses the same normal-equations approach."
+      },
+      {
+        "number": 96,
+        "url": "https://github.com/geoopt/geoopt/pull/96",
+        "actual_diff_read": true,
+        "scope": "Earlier Birkhoff implementation also uses normal equations."
+      }
+    ],
+    "issues_searches": [
+      "repo:geoopt/geoopt Birkhoff"
+    ],
+    "notes": "All 33 old branch source files retain normal equations. Full all-state PR titles and bodies were checked for Birkhoff, proj_tangent, least squares, lstsq, and condition-number references; all relevant historical solver diffs remain distinct. This source branch is independent of the six Geoopt fixes already prepared in this session."
+  },
+  "concurrency": {
+    "limit": null,
+    "policy": "No concurrent PR cap found in repository tree, README/community template; geoopt/.github repository not found.",
+    "open_before_attempt": 3
+  },
+  "disclosure": {
+    "mandatory": false,
+    "policy": "No AI disclosure instruction found. Existing repository PR template applies only to new manifolds."
+  },
+  "creation_attempts": [
+    {
+      "method": "github_create_pull_request connector",
+      "result": "403 Resource not accessible by integration"
+    }
+  ],
+  "notes": "No upstream PR created. Browser fallback was not repeated because the parent established the CUA Node runtime is unavailable. Fully prefilled compare URL is ready; user confirmation is pending. No new merge is claimed."
+}
