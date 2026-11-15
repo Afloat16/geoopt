@@ -1,0 +1,368 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-11-15 02:48:51 UTC",
+  "repository": "geoopt/geoopt",
+  "author": "Afloat16",
+  "status": "commit_and_validation_complete_pr_creation_blocked",
+  "title": "Preserve spherical logarithms near antipodal points",
+  "body": "## Problem\n\nFor distinct points very close to opposite sides of a sphere, `Sphere.logmap` clamps the projected tangent length to `EPS`. The result can be much shorter than the actual geodesic distance: with an angular gap of `2e-8` from the antipode in float64, its length is about `0.6283` instead of `3.1416`. Applying the exponential map then misses the target, and losses computed from the tangent vector have incorrect values and derivatives.\n\nSimply removing that clamp also amplifies roundoff from projecting the long chord `y - x` near the antipode.\n\n## Change\n\nProject the shorter chord: use `y - x` in the same hemisphere and `y + x` in the opposite hemisphere. Their tangent projections are equal on the unit sphere, while the shorter chord avoids cancellation near either endpoint. Normalize every nonzero tangent by its actual norm, with a safe divisor for an exactly zero projection.\n\nThe exact antipode has no unique logarithm; it retains the existing zero fallback. Near-antipodal points with a unique shortest arc recover the full tangent length and satisfy the exponential/logarithm round trip.\n\n## Validation\n\nRegression cases exercise Sphere and SphereExact, float32/float64, rotated non-axis points, both arc directions, tangent validity, mixed zero/near-antipodal batches, analytic circle derivatives, hemisphere-switch controls, and a real SGD step on a tangent-space loss.\n\nOn both Python 3.8 / PyTorch 2.0.1 CPU and Python 3.12 / PyTorch 2.8.0 CPU:\n\n- The unchanged base reports **22 failures and 11 passes**. All 21 unique-arc geometry, gradient, and training regressions fail; all 10 ordinary endpoint/hemisphere controls pass. One additional failure concerns the exact-antipode numerical fallback.\n- The fix passes all **33 new cases**. The complete affected Sphere modules, manifold-basic module, and Riemannian-SGD module report **2237 passed, 310 existing skips**.\n- Production and regression Ruff checks, `git diff --check`, and the clean-source check pass.\n\n[Baseline and fixed CI results](https://github.com/Afloat16/geoopt/actions/runs/43669131107). The verification workflow is on a separate fork branch.\n",
+  "prefilled_url": "https://github.com/geoopt/geoopt/compare/master...Afloat16:fix/sphere-logmap-near-antipode-20261115?expand=1&title=Preserve%20spherical%20logarithms%20near%20antipodal%20points&body=%23%23%20Problem%0A%0AFor%20distinct%20points%20very%20close%20to%20opposite%20sides%20of%20a%20sphere%2C%20%60Sphere.logmap%60%20clamps%20the%20projected%20tangent%20length%20to%20%60EPS%60.%20The%20result%20can%20be%20much%20shorter%20than%20the%20actual%20geodesic%20distance%3A%20with%20an%20angular%20gap%20of%20%602e-8%60%20from%20the%20antipode%20in%20float64%2C%20its%20length%20is%20about%20%600.6283%60%20instead%20of%20%603.1416%60.%20Applying%20the%20exponential%20map%20then%20misses%20the%20target%2C%20and%20losses%20computed%20from%20the%20tangent%20vector%20have%20incorrect%20values%20and%20derivatives.%0A%0ASimply%20removing%20that%20clamp%20also%20amplifies%20roundoff%20from%20projecting%20the%20long%20chord%20%60y%20-%20x%60%20near%20the%20antipode.%0A%0A%23%23%20Change%0A%0AProject%20the%20shorter%20chord%3A%20use%20%60y%20-%20x%60%20in%20the%20same%20hemisphere%20and%20%60y%20%2B%20x%60%20in%20the%20opposite%20hemisphere.%20Their%20tangent%20projections%20are%20equal%20on%20the%20unit%20sphere%2C%20while%20the%20shorter%20chord%20avoids%20cancellation%20near%20either%20endpoint.%20Normalize%20every%20nonzero%20tangent%20by%20its%20actual%20norm%2C%20with%20a%20safe%20divisor%20for%20an%20exactly%20zero%20projection.%0A%0AThe%20exact%20antipode%20has%20no%20unique%20logarithm%3B%20it%20retains%20the%20existing%20zero%20fallback.%20Near-antipodal%20points%20with%20a%20unique%20shortest%20arc%20recover%20the%20full%20tangent%20length%20and%20satisfy%20the%20exponential%2Flogarithm%20round%20trip.%0A%0A%23%23%20Validation%0A%0ARegression%20cases%20exercise%20Sphere%20and%20SphereExact%2C%20float32%2Ffloat64%2C%20rotated%20non-axis%20points%2C%20both%20arc%20directions%2C%20tangent%20validity%2C%20mixed%20zero%2Fnear-antipodal%20batches%2C%20analytic%20circle%20derivatives%2C%20hemisphere-switch%20controls%2C%20and%20a%20real%20SGD%20step%20on%20a%20tangent-space%20loss.%0A%0AOn%20both%20Python%203.8%20%2F%20PyTorch%202.0.1%20CPU%20and%20Python%203.12%20%2F%20PyTorch%202.8.0%20CPU%3A%0A%0A-%20The%20unchanged%20base%20reports%20**22%20failures%20and%2011%20passes**.%20All%2021%20unique-arc%20geometry%2C%20gradient%2C%20and%20training%20regressions%20fail%3B%20all%2010%20ordinary%20endpoint%2Fhemisphere%20controls%20pass.%20One%20additional%20failure%20concerns%20the%20exact-antipode%20numerical%20fallback.%0A-%20The%20fix%20passes%20all%20**33%20new%20cases**.%20The%20complete%20affected%20Sphere%20modules%2C%20manifold-basic%20module%2C%20and%20Riemannian-SGD%20module%20report%20**2237%20passed%2C%20310%20existing%20skips**.%0A-%20Production%20and%20regression%20Ruff%20checks%2C%20%60git%20diff%20--check%60%2C%20and%20the%20clean-source%20check%20pass.%0A%0A%5BBaseline%20and%20fixed%20CI%20results%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43669131107).%20The%20verification%20workflow%20is%20on%20a%20separate%20fork%20branch.%0A",
+  "base": {
+    "repository": "geoopt/geoopt",
+    "branch": "master",
+    "sha": "4623ea1d2a9808b8e87bf10949cccb2c5ec6233c",
+    "tree": "2ab03d32376b32d44da40bd2525b272bb5ea93ca"
+  },
+  "head": {
+    "repository": "Afloat16/geoopt",
+    "branch": "fix/sphere-logmap-near-antipode-20261115",
+    "sha": "d3ed0db93e85c046d59489dbe639d2ecad0fe505",
+    "tree": "bd7f7c4bb2552165f2810b659ee8e84337cc9d14",
+    "files": [
+      "geoopt/manifolds/sphere.py",
+      "tests/test_sphere_logmap_near_antipode.py"
+    ]
+  },
+  "validation": {
+    "branch": "validation/sphere-logmap-near-antipode-20261115",
+    "sha": "624d111cdb1f10c8aee2ce696ce3603fbfde34bd",
+    "workflow_in_upstream_pr": false,
+    "production_source_unchanged_after_tests": true,
+    "runs": [
+      {
+        "run_id": 43669131107,
+        "run_conclusion": "success",
+        "job_id": 132675030391,
+        "job_conclusion": "success",
+        "url": "https://github.com/Afloat16/geoopt/actions/runs/43669131107/job/132675030391",
+        "python": "3.12.16",
+        "torch": "2.8.0+cpu",
+        "numpy": "1.26.4",
+        "scipy": "1.13.1",
+        "baseline": {
+          "failed": 22,
+          "passed": 11,
+          "errors": 0,
+          "skipped": 0,
+          "unique_arc_regressions_failed": 21,
+          "ordinary_endpoint_hemisphere_controls_passed": 10,
+          "exact_antipode_fallback_failed": 1,
+          "exact_antipode_fallback_passed": 1
+        },
+        "fixed": {
+          "passed": 2237,
+          "skipped": 310,
+          "new_cases_passed": 33
+        },
+        "lint": "passed",
+        "junit_artifact_url": "https://github.com/Afloat16/geoopt/actions/runs/43669131107/artifacts/14144045145"
+      },
+      {
+        "run_id": 43669131107,
+        "run_conclusion": "success",
+        "job_id": 132675030571,
+        "job_conclusion": "success",
+        "url": "https://github.com/Afloat16/geoopt/actions/runs/43669131107/job/132675030571",
+        "python": "3.8.18",
+        "torch": "2.0.1+cpu",
+        "numpy": "1.24.4",
+        "scipy": "1.10.1",
+        "baseline": {
+          "failed": 22,
+          "passed": 11,
+          "errors": 0,
+          "skipped": 0,
+          "unique_arc_regressions_failed": 21,
+          "ordinary_endpoint_hemisphere_controls_passed": 10,
+          "exact_antipode_fallback_failed": 1,
+          "exact_antipode_fallback_passed": 1
+        },
+        "fixed": {
+          "passed": 2237,
+          "skipped": 310,
+          "new_cases_passed": 33
+        },
+        "lint": "passed",
+        "junit_artifact_url": "https://github.com/Afloat16/geoopt/actions/runs/43669131107/artifacts/14143945152"
+      }
+    ],
+    "modules": [
+      "tests/test_sphere_logmap_near_antipode.py",
+      "tests/test_sphere_geodesic_distance_precision.py",
+      "tests/test_sphere_zero_step_gradients.py",
+      "tests/test_sphere_subspace_tangent.py",
+      "tests/test_sphere_batched_subspace.py",
+      "tests/test_manifold_basic.py",
+      "tests/test_rsgd.py"
+    ],
+    "new_cases": 33,
+    "independent_oracles": [
+      "Analytic great-circle arc length and tangent direction",
+      "Exponential/logarithm round trip and tangent orthogonality for rotated non-axis points",
+      "Analytic derivative along a circle",
+      "Actual SGD step for a tangent-space squared-norm loss"
+    ],
+    "checks": [
+      "ruff check geoopt tests/test_sphere_logmap_near_antipode.py",
+      "git diff --check",
+      "git diff --exit-code"
+    ],
+    "scope": "CPU validation only for the listed complete modules. Exact antipodal points have no unique logarithm; tests check the numerical zero fallback, not uniqueness or differentiability at the cut locus."
+  },
+  "eligibility": {
+    "stars": 1103,
+    "own_merged_before": 15,
+    "merged_rank": 2,
+    "first": {
+      "login": "ferrine",
+      "merged": 87
+    },
+    "own_open_before": 3
+  },
+  "dedup": {
+    "upstream_all_state_pr_count": 174,
+    "own_open_prs": [
+      290,
+      291,
+      292
+    ],
+    "own_merged_before": 15,
+    "old_fork_branch_count": 33,
+    "all_old_branch_source_files_read": true,
+    "audited_path": "geoopt/manifolds/sphere.py",
+    "old_branch_shas_unchanged_on_final_refresh": true,
+    "old_branch_logmap_variants": 1,
+    "old_branch_audit": [
+      {
+        "branch": "build",
+        "sha": "65bb2746ffe09c82758092a4eb6c02e6644aee32",
+        "blob": "c6d0bd36c7495bcf7fcf414596c95d2a5f58c06f",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix/canonical-stiefel-tangent-projection-20261029",
+        "sha": "a3ea54f9467ab98a958fe5c5ac92d3b19d55a6ac",
+        "blob": "473999788ec68a8d101ff01f358d64ff0fc061ea",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix/euclidean-high-dimensional-norms-20261029",
+        "sha": "6f54b5724eb3726ed7f5cfd442b573fac19fe2f3",
+        "blob": "473999788ec68a8d101ff01f358d64ff0fc061ea",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix/layer-manifold-factories-20261112",
+        "sha": "ca193e465cfc19c786063cf5f502d2879f22207f",
+        "blob": "7aaa025bcb11606b9f3e5fe462176148fa2c632d",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix/product-component-inner-broadcast-20261112",
+        "sha": "89d09e239f597246b30624c451ecbf88f2aaa774",
+        "blob": "7aaa025bcb11606b9f3e5fe462176148fa2c632d",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix/proper-velocity-distance-batch-shapes-20261112",
+        "sha": "7ef51c2de94042f759269026171cb258435413de",
+        "blob": "7aaa025bcb11606b9f3e5fe462176148fa2c632d",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix/proper-velocity-product-sampling-20261112",
+        "sha": "85dee4d65e4a92cc3fa8861e73bc8401cbf1e2ab",
+        "blob": "7aaa025bcb11606b9f3e5fe462176148fa2c632d",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix/proper-velocity-radial-metric-20261112",
+        "sha": "60b129ae56b8be73fd9d63f3dbb50b512a72002f",
+        "blob": "7aaa025bcb11606b9f3e5fe462176148fa2c632d",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix/revisited-line-search-derivatives-20261112",
+        "sha": "f8cd4e81e01be2754a33abe89bbb947820fd8800",
+        "blob": "539726b5031edee80dcf3065a60fe4521b1f8da8",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix/rhmc-proposal-handling",
+        "sha": "2bd83b2d48da246a7a37698fdbb49a670354fe67",
+        "blob": "539726b5031edee80dcf3065a60fe4521b1f8da8",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix/siegel-distance-dimensions-20261112",
+        "sha": "0b643e9889ef33d0d0e51432c74f35492bd2ac5b",
+        "blob": "539726b5031edee80dcf3065a60fe4521b1f8da8",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix/spd-expmap-repeated-spectrum-gradients-20261112",
+        "sha": "394acd40c32e64a8fd3d4fd2cf9ae33faf3456e6",
+        "blob": "7aaa025bcb11606b9f3e5fe462176148fa2c632d",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix/spd-projection-positive-interior-20261112",
+        "sha": "608983f8364b292cb3a1da63b3284d5750b23405",
+        "blob": "7aaa025bcb11606b9f3e5fe462176148fa2c632d",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix/stiefel-qr-backward-20261112",
+        "sha": "2775b2b9d21b5c81a4a1a591a37bed9372807b49",
+        "blob": "539726b5031edee80dcf3065a60fe4521b1f8da8",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix/stochastic-sampler-step-contract",
+        "sha": "3f370245079e4d22795121789d48df836506d3b8",
+        "blob": "539726b5031edee80dcf3065a60fe4521b1f8da8",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix/upper-half-batched-origin-20261029",
+        "sha": "b4ac023cdcf0697e17a5357cebd847e8abc58d30",
+        "blob": "473999788ec68a8d101ff01f358d64ff0fc061ea",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix-birkhoff-tangent-metric",
+        "sha": "cd906330522feaa3f3b863949e428fbcdfdcea10",
+        "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix-lorentz-coordinate-dimension",
+        "sha": "de7df453623fffa7838d5b6970512e084aec6ddc",
+        "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix-lorentz-manifold-axis",
+        "sha": "a6e23ca545079149c8058219fb5f5e2975be178d",
+        "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix-optimizer-side-gradient-mutation",
+        "sha": "2f0eeac8783dc68e1b166ef367ef50e2c0d99db4",
+        "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix-riemannian-sgd-first-momentum",
+        "sha": "7f8538e4da396fb6bef95a670d0814239d35f576",
+        "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix-signed-hyperplane-distance-asinh",
+        "sha": "43066828557b3ce0416cdbab74f31a8da8dacd60",
+        "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix-sparse-amsgrad-raw-second-moment",
+        "sha": "3d4ab8c313fe0c8952bd05b7b94135ddededa6ac",
+        "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix-spd-stein-logdet-stability",
+        "sha": "6bd798005c26a6e31c101932ebe69990c993ebdd",
+        "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix-sphere-expmap-zero-gradient",
+        "sha": "f62fb53bcf8fd63ceb7a63cf3c8caedfc037f326",
+        "blob": "b405acfa35a7ac4a95a56581f856b723f1a24ccc",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix-sphere-expmap-zero-step-gradient",
+        "sha": "f96f804971127e978e47790f30a38c665613c843",
+        "blob": "b405acfa35a7ac4a95a56581f856b723f1a24ccc",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix-sphere-geodesic-distance-precision",
+        "sha": "2db876bea979d96ff787b7a9977d581e89a8e56d",
+        "blob": "dd9ec3622ee4dd3f45ee2b1e532d840bcafb3129",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix-sphere-subspace-tangent",
+        "sha": "bb8293cafec3b7c411436e832cae1602c1c67d10",
+        "blob": "5c137d197c3515556c5dc00aa0717b30a34da8fc",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "fix-stein-logdet-scale",
+        "sha": "682e73b0463c15e17c7c4002416e2afdcfad9190",
+        "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "master",
+        "sha": "af5ef91dd987121d03826335ca400c84e8e20800",
+        "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "submission/forms-20261113-ml",
+        "sha": "2d54b3bcab0fbe25d82d04eaad59e6272dd59c51",
+        "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "validation/stein-git-pristine-20261009",
+        "sha": "af5ef91dd987121d03826335ca400c84e8e20800",
+        "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff",
+        "original_logmap_present": true
+      },
+      {
+        "branch": "validation/stein-pristine-20261009",
+        "sha": "71c839d053df33056b166ee7d6533796f9691778",
+        "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff",
+        "original_logmap_present": true
+      }
+    ],
+    "related_prior_pr": {
+      "number": 258,
+      "url": "https://github.com/geoopt/geoopt/pull/258",
+      "actual_diff_read": true,
+      "production_functions_changed": [
+        "Sphere.dist",
+        "Sphere.cdist"
+      ],
+      "logmap_changed": false
+    },
+    "issues_searches": [
+      "repo:geoopt/geoopt logmap",
+      "repo:geoopt/geoopt antipodal",
+      "repo:geoopt/geoopt sphere"
+    ],
+    "notes": "No prior upstream or fork fix for Sphere.logmap near-antipodal norm clipping or long-chord cancellation found. This head is independent of this session's ProductManifold and BoundedDomain changes."
+  },
+  "concurrency": {
+    "limit": null,
+    "policy": "No concurrent PR cap found in repository tree, README/community template; geoopt/.github repository not found.",
+    "open_before_attempt": 3
+  },
+  "disclosure": {
+    "mandatory": false,
+    "policy": "No AI disclosure instruction found. Existing repository PR template applies only to new manifolds."
+  },
+  "creation_attempts": [
+    {
+      "method": "github_create_pull_request connector",
+      "result": "403 Resource not accessible by integration"
+    }
+  ],
+  "notes": "No upstream PR created. Browser fallback was not repeated because the parent established that the CUA Node runtime is unavailable. Fully prefilled compare URL is ready; user confirmation is pending. No new merge is claimed."
+}
