@@ -385,6 +385,40 @@
       "same_root_cause": true,
       "same_solution": true,
       "reason": "The all-state PR list contained #288, but the earlier candidate-specific filtering missed it. Its actual diff already guards the Euclidean.cdist square root at zero and retains higher-order derivatives. This candidate is not novel and must not be submitted or counted."
+    },
+    "duplicate_found": true,
+    "reaudit": {
+      "excluded_head": {
+        "repository": "Afloat16/geoopt",
+        "branch": "fix/euclidean-cdist-zero-gradients-20261115",
+        "sha": "606d99820a24e8fe5c7e4bc1754f90bcf746ff36",
+        "tree": "60c14699ed86745c47e0aa7b78b6ea6a1fbd8355",
+        "files": [
+          "geoopt/manifolds/euclidean.py",
+          "tests/test_euclidean_cdist_gradients.py"
+        ]
+      },
+      "duplicate": {
+        "number": 288,
+        "url": "https://github.com/geoopt/geoopt/pull/288",
+        "title": "Fix Euclidean cdist gradients at zero distance",
+        "state": "open",
+        "merged_at": null,
+        "head_sha": "1b16616ede9c5188598f0401668e48f5589cd8b1",
+        "base_sha": "56f56ccb9d9ab8a6377c9d93c71b30e4950368e1"
+      },
+      "created_at": "2026-11-08T04:25:57Z",
+      "updated_at": "2026-11-08T04:25:57Z",
+      "exact_production_overlap": "Both change Euclidean.cdist to mask zero squared distances before sqrt and restore exact zero afterwards. Upstream #288 also adds tests/test_euclidean_cdist_gradients.py.",
+      "miss_mechanism": [
+        "The upstream PR existed before this work and was included in the fetched all-state metadata.",
+        "The earlier ProductManifold handoff already explicitly listed #288 as related prior work; the conflict was therefore already known in this campaign.",
+        "When later choosing the Euclidean.cdist candidate, this known conflict record was not carried into the candidate's exclusion check.",
+        "A title-display filter that did not include cdist and a later issues-only search failed to surface it again; reviewing only #238 and #278 was insufficient.",
+        "The previous claim of new, fully deduplicated Euclidean.cdist work was incorrect."
+      ],
+      "action": "Disqualify completely. Do not create a PR or count it as an eligible improvement. Clear prefilled URL; retain the fork source only as an audit record.",
+      "upstream_pr_created": false
     }
   },
   "concurrency": {

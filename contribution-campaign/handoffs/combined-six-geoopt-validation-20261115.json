@@ -143,5 +143,6 @@
     "upstream_pr": 288,
     "url": "https://github.com/geoopt/geoopt/pull/288",
     "reason": "Same Euclidean.cdist zero-gradient fix already proposed upstream; do not count or submit."
-  }
+  },
+  "novelty_reaudit": "geoopt-novelty-reaudit-20261115.json"
 }

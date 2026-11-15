@@ -1,0 +1,2752 @@
+{
+  "schema_version": 1,
+  "repository": "geoopt/geoopt",
+  "author": "Afloat16",
+  "checked_at": "2026-11-15 04:18:24 UTC",
+  "status": "completed_all_state_reaudit_one_duplicate_excluded",
+  "upstream_base_sha": "4623ea1d2a9808b8e87bf10949cccb2c5ec6233c",
+  "coverage": {
+    "all_state_prs": 174,
+    "changed_file_records": 1092,
+    "title_and_body_reviewed": 174,
+    "all_changed_file_pages_fetched": true,
+    "request_failures": [],
+    "relevant_production_file_patches": 96,
+    "relevant_patch_added_deleted_counts_match_metadata": true,
+    "original_fork_branches": 33,
+    "current_fork_branches": 56,
+    "original_branch_heads_unchanged": true,
+    "additional_23_branches_are_this_campaign_sources_validations_and_handoffs": true,
+    "latest_refresh_new_or_changed_prs": [],
+    "own_current_open_prs": [
+      292,
+      291,
+      290
+    ],
+    "manifest": "geoopt-pr-file-index-20261115.json",
+    "scope": "All currently available open, closed and merged PR title/body and latest changed-file index, plus actual relevant production diffs (including pre-refactor monolithic manifolds.py and ProductSpace_TODO.py), and the relevant source implementation at all 33 original fork branch heads. The index is not a claim to have read every unrelated changed-file body or historical overwritten PR revision."
+  },
+  "duplicate_incident": {
+    "excluded_head": {
+      "repository": "Afloat16/geoopt",
+      "branch": "fix/euclidean-cdist-zero-gradients-20261115",
+      "sha": "606d99820a24e8fe5c7e4bc1754f90bcf746ff36",
+      "tree": "60c14699ed86745c47e0aa7b78b6ea6a1fbd8355",
+      "files": [
+        "geoopt/manifolds/euclidean.py",
+        "tests/test_euclidean_cdist_gradients.py"
+      ]
+    },
+    "duplicate": {
+      "number": 288,
+      "url": "https://github.com/geoopt/geoopt/pull/288",
+      "title": "Fix Euclidean cdist gradients at zero distance",
+      "state": "open",
+      "merged_at": null,
+      "head_sha": "1b16616ede9c5188598f0401668e48f5589cd8b1",
+      "base_sha": "56f56ccb9d9ab8a6377c9d93c71b30e4950368e1"
+    },
+    "created_at": "2026-11-08T04:25:57Z",
+    "updated_at": "2026-11-08T04:25:57Z",
+    "exact_production_overlap": "Both change Euclidean.cdist to mask zero squared distances before sqrt and restore exact zero afterwards. Upstream #288 also adds tests/test_euclidean_cdist_gradients.py.",
+    "miss_mechanism": [
+      "The upstream PR existed before this work and was included in the fetched all-state metadata.",
+      "The earlier ProductManifold handoff already explicitly listed #288 as related prior work; the conflict was therefore already known in this campaign.",
+      "When later choosing the Euclidean.cdist candidate, this known conflict record was not carried into the candidate's exclusion check.",
+      "A title-display filter that did not include cdist and a later issues-only search failed to surface it again; reviewing only #238 and #278 was insufficient.",
+      "The previous claim of new, fully deduplicated Euclidean.cdist work was incorrect."
+    ],
+    "action": "Disqualify completely. Do not create a PR or count it as an eligible improvement. Clear prefilled URL; retain the fork source only as an audit record.",
+    "upstream_pr_created": false
+  },
+  "eligible_fixes": [
+    {
+      "key": "product_distance",
+      "title": "Preserve zero and small distances on product manifolds",
+      "head": {
+        "repository": "Afloat16/geoopt",
+        "branch": "fix/product-distance-small-gradients-20261115",
+        "sha": "216ae2ed65aeeea7aab9cebd9140ab7c52ec2b79",
+        "tree": "2823e92c39c09418e9d966438e4d7e9f131498c2",
+        "files": [
+          "geoopt/manifolds/product.py",
+          "tests/test_product_manifold.py"
+        ]
+      },
+      "status": "no_duplicate_found_in_completed_reaudit",
+      "eligible_new_improvement": true,
+      "upstream_pr_created": false,
+      "upstream_merged": false,
+      "finding": "No earlier PR or original fork branch removes ProductManifold.dist's positive squared-distance floor while preserving finite exact-zero gradients.",
+      "all_direct_file_prs_reviewed": [
+        {
+          "number": 277,
+          "url": "https://github.com/geoopt/geoopt/pull/277",
+          "title": "Preserve scalar scales in product wrapped normal sampling",
+          "state": "closed",
+          "merged_at": "2026-11-05T08:34:37Z",
+          "head_sha": "14ac4752dd4603d3eee6d6f709be88ce4d0ca4d7",
+          "base_sha": "d2c542d7a3ec2057a4f1dbb8862ba371ca8eb386"
+        },
+        {
+          "number": 261,
+          "url": "https://github.com/geoopt/geoopt/pull/261",
+          "title": "Add torch.Generator support to manifold sampling",
+          "state": "closed",
+          "merged_at": "2026-10-29T11:56:13Z",
+          "head_sha": "d37ab1eeb77a0613f7c7bdbf4b1d2c3f5baba5c4",
+          "base_sha": "720c2425fab8a3449c80e7f4c17331bf88c04045"
+        },
+        {
+          "number": 163,
+          "url": "https://github.com/geoopt/geoopt/pull/163",
+          "title": "StereographicProductManifold to use gyrovector space functions in product manifolds",
+          "state": "closed",
+          "merged_at": "2022-03-25T10:44:17Z",
+          "head_sha": "02623f3dab852a7894b75b2146dc461de86e2cc4",
+          "base_sha": "ba2466c2eb1fe4be8f4f1b6c1deaa48e3c5ddcb3"
+        },
+        {
+          "number": 130,
+          "url": "https://github.com/geoopt/geoopt/pull/130",
+          "title": "Sparse Optimizers",
+          "state": "closed",
+          "merged_at": "2020-04-23T23:45:48Z",
+          "head_sha": "e2f1f50c38db97c46ee5edd0b63ea41948334e98",
+          "base_sha": "d7c115c7b4bbd8089a460535ee005a9f105788d6"
+        },
+        {
+          "number": 129,
+          "url": "https://github.com/geoopt/geoopt/pull/129",
+          "title": "Sparse optimizers",
+          "state": "closed",
+          "merged_at": null,
+          "head_sha": "0d0c8dc26b0061ab129c27bb780153144144563e",
+          "base_sha": "d7c115c7b4bbd8089a460535ee005a9f105788d6"
+        },
+        {
+          "number": 123,
+          "url": "https://github.com/geoopt/geoopt/pull/123",
+          "title": "K-Stereographic Model",
+          "state": "closed",
+          "merged_at": null,
+          "head_sha": "f57fc2f6de1f5943a1e76aacb556d85b52c68b58",
+          "base_sha": "f06fba04f64e3ff6ee3866fafa15a613e8780f41"
+        },
+        {
+          "number": 114,
+          "url": "https://github.com/geoopt/geoopt/pull/114",
+          "title": "Attach manifold",
+          "state": "closed",
+          "merged_at": null,
+          "head_sha": "cf60c66d0f4dc6126b8ba32035981605c1dc1cd0",
+          "base_sha": "bad2822d13fc38f4a8be74c34e91d2ada4426e4a"
+        },
+        {
+          "number": 112,
+          "url": "https://github.com/geoopt/geoopt/pull/112",
+          "title": "Cleanup PR",
+          "state": "closed",
+          "merged_at": "2019-11-03T11:29:54Z",
+          "head_sha": "5cb9b28d3ea84a67c02102229e2b693d25768ade",
+          "base_sha": "1cefe5910ef5d63d255ec07e6a2c4811828ab0fa"
+        },
+        {
+          "number": 109,
+          "url": "https://github.com/geoopt/geoopt/pull/109",
+          "title": "Product manifold",
+          "state": "closed",
+          "merged_at": "2019-10-30T13:54:20Z",
+          "head_sha": "8034027e75610438a7acd77dda8195b0fccf0fcc",
+          "base_sha": "9c05e6a92bc03a6e69a002fe57a8b712f778087f"
+        }
+      ],
+      "related_prior_work": [
+        {
+          "prs": [
+            {
+              "number": 129,
+              "url": "https://github.com/geoopt/geoopt/pull/129",
+              "title": "Sparse optimizers",
+              "state": "closed",
+              "merged_at": null,
+              "head_sha": "0d0c8dc26b0061ab129c27bb780153144144563e",
+              "base_sha": "d7c115c7b4bbd8089a460535ee005a9f105788d6"
+            },
+            {
+              "number": 130,
+              "url": "https://github.com/geoopt/geoopt/pull/130",
+              "title": "Sparse Optimizers",
+              "state": "closed",
+              "merged_at": "2020-04-23T23:45:48Z",
+              "head_sha": "e2f1f50c38db97c46ee5edd0b63ea41948334e98",
+              "base_sha": "d7c115c7b4bbd8089a460535ee005a9f105788d6"
+            }
+          ],
+          "distinction": "These PRs introduced the 1e-15 positive floor, the opposite change to the new fix."
+        },
+        {
+          "prs": [
+            {
+              "number": 109,
+              "url": "https://github.com/geoopt/geoopt/pull/109",
+              "title": "Product manifold",
+              "state": "closed",
+              "merged_at": "2019-10-30T13:54:20Z",
+              "head_sha": "8034027e75610438a7acd77dda8195b0fccf0fcc",
+              "base_sha": "9c05e6a92bc03a6e69a002fe57a8b712f778087f"
+            },
+            {
+              "number": 123,
+              "url": "https://github.com/geoopt/geoopt/pull/123",
+              "title": "K-Stereographic Model",
+              "state": "closed",
+              "merged_at": null,
+              "head_sha": "f57fc2f6de1f5943a1e76aacb556d85b52c68b58",
+              "base_sha": "f06fba04f64e3ff6ee3866fafa15a613e8780f41"
+            }
+          ],
+          "distinction": "Original product implementations use unguarded sqrt; neither implements the finite exact-zero and unfloored-small-distance behavior."
+        },
+        {
+          "prs": [
+            {
+              "number": 112,
+              "url": "https://github.com/geoopt/geoopt/pull/112",
+              "title": "Cleanup PR",
+              "state": "closed",
+              "merged_at": "2019-11-03T11:29:54Z",
+              "head_sha": "5cb9b28d3ea84a67c02102229e2b693d25768ade",
+              "base_sha": "1cefe5910ef5d63d255ec07e6a2c4811828ab0fa"
+            },
+            {
+              "number": 114,
+              "url": "https://github.com/geoopt/geoopt/pull/114",
+              "title": "Attach manifold",
+              "state": "closed",
+              "merged_at": null,
+              "head_sha": "cf60c66d0f4dc6126b8ba32035981605c1dc1cd0",
+              "base_sha": "bad2822d13fc38f4a8be74c34e91d2ada4426e4a"
+            },
+            {
+              "number": 163,
+              "url": "https://github.com/geoopt/geoopt/pull/163",
+              "title": "StereographicProductManifold to use gyrovector space functions in product manifolds",
+              "state": "closed",
+              "merged_at": "2022-03-25T10:44:17Z",
+              "head_sha": "02623f3dab852a7894b75b2146dc461de86e2cc4",
+              "base_sha": "ba2466c2eb1fe4be8f4f1b6c1deaa48e3c5ddcb3"
+            },
+            {
+              "number": 261,
+              "url": "https://github.com/geoopt/geoopt/pull/261",
+              "title": "Add torch.Generator support to manifold sampling",
+              "state": "closed",
+              "merged_at": "2026-10-29T11:56:13Z",
+              "head_sha": "d37ab1eeb77a0613f7c7bdbf4b1d2c3f5baba5c4",
+              "base_sha": "720c2425fab8a3449c80e7f4c17331bf88c04045"
+            },
+            {
+              "number": 277,
+              "url": "https://github.com/geoopt/geoopt/pull/277",
+              "title": "Preserve scalar scales in product wrapped normal sampling",
+              "state": "closed",
+              "merged_at": "2026-11-05T08:34:37Z",
+              "head_sha": "14ac4752dd4603d3eee6d6f709be88ce4d0ca4d7",
+              "base_sha": "d2c542d7a3ec2057a4f1dbb8862ba371ca8eb386"
+            }
+          ],
+          "distinction": "Type hints/attachment, stereographic operations and sampling changes leave the product distance floor untouched."
+        },
+        {
+          "prs": [
+            {
+              "number": 245,
+              "url": "https://github.com/geoopt/geoopt/pull/245",
+              "title": "fix: SPD manifold norm fn",
+              "state": "closed",
+              "merged_at": "2026-04-18T12:38:12Z",
+              "head_sha": "2cb6dff72b401f4b0933c0c69add4fc3cdd6a9a7",
+              "base_sha": "8709777aaa3eda93916c9e4ff8cbcaae46fc79de"
+            },
+            {
+              "number": 288,
+              "url": "https://github.com/geoopt/geoopt/pull/288",
+              "title": "Fix Euclidean cdist gradients at zero distance",
+              "state": "open",
+              "merged_at": null,
+              "head_sha": "1b16616ede9c5188598f0401668e48f5589cd8b1",
+              "base_sha": "56f56ccb9d9ab8a6377c9d93c71b30e4950368e1"
+            }
+          ],
+          "distinction": "The zero-safe sqrt pattern has prior art in SPD.norm and Euclidean.cdist. The new Product.dist defect is a positive output floor and dead zone for representable nonzero distances; those PRs do not modify or repair Product.dist. Mathematical novelty of the guarding idiom is not claimed."
+        }
+      ],
+      "original_fork_sources": {
+        "checked": 33,
+        "failed": 0,
+        "all_retain_old_behavior": true,
+        "branches": [
+          {
+            "branch": "build",
+            "commit": "65bb2746ffe09c82758092a4eb6c02e6644aee32",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "fix/canonical-stiefel-tangent-projection-20261029",
+            "commit": "a3ea54f9467ab98a958fe5c5ac92d3b19d55a6ac",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "fix/euclidean-high-dimensional-norms-20261029",
+            "commit": "6f54b5724eb3726ed7f5cfd442b573fac19fe2f3",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "fix/layer-manifold-factories-20261112",
+            "commit": "ca193e465cfc19c786063cf5f502d2879f22207f",
+            "blob": "1b1e04bc264e6fb0095ba6e624e1f06a1cbb109c"
+          },
+          {
+            "branch": "fix/product-component-inner-broadcast-20261112",
+            "commit": "89d09e239f597246b30624c451ecbf88f2aaa774",
+            "blob": "d208b225b7f9fac5c273872cb184c6dff1265e0d"
+          },
+          {
+            "branch": "fix/proper-velocity-distance-batch-shapes-20261112",
+            "commit": "7ef51c2de94042f759269026171cb258435413de",
+            "blob": "1b1e04bc264e6fb0095ba6e624e1f06a1cbb109c"
+          },
+          {
+            "branch": "fix/proper-velocity-product-sampling-20261112",
+            "commit": "85dee4d65e4a92cc3fa8861e73bc8401cbf1e2ab",
+            "blob": "1b1e04bc264e6fb0095ba6e624e1f06a1cbb109c"
+          },
+          {
+            "branch": "fix/proper-velocity-radial-metric-20261112",
+            "commit": "60b129ae56b8be73fd9d63f3dbb50b512a72002f",
+            "blob": "1b1e04bc264e6fb0095ba6e624e1f06a1cbb109c"
+          },
+          {
+            "branch": "fix/revisited-line-search-derivatives-20261112",
+            "commit": "f8cd4e81e01be2754a33abe89bbb947820fd8800",
+            "blob": "1b1e04bc264e6fb0095ba6e624e1f06a1cbb109c"
+          },
+          {
+            "branch": "fix/rhmc-proposal-handling",
+            "commit": "2bd83b2d48da246a7a37698fdbb49a670354fe67",
+            "blob": "1b1e04bc264e6fb0095ba6e624e1f06a1cbb109c"
+          },
+          {
+            "branch": "fix/siegel-distance-dimensions-20261112",
+            "commit": "0b643e9889ef33d0d0e51432c74f35492bd2ac5b",
+            "blob": "1b1e04bc264e6fb0095ba6e624e1f06a1cbb109c"
+          },
+          {
+            "branch": "fix/spd-expmap-repeated-spectrum-gradients-20261112",
+            "commit": "394acd40c32e64a8fd3d4fd2cf9ae33faf3456e6",
+            "blob": "1b1e04bc264e6fb0095ba6e624e1f06a1cbb109c"
+          },
+          {
+            "branch": "fix/spd-projection-positive-interior-20261112",
+            "commit": "608983f8364b292cb3a1da63b3284d5750b23405",
+            "blob": "1b1e04bc264e6fb0095ba6e624e1f06a1cbb109c"
+          },
+          {
+            "branch": "fix/stiefel-qr-backward-20261112",
+            "commit": "2775b2b9d21b5c81a4a1a591a37bed9372807b49",
+            "blob": "1b1e04bc264e6fb0095ba6e624e1f06a1cbb109c"
+          },
+          {
+            "branch": "fix/stochastic-sampler-step-contract",
+            "commit": "3f370245079e4d22795121789d48df836506d3b8",
+            "blob": "1b1e04bc264e6fb0095ba6e624e1f06a1cbb109c"
+          },
+          {
+            "branch": "fix/upper-half-batched-origin-20261029",
+            "commit": "b4ac023cdcf0697e17a5357cebd847e8abc58d30",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "fix-birkhoff-tangent-metric",
+            "commit": "cd906330522feaa3f3b863949e428fbcdfdcea10",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "fix-lorentz-coordinate-dimension",
+            "commit": "de7df453623fffa7838d5b6970512e084aec6ddc",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "fix-lorentz-manifold-axis",
+            "commit": "a6e23ca545079149c8058219fb5f5e2975be178d",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "fix-optimizer-side-gradient-mutation",
+            "commit": "2f0eeac8783dc68e1b166ef367ef50e2c0d99db4",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "fix-riemannian-sgd-first-momentum",
+            "commit": "7f8538e4da396fb6bef95a670d0814239d35f576",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "fix-signed-hyperplane-distance-asinh",
+            "commit": "43066828557b3ce0416cdbab74f31a8da8dacd60",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "fix-sparse-amsgrad-raw-second-moment",
+            "commit": "3d4ab8c313fe0c8952bd05b7b94135ddededa6ac",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "fix-spd-stein-logdet-stability",
+            "commit": "6bd798005c26a6e31c101932ebe69990c993ebdd",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "fix-sphere-expmap-zero-gradient",
+            "commit": "f62fb53bcf8fd63ceb7a63cf3c8caedfc037f326",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "fix-sphere-expmap-zero-step-gradient",
+            "commit": "f96f804971127e978e47790f30a38c665613c843",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "fix-sphere-geodesic-distance-precision",
+            "commit": "2db876bea979d96ff787b7a9977d581e89a8e56d",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "fix-sphere-subspace-tangent",
+            "commit": "bb8293cafec3b7c411436e832cae1602c1c67d10",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "fix-stein-logdet-scale",
+            "commit": "682e73b0463c15e17c7c4002416e2afdcfad9190",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "master",
+            "commit": "af5ef91dd987121d03826335ca400c84e8e20800",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "submission/forms-20261113-ml",
+            "commit": "2d54b3bcab0fbe25d82d04eaad59e6272dd59c51",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "validation/stein-git-pristine-20261009",
+            "commit": "af5ef91dd987121d03826335ca400c84e8e20800",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          },
+          {
+            "branch": "validation/stein-pristine-20261009",
+            "commit": "71c839d053df33056b166ee7d6533796f9691778",
+            "blob": "5b9db47b4360174290fd051a0f30dee6e2b4049e"
+          }
+        ]
+      }
+    },
+    {
+      "key": "bounded_domain_metric",
+      "title": "Correct complex factor ordering in the bounded-domain metric and gradient",
+      "head": {
+        "repository": "Afloat16/geoopt",
+        "branch": "fix/bounded-domain-metric-gradient-20261115",
+        "sha": "485d6fe2c5c7342d56cb8ff059fd5d4a5e821d26",
+        "tree": "07be1fa0de712517406249fb0ab935d8f624437b",
+        "files": [
+          "geoopt/manifolds/siegel/bounded_domain.py",
+          "tests/test_bounded_domain_gradient.py",
+          "tests/test_manifold_basic.py"
+        ]
+      },
+      "status": "no_duplicate_found_in_completed_reaudit",
+      "eligible_new_improvement": true,
+      "upstream_pr_created": false,
+      "upstream_merged": false,
+      "finding": "No earlier PR or original fork branch corrects the complex left/right factor order in BoundedDomain.inner and its natural gradient.",
+      "all_direct_file_prs_reviewed": [
+        {
+          "number": 292,
+          "url": "https://github.com/geoopt/geoopt/pull/292",
+          "title": "Honor batch dimensions and keepdim in Siegel distances",
+          "state": "open",
+          "merged_at": null,
+          "head_sha": "0b643e9889ef33d0d0e51432c74f35492bd2ac5b",
+          "base_sha": "4623ea1d2a9808b8e87bf10949cccb2c5ec6233c"
+        },
+        {
+          "number": 261,
+          "url": "https://github.com/geoopt/geoopt/pull/261",
+          "title": "Add torch.Generator support to manifold sampling",
+          "state": "closed",
+          "merged_at": "2026-10-29T11:56:13Z",
+          "head_sha": "d37ab1eeb77a0613f7c7bdbf4b1d2c3f5baba5c4",
+          "base_sha": "720c2425fab8a3449c80e7f4c17331bf88c04045"
+        },
+        {
+          "number": 186,
+          "url": "https://github.com/geoopt/geoopt/pull/186",
+          "title": "add tests for pytorch 1.10.0",
+          "state": "closed",
+          "merged_at": "2022-03-13T10:44:32Z",
+          "head_sha": "2df3e46d360f568fd8be2fa336e83744d71ff949",
+          "base_sha": "c0163cde17aa215aa0f34e833364ac918ec5e974"
+        },
+        {
+          "number": 179,
+          "url": "https://github.com/geoopt/geoopt/pull/179",
+          "title": "Siegel spaces",
+          "state": "closed",
+          "merged_at": "2021-07-01T17:19:49Z",
+          "head_sha": "532355bbb5861ae0efd4b238a94f4c458c8d8824",
+          "base_sha": "4290110b1f128357d68bf57c06342b21d6dd33be"
+        }
+      ],
+      "related_prior_work": [
+        {
+          "prs": [
+            {
+              "number": 179,
+              "url": "https://github.com/geoopt/geoopt/pull/179",
+              "title": "Siegel spaces",
+              "state": "closed",
+              "merged_at": "2021-07-01T17:19:49Z",
+              "head_sha": "532355bbb5861ae0efd4b238a94f4c458c8d8824",
+              "base_sha": "4290110b1f128357d68bf57c06342b21d6dd33be"
+            }
+          ],
+          "distinction": "Introduces the original A U A gradient and reversed inner-product factors; the new correction changes those formulas together based on Cayley pullback and unitary congruence."
+        },
+        {
+          "prs": [
+            {
+              "number": 186,
+              "url": "https://github.com/geoopt/geoopt/pull/186",
+              "title": "add tests for pytorch 1.10.0",
+              "state": "closed",
+              "merged_at": "2022-03-13T10:44:32Z",
+              "head_sha": "2df3e46d360f568fd8be2fa336e83744d71ff949",
+              "base_sha": "c0163cde17aa215aa0f34e833364ac918ec5e974"
+            },
+            {
+              "number": 261,
+              "url": "https://github.com/geoopt/geoopt/pull/261",
+              "title": "Add torch.Generator support to manifold sampling",
+              "state": "closed",
+              "merged_at": "2026-10-29T11:56:13Z",
+              "head_sha": "d37ab1eeb77a0613f7c7bdbf4b1d2c3f5baba5c4",
+              "base_sha": "720c2425fab8a3449c80e7f4c17331bf88c04045"
+            },
+            {
+              "number": 292,
+              "url": "https://github.com/geoopt/geoopt/pull/292",
+              "title": "Honor batch dimensions and keepdim in Siegel distances",
+              "state": "open",
+              "merged_at": null,
+              "head_sha": "0b643e9889ef33d0d0e51432c74f35492bd2ac5b",
+              "base_sha": "4623ea1d2a9808b8e87bf10949cccb2c5ec6233c"
+            }
+          ],
+          "distinction": "Tolerance/dtype, sampling-generator, and keepdim forwarding changes leave both metric and natural-gradient formulas unchanged."
+        }
+      ],
+      "original_fork_sources": {
+        "checked": 33,
+        "failed": 0,
+        "all_retain_old_behavior": true,
+        "branches": [
+          {
+            "branch": "build",
+            "commit": "65bb2746ffe09c82758092a4eb6c02e6644aee32",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "fix/canonical-stiefel-tangent-projection-20261029",
+            "commit": "a3ea54f9467ab98a958fe5c5ac92d3b19d55a6ac",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "fix/euclidean-high-dimensional-norms-20261029",
+            "commit": "6f54b5724eb3726ed7f5cfd442b573fac19fe2f3",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "fix/layer-manifold-factories-20261112",
+            "commit": "ca193e465cfc19c786063cf5f502d2879f22207f",
+            "blob": "7c849dae366b87f5f8584ce93af27afff925f907"
+          },
+          {
+            "branch": "fix/product-component-inner-broadcast-20261112",
+            "commit": "89d09e239f597246b30624c451ecbf88f2aaa774",
+            "blob": "7c849dae366b87f5f8584ce93af27afff925f907"
+          },
+          {
+            "branch": "fix/proper-velocity-distance-batch-shapes-20261112",
+            "commit": "7ef51c2de94042f759269026171cb258435413de",
+            "blob": "7c849dae366b87f5f8584ce93af27afff925f907"
+          },
+          {
+            "branch": "fix/proper-velocity-product-sampling-20261112",
+            "commit": "85dee4d65e4a92cc3fa8861e73bc8401cbf1e2ab",
+            "blob": "7c849dae366b87f5f8584ce93af27afff925f907"
+          },
+          {
+            "branch": "fix/proper-velocity-radial-metric-20261112",
+            "commit": "60b129ae56b8be73fd9d63f3dbb50b512a72002f",
+            "blob": "7c849dae366b87f5f8584ce93af27afff925f907"
+          },
+          {
+            "branch": "fix/revisited-line-search-derivatives-20261112",
+            "commit": "f8cd4e81e01be2754a33abe89bbb947820fd8800",
+            "blob": "7c849dae366b87f5f8584ce93af27afff925f907"
+          },
+          {
+            "branch": "fix/rhmc-proposal-handling",
+            "commit": "2bd83b2d48da246a7a37698fdbb49a670354fe67",
+            "blob": "7c849dae366b87f5f8584ce93af27afff925f907"
+          },
+          {
+            "branch": "fix/siegel-distance-dimensions-20261112",
+            "commit": "0b643e9889ef33d0d0e51432c74f35492bd2ac5b",
+            "blob": "9d5e5967030158f007cc81f192505826955f40a8"
+          },
+          {
+            "branch": "fix/spd-expmap-repeated-spectrum-gradients-20261112",
+            "commit": "394acd40c32e64a8fd3d4fd2cf9ae33faf3456e6",
+            "blob": "7c849dae366b87f5f8584ce93af27afff925f907"
+          },
+          {
+            "branch": "fix/spd-projection-positive-interior-20261112",
+            "commit": "608983f8364b292cb3a1da63b3284d5750b23405",
+            "blob": "7c849dae366b87f5f8584ce93af27afff925f907"
+          },
+          {
+            "branch": "fix/stiefel-qr-backward-20261112",
+            "commit": "2775b2b9d21b5c81a4a1a591a37bed9372807b49",
+            "blob": "7c849dae366b87f5f8584ce93af27afff925f907"
+          },
+          {
+            "branch": "fix/stochastic-sampler-step-contract",
+            "commit": "3f370245079e4d22795121789d48df836506d3b8",
+            "blob": "7c849dae366b87f5f8584ce93af27afff925f907"
+          },
+          {
+            "branch": "fix/upper-half-batched-origin-20261029",
+            "commit": "b4ac023cdcf0697e17a5357cebd847e8abc58d30",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "fix-birkhoff-tangent-metric",
+            "commit": "cd906330522feaa3f3b863949e428fbcdfdcea10",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "fix-lorentz-coordinate-dimension",
+            "commit": "de7df453623fffa7838d5b6970512e084aec6ddc",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "fix-lorentz-manifold-axis",
+            "commit": "a6e23ca545079149c8058219fb5f5e2975be178d",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "fix-optimizer-side-gradient-mutation",
+            "commit": "2f0eeac8783dc68e1b166ef367ef50e2c0d99db4",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "fix-riemannian-sgd-first-momentum",
+            "commit": "7f8538e4da396fb6bef95a670d0814239d35f576",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "fix-signed-hyperplane-distance-asinh",
+            "commit": "43066828557b3ce0416cdbab74f31a8da8dacd60",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "fix-sparse-amsgrad-raw-second-moment",
+            "commit": "3d4ab8c313fe0c8952bd05b7b94135ddededa6ac",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "fix-spd-stein-logdet-stability",
+            "commit": "6bd798005c26a6e31c101932ebe69990c993ebdd",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "fix-sphere-expmap-zero-gradient",
+            "commit": "f62fb53bcf8fd63ceb7a63cf3c8caedfc037f326",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "fix-sphere-expmap-zero-step-gradient",
+            "commit": "f96f804971127e978e47790f30a38c665613c843",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "fix-sphere-geodesic-distance-precision",
+            "commit": "2db876bea979d96ff787b7a9977d581e89a8e56d",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "fix-sphere-subspace-tangent",
+            "commit": "bb8293cafec3b7c411436e832cae1602c1c67d10",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "fix-stein-logdet-scale",
+            "commit": "682e73b0463c15e17c7c4002416e2afdcfad9190",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "master",
+            "commit": "af5ef91dd987121d03826335ca400c84e8e20800",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "submission/forms-20261113-ml",
+            "commit": "2d54b3bcab0fbe25d82d04eaad59e6272dd59c51",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "validation/stein-git-pristine-20261009",
+            "commit": "af5ef91dd987121d03826335ca400c84e8e20800",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          },
+          {
+            "branch": "validation/stein-pristine-20261009",
+            "commit": "71c839d053df33056b166ee7d6533796f9691778",
+            "blob": "8a055620ca20539f72f3830c9b864589095f5383"
+          }
+        ]
+      }
+    },
+    {
+      "key": "sphere_logmap",
+      "title": "Preserve spherical logarithms near antipodal points",
+      "head": {
+        "repository": "Afloat16/geoopt",
+        "branch": "fix/sphere-logmap-near-antipode-20261115",
+        "sha": "d3ed0db93e85c046d59489dbe639d2ecad0fe505",
+        "tree": "bd7f7c4bb2552165f2810b659ee8e84337cc9d14",
+        "files": [
+          "geoopt/manifolds/sphere.py",
+          "tests/test_sphere_logmap_near_antipode.py"
+        ]
+      },
+      "status": "no_duplicate_found_in_completed_reaudit",
+      "eligible_new_improvement": true,
+      "upstream_pr_created": false,
+      "upstream_merged": false,
+      "finding": "No earlier PR or original fork branch implements nonzero-norm normalization with a hemisphere-selected short chord in Sphere.logmap.",
+      "all_direct_file_prs_reviewed": [
+        {
+          "number": 282,
+          "url": "https://github.com/geoopt/geoopt/pull/282",
+          "title": "Preserve vector batch axes in Sphere subspace projections",
+          "state": "closed",
+          "merged_at": "2026-11-12T08:24:32Z",
+          "head_sha": "5b1c76153e849d3dd7df7e3971a8cfaf66a9f3ae",
+          "base_sha": "d2c542d7a3ec2057a4f1dbb8862ba371ca8eb386"
+        },
+        {
+          "number": 267,
+          "url": "https://github.com/geoopt/geoopt/pull/267",
+          "title": "Validate the subspace constraint for spherical tangent vectors",
+          "state": "closed",
+          "merged_at": "2026-10-18T11:41:41Z",
+          "head_sha": "bb8293cafec3b7c411436e832cae1602c1c67d10",
+          "base_sha": "720c2425fab8a3449c80e7f4c17331bf88c04045"
+        },
+        {
+          "number": 261,
+          "url": "https://github.com/geoopt/geoopt/pull/261",
+          "title": "Add torch.Generator support to manifold sampling",
+          "state": "closed",
+          "merged_at": "2026-10-29T11:56:13Z",
+          "head_sha": "d37ab1eeb77a0613f7c7bdbf4b1d2c3f5baba5c4",
+          "base_sha": "720c2425fab8a3449c80e7f4c17331bf88c04045"
+        },
+        {
+          "number": 258,
+          "url": "https://github.com/geoopt/geoopt/pull/258",
+          "title": "Retain spherical geodesic precision at small arcs and endpoints",
+          "state": "closed",
+          "merged_at": "2026-10-29T08:31:46Z",
+          "head_sha": "2db876bea979d96ff787b7a9977d581e89a8e56d",
+          "base_sha": "8838dca914d2d7f4cde4b7fb3668724557c77789"
+        },
+        {
+          "number": 256,
+          "url": "https://github.com/geoopt/geoopt/pull/256",
+          "title": "Keep spherical exponential-map gradients finite at zero steps",
+          "state": "closed",
+          "merged_at": "2026-10-29T11:53:57Z",
+          "head_sha": "f96f804971127e978e47790f30a38c665613c843",
+          "base_sha": "8838dca914d2d7f4cde4b7fb3668724557c77789"
+        },
+        {
+          "number": 240,
+          "url": "https://github.com/geoopt/geoopt/pull/240",
+          "title": "Add exterior angle function",
+          "state": "open",
+          "merged_at": null,
+          "head_sha": "5345ab86fc4e3dafe7864bccc8e169f22a493dc2",
+          "base_sha": "8709777aaa3eda93916c9e4ff8cbcaae46fc79de"
+        },
+        {
+          "number": 238,
+          "url": "https://github.com/geoopt/geoopt/pull/238",
+          "title": "Add cdist (pairwise distance) for Lorentz, Sphere, and Euclidean manifolds",
+          "state": "closed",
+          "merged_at": "2026-01-26T20:42:49Z",
+          "head_sha": "56de62baa1025b74e4e0dfc7254a654bb1085320",
+          "base_sha": "1d5c72e0d77b234436b47be3b29d3a1578db1d36"
+        },
+        {
+          "number": 173,
+          "url": "https://github.com/geoopt/geoopt/pull/173",
+          "title": "update pytorch version",
+          "state": "closed",
+          "merged_at": "2021-06-20T14:09:28Z",
+          "head_sha": "bd46e3e96aafc80b4f88183b38bd6325e7f6a45d",
+          "base_sha": "0f3adeb952315ce6a63f70c60998c28081a119fd"
+        },
+        {
+          "number": 123,
+          "url": "https://github.com/geoopt/geoopt/pull/123",
+          "title": "K-Stereographic Model",
+          "state": "closed",
+          "merged_at": null,
+          "head_sha": "f57fc2f6de1f5943a1e76aacb556d85b52c68b58",
+          "base_sha": "f06fba04f64e3ff6ee3866fafa15a613e8780f41"
+        },
+        {
+          "number": 118,
+          "url": "https://github.com/geoopt/geoopt/pull/118",
+          "title": "fix poincare dist2",
+          "state": "closed",
+          "merged_at": "2019-11-30T14:01:56Z",
+          "head_sha": "16e660831afd44d9d3de7eff8a168e6795a3f318",
+          "base_sha": "03a2542aaa1195cb15ce38a201da72c5fde26ec4"
+        },
+        {
+          "number": 114,
+          "url": "https://github.com/geoopt/geoopt/pull/114",
+          "title": "Attach manifold",
+          "state": "closed",
+          "merged_at": null,
+          "head_sha": "cf60c66d0f4dc6126b8ba32035981605c1dc1cd0",
+          "base_sha": "bad2822d13fc38f4a8be74c34e91d2ada4426e4a"
+        },
+        {
+          "number": 112,
+          "url": "https://github.com/geoopt/geoopt/pull/112",
+          "title": "Cleanup PR",
+          "state": "closed",
+          "merged_at": "2019-11-03T11:29:54Z",
+          "head_sha": "5cb9b28d3ea84a67c02102229e2b693d25768ade",
+          "base_sha": "1cefe5910ef5d63d255ec07e6a2c4811828ab0fa"
+        },
+        {
+          "number": 109,
+          "url": "https://github.com/geoopt/geoopt/pull/109",
+          "title": "Product manifold",
+          "state": "closed",
+          "merged_at": "2019-10-30T13:54:20Z",
+          "head_sha": "8034027e75610438a7acd77dda8195b0fccf0fcc",
+          "base_sha": "9c05e6a92bc03a6e69a002fe57a8b712f778087f"
+        },
+        {
+          "number": 107,
+          "url": "https://github.com/geoopt/geoopt/pull/107",
+          "title": "Patch 3",
+          "state": "closed",
+          "merged_at": "2019-09-07T08:37:07Z",
+          "head_sha": "2c9c32cef0606045de75e957a3ccf15be0e46e7b",
+          "base_sha": "5123d6917c4e69e730d963df722b828616757132"
+        },
+        {
+          "number": 105,
+          "url": "https://github.com/geoopt/geoopt/pull/105",
+          "title": "Remove *more args ",
+          "state": "closed",
+          "merged_at": "2019-09-02T15:20:30Z",
+          "head_sha": "2df491cdbf3e788172fe454c17be7c2ce289055a",
+          "base_sha": "de252589b743109c1b0886a62e17ce2e48aa4948"
+        },
+        {
+          "number": 91,
+          "url": "https://github.com/geoopt/geoopt/pull/91",
+          "title": "Clean up manifolds interface ",
+          "state": "closed",
+          "merged_at": null,
+          "head_sha": "0daefcf12836784064302799659aa9277086e7b8",
+          "base_sha": "2040309cc01b03b70ae8e49035f96bd75a0a6cd5"
+        },
+        {
+          "number": 90,
+          "url": "https://github.com/geoopt/geoopt/pull/90",
+          "title": "add additional testing utils including pydoctest/pydocstyle/pylint",
+          "state": "closed",
+          "merged_at": "2019-07-21T16:52:26Z",
+          "head_sha": "31730d8877793458b45fa3615831910f1e6d3852",
+          "base_sha": "7ad6d991ec9f88709f60476fc626d9d94ec0b03c"
+        },
+        {
+          "number": 80,
+          "url": "https://github.com/geoopt/geoopt/pull/80",
+          "title": "Random methods",
+          "state": "closed",
+          "merged_at": "2019-07-04T06:51:12Z",
+          "head_sha": "72b7e8f8152bb5edddfefe1a2ee4b3b98949a4b5",
+          "base_sha": "93ca52db97db051036acc6620f1f08ab05ad11c1"
+        },
+        {
+          "number": 79,
+          "url": "https://github.com/geoopt/geoopt/pull/79",
+          "title": "fix NaN gradients in Sphere",
+          "state": "closed",
+          "merged_at": null,
+          "head_sha": "84fe38ddb8bf2a67964d9f11baff21d94db887e7",
+          "base_sha": "89df0b6c4006b171d747d118fc7ea781c983cd84"
+        },
+        {
+          "number": 78,
+          "url": "https://github.com/geoopt/geoopt/pull/78",
+          "title": "Poincare Manifold methods",
+          "state": "closed",
+          "merged_at": "2019-06-28T17:11:00Z",
+          "head_sha": "142dfe6446655a74854cdc01ca376f016a7ec8d8",
+          "base_sha": "89df0b6c4006b171d747d118fc7ea781c983cd84"
+        },
+        {
+          "number": 77,
+          "url": "https://github.com/geoopt/geoopt/pull/77",
+          "title": "Restructure",
+          "state": "closed",
+          "merged_at": "2019-06-18T19:12:18Z",
+          "head_sha": "69dd804cf1891f18f0b124c7669e1939224107a9",
+          "base_sha": "589ccb041f18b76b6892beaf96408d8d3a0ca076"
+        },
+        {
+          "number": 76,
+          "url": "https://github.com/geoopt/geoopt/pull/76",
+          "title": "remove t argument from everywhere",
+          "state": "closed",
+          "merged_at": "2019-06-17T13:25:47Z",
+          "head_sha": "38ecf3bd7f3f2f9c244f5b2db6b922ec7c7f0ac3",
+          "base_sha": "7a0aaee04c3262c56a3ee71d09933adc486ec5e9"
+        },
+        {
+          "number": 54,
+          "url": "https://github.com/geoopt/geoopt/pull/54",
+          "title": "ManifoldMeta: use decorators instead of regexps",
+          "state": "closed",
+          "merged_at": null,
+          "head_sha": "c56da3ea798c89d93c314a262ee37280f5ddf57a",
+          "base_sha": "53514cda6136638c09b998f9cb7637acc87700b8"
+        },
+        {
+          "number": 51,
+          "url": "https://github.com/geoopt/geoopt/pull/51",
+          "title": "manifold .to() was not working, fix",
+          "state": "closed",
+          "merged_at": "2019-03-03T10:06:12Z",
+          "head_sha": "d0dac6618d14798e5a8959c53582b2b66de222f6",
+          "base_sha": "5fb91db09ea27b5eb8e88656d6982ab8706e693c"
+        },
+        {
+          "number": 50,
+          "url": "https://github.com/geoopt/geoopt/pull/50",
+          "title": "make Manifold as Module",
+          "state": "closed",
+          "merged_at": "2019-03-02T11:31:44Z",
+          "head_sha": "8f58bc3c0763a2ba5f239737e54077dc6cf4b7fc",
+          "base_sha": "e080c25ff8c048989d17670d20ac0f4055be5f8c"
+        },
+        {
+          "number": 45,
+          "url": "https://github.com/geoopt/geoopt/pull/45",
+          "title": "Poincare ball model",
+          "state": "closed",
+          "merged_at": "2019-03-31T21:48:45Z",
+          "head_sha": "164a1d4a2d11d2184d63817c0a3eb25f5989d179",
+          "base_sha": "cfb4bb49dfec31bb2a281a3626745606145e7bb1"
+        },
+        {
+          "number": 44,
+          "url": "https://github.com/geoopt/geoopt/pull/44",
+          "title": "logmap",
+          "state": "closed",
+          "merged_at": "2019-02-13T22:52:20Z",
+          "head_sha": "e2a5218b60d13303b2ae0b6033e60f8920b8c8c4",
+          "base_sha": "b43d706b7e8eb1d051d60d06423a4ee1ab3f058b"
+        },
+        {
+          "number": 43,
+          "url": "https://github.com/geoopt/geoopt/pull/43",
+          "title": "add expmaps",
+          "state": "closed",
+          "merged_at": "2019-02-13T19:59:31Z",
+          "head_sha": "6212291a56451dad204216d4fd5af224eaf57716",
+          "base_sha": "8eb07226d87f8f1b433ec3bcbe6b0fb4cec0b0b9"
+        },
+        {
+          "number": 42,
+          "url": "https://github.com/geoopt/geoopt/pull/42",
+          "title": "Normal sampling",
+          "state": "closed",
+          "merged_at": null,
+          "head_sha": "5dc79c547fbbe90f9be59ceac24ecfeefb0b1f89",
+          "base_sha": "9ba3ae746a19dac33bab06fbbafc81f839a28328"
+        },
+        {
+          "number": 40,
+          "url": "https://github.com/geoopt/geoopt/pull/40",
+          "title": "A bit better public api",
+          "state": "closed",
+          "merged_at": "2019-02-12T22:10:57Z",
+          "head_sha": "53d544622c570d2de82fdb4657df1e1e1e66f9cd",
+          "base_sha": "23314cb752efd65477723baac42023bcfae5a2f1"
+        },
+        {
+          "number": 39,
+          "url": "https://github.com/geoopt/geoopt/pull/39",
+          "title": "refactor code into torch.1.0.0",
+          "state": "closed",
+          "merged_at": "2019-02-05T21:50:52Z",
+          "head_sha": "d990f6bbc711e1b83dff5fdf2e7150b097272caf",
+          "base_sha": "80982921c110f16dc7fbf2cbf5c6b10ded13833c"
+        },
+        {
+          "number": 29,
+          "url": "https://github.com/geoopt/geoopt/pull/29",
+          "title": "Subspace Sphere",
+          "state": "closed",
+          "merged_at": "2019-01-27T00:43:24Z",
+          "head_sha": "3d0791dba18fce59c80ae4cd22ce5d9f6ce190cc",
+          "base_sha": "7f4f54ca44f175f47030965ef2fdaae92eb59f8b"
+        },
+        {
+          "number": 25,
+          "url": "https://github.com/geoopt/geoopt/pull/25",
+          "title": "add sphere manifold",
+          "state": "closed",
+          "merged_at": "2019-01-12T21:18:21Z",
+          "head_sha": "1769a9400096b74c43a99e2056a81694774364d6",
+          "base_sha": "8c7df33fb62de83c5c935c5bf6649a3500f5039b"
+        }
+      ],
+      "related_prior_work": [
+        {
+          "prs": [
+            {
+              "number": 44,
+              "url": "https://github.com/geoopt/geoopt/pull/44",
+              "title": "logmap",
+              "state": "closed",
+              "merged_at": "2019-02-13T22:52:20Z",
+              "head_sha": "e2a5218b60d13303b2ae0b6033e60f8920b8c8c4",
+              "base_sha": "b43d706b7e8eb1d051d60d06423a4ee1ab3f058b"
+            },
+            {
+              "number": 45,
+              "url": "https://github.com/geoopt/geoopt/pull/45",
+              "title": "Poincare ball model",
+              "state": "closed",
+              "merged_at": "2019-03-31T21:48:45Z",
+              "head_sha": "164a1d4a2d11d2184d63817c0a3eb25f5989d179",
+              "base_sha": "cfb4bb49dfec31bb2a281a3626745606145e7bb1"
+            },
+            {
+              "number": 77,
+              "url": "https://github.com/geoopt/geoopt/pull/77",
+              "title": "Restructure",
+              "state": "closed",
+              "merged_at": "2019-06-18T19:12:18Z",
+              "head_sha": "69dd804cf1891f18f0b124c7669e1939224107a9",
+              "base_sha": "589ccb041f18b76b6892beaf96408d8d3a0ca076"
+            },
+            {
+              "number": 109,
+              "url": "https://github.com/geoopt/geoopt/pull/109",
+              "title": "Product manifold",
+              "state": "closed",
+              "merged_at": "2019-10-30T13:54:20Z",
+              "head_sha": "8034027e75610438a7acd77dda8195b0fccf0fcc",
+              "base_sha": "9c05e6a92bc03a6e69a002fe57a8b712f778087f"
+            },
+            {
+              "number": 112,
+              "url": "https://github.com/geoopt/geoopt/pull/112",
+              "title": "Cleanup PR",
+              "state": "closed",
+              "merged_at": "2019-11-03T11:29:54Z",
+              "head_sha": "5cb9b28d3ea84a67c02102229e2b693d25768ade",
+              "base_sha": "1cefe5910ef5d63d255ec07e6a2c4811828ab0fa"
+            },
+            {
+              "number": 123,
+              "url": "https://github.com/geoopt/geoopt/pull/123",
+              "title": "K-Stereographic Model",
+              "state": "closed",
+              "merged_at": null,
+              "head_sha": "f57fc2f6de1f5943a1e76aacb556d85b52c68b58",
+              "base_sha": "f06fba04f64e3ff6ee3866fafa15a613e8780f41"
+            }
+          ],
+          "distinction": "Original logmap and API/type refactors retain y-x and do not provide the guarded short-chord formula."
+        },
+        {
+          "prs": [
+            {
+              "number": 118,
+              "url": "https://github.com/geoopt/geoopt/pull/118",
+              "title": "fix poincare dist2",
+              "state": "closed",
+              "merged_at": "2019-11-30T14:01:56Z",
+              "head_sha": "16e660831afd44d9d3de7eff8a168e6795a3f318",
+              "base_sha": "03a2542aaa1195cb15ce38a201da72c5fde26ec4"
+            }
+          ],
+          "distinction": "Adds the EPS norm floor that shrinks near-antipodal log vectors. It does not solve that distortion."
+        },
+        {
+          "prs": [
+            {
+              "number": 79,
+              "url": "https://github.com/geoopt/geoopt/pull/79",
+              "title": "fix NaN gradients in Sphere",
+              "state": "closed",
+              "merged_at": null,
+              "head_sha": "84fe38ddb8bf2a67964d9f11baff21d94db887e7",
+              "base_sha": "89df0b6c4006b171d747d118fc7ea781c983cd84"
+            },
+            {
+              "number": 107,
+              "url": "https://github.com/geoopt/geoopt/pull/107",
+              "title": "Patch 3",
+              "state": "closed",
+              "merged_at": "2019-09-07T08:37:07Z",
+              "head_sha": "2c9c32cef0606045de75e957a3ccf15be0e46e7b",
+              "base_sha": "5123d6917c4e69e730d963df722b828616757132"
+            },
+            {
+              "number": 238,
+              "url": "https://github.com/geoopt/geoopt/pull/238",
+              "title": "Add cdist (pairwise distance) for Lorentz, Sphere, and Euclidean manifolds",
+              "state": "closed",
+              "merged_at": "2026-01-26T20:42:49Z",
+              "head_sha": "56de62baa1025b74e4e0dfc7254a654bb1085320",
+              "base_sha": "1d5c72e0d77b234436b47be3b29d3a1578db1d36"
+            },
+            {
+              "number": 240,
+              "url": "https://github.com/geoopt/geoopt/pull/240",
+              "title": "Add exterior angle function",
+              "state": "open",
+              "merged_at": null,
+              "head_sha": "5345ab86fc4e3dafe7864bccc8e169f22a493dc2",
+              "base_sha": "8709777aaa3eda93916c9e4ff8cbcaae46fc79de"
+            },
+            {
+              "number": 258,
+              "url": "https://github.com/geoopt/geoopt/pull/258",
+              "title": "Retain spherical geodesic precision at small arcs and endpoints",
+              "state": "closed",
+              "merged_at": "2026-10-29T08:31:46Z",
+              "head_sha": "2db876bea979d96ff787b7a9977d581e89a8e56d",
+              "base_sha": "8838dca914d2d7f4cde4b7fb3668724557c77789"
+            }
+          ],
+          "distinction": "These change or introduce dist/cdist angular calculations; #258 does not change logmap despite its diff hunk starting in logmap context."
+        },
+        {
+          "prs": [
+            {
+              "number": 256,
+              "url": "https://github.com/geoopt/geoopt/pull/256",
+              "title": "Keep spherical exponential-map gradients finite at zero steps",
+              "state": "closed",
+              "merged_at": "2026-10-29T11:53:57Z",
+              "head_sha": "f96f804971127e978e47790f30a38c665613c843",
+              "base_sha": "8838dca914d2d7f4cde4b7fb3668724557c77789"
+            },
+            {
+              "number": 267,
+              "url": "https://github.com/geoopt/geoopt/pull/267",
+              "title": "Validate the subspace constraint for spherical tangent vectors",
+              "state": "closed",
+              "merged_at": "2026-10-18T11:41:41Z",
+              "head_sha": "bb8293cafec3b7c411436e832cae1602c1c67d10",
+              "base_sha": "720c2425fab8a3449c80e7f4c17331bf88c04045"
+            },
+            {
+              "number": 282,
+              "url": "https://github.com/geoopt/geoopt/pull/282",
+              "title": "Preserve vector batch axes in Sphere subspace projections",
+              "state": "closed",
+              "merged_at": "2026-11-12T08:24:32Z",
+              "head_sha": "5b1c76153e849d3dd7df7e3971a8cfaf66a9f3ae",
+              "base_sha": "d2c542d7a3ec2057a4f1dbb8862ba371ca8eb386"
+            }
+          ],
+          "distinction": "Expmap zero-step derivatives and subspace validation/vector projection fix different operations and leave logmap's floor/chord unchanged."
+        }
+      ],
+      "original_fork_sources": {
+        "checked": 33,
+        "failed": 0,
+        "all_retain_old_behavior": true,
+        "branches": [
+          {
+            "branch": "build",
+            "commit": "65bb2746ffe09c82758092a4eb6c02e6644aee32",
+            "blob": "c6d0bd36c7495bcf7fcf414596c95d2a5f58c06f"
+          },
+          {
+            "branch": "fix/canonical-stiefel-tangent-projection-20261029",
+            "commit": "a3ea54f9467ab98a958fe5c5ac92d3b19d55a6ac",
+            "blob": "473999788ec68a8d101ff01f358d64ff0fc061ea"
+          },
+          {
+            "branch": "fix/euclidean-high-dimensional-norms-20261029",
+            "commit": "6f54b5724eb3726ed7f5cfd442b573fac19fe2f3",
+            "blob": "473999788ec68a8d101ff01f358d64ff0fc061ea"
+          },
+          {
+            "branch": "fix/layer-manifold-factories-20261112",
+            "commit": "ca193e465cfc19c786063cf5f502d2879f22207f",
+            "blob": "7aaa025bcb11606b9f3e5fe462176148fa2c632d"
+          },
+          {
+            "branch": "fix/product-component-inner-broadcast-20261112",
+            "commit": "89d09e239f597246b30624c451ecbf88f2aaa774",
+            "blob": "7aaa025bcb11606b9f3e5fe462176148fa2c632d"
+          },
+          {
+            "branch": "fix/proper-velocity-distance-batch-shapes-20261112",
+            "commit": "7ef51c2de94042f759269026171cb258435413de",
+            "blob": "7aaa025bcb11606b9f3e5fe462176148fa2c632d"
+          },
+          {
+            "branch": "fix/proper-velocity-product-sampling-20261112",
+            "commit": "85dee4d65e4a92cc3fa8861e73bc8401cbf1e2ab",
+            "blob": "7aaa025bcb11606b9f3e5fe462176148fa2c632d"
+          },
+          {
+            "branch": "fix/proper-velocity-radial-metric-20261112",
+            "commit": "60b129ae56b8be73fd9d63f3dbb50b512a72002f",
+            "blob": "7aaa025bcb11606b9f3e5fe462176148fa2c632d"
+          },
+          {
+            "branch": "fix/revisited-line-search-derivatives-20261112",
+            "commit": "f8cd4e81e01be2754a33abe89bbb947820fd8800",
+            "blob": "539726b5031edee80dcf3065a60fe4521b1f8da8"
+          },
+          {
+            "branch": "fix/rhmc-proposal-handling",
+            "commit": "2bd83b2d48da246a7a37698fdbb49a670354fe67",
+            "blob": "539726b5031edee80dcf3065a60fe4521b1f8da8"
+          },
+          {
+            "branch": "fix/siegel-distance-dimensions-20261112",
+            "commit": "0b643e9889ef33d0d0e51432c74f35492bd2ac5b",
+            "blob": "539726b5031edee80dcf3065a60fe4521b1f8da8"
+          },
+          {
+            "branch": "fix/spd-expmap-repeated-spectrum-gradients-20261112",
+            "commit": "394acd40c32e64a8fd3d4fd2cf9ae33faf3456e6",
+            "blob": "7aaa025bcb11606b9f3e5fe462176148fa2c632d"
+          },
+          {
+            "branch": "fix/spd-projection-positive-interior-20261112",
+            "commit": "608983f8364b292cb3a1da63b3284d5750b23405",
+            "blob": "7aaa025bcb11606b9f3e5fe462176148fa2c632d"
+          },
+          {
+            "branch": "fix/stiefel-qr-backward-20261112",
+            "commit": "2775b2b9d21b5c81a4a1a591a37bed9372807b49",
+            "blob": "539726b5031edee80dcf3065a60fe4521b1f8da8"
+          },
+          {
+            "branch": "fix/stochastic-sampler-step-contract",
+            "commit": "3f370245079e4d22795121789d48df836506d3b8",
+            "blob": "539726b5031edee80dcf3065a60fe4521b1f8da8"
+          },
+          {
+            "branch": "fix/upper-half-batched-origin-20261029",
+            "commit": "b4ac023cdcf0697e17a5357cebd847e8abc58d30",
+            "blob": "473999788ec68a8d101ff01f358d64ff0fc061ea"
+          },
+          {
+            "branch": "fix-birkhoff-tangent-metric",
+            "commit": "cd906330522feaa3f3b863949e428fbcdfdcea10",
+            "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff"
+          },
+          {
+            "branch": "fix-lorentz-coordinate-dimension",
+            "commit": "de7df453623fffa7838d5b6970512e084aec6ddc",
+            "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff"
+          },
+          {
+            "branch": "fix-lorentz-manifold-axis",
+            "commit": "a6e23ca545079149c8058219fb5f5e2975be178d",
+            "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff"
+          },
+          {
+            "branch": "fix-optimizer-side-gradient-mutation",
+            "commit": "2f0eeac8783dc68e1b166ef367ef50e2c0d99db4",
+            "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff"
+          },
+          {
+            "branch": "fix-riemannian-sgd-first-momentum",
+            "commit": "7f8538e4da396fb6bef95a670d0814239d35f576",
+            "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff"
+          },
+          {
+            "branch": "fix-signed-hyperplane-distance-asinh",
+            "commit": "43066828557b3ce0416cdbab74f31a8da8dacd60",
+            "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff"
+          },
+          {
+            "branch": "fix-sparse-amsgrad-raw-second-moment",
+            "commit": "3d4ab8c313fe0c8952bd05b7b94135ddededa6ac",
+            "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff"
+          },
+          {
+            "branch": "fix-spd-stein-logdet-stability",
+            "commit": "6bd798005c26a6e31c101932ebe69990c993ebdd",
+            "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff"
+          },
+          {
+            "branch": "fix-sphere-expmap-zero-gradient",
+            "commit": "f62fb53bcf8fd63ceb7a63cf3c8caedfc037f326",
+            "blob": "b405acfa35a7ac4a95a56581f856b723f1a24ccc"
+          },
+          {
+            "branch": "fix-sphere-expmap-zero-step-gradient",
+            "commit": "f96f804971127e978e47790f30a38c665613c843",
+            "blob": "b405acfa35a7ac4a95a56581f856b723f1a24ccc"
+          },
+          {
+            "branch": "fix-sphere-geodesic-distance-precision",
+            "commit": "2db876bea979d96ff787b7a9977d581e89a8e56d",
+            "blob": "dd9ec3622ee4dd3f45ee2b1e532d840bcafb3129"
+          },
+          {
+            "branch": "fix-sphere-subspace-tangent",
+            "commit": "bb8293cafec3b7c411436e832cae1602c1c67d10",
+            "blob": "5c137d197c3515556c5dc00aa0717b30a34da8fc"
+          },
+          {
+            "branch": "fix-stein-logdet-scale",
+            "commit": "682e73b0463c15e17c7c4002416e2afdcfad9190",
+            "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff"
+          },
+          {
+            "branch": "master",
+            "commit": "af5ef91dd987121d03826335ca400c84e8e20800",
+            "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff"
+          },
+          {
+            "branch": "submission/forms-20261113-ml",
+            "commit": "2d54b3bcab0fbe25d82d04eaad59e6272dd59c51",
+            "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff"
+          },
+          {
+            "branch": "validation/stein-git-pristine-20261009",
+            "commit": "af5ef91dd987121d03826335ca400c84e8e20800",
+            "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff"
+          },
+          {
+            "branch": "validation/stein-pristine-20261009",
+            "commit": "71c839d053df33056b166ee7d6533796f9691778",
+            "blob": "2e5b39335eabd5d65deaac5fbfa6c9f6ed7c4eff"
+          }
+        ]
+      }
+    },
+    {
+      "key": "siegel_distance_whitening",
+      "title": "Keep Siegel distance gradients finite at repeated spectra",
+      "head": {
+        "repository": "Afloat16/geoopt",
+        "branch": "fix/siegel-distance-repeated-spectrum-20261115",
+        "sha": "befc58ef51cf40e43b8f5a8e3671686d920a749c",
+        "tree": "c2fafa7a531b3f15beae88c7c7a10e008f84236c",
+        "files": [
+          "geoopt/manifolds/siegel/siegel.py",
+          "tests/test_siegel_distance_gradients.py",
+          "tests/test_siegel_distance.py"
+        ]
+      },
+      "status": "no_duplicate_found_in_completed_reaudit",
+      "eligible_new_improvement": true,
+      "upstream_pr_created": false,
+      "upstream_merged": false,
+      "finding": "No earlier PR or original fork branch replaces symmetric-eigendecomposition whitening in the complex Siegel distance.",
+      "all_direct_file_prs_reviewed": [
+        {
+          "number": 292,
+          "url": "https://github.com/geoopt/geoopt/pull/292",
+          "title": "Honor batch dimensions and keepdim in Siegel distances",
+          "state": "open",
+          "merged_at": null,
+          "head_sha": "0b643e9889ef33d0d0e51432c74f35492bd2ac5b",
+          "base_sha": "4623ea1d2a9808b8e87bf10949cccb2c5ec6233c"
+        },
+        {
+          "number": 186,
+          "url": "https://github.com/geoopt/geoopt/pull/186",
+          "title": "add tests for pytorch 1.10.0",
+          "state": "closed",
+          "merged_at": "2022-03-13T10:44:32Z",
+          "head_sha": "2df3e46d360f568fd8be2fa336e83744d71ff949",
+          "base_sha": "c0163cde17aa215aa0f34e833364ac918ec5e974"
+        },
+        {
+          "number": 179,
+          "url": "https://github.com/geoopt/geoopt/pull/179",
+          "title": "Siegel spaces",
+          "state": "closed",
+          "merged_at": "2021-07-01T17:19:49Z",
+          "head_sha": "532355bbb5861ae0efd4b238a94f4c458c8d8824",
+          "base_sha": "4290110b1f128357d68bf57c06342b21d6dd33be"
+        }
+      ],
+      "related_prior_work": [
+        {
+          "prs": [
+            {
+              "number": 179,
+              "url": "https://github.com/geoopt/geoopt/pull/179",
+              "title": "Siegel spaces",
+              "state": "closed",
+              "merged_at": "2021-07-01T17:19:49Z",
+              "head_sha": "532355bbb5861ae0efd4b238a94f4c458c8d8824",
+              "base_sha": "4290110b1f128357d68bf57c06342b21d6dd33be"
+            },
+            {
+              "number": 186,
+              "url": "https://github.com/geoopt/geoopt/pull/186",
+              "title": "add tests for pytorch 1.10.0",
+              "state": "closed",
+              "merged_at": "2022-03-13T10:44:32Z",
+              "head_sha": "2df3e46d360f568fd8be2fa336e83744d71ff949",
+              "base_sha": "c0163cde17aa215aa0f34e833364ac918ec5e974"
+            },
+            {
+              "number": 292,
+              "url": "https://github.com/geoopt/geoopt/pull/292",
+              "title": "Honor batch dimensions and keepdim in Siegel distances",
+              "state": "open",
+              "merged_at": null,
+              "head_sha": "0b643e9889ef33d0d0e51432c74f35492bd2ac5b",
+              "base_sha": "4623ea1d2a9808b8e87bf10949cccb2c5ec6233c"
+            }
+          ],
+          "distinction": "The original inverse-square-root whitening survives Siegel introduction, dtype/tolerance updates and output-shape fixes."
+        },
+        {
+          "prs": [
+            {
+              "number": 274,
+              "url": "https://github.com/geoopt/geoopt/pull/274",
+              "title": "Preserve SPD distance gradients at repeated eigenvalues",
+              "state": "closed",
+              "merged_at": "2026-10-29T11:51:37Z",
+              "head_sha": "fc29a9a163eecb69640bce73bb3f8e01361fac1f",
+              "base_sha": "36404c6aa1bbc21487e524bbbb685a1dcef717f8"
+            }
+          ],
+          "distinction": "This is close numerical prior art: SPD AIM distance already replaced eigendecomposition whitening with Cholesky. It changes only symmetric_positive_definite.py and computes generalized eigenvalues. The new independently failing Siegel path operates on complex matrices followed by Cayley/Takagi values (including Finsler metrics); its orthogonal-congruence invariance and complex dtype handling are separately established and tested. This is a new unaddressed distance path, not a claim that Cholesky whitening is a new idea."
+        }
+      ],
+      "original_fork_sources": {
+        "checked": 33,
+        "failed": 0,
+        "all_retain_old_behavior": true,
+        "branches": [
+          {
+            "branch": "build",
+            "commit": "65bb2746ffe09c82758092a4eb6c02e6644aee32",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix/canonical-stiefel-tangent-projection-20261029",
+            "commit": "a3ea54f9467ab98a958fe5c5ac92d3b19d55a6ac",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix/euclidean-high-dimensional-norms-20261029",
+            "commit": "6f54b5724eb3726ed7f5cfd442b573fac19fe2f3",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix/layer-manifold-factories-20261112",
+            "commit": "ca193e465cfc19c786063cf5f502d2879f22207f",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix/product-component-inner-broadcast-20261112",
+            "commit": "89d09e239f597246b30624c451ecbf88f2aaa774",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix/proper-velocity-distance-batch-shapes-20261112",
+            "commit": "7ef51c2de94042f759269026171cb258435413de",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix/proper-velocity-product-sampling-20261112",
+            "commit": "85dee4d65e4a92cc3fa8861e73bc8401cbf1e2ab",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix/proper-velocity-radial-metric-20261112",
+            "commit": "60b129ae56b8be73fd9d63f3dbb50b512a72002f",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix/revisited-line-search-derivatives-20261112",
+            "commit": "f8cd4e81e01be2754a33abe89bbb947820fd8800",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix/rhmc-proposal-handling",
+            "commit": "2bd83b2d48da246a7a37698fdbb49a670354fe67",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix/siegel-distance-dimensions-20261112",
+            "commit": "0b643e9889ef33d0d0e51432c74f35492bd2ac5b",
+            "blob": "0d7e722352c7f1bd48bf7a8579de52bc0978c57b"
+          },
+          {
+            "branch": "fix/spd-expmap-repeated-spectrum-gradients-20261112",
+            "commit": "394acd40c32e64a8fd3d4fd2cf9ae33faf3456e6",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix/spd-projection-positive-interior-20261112",
+            "commit": "608983f8364b292cb3a1da63b3284d5750b23405",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix/stiefel-qr-backward-20261112",
+            "commit": "2775b2b9d21b5c81a4a1a591a37bed9372807b49",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix/stochastic-sampler-step-contract",
+            "commit": "3f370245079e4d22795121789d48df836506d3b8",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix/upper-half-batched-origin-20261029",
+            "commit": "b4ac023cdcf0697e17a5357cebd847e8abc58d30",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix-birkhoff-tangent-metric",
+            "commit": "cd906330522feaa3f3b863949e428fbcdfdcea10",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix-lorentz-coordinate-dimension",
+            "commit": "de7df453623fffa7838d5b6970512e084aec6ddc",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix-lorentz-manifold-axis",
+            "commit": "a6e23ca545079149c8058219fb5f5e2975be178d",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix-optimizer-side-gradient-mutation",
+            "commit": "2f0eeac8783dc68e1b166ef367ef50e2c0d99db4",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix-riemannian-sgd-first-momentum",
+            "commit": "7f8538e4da396fb6bef95a670d0814239d35f576",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix-signed-hyperplane-distance-asinh",
+            "commit": "43066828557b3ce0416cdbab74f31a8da8dacd60",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix-sparse-amsgrad-raw-second-moment",
+            "commit": "3d4ab8c313fe0c8952bd05b7b94135ddededa6ac",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix-spd-stein-logdet-stability",
+            "commit": "6bd798005c26a6e31c101932ebe69990c993ebdd",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix-sphere-expmap-zero-gradient",
+            "commit": "f62fb53bcf8fd63ceb7a63cf3c8caedfc037f326",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix-sphere-expmap-zero-step-gradient",
+            "commit": "f96f804971127e978e47790f30a38c665613c843",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix-sphere-geodesic-distance-precision",
+            "commit": "2db876bea979d96ff787b7a9977d581e89a8e56d",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix-sphere-subspace-tangent",
+            "commit": "bb8293cafec3b7c411436e832cae1602c1c67d10",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "fix-stein-logdet-scale",
+            "commit": "682e73b0463c15e17c7c4002416e2afdcfad9190",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "master",
+            "commit": "af5ef91dd987121d03826335ca400c84e8e20800",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "submission/forms-20261113-ml",
+            "commit": "2d54b3bcab0fbe25d82d04eaad59e6272dd59c51",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "validation/stein-git-pristine-20261009",
+            "commit": "af5ef91dd987121d03826335ca400c84e8e20800",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          },
+          {
+            "branch": "validation/stein-pristine-20261009",
+            "commit": "71c839d053df33056b166ee7d6533796f9691778",
+            "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7"
+          }
+        ]
+      }
+    },
+    {
+      "key": "canonical_stiefel_transport_broadcast",
+      "title": "Preserve broadcasting in CanonicalStiefel retraction and transport",
+      "head": {
+        "repository": "Afloat16/geoopt",
+        "branch": "fix/canonical-stiefel-broadcast-transport-20261115",
+        "sha": "6e060dcdb00c37cb8173cac97ac6a15ade7137b0",
+        "tree": "6912eeab481622a9c294c930311cb6c2ec23d1be",
+        "files": [
+          "geoopt/manifolds/stiefel.py",
+          "tests/test_canonical_stiefel_broadcast_transport.py"
+        ]
+      },
+      "status": "no_duplicate_found_in_completed_reaudit",
+      "eligible_new_improvement": true,
+      "upstream_pr_created": false,
+      "upstream_merged": false,
+      "finding": "No earlier PR or original fork branch implements compatible-batch concatenation with point-shape-preserving fallback for CanonicalStiefel.retr_transp.",
+      "all_direct_file_prs_reviewed": [
+        {
+          "number": 290,
+          "url": "https://github.com/geoopt/geoopt/pull/290",
+          "title": "Preserve QR autograd state in Euclidean Stiefel retractions",
+          "state": "open",
+          "merged_at": null,
+          "head_sha": "2775b2b9d21b5c81a4a1a591a37bed9372807b49",
+          "base_sha": "4623ea1d2a9808b8e87bf10949cccb2c5ec6233c"
+        },
+        {
+          "number": 280,
+          "url": "https://github.com/geoopt/geoopt/pull/280",
+          "title": "Preserve tangent vectors in canonical Stiefel projection",
+          "state": "closed",
+          "merged_at": "2026-11-05T08:36:13Z",
+          "head_sha": "a3ea54f9467ab98a958fe5c5ac92d3b19d55a6ac",
+          "base_sha": "d2c542d7a3ec2057a4f1dbb8862ba371ca8eb386"
+        },
+        {
+          "number": 261,
+          "url": "https://github.com/geoopt/geoopt/pull/261",
+          "title": "Add torch.Generator support to manifold sampling",
+          "state": "closed",
+          "merged_at": "2026-10-29T11:56:13Z",
+          "head_sha": "d37ab1eeb77a0613f7c7bdbf4b1d2c3f5baba5c4",
+          "base_sha": "720c2425fab8a3449c80e7f4c17331bf88c04045"
+        },
+        {
+          "number": 173,
+          "url": "https://github.com/geoopt/geoopt/pull/173",
+          "title": "update pytorch version",
+          "state": "closed",
+          "merged_at": "2021-06-20T14:09:28Z",
+          "head_sha": "bd46e3e96aafc80b4f88183b38bd6325e7f6a45d",
+          "base_sha": "0f3adeb952315ce6a63f70c60998c28081a119fd"
+        },
+        {
+          "number": 123,
+          "url": "https://github.com/geoopt/geoopt/pull/123",
+          "title": "K-Stereographic Model",
+          "state": "closed",
+          "merged_at": null,
+          "head_sha": "f57fc2f6de1f5943a1e76aacb556d85b52c68b58",
+          "base_sha": "f06fba04f64e3ff6ee3866fafa15a613e8780f41"
+        },
+        {
+          "number": 114,
+          "url": "https://github.com/geoopt/geoopt/pull/114",
+          "title": "Attach manifold",
+          "state": "closed",
+          "merged_at": null,
+          "head_sha": "cf60c66d0f4dc6126b8ba32035981605c1dc1cd0",
+          "base_sha": "bad2822d13fc38f4a8be74c34e91d2ada4426e4a"
+        },
+        {
+          "number": 112,
+          "url": "https://github.com/geoopt/geoopt/pull/112",
+          "title": "Cleanup PR",
+          "state": "closed",
+          "merged_at": "2019-11-03T11:29:54Z",
+          "head_sha": "5cb9b28d3ea84a67c02102229e2b693d25768ade",
+          "base_sha": "1cefe5910ef5d63d255ec07e6a2c4811828ab0fa"
+        },
+        {
+          "number": 109,
+          "url": "https://github.com/geoopt/geoopt/pull/109",
+          "title": "Product manifold",
+          "state": "closed",
+          "merged_at": "2019-10-30T13:54:20Z",
+          "head_sha": "8034027e75610438a7acd77dda8195b0fccf0fcc",
+          "base_sha": "9c05e6a92bc03a6e69a002fe57a8b712f778087f"
+        },
+        {
+          "number": 105,
+          "url": "https://github.com/geoopt/geoopt/pull/105",
+          "title": "Remove *more args ",
+          "state": "closed",
+          "merged_at": "2019-09-02T15:20:30Z",
+          "head_sha": "2df491cdbf3e788172fe454c17be7c2ce289055a",
+          "base_sha": "de252589b743109c1b0886a62e17ce2e48aa4948"
+        },
+        {
+          "number": 91,
+          "url": "https://github.com/geoopt/geoopt/pull/91",
+          "title": "Clean up manifolds interface ",
+          "state": "closed",
+          "merged_at": null,
+          "head_sha": "0daefcf12836784064302799659aa9277086e7b8",
+          "base_sha": "2040309cc01b03b70ae8e49035f96bd75a0a6cd5"
+        },
+        {
+          "number": 90,
+          "url": "https://github.com/geoopt/geoopt/pull/90",
+          "title": "add additional testing utils including pydoctest/pydocstyle/pylint",
+          "state": "closed",
+          "merged_at": "2019-07-21T16:52:26Z",
+          "head_sha": "31730d8877793458b45fa3615831910f1e6d3852",
+          "base_sha": "7ad6d991ec9f88709f60476fc626d9d94ec0b03c"
+        },
+        {
+          "number": 80,
+          "url": "https://github.com/geoopt/geoopt/pull/80",
+          "title": "Random methods",
+          "state": "closed",
+          "merged_at": "2019-07-04T06:51:12Z",
+          "head_sha": "72b7e8f8152bb5edddfefe1a2ee4b3b98949a4b5",
+          "base_sha": "93ca52db97db051036acc6620f1f08ab05ad11c1"
+        },
+        {
+          "number": 78,
+          "url": "https://github.com/geoopt/geoopt/pull/78",
+          "title": "Poincare Manifold methods",
+          "state": "closed",
+          "merged_at": "2019-06-28T17:11:00Z",
+          "head_sha": "142dfe6446655a74854cdc01ca376f016a7ec8d8",
+          "base_sha": "89df0b6c4006b171d747d118fc7ea781c983cd84"
+        },
+        {
+          "number": 77,
+          "url": "https://github.com/geoopt/geoopt/pull/77",
+          "title": "Restructure",
+          "state": "closed",
+          "merged_at": "2019-06-18T19:12:18Z",
+          "head_sha": "69dd804cf1891f18f0b124c7669e1939224107a9",
+          "base_sha": "589ccb041f18b76b6892beaf96408d8d3a0ca076"
+        },
+        {
+          "number": 76,
+          "url": "https://github.com/geoopt/geoopt/pull/76",
+          "title": "remove t argument from everywhere",
+          "state": "closed",
+          "merged_at": "2019-06-17T13:25:47Z",
+          "head_sha": "38ecf3bd7f3f2f9c244f5b2db6b922ec7c7f0ac3",
+          "base_sha": "7a0aaee04c3262c56a3ee71d09933adc486ec5e9"
+        },
+        {
+          "number": 75,
+          "url": "https://github.com/geoopt/geoopt/pull/75",
+          "title": "Remove pymanopt",
+          "state": "closed",
+          "merged_at": "2019-06-15T08:14:17Z",
+          "head_sha": "028ef148127bbf60f9d578d9095df09c5e34e969",
+          "base_sha": "bd6c687862e6692a018ea5201191cc982e74efcf"
+        },
+        {
+          "number": 67,
+          "url": "https://github.com/geoopt/geoopt/pull/67",
+          "title": "gesv->solve",
+          "state": "closed",
+          "merged_at": "2019-05-04T17:34:32Z",
+          "head_sha": "da59182821e18d0cbbe2cba6a3fc475030e2b38a",
+          "base_sha": "5dc97b57ee1d7cf1f2997c2c8a10451c24fdf5d9"
+        },
+        {
+          "number": 54,
+          "url": "https://github.com/geoopt/geoopt/pull/54",
+          "title": "ManifoldMeta: use decorators instead of regexps",
+          "state": "closed",
+          "merged_at": null,
+          "head_sha": "c56da3ea798c89d93c314a262ee37280f5ddf57a",
+          "base_sha": "53514cda6136638c09b998f9cb7637acc87700b8"
+        },
+        {
+          "number": 45,
+          "url": "https://github.com/geoopt/geoopt/pull/45",
+          "title": "Poincare ball model",
+          "state": "closed",
+          "merged_at": "2019-03-31T21:48:45Z",
+          "head_sha": "164a1d4a2d11d2184d63817c0a3eb25f5989d179",
+          "base_sha": "cfb4bb49dfec31bb2a281a3626745606145e7bb1"
+        },
+        {
+          "number": 43,
+          "url": "https://github.com/geoopt/geoopt/pull/43",
+          "title": "add expmaps",
+          "state": "closed",
+          "merged_at": "2019-02-13T19:59:31Z",
+          "head_sha": "6212291a56451dad204216d4fd5af224eaf57716",
+          "base_sha": "8eb07226d87f8f1b433ec3bcbe6b0fb4cec0b0b9"
+        },
+        {
+          "number": 42,
+          "url": "https://github.com/geoopt/geoopt/pull/42",
+          "title": "Normal sampling",
+          "state": "closed",
+          "merged_at": null,
+          "head_sha": "5dc79c547fbbe90f9be59ceac24ecfeefb0b1f89",
+          "base_sha": "9ba3ae746a19dac33bab06fbbafc81f839a28328"
+        },
+        {
+          "number": 40,
+          "url": "https://github.com/geoopt/geoopt/pull/40",
+          "title": "A bit better public api",
+          "state": "closed",
+          "merged_at": "2019-02-12T22:10:57Z",
+          "head_sha": "53d544622c570d2de82fdb4657df1e1e1e66f9cd",
+          "base_sha": "23314cb752efd65477723baac42023bcfae5a2f1"
+        },
+        {
+          "number": 39,
+          "url": "https://github.com/geoopt/geoopt/pull/39",
+          "title": "refactor code into torch.1.0.0",
+          "state": "closed",
+          "merged_at": "2019-02-05T21:50:52Z",
+          "head_sha": "d990f6bbc711e1b83dff5fdf2e7150b097272caf",
+          "base_sha": "80982921c110f16dc7fbf2cbf5c6b10ded13833c"
+        },
+        {
+          "number": 23,
+          "url": "https://github.com/geoopt/geoopt/pull/23",
+          "title": "Add Docs",
+          "state": "closed",
+          "merged_at": "2019-01-04T19:28:30Z",
+          "head_sha": "8caeb99224965f530a2c09e90d119fd512878276",
+          "base_sha": "6284b5910828702db9fd35d5e31506467351b510"
+        },
+        {
+          "number": 16,
+          "url": "https://github.com/geoopt/geoopt/pull/16",
+          "title": "Refactor/add euclidean stiefel/improve tests",
+          "state": "closed",
+          "merged_at": "2018-12-27T08:32:40Z",
+          "head_sha": "94334e69aa1ac54e736298150bb767eb2d72eca4",
+          "base_sha": "fe0c26111117eeba470125da9f3192f30341cfaa"
+        },
+        {
+          "number": 15,
+          "url": "https://github.com/geoopt/geoopt/pull/15",
+          "title": "Speed up geoopt",
+          "state": "closed",
+          "merged_at": "2018-12-09T23:09:50Z",
+          "head_sha": "6df2836f65ac69bd23cf50cf35c9df928340733f",
+          "base_sha": "6f7bcae4e9ae626a3f920350a27b992030cf7f8b"
+        },
+        {
+          "number": 12,
+          "url": "https://github.com/geoopt/geoopt/pull/12",
+          "title": "Shape fix",
+          "state": "closed",
+          "merged_at": "2018-12-08T15:23:17Z",
+          "head_sha": "466220ca12509888b79a200a36480346a6f26181",
+          "base_sha": "dc61301ff6eeca3449b36c90bea6bf37e4516490"
+        },
+        {
+          "number": 11,
+          "url": "https://github.com/geoopt/geoopt/pull/11",
+          "title": "Tests",
+          "state": "closed",
+          "merged_at": "2018-12-05T23:14:33Z",
+          "head_sha": "771720344262613f647cd60cb9aee2443cf3cf27",
+          "base_sha": "d626454b7c1f9645bda7abd8a98e54dab8b9a5ba"
+        },
+        {
+          "number": 9,
+          "url": "https://github.com/geoopt/geoopt/pull/9",
+          "title": "polish code",
+          "state": "closed",
+          "merged_at": "2018-12-05T20:55:52Z",
+          "head_sha": "10111af45d1c01ca61363d68e837000be295f1b2",
+          "base_sha": "817dc25d1ed266f71793d569a2304df7a11c368e"
+        },
+        {
+          "number": 7,
+          "url": "https://github.com/geoopt/geoopt/pull/7",
+          "title": "fix codestyle check for travis",
+          "state": "closed",
+          "merged_at": "2018-11-15T08:59:36Z",
+          "head_sha": "1c4fe5ad709b30ad0276b477b91946c92f12e9f5",
+          "base_sha": "6fdabcf40b74a8ae20f4b18d59158e27334a06fd"
+        },
+        {
+          "number": 6,
+          "url": "https://github.com/geoopt/geoopt/pull/6",
+          "title": "Samplers",
+          "state": "closed",
+          "merged_at": "2018-11-16T14:38:30Z",
+          "head_sha": "5836f3cb66c7ddc56b050a5e72126a5cdf59a596",
+          "base_sha": "6038dc80d1c71d81956eead352310f0d7e363eb7"
+        },
+        {
+          "number": 3,
+          "url": "https://github.com/geoopt/geoopt/pull/3",
+          "title": "add adam implementation",
+          "state": "closed",
+          "merged_at": "2018-11-13T21:48:42Z",
+          "head_sha": "c8984f35114c3942d7b226074de80892b0f719fa",
+          "base_sha": "119992a5d3dd5363e182744a1c3d551e57767e80"
+        },
+        {
+          "number": 2,
+          "url": "https://github.com/geoopt/geoopt/pull/2",
+          "title": "polish things",
+          "state": "closed",
+          "merged_at": "2018-11-09T07:38:27Z",
+          "head_sha": "2803613dc738b92a4d3c2548dee0f23007e5e945",
+          "base_sha": "f7b007ccadd2f6ef60edd2ebc9ed7e3bcf3df38b"
+        },
+        {
+          "number": 1,
+          "url": "https://github.com/geoopt/geoopt/pull/1",
+          "title": "Improve api",
+          "state": "closed",
+          "merged_at": "2018-11-09T07:06:17Z",
+          "head_sha": "9a2a42273ecc365673a657a12702e9003653a971",
+          "base_sha": "43ceb92ca9e5650dc1fa077aa7db090c6babe717"
+        }
+      ],
+      "related_prior_work": [
+        {
+          "prs": [
+            {
+              "number": 15,
+              "url": "https://github.com/geoopt/geoopt/pull/15",
+              "title": "Speed up geoopt",
+              "state": "closed",
+              "merged_at": "2018-12-09T23:09:50Z",
+              "head_sha": "6df2836f65ac69bd23cf50cf35c9df928340733f",
+              "base_sha": "6f7bcae4e9ae626a3f920350a27b992030cf7f8b"
+            },
+            {
+              "number": 16,
+              "url": "https://github.com/geoopt/geoopt/pull/16",
+              "title": "Refactor/add euclidean stiefel/improve tests",
+              "state": "closed",
+              "merged_at": "2018-12-27T08:32:40Z",
+              "head_sha": "94334e69aa1ac54e736298150bb767eb2d72eca4",
+              "base_sha": "fe0c26111117eeba470125da9f3192f30341cfaa"
+            },
+            {
+              "number": 40,
+              "url": "https://github.com/geoopt/geoopt/pull/40",
+              "title": "A bit better public api",
+              "state": "closed",
+              "merged_at": "2019-02-12T22:10:57Z",
+              "head_sha": "53d544622c570d2de82fdb4657df1e1e1e66f9cd",
+              "base_sha": "23314cb752efd65477723baac42023bcfae5a2f1"
+            },
+            {
+              "number": 75,
+              "url": "https://github.com/geoopt/geoopt/pull/75",
+              "title": "Remove pymanopt",
+              "state": "closed",
+              "merged_at": "2019-06-15T08:14:17Z",
+              "head_sha": "028ef148127bbf60f9d578d9095df09c5e34e969",
+              "base_sha": "bd6c687862e6692a018ea5201191cc982e74efcf"
+            },
+            {
+              "number": 76,
+              "url": "https://github.com/geoopt/geoopt/pull/76",
+              "title": "remove t argument from everywhere",
+              "state": "closed",
+              "merged_at": "2019-06-17T13:25:47Z",
+              "head_sha": "38ecf3bd7f3f2f9c244f5b2db6b922ec7c7f0ac3",
+              "base_sha": "7a0aaee04c3262c56a3ee71d09933adc486ec5e9"
+            },
+            {
+              "number": 77,
+              "url": "https://github.com/geoopt/geoopt/pull/77",
+              "title": "Restructure",
+              "state": "closed",
+              "merged_at": "2019-06-18T19:12:18Z",
+              "head_sha": "69dd804cf1891f18f0b124c7669e1939224107a9",
+              "base_sha": "589ccb041f18b76b6892beaf96408d8d3a0ca076"
+            },
+            {
+              "number": 90,
+              "url": "https://github.com/geoopt/geoopt/pull/90",
+              "title": "add additional testing utils including pydoctest/pydocstyle/pylint",
+              "state": "closed",
+              "merged_at": "2019-07-21T16:52:26Z",
+              "head_sha": "31730d8877793458b45fa3615831910f1e6d3852",
+              "base_sha": "7ad6d991ec9f88709f60476fc626d9d94ec0b03c"
+            },
+            {
+              "number": 91,
+              "url": "https://github.com/geoopt/geoopt/pull/91",
+              "title": "Clean up manifolds interface ",
+              "state": "closed",
+              "merged_at": null,
+              "head_sha": "0daefcf12836784064302799659aa9277086e7b8",
+              "base_sha": "2040309cc01b03b70ae8e49035f96bd75a0a6cd5"
+            },
+            {
+              "number": 105,
+              "url": "https://github.com/geoopt/geoopt/pull/105",
+              "title": "Remove *more args ",
+              "state": "closed",
+              "merged_at": "2019-09-02T15:20:30Z",
+              "head_sha": "2df491cdbf3e788172fe454c17be7c2ce289055a",
+              "base_sha": "de252589b743109c1b0886a62e17ce2e48aa4948"
+            },
+            {
+              "number": 109,
+              "url": "https://github.com/geoopt/geoopt/pull/109",
+              "title": "Product manifold",
+              "state": "closed",
+              "merged_at": "2019-10-30T13:54:20Z",
+              "head_sha": "8034027e75610438a7acd77dda8195b0fccf0fcc",
+              "base_sha": "9c05e6a92bc03a6e69a002fe57a8b712f778087f"
+            },
+            {
+              "number": 112,
+              "url": "https://github.com/geoopt/geoopt/pull/112",
+              "title": "Cleanup PR",
+              "state": "closed",
+              "merged_at": "2019-11-03T11:29:54Z",
+              "head_sha": "5cb9b28d3ea84a67c02102229e2b693d25768ade",
+              "base_sha": "1cefe5910ef5d63d255ec07e6a2c4811828ab0fa"
+            },
+            {
+              "number": 114,
+              "url": "https://github.com/geoopt/geoopt/pull/114",
+              "title": "Attach manifold",
+              "state": "closed",
+              "merged_at": null,
+              "head_sha": "cf60c66d0f4dc6126b8ba32035981605c1dc1cd0",
+              "base_sha": "bad2822d13fc38f4a8be74c34e91d2ada4426e4a"
+            },
+            {
+              "number": 123,
+              "url": "https://github.com/geoopt/geoopt/pull/123",
+              "title": "K-Stereographic Model",
+              "state": "closed",
+              "merged_at": null,
+              "head_sha": "f57fc2f6de1f5943a1e76aacb556d85b52c68b58",
+              "base_sha": "f06fba04f64e3ff6ee3866fafa15a613e8780f41"
+            }
+          ],
+          "distinction": "Historical concatenation/reshape optimizations, tuple APIs and renames retain equal-batch cat and/or reshape to x.shape. #112 changes a reshape component from -1 to 2, not batch broadcasting."
+        },
+        {
+          "prs": [
+            {
+              "number": 67,
+              "url": "https://github.com/geoopt/geoopt/pull/67",
+              "title": "gesv->solve",
+              "state": "closed",
+              "merged_at": "2019-05-04T17:34:32Z",
+              "head_sha": "da59182821e18d0cbbe2cba6a3fc475030e2b38a",
+              "base_sha": "5dc97b57ee1d7cf1f2997c2c8a10451c24fdf5d9"
+            },
+            {
+              "number": 173,
+              "url": "https://github.com/geoopt/geoopt/pull/173",
+              "title": "update pytorch version",
+              "state": "closed",
+              "merged_at": "2021-06-20T14:09:28Z",
+              "head_sha": "bd46e3e96aafc80b4f88183b38bd6325e7f6a45d",
+              "base_sha": "0f3adeb952315ce6a63f70c60998c28081a119fd"
+            }
+          ],
+          "distinction": "Linear-solver API migrations preserve the joint-transport shape behavior."
+        },
+        {
+          "prs": [
+            {
+              "number": 280,
+              "url": "https://github.com/geoopt/geoopt/pull/280",
+              "title": "Preserve tangent vectors in canonical Stiefel projection",
+              "state": "closed",
+              "merged_at": "2026-11-05T08:36:13Z",
+              "head_sha": "a3ea54f9467ab98a958fe5c5ac92d3b19d55a6ac",
+              "base_sha": "d2c542d7a3ec2057a4f1dbb8862ba371ca8eb386"
+            }
+          ],
+          "distinction": "Corrects tangent projection/Cayley initial velocity and adds retr_jvp; it leaves retr_transp cat and reshape unchanged."
+        },
+        {
+          "prs": [
+            {
+              "number": 290,
+              "url": "https://github.com/geoopt/geoopt/pull/290",
+              "title": "Preserve QR autograd state in Euclidean Stiefel retractions",
+              "state": "open",
+              "merged_at": null,
+              "head_sha": "2775b2b9d21b5c81a4a1a591a37bed9372807b49",
+              "base_sha": "4623ea1d2a9808b8e87bf10949cccb2c5ec6233c"
+            }
+          ],
+          "distinction": "Only EuclideanStiefel QR sign correction changes, not CanonicalStiefel joint transport."
+        },
+        {
+          "prs": [
+            {
+              "number": 282,
+              "url": "https://github.com/geoopt/geoopt/pull/282",
+              "title": "Preserve vector batch axes in Sphere subspace projections",
+              "state": "closed",
+              "merged_at": "2026-11-12T08:24:32Z",
+              "head_sha": "5b1c76153e849d3dd7df7e3971a8cfaf66a9f3ae",
+              "base_sha": "d2c542d7a3ec2057a4f1dbb8862ba371ca8eb386"
+            }
+          ],
+          "distinction": "A distinct Sphere subspace matmul batching fix; no Stiefel joint-solve path is changed."
+        }
+      ],
+      "original_fork_sources": {
+        "checked": 33,
+        "failed": 0,
+        "all_retain_old_behavior": true,
+        "branches": [
+          {
+            "branch": "build",
+            "commit": "65bb2746ffe09c82758092a4eb6c02e6644aee32",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "fix/canonical-stiefel-tangent-projection-20261029",
+            "commit": "a3ea54f9467ab98a958fe5c5ac92d3b19d55a6ac",
+            "blob": "614af178d5f5074bb406393be892b4167cfa4538"
+          },
+          {
+            "branch": "fix/euclidean-high-dimensional-norms-20261029",
+            "commit": "6f54b5724eb3726ed7f5cfd442b573fac19fe2f3",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "fix/layer-manifold-factories-20261112",
+            "commit": "ca193e465cfc19c786063cf5f502d2879f22207f",
+            "blob": "b5c573f2300beacb30349605c7a98bf22466b45d"
+          },
+          {
+            "branch": "fix/product-component-inner-broadcast-20261112",
+            "commit": "89d09e239f597246b30624c451ecbf88f2aaa774",
+            "blob": "b5c573f2300beacb30349605c7a98bf22466b45d"
+          },
+          {
+            "branch": "fix/proper-velocity-distance-batch-shapes-20261112",
+            "commit": "7ef51c2de94042f759269026171cb258435413de",
+            "blob": "b5c573f2300beacb30349605c7a98bf22466b45d"
+          },
+          {
+            "branch": "fix/proper-velocity-product-sampling-20261112",
+            "commit": "85dee4d65e4a92cc3fa8861e73bc8401cbf1e2ab",
+            "blob": "b5c573f2300beacb30349605c7a98bf22466b45d"
+          },
+          {
+            "branch": "fix/proper-velocity-radial-metric-20261112",
+            "commit": "60b129ae56b8be73fd9d63f3dbb50b512a72002f",
+            "blob": "b5c573f2300beacb30349605c7a98bf22466b45d"
+          },
+          {
+            "branch": "fix/revisited-line-search-derivatives-20261112",
+            "commit": "f8cd4e81e01be2754a33abe89bbb947820fd8800",
+            "blob": "b5c573f2300beacb30349605c7a98bf22466b45d"
+          },
+          {
+            "branch": "fix/rhmc-proposal-handling",
+            "commit": "2bd83b2d48da246a7a37698fdbb49a670354fe67",
+            "blob": "b5c573f2300beacb30349605c7a98bf22466b45d"
+          },
+          {
+            "branch": "fix/siegel-distance-dimensions-20261112",
+            "commit": "0b643e9889ef33d0d0e51432c74f35492bd2ac5b",
+            "blob": "b5c573f2300beacb30349605c7a98bf22466b45d"
+          },
+          {
+            "branch": "fix/spd-expmap-repeated-spectrum-gradients-20261112",
+            "commit": "394acd40c32e64a8fd3d4fd2cf9ae33faf3456e6",
+            "blob": "b5c573f2300beacb30349605c7a98bf22466b45d"
+          },
+          {
+            "branch": "fix/spd-projection-positive-interior-20261112",
+            "commit": "608983f8364b292cb3a1da63b3284d5750b23405",
+            "blob": "b5c573f2300beacb30349605c7a98bf22466b45d"
+          },
+          {
+            "branch": "fix/stiefel-qr-backward-20261112",
+            "commit": "2775b2b9d21b5c81a4a1a591a37bed9372807b49",
+            "blob": "0619c1a5cb2e22aeb7b74c3ff4b178e4f307dfe0"
+          },
+          {
+            "branch": "fix/stochastic-sampler-step-contract",
+            "commit": "3f370245079e4d22795121789d48df836506d3b8",
+            "blob": "b5c573f2300beacb30349605c7a98bf22466b45d"
+          },
+          {
+            "branch": "fix/upper-half-batched-origin-20261029",
+            "commit": "b4ac023cdcf0697e17a5357cebd847e8abc58d30",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "fix-birkhoff-tangent-metric",
+            "commit": "cd906330522feaa3f3b863949e428fbcdfdcea10",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "fix-lorentz-coordinate-dimension",
+            "commit": "de7df453623fffa7838d5b6970512e084aec6ddc",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "fix-lorentz-manifold-axis",
+            "commit": "a6e23ca545079149c8058219fb5f5e2975be178d",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "fix-optimizer-side-gradient-mutation",
+            "commit": "2f0eeac8783dc68e1b166ef367ef50e2c0d99db4",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "fix-riemannian-sgd-first-momentum",
+            "commit": "7f8538e4da396fb6bef95a670d0814239d35f576",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "fix-signed-hyperplane-distance-asinh",
+            "commit": "43066828557b3ce0416cdbab74f31a8da8dacd60",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "fix-sparse-amsgrad-raw-second-moment",
+            "commit": "3d4ab8c313fe0c8952bd05b7b94135ddededa6ac",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "fix-spd-stein-logdet-stability",
+            "commit": "6bd798005c26a6e31c101932ebe69990c993ebdd",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "fix-sphere-expmap-zero-gradient",
+            "commit": "f62fb53bcf8fd63ceb7a63cf3c8caedfc037f326",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "fix-sphere-expmap-zero-step-gradient",
+            "commit": "f96f804971127e978e47790f30a38c665613c843",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "fix-sphere-geodesic-distance-precision",
+            "commit": "2db876bea979d96ff787b7a9977d581e89a8e56d",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "fix-sphere-subspace-tangent",
+            "commit": "bb8293cafec3b7c411436e832cae1602c1c67d10",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "fix-stein-logdet-scale",
+            "commit": "682e73b0463c15e17c7c4002416e2afdcfad9190",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "master",
+            "commit": "af5ef91dd987121d03826335ca400c84e8e20800",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "submission/forms-20261113-ml",
+            "commit": "2d54b3bcab0fbe25d82d04eaad59e6272dd59c51",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "validation/stein-git-pristine-20261009",
+            "commit": "af5ef91dd987121d03826335ca400c84e8e20800",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          },
+          {
+            "branch": "validation/stein-pristine-20261009",
+            "commit": "71c839d053df33056b166ee7d6533796f9691778",
+            "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1"
+          }
+        ]
+      }
+    },
+    {
+      "key": "birkhoff_projection_conditioning",
+      "title": "Stabilize Birkhoff tangent projections near permutation matrices",
+      "head": {
+        "repository": "Afloat16/geoopt",
+        "branch": "fix/birkhoff-projection-conditioning-20261115",
+        "sha": "c2d7b286c4c8b28686716e4158b2527afa56be07",
+        "tree": "d1364a5825c5ac3dca645b928eb9e48e495c0010",
+        "files": [
+          "geoopt/manifolds/birkhoff_polytope.py",
+          "tests/test_birkhoff_projection_conditioning.py"
+        ]
+      },
+      "status": "no_duplicate_found_in_completed_reaudit",
+      "eligible_new_improvement": true,
+      "upstream_pr_created": false,
+      "upstream_merged": false,
+      "finding": "No earlier PR or original fork branch solves Birkhoff's fixed-gauge rectangular projection system directly by QR instead of normal equations.",
+      "all_direct_file_prs_reviewed": [
+        {
+          "number": 266,
+          "url": "https://github.com/geoopt/geoopt/pull/266",
+          "title": "Separate Birkhoff tangent projection from metric gradient conversion",
+          "state": "closed",
+          "merged_at": "2026-10-18T11:41:14Z",
+          "head_sha": "cd906330522feaa3f3b863949e428fbcdfdcea10",
+          "base_sha": "720c2425fab8a3449c80e7f4c17331bf88c04045"
+        },
+        {
+          "number": 261,
+          "url": "https://github.com/geoopt/geoopt/pull/261",
+          "title": "Add torch.Generator support to manifold sampling",
+          "state": "closed",
+          "merged_at": "2026-10-29T11:56:13Z",
+          "head_sha": "d37ab1eeb77a0613f7c7bdbf4b1d2c3f5baba5c4",
+          "base_sha": "720c2425fab8a3449c80e7f4c17331bf88c04045"
+        },
+        {
+          "number": 251,
+          "url": "https://github.com/geoopt/geoopt/pull/251",
+          "title": "fix: harden BirkhoffPolytope at boundary points",
+          "state": "closed",
+          "merged_at": "2026-10-11T19:51:12Z",
+          "head_sha": "5540d19a1a1b27e5f71917a5d5f5a7f26b791203",
+          "base_sha": "8838dca914d2d7f4cde4b7fb3668724557c77789"
+        },
+        {
+          "number": 250,
+          "url": "https://github.com/geoopt/geoopt/pull/250",
+          "title": "fix: harden BirkhoffPolytope at boundary points",
+          "state": "closed",
+          "merged_at": null,
+          "head_sha": "5540d19a1a1b27e5f71917a5d5f5a7f26b791203",
+          "base_sha": "8838dca914d2d7f4cde4b7fb3668724557c77789"
+        },
+        {
+          "number": 220,
+          "url": "https://github.com/geoopt/geoopt/pull/220",
+          "title": "feat: explicitly set device in `birkhoff_polytope`",
+          "state": "closed",
+          "merged_at": "2023-11-06T00:21:42Z",
+          "head_sha": "f77b95bcadad4e5c35a6e13341874542fc6288f6",
+          "base_sha": "7a6bafe67b4464d55c2e24b516b4a6c7640c8f73"
+        },
+        {
+          "number": 219,
+          "url": "https://github.com/geoopt/geoopt/pull/219",
+          "title": "Update birkhoff_polytope.py",
+          "state": "closed",
+          "merged_at": null,
+          "head_sha": "4da97a9b489baa95da0096ad21dc4bde2d134435",
+          "base_sha": "7a6bafe67b4464d55c2e24b516b4a6c7640c8f73"
+        },
+        {
+          "number": 173,
+          "url": "https://github.com/geoopt/geoopt/pull/173",
+          "title": "update pytorch version",
+          "state": "closed",
+          "merged_at": "2021-06-20T14:09:28Z",
+          "head_sha": "bd46e3e96aafc80b4f88183b38bd6325e7f6a45d",
+          "base_sha": "0f3adeb952315ce6a63f70c60998c28081a119fd"
+        },
+        {
+          "number": 147,
+          "url": "https://github.com/geoopt/geoopt/pull/147",
+          "title": "black update",
+          "state": "closed",
+          "merged_at": "2020-09-11T06:38:12Z",
+          "head_sha": "874a73cfad0fdf07ad867f3cf0da3af22abae7cf",
+          "base_sha": "beeb3597d847cfaadaaff6be4dd3395f87a30dee"
+        },
+        {
+          "number": 125,
+          "url": "https://github.com/geoopt/geoopt/pull/125",
+          "title": "Birkhoff",
+          "state": "closed",
+          "merged_at": "2020-02-11T20:04:29Z",
+          "head_sha": "8a374c4c9bcbf631d351b17a62ae5c4a2a8353a0",
+          "base_sha": "fc936e65eed7f79a89ad76348071749851949fe1"
+        },
+        {
+          "number": 96,
+          "url": "https://github.com/geoopt/geoopt/pull/96",
+          "title": "added birkhoff polytope",
+          "state": "closed",
+          "merged_at": "2019-12-13T00:22:37Z",
+          "head_sha": "57bc81cce11c0ee009b3f045b3dd6b59daf64b5a",
+          "base_sha": "06cc692dae5e930e656b5e22580d2753ab28bd90"
+        }
+      ],
+      "related_prior_work": [
+        {
+          "prs": [
+            {
+              "number": 96,
+              "url": "https://github.com/geoopt/geoopt/pull/96",
+              "title": "added birkhoff polytope",
+              "state": "closed",
+              "merged_at": "2019-12-13T00:22:37Z",
+              "head_sha": "57bc81cce11c0ee009b3f045b3dd6b59daf64b5a",
+              "base_sha": "06cc692dae5e930e656b5e22580d2753ab28bd90"
+            },
+            {
+              "number": 125,
+              "url": "https://github.com/geoopt/geoopt/pull/125",
+              "title": "Birkhoff",
+              "state": "closed",
+              "merged_at": "2020-02-11T20:04:29Z",
+              "head_sha": "8a374c4c9bcbf631d351b17a62ae5c4a2a8353a0",
+              "base_sha": "fc936e65eed7f79a89ad76348071749851949fe1"
+            }
+          ],
+          "distinction": "Both original implementations explicitly form B^T B and solve the resulting normal equations."
+        },
+        {
+          "prs": [
+            {
+              "number": 147,
+              "url": "https://github.com/geoopt/geoopt/pull/147",
+              "title": "black update",
+              "state": "closed",
+              "merged_at": "2020-09-11T06:38:12Z",
+              "head_sha": "874a73cfad0fdf07ad867f3cf0da3af22abae7cf",
+              "base_sha": "beeb3597d847cfaadaaff6be4dd3395f87a30dee"
+            },
+            {
+              "number": 173,
+              "url": "https://github.com/geoopt/geoopt/pull/173",
+              "title": "update pytorch version",
+              "state": "closed",
+              "merged_at": "2021-06-20T14:09:28Z",
+              "head_sha": "bd46e3e96aafc80b4f88183b38bd6325e7f6a45d",
+              "base_sha": "0f3adeb952315ce6a63f70c60998c28081a119fd"
+            },
+            {
+              "number": 219,
+              "url": "https://github.com/geoopt/geoopt/pull/219",
+              "title": "Update birkhoff_polytope.py",
+              "state": "closed",
+              "merged_at": null,
+              "head_sha": "4da97a9b489baa95da0096ad21dc4bde2d134435",
+              "base_sha": "7a6bafe67b4464d55c2e24b516b4a6c7640c8f73"
+            },
+            {
+              "number": 220,
+              "url": "https://github.com/geoopt/geoopt/pull/220",
+              "title": "feat: explicitly set device in `birkhoff_polytope`",
+              "state": "closed",
+              "merged_at": "2023-11-06T00:21:42Z",
+              "head_sha": "f77b95bcadad4e5c35a6e13341874542fc6288f6",
+              "base_sha": "7a6bafe67b4464d55c2e24b516b4a6c7640c8f73"
+            }
+          ],
+          "distinction": "Formatting, solve API and device fixes preserve normal equations."
+        },
+        {
+          "prs": [
+            {
+              "number": 250,
+              "url": "https://github.com/geoopt/geoopt/pull/250",
+              "title": "fix: harden BirkhoffPolytope at boundary points",
+              "state": "closed",
+              "merged_at": null,
+              "head_sha": "5540d19a1a1b27e5f71917a5d5f5a7f26b791203",
+              "base_sha": "8838dca914d2d7f4cde4b7fb3668724557c77789"
+            },
+            {
+              "number": 251,
+              "url": "https://github.com/geoopt/geoopt/pull/251",
+              "title": "fix: harden BirkhoffPolytope at boundary points",
+              "state": "closed",
+              "merged_at": "2026-10-11T19:51:12Z",
+              "head_sha": "5540d19a1a1b27e5f71917a5d5f5a7f26b791203",
+              "base_sha": "8838dca914d2d7f4cde4b7fb3668724557c77789"
+            }
+          ],
+          "distinction": "Boundary retraction/Sinkhorn/point checks do not change the tangent least-squares solver. New guarantees concern strictly positive interior points, not exact boundary behavior."
+        },
+        {
+          "prs": [
+            {
+              "number": 266,
+              "url": "https://github.com/geoopt/geoopt/pull/266",
+              "title": "Separate Birkhoff tangent projection from metric gradient conversion",
+              "state": "closed",
+              "merged_at": "2026-10-18T11:41:14Z",
+              "head_sha": "cd906330522feaa3f3b863949e428fbcdfdcea10",
+              "base_sha": "720c2425fab8a3449c80e7f4c17331bf88c04045"
+            }
+          ],
+          "distinction": "Changes the ambient input from x*u to u and separates the inverse metric scaling; the normal equations remain. This conditioning fix preserves that semantic correction and the same least-squares objective."
+        }
+      ],
+      "original_fork_sources": {
+        "checked": 33,
+        "failed": 0,
+        "all_retain_old_behavior": true,
+        "branches": [
+          {
+            "branch": "build",
+            "commit": "65bb2746ffe09c82758092a4eb6c02e6644aee32",
+            "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b"
+          },
+          {
+            "branch": "fix/canonical-stiefel-tangent-projection-20261029",
+            "commit": "a3ea54f9467ab98a958fe5c5ac92d3b19d55a6ac",
+            "blob": "b4012348c1c236ee647210d452ad6f7046074b23"
+          },
+          {
+            "branch": "fix/euclidean-high-dimensional-norms-20261029",
+            "commit": "6f54b5724eb3726ed7f5cfd442b573fac19fe2f3",
+            "blob": "b4012348c1c236ee647210d452ad6f7046074b23"
+          },
+          {
+            "branch": "fix/layer-manifold-factories-20261112",
+            "commit": "ca193e465cfc19c786063cf5f502d2879f22207f",
+            "blob": "ae0a00009cff874ad20eb03f915d2a203328af67"
+          },
+          {
+            "branch": "fix/product-component-inner-broadcast-20261112",
+            "commit": "89d09e239f597246b30624c451ecbf88f2aaa774",
+            "blob": "ae0a00009cff874ad20eb03f915d2a203328af67"
+          },
+          {
+            "branch": "fix/proper-velocity-distance-batch-shapes-20261112",
+            "commit": "7ef51c2de94042f759269026171cb258435413de",
+            "blob": "ae0a00009cff874ad20eb03f915d2a203328af67"
+          },
+          {
+            "branch": "fix/proper-velocity-product-sampling-20261112",
+            "commit": "85dee4d65e4a92cc3fa8861e73bc8401cbf1e2ab",
+            "blob": "ae0a00009cff874ad20eb03f915d2a203328af67"
+          },
+          {
+            "branch": "fix/proper-velocity-radial-metric-20261112",
+            "commit": "60b129ae56b8be73fd9d63f3dbb50b512a72002f",
+            "blob": "ae0a00009cff874ad20eb03f915d2a203328af67"
+          },
+          {
+            "branch": "fix/revisited-line-search-derivatives-20261112",
+            "commit": "f8cd4e81e01be2754a33abe89bbb947820fd8800",
+            "blob": "ae0a00009cff874ad20eb03f915d2a203328af67"
+          },
+          {
+            "branch": "fix/rhmc-proposal-handling",
+            "commit": "2bd83b2d48da246a7a37698fdbb49a670354fe67",
+            "blob": "ae0a00009cff874ad20eb03f915d2a203328af67"
+          },
+          {
+            "branch": "fix/siegel-distance-dimensions-20261112",
+            "commit": "0b643e9889ef33d0d0e51432c74f35492bd2ac5b",
+            "blob": "ae0a00009cff874ad20eb03f915d2a203328af67"
+          },
+          {
+            "branch": "fix/spd-expmap-repeated-spectrum-gradients-20261112",
+            "commit": "394acd40c32e64a8fd3d4fd2cf9ae33faf3456e6",
+            "blob": "ae0a00009cff874ad20eb03f915d2a203328af67"
+          },
+          {
+            "branch": "fix/spd-projection-positive-interior-20261112",
+            "commit": "608983f8364b292cb3a1da63b3284d5750b23405",
+            "blob": "ae0a00009cff874ad20eb03f915d2a203328af67"
+          },
+          {
+            "branch": "fix/stiefel-qr-backward-20261112",
+            "commit": "2775b2b9d21b5c81a4a1a591a37bed9372807b49",
+            "blob": "ae0a00009cff874ad20eb03f915d2a203328af67"
+          },
+          {
+            "branch": "fix/stochastic-sampler-step-contract",
+            "commit": "3f370245079e4d22795121789d48df836506d3b8",
+            "blob": "ae0a00009cff874ad20eb03f915d2a203328af67"
+          },
+          {
+            "branch": "fix/upper-half-batched-origin-20261029",
+            "commit": "b4ac023cdcf0697e17a5357cebd847e8abc58d30",
+            "blob": "b4012348c1c236ee647210d452ad6f7046074b23"
+          },
+          {
+            "branch": "fix-birkhoff-tangent-metric",
+            "commit": "cd906330522feaa3f3b863949e428fbcdfdcea10",
+            "blob": "b4012348c1c236ee647210d452ad6f7046074b23"
+          },
+          {
+            "branch": "fix-lorentz-coordinate-dimension",
+            "commit": "de7df453623fffa7838d5b6970512e084aec6ddc",
+            "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b"
+          },
+          {
+            "branch": "fix-lorentz-manifold-axis",
+            "commit": "a6e23ca545079149c8058219fb5f5e2975be178d",
+            "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b"
+          },
+          {
+            "branch": "fix-optimizer-side-gradient-mutation",
+            "commit": "2f0eeac8783dc68e1b166ef367ef50e2c0d99db4",
+            "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b"
+          },
+          {
+            "branch": "fix-riemannian-sgd-first-momentum",
+            "commit": "7f8538e4da396fb6bef95a670d0814239d35f576",
+            "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b"
+          },
+          {
+            "branch": "fix-signed-hyperplane-distance-asinh",
+            "commit": "43066828557b3ce0416cdbab74f31a8da8dacd60",
+            "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b"
+          },
+          {
+            "branch": "fix-sparse-amsgrad-raw-second-moment",
+            "commit": "3d4ab8c313fe0c8952bd05b7b94135ddededa6ac",
+            "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b"
+          },
+          {
+            "branch": "fix-spd-stein-logdet-stability",
+            "commit": "6bd798005c26a6e31c101932ebe69990c993ebdd",
+            "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b"
+          },
+          {
+            "branch": "fix-sphere-expmap-zero-gradient",
+            "commit": "f62fb53bcf8fd63ceb7a63cf3c8caedfc037f326",
+            "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b"
+          },
+          {
+            "branch": "fix-sphere-expmap-zero-step-gradient",
+            "commit": "f96f804971127e978e47790f30a38c665613c843",
+            "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b"
+          },
+          {
+            "branch": "fix-sphere-geodesic-distance-precision",
+            "commit": "2db876bea979d96ff787b7a9977d581e89a8e56d",
+            "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b"
+          },
+          {
+            "branch": "fix-sphere-subspace-tangent",
+            "commit": "bb8293cafec3b7c411436e832cae1602c1c67d10",
+            "blob": "0517f4b9206866766bfc426b0887ab60b3fa5efc"
+          },
+          {
+            "branch": "fix-stein-logdet-scale",
+            "commit": "682e73b0463c15e17c7c4002416e2afdcfad9190",
+            "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b"
+          },
+          {
+            "branch": "master",
+            "commit": "af5ef91dd987121d03826335ca400c84e8e20800",
+            "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b"
+          },
+          {
+            "branch": "submission/forms-20261113-ml",
+            "commit": "2d54b3bcab0fbe25d82d04eaad59e6272dd59c51",
+            "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b"
+          },
+          {
+            "branch": "validation/stein-git-pristine-20261009",
+            "commit": "af5ef91dd987121d03826335ca400c84e8e20800",
+            "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b"
+          },
+          {
+            "branch": "validation/stein-pristine-20261009",
+            "commit": "71c839d053df33056b166ee7d6533796f9691778",
+            "blob": "3346bf88411ddbf5e6d25fb869b1ef6b2b011e1b"
+          }
+        ]
+      }
+    }
+  ],
+  "counts": {
+    "eligible_new_improvements": 6,
+    "new_upstream_prs_created": 0,
+    "new_upstream_merges": 0,
+    "disqualified_duplicates": 1
+  },
+  "combined_validation": {
+    "run_url": "https://github.com/Afloat16/geoopt/actions/runs/43674027375",
+    "tested_source_count": 6,
+    "eligible_new_source_count": 5,
+    "excluded_source": "606d99820a24e8fe5c7e4bc1754f90bcf746ff36",
+    "minimum_result": "7446 passed, 310 skipped",
+    "modern_result": "7446 passed, 310 skipped",
+    "birkhoff_included": false,
+    "birkhoff_separate_run": "https://github.com/Afloat16/geoopt/actions/runs/43674701216",
+    "birkhoff_result_each_environment": "2183 passed, 310 skipped",
+    "note": "Test facts are preserved for the exact six integrated source branches, but cdist is not a new contribution. Birkhoff adds the sixth eligible improvement and was validated separately."
+  },
+  "process_changes": [
+    "Use an explicit candidate exclusion ledger containing known all-state PRs and old fork implementations; consult it before implementing.",
+    "Fetch the complete PR changed-file index, not only keyword-matched titles; inspect all changes touching candidate methods and historical aliases.",
+    "Never treat an issues-only search as a PR search.",
+    "Record similar techniques in other methods and explain the independently failing path; do not claim an existing mathematical technique is original.",
+    "Refresh PR heads before final handoff and mark duplicate discoveries immediately."
+  ]
+}
