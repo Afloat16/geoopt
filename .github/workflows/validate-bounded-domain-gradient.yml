@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          fetch-depth: 3
+          fetch-depth: 4
           persist-credentials: false
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
         with:
@@ -55,18 +55,18 @@ jobs:
           report = ET.parse(Path(os.environ["RUNNER_TEMP"]) / "baseline.xml")
           cases = report.findall(".//testcase")
           failures = report.findall(".//failure")
-          assert len(cases) == 14, len(cases)
-          assert len(failures) == 10, len(failures)
+          assert len(cases) == 20, len(cases)
+          assert len(failures) == 16, len(failures)
           assert not report.findall(".//error")
           assert not report.findall(".//skipped")
-          print("BASELINE: 10 expected failures and 4 passing controls, without collection errors or skips.")
+          print("BASELINE: 16 expected failures and 4 passing controls, without collection errors or skips.")
           PY
       - name: Run focused and adjacent tests on the fix
         run: |
           python -m pytest -q tests/test_bounded_domain_gradient.py tests/test_siegel_distance.py tests/test_manifold_basic.py tests/test_rsgd.py --junitxml="$RUNNER_TEMP/fixed.xml"
       - name: Check production and regression code
         run: |
-          ruff check geoopt tests/test_bounded_domain_gradient.py
+          ruff check geoopt tests/test_bounded_domain_gradient.py tests/test_manifold_basic.py
           git diff --check
           git diff --exit-code
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9

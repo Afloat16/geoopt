@@ -350,7 +350,7 @@ def bounded_domain_case():
     # v is the result of projecting ev at x
     identity = geoopt.manifolds.siegel.csym_math.identity_like(x)
     a = identity - (x.conj() @ x)
-    v = geoopt.linalg.batch_linalg.sym(a @ ev @ a)
+    v = geoopt.linalg.batch_linalg.sym(a.conj() @ ev @ a)
 
     manifold = geoopt.BoundedDomain()
     x = geoopt.ManifoldTensor(x, manifold=manifold)
