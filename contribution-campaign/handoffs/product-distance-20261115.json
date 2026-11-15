@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-11-15 02:17:01 UTC",
+  "repository": "geoopt/geoopt",
+  "author": "Afloat16",
+  "status": "commit_and_validation_complete_pr_creation_blocked",
+  "title": "Preserve zero and small distances on product manifolds",
+  "body": "## Problem\n\n`ProductManifold.dist` floors the summed squared distance at `1e-15` before taking its square root. As a result, the distance between identical points is approximately `3.16e-8`, and every smaller positive distance has a zero gradient.\n\nFor a product of Euclidean components, the displacement `(3e-10, 4e-10, 0)` should have distance `5e-10` and gradient `(0.6, 0.8, 0)`. The current floor prevents a distance-based training loss from updating that point near convergence.\n\n## Change\n\nContinue using `self.dist2`, but guard only exact zero values before `sqrt` and restore their zero outputs afterward. This removes the artificial floor for positive distances while selecting a finite zero subgradient at coincidence. Component metrics and the `dist2` extension point remain in use.\n\nThe regressions cover float32/float64, both `keepdim` settings, coincident points on a Sphere × Euclidean product, analytic gradients for small displacements, one real `RiemannianSGD` update, broadcasting/noncontiguous inputs, and NaN/Inf propagation.\n\n## Validation\n\n- [Python 3.8 / PyTorch 2.0.1 CPU](https://github.com/Afloat16/geoopt/actions/runs/43666798479), matching the repository's minimum CI configuration.\n- [Python 3.12 / PyTorch 2.8.0 CPU](https://github.com/Afloat16/geoopt/actions/runs/43666592904/job/132667229629).\n\nIn each environment:\n- The identical new regressions on unchanged master `4623ea1` produce **9 failures and 3 passing controls**.\n- After the fix, the complete product-manifold, stereographic-product, and basic-manifold modules produce **2140 passed, 310 existing parameterized skips**. All 12 new cases pass.\n- `ruff check geoopt tests/test_product_manifold.py`, `git diff --check`, and verification that tested source files remain unchanged pass.\n\nThe validation workflow is on a separate fork branch and is not included in this PR.\n",
+  "prefilled_url": "https://github.com/geoopt/geoopt/compare/master...Afloat16:fix/product-distance-small-gradients-20261115?expand=1&title=Preserve%20zero%20and%20small%20distances%20on%20product%20manifolds&body=%23%23%20Problem%0A%0A%60ProductManifold.dist%60%20floors%20the%20summed%20squared%20distance%20at%20%601e-15%60%20before%20taking%20its%20square%20root.%20As%20a%20result%2C%20the%20distance%20between%20identical%20points%20is%20approximately%20%603.16e-8%60%2C%20and%20every%20smaller%20positive%20distance%20has%20a%20zero%20gradient.%0A%0AFor%20a%20product%20of%20Euclidean%20components%2C%20the%20displacement%20%60(3e-10%2C%204e-10%2C%200)%60%20should%20have%20distance%20%605e-10%60%20and%20gradient%20%60(0.6%2C%200.8%2C%200)%60.%20The%20current%20floor%20prevents%20a%20distance-based%20training%20loss%20from%20updating%20that%20point%20near%20convergence.%0A%0A%23%23%20Change%0A%0AContinue%20using%20%60self.dist2%60%2C%20but%20guard%20only%20exact%20zero%20values%20before%20%60sqrt%60%20and%20restore%20their%20zero%20outputs%20afterward.%20This%20removes%20the%20artificial%20floor%20for%20positive%20distances%20while%20selecting%20a%20finite%20zero%20subgradient%20at%20coincidence.%20Component%20metrics%20and%20the%20%60dist2%60%20extension%20point%20remain%20in%20use.%0A%0AThe%20regressions%20cover%20float32%2Ffloat64%2C%20both%20%60keepdim%60%20settings%2C%20coincident%20points%20on%20a%20Sphere%20%C3%97%20Euclidean%20product%2C%20analytic%20gradients%20for%20small%20displacements%2C%20one%20real%20%60RiemannianSGD%60%20update%2C%20broadcasting%2Fnoncontiguous%20inputs%2C%20and%20NaN%2FInf%20propagation.%0A%0A%23%23%20Validation%0A%0A-%20%5BPython%203.8%20%2F%20PyTorch%202.0.1%20CPU%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43666798479)%2C%20matching%20the%20repository's%20minimum%20CI%20configuration.%0A-%20%5BPython%203.12%20%2F%20PyTorch%202.8.0%20CPU%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43666592904%2Fjob%2F132667229629).%0A%0AIn%20each%20environment%3A%0A-%20The%20identical%20new%20regressions%20on%20unchanged%20master%20%604623ea1%60%20produce%20**9%20failures%20and%203%20passing%20controls**.%0A-%20After%20the%20fix%2C%20the%20complete%20product-manifold%2C%20stereographic-product%2C%20and%20basic-manifold%20modules%20produce%20**2140%20passed%2C%20310%20existing%20parameterized%20skips**.%20All%2012%20new%20cases%20pass.%0A-%20%60ruff%20check%20geoopt%20tests%2Ftest_product_manifold.py%60%2C%20%60git%20diff%20--check%60%2C%20and%20verification%20that%20tested%20source%20files%20remain%20unchanged%20pass.%0A%0AThe%20validation%20workflow%20is%20on%20a%20separate%20fork%20branch%20and%20is%20not%20included%20in%20this%20PR.%0A",
+  "base": {
+    "repository": "geoopt/geoopt",
+    "branch": "master",
+    "sha": "4623ea1d2a9808b8e87bf10949cccb2c5ec6233c",
+    "tree": "2ab03d32376b32d44da40bd2525b272bb5ea93ca"
+  },
+  "head": {
+    "repository": "Afloat16/geoopt",
+    "branch": "fix/product-distance-small-gradients-20261115",
+    "sha": "216ae2ed65aeeea7aab9cebd9140ab7c52ec2b79",
+    "tree": "2823e92c39c09418e9d966438e4d7e9f131498c2",
+    "files": [
+      "geoopt/manifolds/product.py",
+      "tests/test_product_manifold.py"
+    ]
+  },
+  "validation": {
+    "branch": "validation/product-distance-20261115",
+    "workflow_in_upstream_pr": false,
+    "production_source_unchanged_after_tests": true,
+    "runs": [
+      {
+        "run_id": 43666592904,
+        "run_conclusion": "failure",
+        "job_id": 132667229629,
+        "job_conclusion": "success",
+        "url": "https://github.com/Afloat16/geoopt/actions/runs/43666592904/job/132667229629",
+        "sha": "bb23b0738abb56b344e3a078aaf4f28e0b189e3a",
+        "python": "3.12",
+        "torch": "2.8.0+cpu",
+        "numpy": "1.26.4",
+        "scipy": "1.13.1",
+        "baseline": {
+          "failed": 9,
+          "passed": 3,
+          "deselected": 8
+        },
+        "fixed": {
+          "passed": 2140,
+          "skipped": 310
+        },
+        "lint": "passed"
+      },
+      {
+        "run_id": 43666798479,
+        "run_conclusion": "success",
+        "job_id": 132667862175,
+        "job_conclusion": "success",
+        "url": "https://github.com/Afloat16/geoopt/actions/runs/43666798479",
+        "sha": "c6e8499ba69bc55da63a0155d02c213ebae995d0",
+        "python": "3.8.18",
+        "torch": "2.0.1+cpu",
+        "numpy": "1.24.4",
+        "scipy": "1.10.1",
+        "baseline": {
+          "failed": 9,
+          "passed": 3,
+          "deselected": 8
+        },
+        "fixed": {
+          "passed": 2140,
+          "skipped": 310
+        },
+        "lint": "passed"
+      }
+    ],
+    "initial_infrastructure_failure": "Python 3.8 unavailable on Ubuntu 26.04; rerun on Ubuntu 22.04 succeeded. The failed setup was not counted as a regression.",
+    "modules": [
+      "tests/test_product_manifold.py",
+      "tests/test_stereographic_product_manifold.py",
+      "tests/test_manifold_basic.py"
+    ],
+    "new_cases": 12,
+    "checks": [
+      "ruff check geoopt tests/test_product_manifold.py",
+      "git diff --check",
+      "git diff --exit-code"
+    ]
+  },
+  "eligibility": {
+    "stars": 1103,
+    "own_merged_before": 15,
+    "merged_rank": 2,
+    "first": {
+      "login": "ferrine",
+      "merged": 87
+    },
+    "own_open_before": 3
+  },
+  "dedup": {
+    "upstream_prs_all_states_checked": 174,
+    "upstream_open_prs": 11,
+    "own_prs_all_states": 18,
+    "fork_branch_names_checked": 33,
+    "related_fork_product_sources_checked": 8,
+    "unchanged_original_clamp_in_all_checked_sources": true,
+    "related_prs": [
+      {
+        "number": 288,
+        "distinction": "Open Euclidean.cdist sqrt(0) fix, not ProductManifold.dist or its positive-distance floor."
+      },
+      {
+        "number": 258,
+        "distinction": "Prior Sphere angular-distance formula change; ProductManifold floor unchanged."
+      }
+    ],
+    "duplicate_found": false
+  },
+  "concurrency": {
+    "limit": null,
+    "policy": "No concurrent PR cap found in repository tree, README/community template; geoopt/.github repository not found.",
+    "open_before_attempt": 3
+  },
+  "disclosure": {
+    "mandatory": false,
+    "policy": "No AI disclosure instruction found. Existing repository PR template applies only to new manifolds."
+  },
+  "creation_attempts": [
+    {
+      "method": "github_create_pull_request connector",
+      "result": "403 Resource not accessible by integration"
+    }
+  ],
+  "notes": "No upstream PR created by the connector. No new browser attempt: parent has already established that the CUA Node runtime is unavailable. Full prefilled URL is ready."
+}
