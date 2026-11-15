@@ -197,11 +197,16 @@ class CanonicalStiefel(Stiefel):
     def retr_transp(
         self, x: torch.Tensor, u: torch.Tensor, v: torch.Tensor
     ) -> Tuple[torch.Tensor, torch.Tensor]:
+        x, u = torch.broadcast_tensors(x, u)
+        if torch.broadcast_shapes(x.shape, v.shape) != x.shape:
+            # Transporting extra vectors must not expand the point's batch.
+            return self.retr(x, u), self.transp_follow_retr(x, u, v)
+        x, v = torch.broadcast_tensors(x, v)
         xvs = torch.cat((x, v), -1)
-        qxvs = self._transp_follow_one(x, xvs, u=u).view(
-            x.shape[:-1] + (2, x.shape[-1])
-        )
-        new_x, new_v = qxvs.unbind(-2)
+        qxvs = self._transp_follow_one(x, xvs, u=u)
+        new_x, new_v = qxvs.reshape(
+            qxvs.shape[:-1] + (2, x.shape[-1])
+        ).unbind(-2)
         return new_x, new_v
 
     expmap_transp = retr_transp
