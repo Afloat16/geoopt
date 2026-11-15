@@ -1,0 +1,364 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-11-15 03:32:35 UTC",
+  "repository": "geoopt/geoopt",
+  "author": "Afloat16",
+  "status": "commit_and_validation_complete_pr_creation_blocked",
+  "title": "Preserve broadcasting in CanonicalStiefel retraction and transport",
+  "body": "## Problem\n\n`CanonicalStiefel.retr_transp` fails for valid broadcastable point, step, and tangent-vector batches. For example, a single point and tangent vector with a batch of retraction steps reaches the linear solve, then crashes because its result is reshaped using the original point shape. Broadcasting the point or transported vectors instead can fail earlier in `torch.cat`. The same issue affects `expmap_transp`, `ManifoldTensor` delegation, and scaled manifolds.\n\nThe separate retraction and transport methods already accept these inputs.\n\n## Change\n\nBroadcast the point and step before the joint solve, broadcast the transported vectors when they fit that point batch, and split the result using its actual output shape. When the vectors introduce additional batch axes, use the separate public methods so those axes expand only the transported-vector result. The point output continues to depend only on the point and step, including when the extra vector axis has size one.\n\nThe existing one-solve path remains for matching batches and for broadcasts that do not enlarge the point batch.\n\n## Validation\n\nThe regressions compare joint results with explicit loops over the separate public retraction and transport methods. They also check point orthogonality, tangent constraints, canonical metric preservation, gradients back to broadcast inputs, noncontiguous inputs, empty batches, the `expmap_transp` alias, `ManifoldTensor`, and `Scaled`.\n\nOn both Python 3.8 / PyTorch 2.0.1 CPU and Python 3.12 / PyTorch 2.8.0 CPU:\n\n- The unchanged implementation produces **34 failures and 8 passing controls**, without collection errors or skips.\n- All **42 new cases** pass with the fix. The complete regression, canonical-projection, manifold-basic, Riemannian-SGD, Adam, scaling, tensor-API, and retraction-derivative modules report **2243 passed, 310 existing skips**.\n- Production and regression Ruff checks, `git diff --check`, and the clean-source check pass.\n\n[Baseline and fixed CI results](https://github.com/Afloat16/geoopt/actions/runs/43672475302). The verification workflow is on a separate fork branch.\n",
+  "prefilled_url": "https://github.com/geoopt/geoopt/compare/master...Afloat16:fix/canonical-stiefel-broadcast-transport-20261115?expand=1&title=Preserve%20broadcasting%20in%20CanonicalStiefel%20retraction%20and%20transport&body=%23%23%20Problem%0A%0A%60CanonicalStiefel.retr_transp%60%20fails%20for%20valid%20broadcastable%20point%2C%20step%2C%20and%20tangent-vector%20batches.%20For%20example%2C%20a%20single%20point%20and%20tangent%20vector%20with%20a%20batch%20of%20retraction%20steps%20reaches%20the%20linear%20solve%2C%20then%20crashes%20because%20its%20result%20is%20reshaped%20using%20the%20original%20point%20shape.%20Broadcasting%20the%20point%20or%20transported%20vectors%20instead%20can%20fail%20earlier%20in%20%60torch.cat%60.%20The%20same%20issue%20affects%20%60expmap_transp%60%2C%20%60ManifoldTensor%60%20delegation%2C%20and%20scaled%20manifolds.%0A%0AThe%20separate%20retraction%20and%20transport%20methods%20already%20accept%20these%20inputs.%0A%0A%23%23%20Change%0A%0ABroadcast%20the%20point%20and%20step%20before%20the%20joint%20solve%2C%20broadcast%20the%20transported%20vectors%20when%20they%20fit%20that%20point%20batch%2C%20and%20split%20the%20result%20using%20its%20actual%20output%20shape.%20When%20the%20vectors%20introduce%20additional%20batch%20axes%2C%20use%20the%20separate%20public%20methods%20so%20those%20axes%20expand%20only%20the%20transported-vector%20result.%20The%20point%20output%20continues%20to%20depend%20only%20on%20the%20point%20and%20step%2C%20including%20when%20the%20extra%20vector%20axis%20has%20size%20one.%0A%0AThe%20existing%20one-solve%20path%20remains%20for%20matching%20batches%20and%20for%20broadcasts%20that%20do%20not%20enlarge%20the%20point%20batch.%0A%0A%23%23%20Validation%0A%0AThe%20regressions%20compare%20joint%20results%20with%20explicit%20loops%20over%20the%20separate%20public%20retraction%20and%20transport%20methods.%20They%20also%20check%20point%20orthogonality%2C%20tangent%20constraints%2C%20canonical%20metric%20preservation%2C%20gradients%20back%20to%20broadcast%20inputs%2C%20noncontiguous%20inputs%2C%20empty%20batches%2C%20the%20%60expmap_transp%60%20alias%2C%20%60ManifoldTensor%60%2C%20and%20%60Scaled%60.%0A%0AOn%20both%20Python%203.8%20%2F%20PyTorch%202.0.1%20CPU%20and%20Python%203.12%20%2F%20PyTorch%202.8.0%20CPU%3A%0A%0A-%20The%20unchanged%20implementation%20produces%20**34%20failures%20and%208%20passing%20controls**%2C%20without%20collection%20errors%20or%20skips.%0A-%20All%20**42%20new%20cases**%20pass%20with%20the%20fix.%20The%20complete%20regression%2C%20canonical-projection%2C%20manifold-basic%2C%20Riemannian-SGD%2C%20Adam%2C%20scaling%2C%20tensor-API%2C%20and%20retraction-derivative%20modules%20report%20**2243%20passed%2C%20310%20existing%20skips**.%0A-%20Production%20and%20regression%20Ruff%20checks%2C%20%60git%20diff%20--check%60%2C%20and%20the%20clean-source%20check%20pass.%0A%0A%5BBaseline%20and%20fixed%20CI%20results%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43672475302).%20The%20verification%20workflow%20is%20on%20a%20separate%20fork%20branch.%0A",
+  "base": {
+    "repository": "geoopt/geoopt",
+    "branch": "master",
+    "sha": "4623ea1d2a9808b8e87bf10949cccb2c5ec6233c",
+    "tree": "2ab03d32376b32d44da40bd2525b272bb5ea93ca"
+  },
+  "head": {
+    "repository": "Afloat16/geoopt",
+    "branch": "fix/canonical-stiefel-broadcast-transport-20261115",
+    "sha": "6e060dcdb00c37cb8173cac97ac6a15ade7137b0",
+    "tree": "6912eeab481622a9c294c930311cb6c2ec23d1be",
+    "files": [
+      "geoopt/manifolds/stiefel.py",
+      "tests/test_canonical_stiefel_broadcast_transport.py"
+    ]
+  },
+  "validation": {
+    "branch": "validation/canonical-stiefel-broadcast-transport-20261115",
+    "sha": "484da5bc0921e630e5558eeb6af11df02944e298",
+    "workflow_in_upstream_pr": false,
+    "production_source_unchanged_after_tests": true,
+    "runs": [
+      {
+        "run_id": 43672475302,
+        "run_conclusion": "success",
+        "job_id": 132685349139,
+        "job_conclusion": "success",
+        "url": "https://github.com/Afloat16/geoopt/actions/runs/43672475302/job/132685349139",
+        "python": "3.8.18",
+        "torch": "2.0.1+cpu",
+        "numpy": "1.24.4",
+        "scipy": "1.10.1",
+        "baseline": {
+          "failed": 34,
+          "passed": 8,
+          "errors": 0,
+          "skipped": 0
+        },
+        "fixed": {
+          "passed": 2243,
+          "skipped": 310,
+          "new_cases_passed": 42
+        },
+        "lint": "passed",
+        "junit_artifact_url": "https://github.com/Afloat16/geoopt/actions/runs/43672475302/artifacts/14145156711"
+      },
+      {
+        "run_id": 43672475302,
+        "run_conclusion": "success",
+        "job_id": 132685348964,
+        "job_conclusion": "success",
+        "url": "https://github.com/Afloat16/geoopt/actions/runs/43672475302/job/132685348964",
+        "python": "3.12.16",
+        "torch": "2.8.0+cpu",
+        "numpy": "1.26.4",
+        "scipy": "1.13.1",
+        "baseline": {
+          "failed": 34,
+          "passed": 8,
+          "errors": 0,
+          "skipped": 0
+        },
+        "fixed": {
+          "passed": 2243,
+          "skipped": 310,
+          "new_cases_passed": 42
+        },
+        "lint": "passed",
+        "junit_artifact_url": "https://github.com/Afloat16/geoopt/actions/runs/43672475302/artifacts/14145480322"
+      }
+    ],
+    "modules": [
+      "tests/test_canonical_stiefel_broadcast_transport.py",
+      "tests/test_canonical_stiefel_projection.py",
+      "tests/test_manifold_basic.py",
+      "tests/test_rsgd.py",
+      "tests/test_adam.py",
+      "tests/test_scaling.py",
+      "tests/test_tensor_api.py",
+      "tests/test_rlinesearch_retraction_derivative.py"
+    ],
+    "new_cases": 42,
+    "independent_oracles": [
+      "Explicit loops over separate public retr and transp_follow_retr methods with hardcoded expected batch shapes",
+      "Point orthogonality, tangent constraints, and canonical metric preservation",
+      "Autograd gradients against the separate public-call oracle",
+      "ManifoldTensor and Scaled public wrapper calls"
+    ],
+    "checks": [
+      "ruff check geoopt tests/test_canonical_stiefel_broadcast_transport.py",
+      "git diff --check",
+      "git diff --exit-code"
+    ],
+    "scope": "CPU validation on both supported-version environments. All 34 baseline failures are RuntimeErrors caused by the original torch.cat or original-point-shape view; the eight controls use matched batches or unbatched inputs."
+  },
+  "eligibility": {
+    "stars": 1103,
+    "own_merged_before": 15,
+    "merged_rank": 2,
+    "first": {
+      "login": "ferrine",
+      "merged": 87
+    },
+    "own_open_before": 3
+  },
+  "dedup": {
+    "upstream_all_state_pr_count": 174,
+    "own_open_prs": [
+      290,
+      291,
+      292
+    ],
+    "own_merged_before": 15,
+    "final_fork_branch_count": 47,
+    "old_fork_branch_count": 33,
+    "all_old_branch_source_files_read": true,
+    "audited_path": "geoopt/manifolds/stiefel.py",
+    "old_branch_shas_unchanged_on_final_refresh": true,
+    "old_branch_joint_transport_variants": 1,
+    "old_branch_audit": [
+      {
+        "branch": "build",
+        "sha": "65bb2746ffe09c82758092a4eb6c02e6644aee32",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix/canonical-stiefel-tangent-projection-20261029",
+        "sha": "a3ea54f9467ab98a958fe5c5ac92d3b19d55a6ac",
+        "blob": "614af178d5f5074bb406393be892b4167cfa4538",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix/euclidean-high-dimensional-norms-20261029",
+        "sha": "6f54b5724eb3726ed7f5cfd442b573fac19fe2f3",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix/layer-manifold-factories-20261112",
+        "sha": "ca193e465cfc19c786063cf5f502d2879f22207f",
+        "blob": "b5c573f2300beacb30349605c7a98bf22466b45d",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix/product-component-inner-broadcast-20261112",
+        "sha": "89d09e239f597246b30624c451ecbf88f2aaa774",
+        "blob": "b5c573f2300beacb30349605c7a98bf22466b45d",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix/proper-velocity-distance-batch-shapes-20261112",
+        "sha": "7ef51c2de94042f759269026171cb258435413de",
+        "blob": "b5c573f2300beacb30349605c7a98bf22466b45d",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix/proper-velocity-product-sampling-20261112",
+        "sha": "85dee4d65e4a92cc3fa8861e73bc8401cbf1e2ab",
+        "blob": "b5c573f2300beacb30349605c7a98bf22466b45d",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix/proper-velocity-radial-metric-20261112",
+        "sha": "60b129ae56b8be73fd9d63f3dbb50b512a72002f",
+        "blob": "b5c573f2300beacb30349605c7a98bf22466b45d",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix/revisited-line-search-derivatives-20261112",
+        "sha": "f8cd4e81e01be2754a33abe89bbb947820fd8800",
+        "blob": "b5c573f2300beacb30349605c7a98bf22466b45d",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix/rhmc-proposal-handling",
+        "sha": "2bd83b2d48da246a7a37698fdbb49a670354fe67",
+        "blob": "b5c573f2300beacb30349605c7a98bf22466b45d",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix/siegel-distance-dimensions-20261112",
+        "sha": "0b643e9889ef33d0d0e51432c74f35492bd2ac5b",
+        "blob": "b5c573f2300beacb30349605c7a98bf22466b45d",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix/spd-expmap-repeated-spectrum-gradients-20261112",
+        "sha": "394acd40c32e64a8fd3d4fd2cf9ae33faf3456e6",
+        "blob": "b5c573f2300beacb30349605c7a98bf22466b45d",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix/spd-projection-positive-interior-20261112",
+        "sha": "608983f8364b292cb3a1da63b3284d5750b23405",
+        "blob": "b5c573f2300beacb30349605c7a98bf22466b45d",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix/stiefel-qr-backward-20261112",
+        "sha": "2775b2b9d21b5c81a4a1a591a37bed9372807b49",
+        "blob": "0619c1a5cb2e22aeb7b74c3ff4b178e4f307dfe0",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix/stochastic-sampler-step-contract",
+        "sha": "3f370245079e4d22795121789d48df836506d3b8",
+        "blob": "b5c573f2300beacb30349605c7a98bf22466b45d",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix/upper-half-batched-origin-20261029",
+        "sha": "b4ac023cdcf0697e17a5357cebd847e8abc58d30",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix-birkhoff-tangent-metric",
+        "sha": "cd906330522feaa3f3b863949e428fbcdfdcea10",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix-lorentz-coordinate-dimension",
+        "sha": "de7df453623fffa7838d5b6970512e084aec6ddc",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix-lorentz-manifold-axis",
+        "sha": "a6e23ca545079149c8058219fb5f5e2975be178d",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix-optimizer-side-gradient-mutation",
+        "sha": "2f0eeac8783dc68e1b166ef367ef50e2c0d99db4",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix-riemannian-sgd-first-momentum",
+        "sha": "7f8538e4da396fb6bef95a670d0814239d35f576",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix-signed-hyperplane-distance-asinh",
+        "sha": "43066828557b3ce0416cdbab74f31a8da8dacd60",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix-sparse-amsgrad-raw-second-moment",
+        "sha": "3d4ab8c313fe0c8952bd05b7b94135ddededa6ac",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix-spd-stein-logdet-stability",
+        "sha": "6bd798005c26a6e31c101932ebe69990c993ebdd",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix-sphere-expmap-zero-gradient",
+        "sha": "f62fb53bcf8fd63ceb7a63cf3c8caedfc037f326",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix-sphere-expmap-zero-step-gradient",
+        "sha": "f96f804971127e978e47790f30a38c665613c843",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix-sphere-geodesic-distance-precision",
+        "sha": "2db876bea979d96ff787b7a9977d581e89a8e56d",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix-sphere-subspace-tangent",
+        "sha": "bb8293cafec3b7c411436e832cae1602c1c67d10",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "fix-stein-logdet-scale",
+        "sha": "682e73b0463c15e17c7c4002416e2afdcfad9190",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "master",
+        "sha": "af5ef91dd987121d03826335ca400c84e8e20800",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "submission/forms-20261113-ml",
+        "sha": "2d54b3bcab0fbe25d82d04eaad59e6272dd59c51",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "validation/stein-git-pristine-20261009",
+        "sha": "af5ef91dd987121d03826335ca400c84e8e20800",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      },
+      {
+        "branch": "validation/stein-pristine-20261009",
+        "sha": "71c839d053df33056b166ee7d6533796f9691778",
+        "blob": "66fc3accc2c8c4f6112c115982e126c82e1bbaa1",
+        "original_joint_transport_present": true
+      }
+    ],
+    "related_prior_prs": [
+      {
+        "number": 280,
+        "url": "https://github.com/geoopt/geoopt/pull/280",
+        "actual_diff_read": true,
+        "scope": "Canonical tangent projection, Euclidean-to-Riemannian gradient separation, Cayley initial velocity, and retr_jvp; does not change joint transport batching."
+      },
+      {
+        "number": 290,
+        "url": "https://github.com/geoopt/geoopt/pull/290",
+        "actual_diff_read": true,
+        "scope": "Euclidean Stiefel QR retraction autograd; no CanonicalStiefel joint transport changes."
+      }
+    ],
+    "issues_searches": [
+      "repo:geoopt/geoopt Stiefel"
+    ],
+    "notes": "No equivalent upstream PR or old fork branch implementation found. This branch is independent of this session's ProductManifold distance, BoundedDomain metric/gradient, Sphere.logmap, and Siegel whitening changes."
+  },
+  "concurrency": {
+    "limit": null,
+    "policy": "No concurrent PR cap found in repository tree, README/community template; geoopt/.github repository not found.",
+    "open_before_attempt": 3
+  },
+  "disclosure": {
+    "mandatory": false,
+    "policy": "No AI disclosure instruction found. Existing repository PR template applies only to new manifolds."
+  },
+  "creation_attempts": [
+    {
+      "method": "github_create_pull_request connector",
+      "result": "403 Resource not accessible by integration"
+    }
+  ],
+  "notes": "No upstream PR created. Browser fallback was not repeated because the parent established the CUA Node runtime is unavailable. Fully prefilled compare URL is ready; user confirmation is pending. No new merge is claimed."
+}
