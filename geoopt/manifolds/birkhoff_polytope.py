@@ -263,9 +263,8 @@ def proj_tangent(x, u):
         [z1, zt1],
         dim=1,
     )
-    rhs = B.transpose(1, 2) @ (b - A[:, :, 0:1])
-    lhs = B.transpose(1, 2) @ B
-    zeta = torch.linalg.solve(lhs, rhs)
+    # Solve the full-rank least-squares system without squaring its condition number.
+    zeta = torch.linalg.lstsq(B, b - A[:, :, 0:1], driver="gels")[0]
     alpha = torch.cat(
         [
             torch.ones(batch_size, 1, 1, device=x.device, dtype=x.dtype),
