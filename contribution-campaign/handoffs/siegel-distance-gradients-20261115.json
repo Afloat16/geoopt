@@ -1,0 +1,374 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-11-15 03:12:44 UTC",
+  "repository": "geoopt/geoopt",
+  "author": "Afloat16",
+  "status": "commit_and_validation_complete_pr_creation_blocked",
+  "title": "Keep Siegel distance gradients finite at repeated spectra",
+  "body": "## Problem\n\nDifferentiating a Siegel distance from a point whose imaginary part has repeated eigenvalues produces NaN gradients. This includes the standard `UpperHalf` origin `iI` and the `BoundedDomain` origin `0`, even when the target has a nonzero distance and distinct Takagi values. A distance-based training loss therefore cannot take a valid optimizer step from these common initial points.\n\nThe failure comes from differentiating eigenvectors while constructing the symmetric inverse square root used for whitening.\n\n## Change\n\nWhiten with a Cholesky factor and two triangular solves. For `Y = L L^T`, the new `L^-1 (Z2 - X) L^-T` and the symmetric whitening differ by a real orthogonal congruence. The inverse Cayley transform is equivariant under that congruence, and its Takagi values are unchanged. The existing five distance metrics consequently retain their geometric values while the whitening derivative stays finite at repeated spectra.\n\nCorrect the mixed-pair distance test's two nonzero assertions to check the distinct first five pairs. Its final five pairs are identical and already checked against zero; they must also be allowed to return exactly zero.\n\n## Validation\n\nThe regressions compare both endpoint gradients against analytic diagonal formulas, exercise full and partial repeated spectra, cover both broadcast directions and complex dtypes, perform gradcheck in six real symmetric coordinates, and run real RiemannianSGD updates from both model origins. Independent affine-congruence controls cover all five metrics in both domains.\n\nOn both Python 3.8 / PyTorch 2.0.1 CPU and Python 3.12 / PyTorch 2.8.0 CPU:\n\n- The unchanged implementation produces **22 failures and 20 passing controls**, without collection errors or skips.\n- All **42 new cases** pass with the fix. The complete regression, Siegel-distance, Cayley-transform, Takagi-factorization, manifold-basic, and Riemannian-SGD modules report **7091 passed, 310 existing skips**.\n- Production and changed-test Ruff checks, `git diff --check`, and the clean-source check pass.\n\n[Baseline and fixed CI results](https://github.com/Afloat16/geoopt/actions/runs/43670708711). The verification workflow is on a separate fork branch.\n",
+  "prefilled_url": "https://github.com/geoopt/geoopt/compare/master...Afloat16:fix/siegel-distance-repeated-spectrum-20261115?expand=1&title=Keep%20Siegel%20distance%20gradients%20finite%20at%20repeated%20spectra&body=%23%23%20Problem%0A%0ADifferentiating%20a%20Siegel%20distance%20from%20a%20point%20whose%20imaginary%20part%20has%20repeated%20eigenvalues%20produces%20NaN%20gradients.%20This%20includes%20the%20standard%20%60UpperHalf%60%20origin%20%60iI%60%20and%20the%20%60BoundedDomain%60%20origin%20%600%60%2C%20even%20when%20the%20target%20has%20a%20nonzero%20distance%20and%20distinct%20Takagi%20values.%20A%20distance-based%20training%20loss%20therefore%20cannot%20take%20a%20valid%20optimizer%20step%20from%20these%20common%20initial%20points.%0A%0AThe%20failure%20comes%20from%20differentiating%20eigenvectors%20while%20constructing%20the%20symmetric%20inverse%20square%20root%20used%20for%20whitening.%0A%0A%23%23%20Change%0A%0AWhiten%20with%20a%20Cholesky%20factor%20and%20two%20triangular%20solves.%20For%20%60Y%20%3D%20L%20L%5ET%60%2C%20the%20new%20%60L%5E-1%20(Z2%20-%20X)%20L%5E-T%60%20and%20the%20symmetric%20whitening%20differ%20by%20a%20real%20orthogonal%20congruence.%20The%20inverse%20Cayley%20transform%20is%20equivariant%20under%20that%20congruence%2C%20and%20its%20Takagi%20values%20are%20unchanged.%20The%20existing%20five%20distance%20metrics%20consequently%20retain%20their%20geometric%20values%20while%20the%20whitening%20derivative%20stays%20finite%20at%20repeated%20spectra.%0A%0ACorrect%20the%20mixed-pair%20distance%20test's%20two%20nonzero%20assertions%20to%20check%20the%20distinct%20first%20five%20pairs.%20Its%20final%20five%20pairs%20are%20identical%20and%20already%20checked%20against%20zero%3B%20they%20must%20also%20be%20allowed%20to%20return%20exactly%20zero.%0A%0A%23%23%20Validation%0A%0AThe%20regressions%20compare%20both%20endpoint%20gradients%20against%20analytic%20diagonal%20formulas%2C%20exercise%20full%20and%20partial%20repeated%20spectra%2C%20cover%20both%20broadcast%20directions%20and%20complex%20dtypes%2C%20perform%20gradcheck%20in%20six%20real%20symmetric%20coordinates%2C%20and%20run%20real%20RiemannianSGD%20updates%20from%20both%20model%20origins.%20Independent%20affine-congruence%20controls%20cover%20all%20five%20metrics%20in%20both%20domains.%0A%0AOn%20both%20Python%203.8%20%2F%20PyTorch%202.0.1%20CPU%20and%20Python%203.12%20%2F%20PyTorch%202.8.0%20CPU%3A%0A%0A-%20The%20unchanged%20implementation%20produces%20**22%20failures%20and%2020%20passing%20controls**%2C%20without%20collection%20errors%20or%20skips.%0A-%20All%20**42%20new%20cases**%20pass%20with%20the%20fix.%20The%20complete%20regression%2C%20Siegel-distance%2C%20Cayley-transform%2C%20Takagi-factorization%2C%20manifold-basic%2C%20and%20Riemannian-SGD%20modules%20report%20**7091%20passed%2C%20310%20existing%20skips**.%0A-%20Production%20and%20changed-test%20Ruff%20checks%2C%20%60git%20diff%20--check%60%2C%20and%20the%20clean-source%20check%20pass.%0A%0A%5BBaseline%20and%20fixed%20CI%20results%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43670708711).%20The%20verification%20workflow%20is%20on%20a%20separate%20fork%20branch.%0A",
+  "base": {
+    "repository": "geoopt/geoopt",
+    "branch": "master",
+    "sha": "4623ea1d2a9808b8e87bf10949cccb2c5ec6233c",
+    "tree": "2ab03d32376b32d44da40bd2525b272bb5ea93ca"
+  },
+  "head": {
+    "repository": "Afloat16/geoopt",
+    "branch": "fix/siegel-distance-repeated-spectrum-20261115",
+    "sha": "befc58ef51cf40e43b8f5a8e3671686d920a749c",
+    "tree": "c2fafa7a531b3f15beae88c7c7a10e008f84236c",
+    "files": [
+      "geoopt/manifolds/siegel/siegel.py",
+      "tests/test_siegel_distance_gradients.py",
+      "tests/test_siegel_distance.py"
+    ]
+  },
+  "validation": {
+    "branch": "validation/siegel-distance-repeated-spectrum-20261115",
+    "sha": "f11fb92d0307f31f3c79868ad6229774a7dd1f84",
+    "workflow_in_upstream_pr": false,
+    "production_source_unchanged_after_tests": true,
+    "runs": [
+      {
+        "run_id": 43670708711,
+        "run_conclusion": "success",
+        "job_id": 132679895000,
+        "job_conclusion": "success",
+        "url": "https://github.com/Afloat16/geoopt/actions/runs/43670708711/job/132679895000",
+        "python": "3.8.18",
+        "torch": "2.0.1+cpu",
+        "numpy": "1.24.4",
+        "scipy": "1.10.1",
+        "baseline": {
+          "failed": 22,
+          "passed": 20,
+          "errors": 0,
+          "skipped": 0
+        },
+        "fixed": {
+          "passed": 7091,
+          "skipped": 310,
+          "new_cases_passed": 42
+        },
+        "lint": "passed",
+        "junit_artifact_url": "https://github.com/Afloat16/geoopt/actions/runs/43670708711/artifacts/14143334868"
+      },
+      {
+        "run_id": 43670708711,
+        "run_conclusion": "success",
+        "job_id": 132679895187,
+        "job_conclusion": "success",
+        "url": "https://github.com/Afloat16/geoopt/actions/runs/43670708711/job/132679895187",
+        "python": "3.12.16",
+        "torch": "2.8.0+cpu",
+        "numpy": "1.26.4",
+        "scipy": "1.13.1",
+        "baseline": {
+          "failed": 22,
+          "passed": 20,
+          "errors": 0,
+          "skipped": 0
+        },
+        "fixed": {
+          "passed": 7091,
+          "skipped": 310,
+          "new_cases_passed": 42
+        },
+        "lint": "passed",
+        "junit_artifact_url": "https://github.com/Afloat16/geoopt/actions/runs/43670708711/artifacts/14144530502"
+      }
+    ],
+    "modules": [
+      "tests/test_siegel_distance_gradients.py",
+      "tests/test_siegel_distance.py",
+      "tests/test_cayley_transform.py",
+      "tests/test_takagi_factorization.py",
+      "tests/test_manifold_basic.py",
+      "tests/test_rsgd.py"
+    ],
+    "new_cases": 42,
+    "independent_oracles": [
+      "Analytic squared distance and both endpoint gradients for diagonal UpperHalf and BoundedDomain coordinates",
+      "Real affine-congruence invariance for all five metrics in both domains and dtypes",
+      "Gradcheck in six real symmetric coordinates",
+      "Actual RiemannianSGD steps from both standard model origins"
+    ],
+    "checks": [
+      "ruff check geoopt tests/test_siegel_distance_gradients.py tests/test_siegel_distance.py",
+      "git diff --check",
+      "git diff --exit-code"
+    ],
+    "initial_run": {
+      "run_id": 43670374287,
+      "conclusion": "failure",
+      "new_cases_passed": 42,
+      "adjacent_failures": {
+        "python38": 60,
+        "python312": 42
+      },
+      "reason": "Every adjacent failure came from the same original mixed-pair test: it assigned x[5:]=y[5:], checked self-distances near zero, then also required those self-distances to be nonzero. Cholesky whitening sometimes returns exact zero. Both nonzero assertions now check the distinct first half [:5]; the final-half zero checks remain. The core algorithm was not changed after this run."
+    },
+    "scope": "CPU validation for the listed complete modules. Distance values and derivatives are checked away from a zero-distance or repeated-Takagi-value nondifferentiability so the whitening regression is isolated."
+  },
+  "eligibility": {
+    "stars": 1103,
+    "own_merged_before": 15,
+    "merged_rank": 2,
+    "first": {
+      "login": "ferrine",
+      "merged": 87
+    },
+    "own_open_before": 3
+  },
+  "dedup": {
+    "upstream_all_state_pr_count": 174,
+    "own_open_prs": [
+      290,
+      291,
+      292
+    ],
+    "own_merged_before": 15,
+    "old_fork_branch_count": 33,
+    "all_old_branch_source_files_read": true,
+    "audited_path": "geoopt/manifolds/siegel/siegel.py",
+    "old_branch_shas_unchanged_on_final_refresh": true,
+    "old_branch_whitening_variants": 1,
+    "old_branch_audit": [
+      {
+        "branch": "build",
+        "sha": "65bb2746ffe09c82758092a4eb6c02e6644aee32",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix/canonical-stiefel-tangent-projection-20261029",
+        "sha": "a3ea54f9467ab98a958fe5c5ac92d3b19d55a6ac",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix/euclidean-high-dimensional-norms-20261029",
+        "sha": "6f54b5724eb3726ed7f5cfd442b573fac19fe2f3",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix/layer-manifold-factories-20261112",
+        "sha": "ca193e465cfc19c786063cf5f502d2879f22207f",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix/product-component-inner-broadcast-20261112",
+        "sha": "89d09e239f597246b30624c451ecbf88f2aaa774",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix/proper-velocity-distance-batch-shapes-20261112",
+        "sha": "7ef51c2de94042f759269026171cb258435413de",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix/proper-velocity-product-sampling-20261112",
+        "sha": "85dee4d65e4a92cc3fa8861e73bc8401cbf1e2ab",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix/proper-velocity-radial-metric-20261112",
+        "sha": "60b129ae56b8be73fd9d63f3dbb50b512a72002f",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix/revisited-line-search-derivatives-20261112",
+        "sha": "f8cd4e81e01be2754a33abe89bbb947820fd8800",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix/rhmc-proposal-handling",
+        "sha": "2bd83b2d48da246a7a37698fdbb49a670354fe67",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix/siegel-distance-dimensions-20261112",
+        "sha": "0b643e9889ef33d0d0e51432c74f35492bd2ac5b",
+        "blob": "0d7e722352c7f1bd48bf7a8579de52bc0978c57b",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix/spd-expmap-repeated-spectrum-gradients-20261112",
+        "sha": "394acd40c32e64a8fd3d4fd2cf9ae33faf3456e6",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix/spd-projection-positive-interior-20261112",
+        "sha": "608983f8364b292cb3a1da63b3284d5750b23405",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix/stiefel-qr-backward-20261112",
+        "sha": "2775b2b9d21b5c81a4a1a591a37bed9372807b49",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix/stochastic-sampler-step-contract",
+        "sha": "3f370245079e4d22795121789d48df836506d3b8",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix/upper-half-batched-origin-20261029",
+        "sha": "b4ac023cdcf0697e17a5357cebd847e8abc58d30",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix-birkhoff-tangent-metric",
+        "sha": "cd906330522feaa3f3b863949e428fbcdfdcea10",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix-lorentz-coordinate-dimension",
+        "sha": "de7df453623fffa7838d5b6970512e084aec6ddc",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix-lorentz-manifold-axis",
+        "sha": "a6e23ca545079149c8058219fb5f5e2975be178d",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix-optimizer-side-gradient-mutation",
+        "sha": "2f0eeac8783dc68e1b166ef367ef50e2c0d99db4",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix-riemannian-sgd-first-momentum",
+        "sha": "7f8538e4da396fb6bef95a670d0814239d35f576",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix-signed-hyperplane-distance-asinh",
+        "sha": "43066828557b3ce0416cdbab74f31a8da8dacd60",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix-sparse-amsgrad-raw-second-moment",
+        "sha": "3d4ab8c313fe0c8952bd05b7b94135ddededa6ac",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix-spd-stein-logdet-stability",
+        "sha": "6bd798005c26a6e31c101932ebe69990c993ebdd",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix-sphere-expmap-zero-gradient",
+        "sha": "f62fb53bcf8fd63ceb7a63cf3c8caedfc037f326",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix-sphere-expmap-zero-step-gradient",
+        "sha": "f96f804971127e978e47790f30a38c665613c843",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix-sphere-geodesic-distance-precision",
+        "sha": "2db876bea979d96ff787b7a9977d581e89a8e56d",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix-sphere-subspace-tangent",
+        "sha": "bb8293cafec3b7c411436e832cae1602c1c67d10",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "fix-stein-logdet-scale",
+        "sha": "682e73b0463c15e17c7c4002416e2afdcfad9190",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "master",
+        "sha": "af5ef91dd987121d03826335ca400c84e8e20800",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "submission/forms-20261113-ml",
+        "sha": "2d54b3bcab0fbe25d82d04eaad59e6272dd59c51",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "validation/stein-git-pristine-20261009",
+        "sha": "af5ef91dd987121d03826335ca400c84e8e20800",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      },
+      {
+        "branch": "validation/stein-pristine-20261009",
+        "sha": "71c839d053df33056b166ee7d6533796f9691778",
+        "blob": "2bf4ce8f66ac82e81dd685501c8799981c77f2b7",
+        "original_symmetric_whitening_present": true
+      }
+    ],
+    "related_prior_prs": [
+      {
+        "number": 274,
+        "url": "https://github.com/geoopt/geoopt/pull/274",
+        "actual_diff_read": true,
+        "scope": "SPD._affine_invariant_metric only; does not change Siegel distances."
+      },
+      {
+        "number": 292,
+        "url": "https://github.com/geoopt/geoopt/pull/292",
+        "actual_diff_read": true,
+        "scope": "Siegel distance output dimensions, keepdim forwarding, and weight broadcasting only; does not change whitening."
+      }
+    ],
+    "issues_searches": [
+      "repo:geoopt/geoopt siegel",
+      "repo:geoopt/geoopt eigenvalues",
+      "repo:geoopt/geoopt NaN"
+    ],
+    "notes": "No prior upstream or fork fix for the Siegel whitening gradient found. This head is independent of this session's ProductManifold, BoundedDomain metric/gradient, and Sphere.logmap changes."
+  },
+  "concurrency": {
+    "limit": null,
+    "policy": "No concurrent PR cap found in repository tree, README/community template; geoopt/.github repository not found.",
+    "open_before_attempt": 3
+  },
+  "disclosure": {
+    "mandatory": false,
+    "policy": "No AI disclosure instruction found. Existing repository PR template applies only to new manifolds."
+  },
+  "creation_attempts": [
+    {
+      "method": "github_create_pull_request connector",
+      "result": "403 Resource not accessible by integration"
+    }
+  ],
+  "notes": "No upstream PR created. Browser fallback was not repeated because the parent established the CUA Node runtime is unavailable. Fully prefilled compare URL is ready; user confirmation is pending. No new merge is claimed."
+}
