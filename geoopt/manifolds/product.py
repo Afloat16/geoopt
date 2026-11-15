@@ -336,7 +336,10 @@ class ProductManifold(Manifold):
         return result
 
     def dist(self, x, y, *, keepdim=False):
-        return self.dist2(x, y, keepdim=keepdim).clamp_min_(1e-15) ** 0.5
+        squared_dist = self.dist2(x, y, keepdim=keepdim).clamp_min_(0)
+        is_zero = squared_dist == 0
+        safe_squared_dist = torch.where(is_zero, torch.ones_like(squared_dist), squared_dist)
+        return torch.where(is_zero, torch.zeros_like(squared_dist), safe_squared_dist.sqrt())
 
     def egrad2rgrad(self, x: torch.Tensor, u: torch.Tensor):
         target_batch_dim = _calculate_target_batch_dim(x.dim(), u.dim())
