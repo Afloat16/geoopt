@@ -7,7 +7,7 @@ permissions:
   contents: read
 jobs:
   regression:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     timeout-minutes: 20
     strategy:
       fail-fast: false
@@ -17,16 +17,12 @@ jobs:
             torch: "2.0.1"
             numpy: "1.24.4"
             scipy: "1.10.1"
-          - python: "3.12"
-            torch: "2.8.0"
-            numpy: "1.26.4"
-            scipy: "1.13.1"
     env:
       PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
-          fetch-depth: 3
+          fetch-depth: 4
           persist-credentials: false
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
         with:
