@@ -1,0 +1,397 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-11-15 03:44:31 UTC",
+  "repository": "geoopt/geoopt",
+  "author": "Afloat16",
+  "status": "commit_and_validation_complete_pr_creation_blocked",
+  "title": "Keep Euclidean cdist gradients finite at coincident points",
+  "body": "## Problem\n\n`Euclidean.cdist(x, x)` contains exact zero distances on its diagonal, and duplicate points add more zero entries. The current square-root backward pass produces NaN gradients at these entries. Summing the distance matrix, squaring it for a training loss, or masking zero-distance entries can therefore contaminate the whole parameter gradient and make a RiemannianSGD update invalid.\n\nThis affects both vector and higher-dimensional Euclidean points. The separate `Euclidean.dist` operation already uses a finite zero-gradient convention at coincident points.\n\n## Change\n\nShare the final square-root calculation between the vector and higher-dimensional branches. Replace zero squared distances with a safe value before evaluating the square root, then select exact zero for those outputs. This keeps the zero-distance backward path finite.\n\nForward distance values, the existing roundoff clamp, scalar `ndim=0` behavior, and derivatives at positive distances remain unchanged.\n\n## Validation\n\nThe regressions compare values and gradients with the separate public `dist` method, cover self distances and duplicate points, equal points in separate inputs, masked entries, both floating dtypes, and broadcast batches. A real RiemannianSGD update is checked against the analytic gradient of the sum of squared pairwise distances. Gradcheck and gradgradcheck verify that first and second derivatives remain available away from coincident points.\n\nOn both Python 3.8 / PyTorch 2.0.1 CPU and Python 3.12 / PyTorch 2.8.0 CPU:\n\n- The unchanged implementation produces **27 failures and 7 passing controls**, without collection errors or skips.\n- All **34 new cases** pass with the fix. The complete regression, Euclidean, high-dimensional-norm, tensor-distance, manifold-basic, Riemannian-SGD, and Adam modules report **2229 passed, 310 existing skips**.\n- Production and regression Ruff checks, `git diff --check`, and the clean-source check pass.\n\n[Baseline and fixed CI results](https://github.com/Afloat16/geoopt/actions/runs/43673457120). The verification workflow is on a separate fork branch.\n",
+  "prefilled_url": "https://github.com/geoopt/geoopt/compare/master...Afloat16:fix/euclidean-cdist-zero-gradients-20261115?expand=1&title=Keep%20Euclidean%20cdist%20gradients%20finite%20at%20coincident%20points&body=%23%23%20Problem%0A%0A%60Euclidean.cdist(x%2C%20x)%60%20contains%20exact%20zero%20distances%20on%20its%20diagonal%2C%20and%20duplicate%20points%20add%20more%20zero%20entries.%20The%20current%20square-root%20backward%20pass%20produces%20NaN%20gradients%20at%20these%20entries.%20Summing%20the%20distance%20matrix%2C%20squaring%20it%20for%20a%20training%20loss%2C%20or%20masking%20zero-distance%20entries%20can%20therefore%20contaminate%20the%20whole%20parameter%20gradient%20and%20make%20a%20RiemannianSGD%20update%20invalid.%0A%0AThis%20affects%20both%20vector%20and%20higher-dimensional%20Euclidean%20points.%20The%20separate%20%60Euclidean.dist%60%20operation%20already%20uses%20a%20finite%20zero-gradient%20convention%20at%20coincident%20points.%0A%0A%23%23%20Change%0A%0AShare%20the%20final%20square-root%20calculation%20between%20the%20vector%20and%20higher-dimensional%20branches.%20Replace%20zero%20squared%20distances%20with%20a%20safe%20value%20before%20evaluating%20the%20square%20root%2C%20then%20select%20exact%20zero%20for%20those%20outputs.%20This%20keeps%20the%20zero-distance%20backward%20path%20finite.%0A%0AForward%20distance%20values%2C%20the%20existing%20roundoff%20clamp%2C%20scalar%20%60ndim%3D0%60%20behavior%2C%20and%20derivatives%20at%20positive%20distances%20remain%20unchanged.%0A%0A%23%23%20Validation%0A%0AThe%20regressions%20compare%20values%20and%20gradients%20with%20the%20separate%20public%20%60dist%60%20method%2C%20cover%20self%20distances%20and%20duplicate%20points%2C%20equal%20points%20in%20separate%20inputs%2C%20masked%20entries%2C%20both%20floating%20dtypes%2C%20and%20broadcast%20batches.%20A%20real%20RiemannianSGD%20update%20is%20checked%20against%20the%20analytic%20gradient%20of%20the%20sum%20of%20squared%20pairwise%20distances.%20Gradcheck%20and%20gradgradcheck%20verify%20that%20first%20and%20second%20derivatives%20remain%20available%20away%20from%20coincident%20points.%0A%0AOn%20both%20Python%203.8%20%2F%20PyTorch%202.0.1%20CPU%20and%20Python%203.12%20%2F%20PyTorch%202.8.0%20CPU%3A%0A%0A-%20The%20unchanged%20implementation%20produces%20**27%20failures%20and%207%20passing%20controls**%2C%20without%20collection%20errors%20or%20skips.%0A-%20All%20**34%20new%20cases**%20pass%20with%20the%20fix.%20The%20complete%20regression%2C%20Euclidean%2C%20high-dimensional-norm%2C%20tensor-distance%2C%20manifold-basic%2C%20Riemannian-SGD%2C%20and%20Adam%20modules%20report%20**2229%20passed%2C%20310%20existing%20skips**.%0A-%20Production%20and%20regression%20Ruff%20checks%2C%20%60git%20diff%20--check%60%2C%20and%20the%20clean-source%20check%20pass.%0A%0A%5BBaseline%20and%20fixed%20CI%20results%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43673457120).%20The%20verification%20workflow%20is%20on%20a%20separate%20fork%20branch.%0A",
+  "base": {
+    "repository": "geoopt/geoopt",
+    "branch": "master",
+    "sha": "4623ea1d2a9808b8e87bf10949cccb2c5ec6233c",
+    "tree": "2ab03d32376b32d44da40bd2525b272bb5ea93ca"
+  },
+  "head": {
+    "repository": "Afloat16/geoopt",
+    "branch": "fix/euclidean-cdist-zero-gradients-20261115",
+    "sha": "606d99820a24e8fe5c7e4bc1754f90bcf746ff36",
+    "tree": "60c14699ed86745c47e0aa7b78b6ea6a1fbd8355",
+    "files": [
+      "geoopt/manifolds/euclidean.py",
+      "tests/test_euclidean_cdist_gradients.py"
+    ]
+  },
+  "validation": {
+    "branch": "validation/euclidean-cdist-zero-gradients-20261115",
+    "sha": "c8566ed5d4210146fe1e4893680549cc373e5af5",
+    "workflow_in_upstream_pr": false,
+    "production_source_unchanged_after_tests": true,
+    "runs": [
+      {
+        "run_id": 43673457120,
+        "run_conclusion": "success",
+        "job_id": 132688353182,
+        "job_conclusion": "success",
+        "url": "https://github.com/Afloat16/geoopt/actions/runs/43673457120/job/132688353182",
+        "python": "3.8.18",
+        "torch": "2.0.1+cpu",
+        "numpy": "1.24.4",
+        "scipy": "1.10.1",
+        "baseline": {
+          "failed": 27,
+          "passed": 7,
+          "errors": 0,
+          "skipped": 0
+        },
+        "fixed": {
+          "passed": 2229,
+          "skipped": 310,
+          "new_cases_passed": 34
+        },
+        "lint": "passed",
+        "junit_artifact_url": "https://github.com/Afloat16/geoopt/actions/runs/43673457120/artifacts/14144648883"
+      },
+      {
+        "run_id": 43673457120,
+        "run_conclusion": "success",
+        "job_id": 132688353006,
+        "job_conclusion": "success",
+        "url": "https://github.com/Afloat16/geoopt/actions/runs/43673457120/job/132688353006",
+        "python": "3.12.16",
+        "torch": "2.8.0+cpu",
+        "numpy": "1.26.4",
+        "scipy": "1.13.1",
+        "baseline": {
+          "failed": 27,
+          "passed": 7,
+          "errors": 0,
+          "skipped": 0
+        },
+        "fixed": {
+          "passed": 2229,
+          "skipped": 310,
+          "new_cases_passed": 34
+        },
+        "lint": "passed",
+        "junit_artifact_url": "https://github.com/Afloat16/geoopt/actions/runs/43673457120/artifacts/14145312906"
+      }
+    ],
+    "modules": [
+      "tests/test_euclidean_cdist_gradients.py",
+      "tests/test_euclidean.py",
+      "tests/test_euclidean_high_dimensional_norms.py",
+      "tests/test_tensor_dist.py",
+      "tests/test_manifold_basic.py",
+      "tests/test_rsgd.py",
+      "tests/test_adam.py"
+    ],
+    "new_cases": 34,
+    "independent_oracles": [
+      "Public Euclidean.dist values and gradients under pairwise input broadcasting",
+      "Analytic gradient 4*N*(x-mean(x)) for a real RiemannianSGD update on the sum of squared pairwise distances",
+      "Gradcheck and gradgradcheck away from coincident points",
+      "Scalar ndim=0 and empty-vector-batch controls"
+    ],
+    "checks": [
+      "ruff check geoopt tests/test_euclidean_cdist_gradients.py",
+      "git diff --check",
+      "git diff --exit-code"
+    ],
+    "scope": "CPU validation on both environments. Coincident-point first derivatives use the existing Euclidean.dist zero-gradient convention. No differentiability or Hessian claim is made at coincident points. Existing Gram-based forward precision and higher-dimensional empty-batch behavior are unchanged; this patch does not claim to fix large-common-offset cancellation.",
+    "rejected_alternative": "Replacing the implementation with native direct torch.cdist would fix cancellation but remove higher-order derivatives that the existing nonzero-distance expression supports. That alternative was rejected; no custom autograd or memory-expanding pairwise-difference kernel was introduced."
+  },
+  "eligibility": {
+    "stars": 1103,
+    "own_merged_before": 15,
+    "merged_rank": 2,
+    "first": {
+      "login": "ferrine",
+      "merged": 87
+    },
+    "own_open_before": 3
+  },
+  "dedup": {
+    "upstream_all_state_pr_count": 174,
+    "own_open_prs": [
+      290,
+      291,
+      292
+    ],
+    "own_merged_before": 15,
+    "final_fork_branch_count": 50,
+    "old_fork_branch_count": 33,
+    "all_old_branch_source_files_read": true,
+    "audited_path": "geoopt/manifolds/euclidean.py",
+    "old_branch_shas_unchanged_on_final_refresh": true,
+    "old_branch_audit": [
+      {
+        "branch": "build",
+        "sha": "65bb2746ffe09c82758092a4eb6c02e6644aee32",
+        "blob": "a4dbb17f27417759cedef3be6ec66cdb360fb1e2",
+        "cdist_present": false,
+        "original_unguarded_sqrt_present": false
+      },
+      {
+        "branch": "fix/canonical-stiefel-tangent-projection-20261029",
+        "sha": "a3ea54f9467ab98a958fe5c5ac92d3b19d55a6ac",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix/euclidean-high-dimensional-norms-20261029",
+        "sha": "6f54b5724eb3726ed7f5cfd442b573fac19fe2f3",
+        "blob": "29860bc8c44c2110af2cb0cbf72b019ee21a9997",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix/layer-manifold-factories-20261112",
+        "sha": "ca193e465cfc19c786063cf5f502d2879f22207f",
+        "blob": "337abf6fed15240d72bd373504dc468bc977e0b8",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix/product-component-inner-broadcast-20261112",
+        "sha": "89d09e239f597246b30624c451ecbf88f2aaa774",
+        "blob": "337abf6fed15240d72bd373504dc468bc977e0b8",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix/proper-velocity-distance-batch-shapes-20261112",
+        "sha": "7ef51c2de94042f759269026171cb258435413de",
+        "blob": "337abf6fed15240d72bd373504dc468bc977e0b8",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix/proper-velocity-product-sampling-20261112",
+        "sha": "85dee4d65e4a92cc3fa8861e73bc8401cbf1e2ab",
+        "blob": "337abf6fed15240d72bd373504dc468bc977e0b8",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix/proper-velocity-radial-metric-20261112",
+        "sha": "60b129ae56b8be73fd9d63f3dbb50b512a72002f",
+        "blob": "337abf6fed15240d72bd373504dc468bc977e0b8",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix/revisited-line-search-derivatives-20261112",
+        "sha": "f8cd4e81e01be2754a33abe89bbb947820fd8800",
+        "blob": "337abf6fed15240d72bd373504dc468bc977e0b8",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix/rhmc-proposal-handling",
+        "sha": "2bd83b2d48da246a7a37698fdbb49a670354fe67",
+        "blob": "337abf6fed15240d72bd373504dc468bc977e0b8",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix/siegel-distance-dimensions-20261112",
+        "sha": "0b643e9889ef33d0d0e51432c74f35492bd2ac5b",
+        "blob": "337abf6fed15240d72bd373504dc468bc977e0b8",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix/spd-expmap-repeated-spectrum-gradients-20261112",
+        "sha": "394acd40c32e64a8fd3d4fd2cf9ae33faf3456e6",
+        "blob": "337abf6fed15240d72bd373504dc468bc977e0b8",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix/spd-projection-positive-interior-20261112",
+        "sha": "608983f8364b292cb3a1da63b3284d5750b23405",
+        "blob": "337abf6fed15240d72bd373504dc468bc977e0b8",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix/stiefel-qr-backward-20261112",
+        "sha": "2775b2b9d21b5c81a4a1a591a37bed9372807b49",
+        "blob": "337abf6fed15240d72bd373504dc468bc977e0b8",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix/stochastic-sampler-step-contract",
+        "sha": "3f370245079e4d22795121789d48df836506d3b8",
+        "blob": "337abf6fed15240d72bd373504dc468bc977e0b8",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix/upper-half-batched-origin-20261029",
+        "sha": "b4ac023cdcf0697e17a5357cebd847e8abc58d30",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix-birkhoff-tangent-metric",
+        "sha": "cd906330522feaa3f3b863949e428fbcdfdcea10",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix-lorentz-coordinate-dimension",
+        "sha": "de7df453623fffa7838d5b6970512e084aec6ddc",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix-lorentz-manifold-axis",
+        "sha": "a6e23ca545079149c8058219fb5f5e2975be178d",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix-optimizer-side-gradient-mutation",
+        "sha": "2f0eeac8783dc68e1b166ef367ef50e2c0d99db4",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix-riemannian-sgd-first-momentum",
+        "sha": "7f8538e4da396fb6bef95a670d0814239d35f576",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix-signed-hyperplane-distance-asinh",
+        "sha": "43066828557b3ce0416cdbab74f31a8da8dacd60",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix-sparse-amsgrad-raw-second-moment",
+        "sha": "3d4ab8c313fe0c8952bd05b7b94135ddededa6ac",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix-spd-stein-logdet-stability",
+        "sha": "6bd798005c26a6e31c101932ebe69990c993ebdd",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix-sphere-expmap-zero-gradient",
+        "sha": "f62fb53bcf8fd63ceb7a63cf3c8caedfc037f326",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix-sphere-expmap-zero-step-gradient",
+        "sha": "f96f804971127e978e47790f30a38c665613c843",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix-sphere-geodesic-distance-precision",
+        "sha": "2db876bea979d96ff787b7a9977d581e89a8e56d",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix-sphere-subspace-tangent",
+        "sha": "bb8293cafec3b7c411436e832cae1602c1c67d10",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "fix-stein-logdet-scale",
+        "sha": "682e73b0463c15e17c7c4002416e2afdcfad9190",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "master",
+        "sha": "af5ef91dd987121d03826335ca400c84e8e20800",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "submission/forms-20261113-ml",
+        "sha": "2d54b3bcab0fbe25d82d04eaad59e6272dd59c51",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "validation/stein-git-pristine-20261009",
+        "sha": "af5ef91dd987121d03826335ca400c84e8e20800",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      },
+      {
+        "branch": "validation/stein-pristine-20261009",
+        "sha": "71c839d053df33056b166ee7d6533796f9691778",
+        "blob": "2f4025d9006035fa44d4abb0a006836cf93b27ec",
+        "cdist_present": true,
+        "original_unguarded_sqrt_present": true
+      }
+    ],
+    "related_prior_prs": [
+      {
+        "number": 238,
+        "url": "https://github.com/geoopt/geoopt/pull/238",
+        "actual_diff_read": true,
+        "scope": "Introduced Euclidean.cdist with the current unguarded square root; no subsequent zero-gradient repair."
+      },
+      {
+        "number": 278,
+        "url": "https://github.com/geoopt/geoopt/pull/278",
+        "actual_diff_read": true,
+        "scope": "Switched Euclidean.norm and Euclidean.dist to vector_norm for ndim > 2; leaves cdist unchanged."
+      }
+    ],
+    "issues_searches": [
+      "repo:geoopt/geoopt cdist",
+      "repo:geoopt/geoopt Euclidean gradient"
+    ],
+    "notes": "32 old branch source files contain the same original cdist method. The older build branch has no cdist method. No equivalent upstream or old fork fix was found. This source branch is independent of the five other Geoopt fixes prepared in this session."
+  },
+  "concurrency": {
+    "limit": null,
+    "policy": "No concurrent PR cap found in repository tree, README/community template; geoopt/.github repository not found.",
+    "open_before_attempt": 3
+  },
+  "disclosure": {
+    "mandatory": false,
+    "policy": "No AI disclosure instruction found. Existing repository PR template applies only to new manifolds."
+  },
+  "creation_attempts": [
+    {
+      "method": "github_create_pull_request connector",
+      "result": "403 Resource not accessible by integration"
+    }
+  ],
+  "notes": "No upstream PR created. Browser fallback was not repeated because the parent established the CUA Node runtime is unavailable. Fully prefilled compare URL is ready; user confirmation is pending. No new merge is claimed."
+}
