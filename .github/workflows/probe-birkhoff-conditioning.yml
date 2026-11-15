@@ -1,0 +1,77 @@
+name: Investigate Birkhoff tangent solve conditioning
+on:
+  push:
+    branches:
+      - validation/birkhoff-projection-conditioning-probe-20261115
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: "3.8"
+            torch: "2.0.1"
+            numpy: "1.24.4"
+            scipy: "1.10.1"
+          - python: "3.12"
+            torch: "2.8.0"
+            numpy: "1.26.4"
+            scipy: "1.13.1"
+    env:
+      PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 4
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install CPU test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "torch==${{ matrix.torch }}+cpu" --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e . "numpy==${{ matrix.numpy }}" "scipy==${{ matrix.scipy }}" "pytest==8.3.5" "ruff==0.4.10"
+          python -c "import sys, torch, numpy, scipy; print(sys.version); print('torch', torch.__version__, 'numpy', numpy.__version__, 'scipy', scipy.__version__)"
+      - name: Compare original normal equations with QR and analytic projection
+        run: |
+          python - <<'PY'
+          import json
+          import torch
+          from geoopt import BirkhoffPolytope
+          
+          def candidate(x, u):
+              n = x.shape[-1]
+              eye = torch.eye(n, dtype=x.dtype)
+              a = torch.cat((torch.cat((eye, x), -1), torch.cat((x.T, eye), -1)), -2)
+              b = torch.cat((u.sum(-1), u.sum(-2)))[:, None]
+              solution = torch.linalg.lstsq(a[:, 1:], b - a[:, :1], driver="gels").solution
+              alpha = torch.cat((torch.ones(1, 1, dtype=x.dtype), solution[:n-1]), 0)
+              beta = solution[n-1:]
+              return u - (alpha + beta.T) * x
+          
+          m = BirkhoffPolytope()
+          for dtype, epsilons in (
+              (torch.float32, [0.1, 0.01, 0.005, 0.001, 0.0003, 0.0001]),
+              (torch.float64, [0.01, 0.0001, 0.000001, 0.0000001, 0.00000003, 0.00000001, 0.000000001]),
+          ):
+              tangent = torch.tensor([[1., -1.], [-1., 1.]], dtype=dtype)
+              u = torch.tensor([[0.2, -0.1], [0.3, 0.7]], dtype=dtype)
+              for epsilon in epsilons:
+                  x = torch.tensor([[1-epsilon, epsilon], [epsilon, 1-epsilon]], dtype=dtype)
+                  for kind, vector in (("ambient", u), ("egrad", 2*x*u), ("tangent", 0.1*tangent), ("zero", torch.zeros_like(u))):
+                      coefficient = 0.5 * (epsilon * (vector[0,0]+vector[1,1]) - (1-epsilon) * (vector[0,1]+vector[1,0]))
+                      expected = coefficient * tangent
+                      result = {"dtype": str(dtype), "epsilon": epsilon, "kind": kind, "expected_max": expected.abs().max().item()}
+                      for name, function in (("original", m.proju), ("qr", candidate)):
+                          try:
+                              actual = function(x, vector)
+                              result[name] = {"error": (actual-expected).abs().max().item(), "tangent_residual": max(actual.sum(-1).abs().max().item(),actual.sum(-2).abs().max().item()), "finite": bool(torch.isfinite(actual).all())}
+                          except RuntimeError as error:
+                              result[name] = {"exception": str(error).splitlines()[0]}
+                      print("PROBE "+json.dumps(result))
+          PY
