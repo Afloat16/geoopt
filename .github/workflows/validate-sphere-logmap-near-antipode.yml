@@ -1,0 +1,93 @@
+name: Validate sphere logarithm near antipodes
+on:
+  push:
+    branches:
+      - validation/sphere-logmap-near-antipode-20261115
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: "3.8"
+            torch: "2.0.1"
+            numpy: "1.24.4"
+            scipy: "1.10.1"
+          - python: "3.12"
+            torch: "2.8.0"
+            numpy: "1.26.4"
+            scipy: "1.13.1"
+    env:
+      PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 4
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install CPU test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "torch==${{ matrix.torch }}+cpu" --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e . "numpy==${{ matrix.numpy }}" "scipy==${{ matrix.scipy }}" "pytest==8.3.5" "ruff==0.4.10"
+          python -c "import sys, torch, numpy, scipy; print(sys.version); print('torch', torch.__version__, 'numpy', numpy.__version__, 'scipy', scipy.__version__)"
+      - name: Prove regression failures on the base implementation
+        shell: bash
+        run: |
+          cp geoopt/manifolds/sphere.py "$RUNNER_TEMP/fixed-sphere.py"
+          git show 4623ea1d2a9808b8e87bf10949cccb2c5ec6233c:geoopt/manifolds/sphere.py > geoopt/manifolds/sphere.py
+          set +e
+          python -m pytest -q tests/test_sphere_logmap_near_antipode.py --junitxml="$RUNNER_TEMP/baseline.xml"
+          test_status=$?
+          set -e
+          cp "$RUNNER_TEMP/fixed-sphere.py" geoopt/manifolds/sphere.py
+          test "$test_status" -eq 1
+          python - <<'PY'
+          import os
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          report = ET.parse(Path(os.environ["RUNNER_TEMP"]) / "baseline.xml")
+          cases = report.findall(".//testcase")
+          failures = report.findall(".//failure")
+          assert len(cases) == 33, len(cases)
+          assert not report.findall(".//error")
+          assert not report.findall(".//skipped")
+          critical = [
+              case for case in cases
+              if not case.get("name").startswith((
+                  "test_logmap_endpoint_and_hemisphere_controls",
+                  "test_logmap_exact_antipode_does_not_amplify_projection_roundoff",
+              ))
+          ]
+          controls = [
+              case for case in cases
+              if case.get("name").startswith("test_logmap_endpoint_and_hemisphere_controls")
+          ]
+          assert len(critical) == 21, len(critical)
+          assert all(case.find("failure") is not None for case in critical)
+          assert len(controls) == 10, len(controls)
+          assert all(case.find("failure") is None for case in controls)
+          print(f"BASELINE: {len(failures)} failures, {len(cases) - len(failures)} passes; all 21 geometric regressions fail, all 10 endpoint/hemisphere controls pass.")
+          PY
+      - name: Run focused and adjacent tests on the fix
+        run: |
+          python -m pytest -q tests/test_sphere_logmap_near_antipode.py tests/test_sphere_geodesic_distance_precision.py tests/test_sphere_zero_step_gradients.py tests/test_sphere_subspace_tangent.py tests/test_sphere_batched_subspace.py tests/test_manifold_basic.py tests/test_rsgd.py --junitxml="$RUNNER_TEMP/fixed.xml"
+      - name: Check production and regression code
+        run: |
+          ruff check geoopt tests/test_sphere_logmap_near_antipode.py
+          git diff --check
+          git diff --exit-code
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: sphere-logmap-reports-python-${{ matrix.python }}
+          path: |
+            ${{ runner.temp }}/baseline.xml
+            ${{ runner.temp }}/fixed.xml
+          if-no-files-found: warn
