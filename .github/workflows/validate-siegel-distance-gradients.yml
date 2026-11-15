@@ -66,7 +66,7 @@ jobs:
           python -m pytest -q tests/test_siegel_distance_gradients.py tests/test_siegel_distance.py tests/test_cayley_transform.py tests/test_takagi_factorization.py tests/test_manifold_basic.py tests/test_rsgd.py --junitxml="$RUNNER_TEMP/fixed.xml"
       - name: Check production and regression code
         run: |
-          ruff check geoopt tests/test_siegel_distance_gradients.py
+          ruff check geoopt tests/test_siegel_distance_gradients.py tests/test_siegel_distance.py
           git diff --check
           git diff --exit-code
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
