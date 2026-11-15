@@ -178,6 +178,7 @@ class ProductManifold(Manifold):
             target_shape = geoopt.utils.broadcast_shapes(point.shape, u_vec.shape)
             if v is not None:
                 v_vec = self.take_submanifold_value(v, i)
+                target_shape = geoopt.utils.broadcast_shapes(target_shape, v_vec.shape)
             else:
                 v_vec = None
             inner = manifold.component_inner(point, u_vec, v_vec)
