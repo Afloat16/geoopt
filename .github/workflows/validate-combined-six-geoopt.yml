@@ -1,0 +1,54 @@
+name: Validate six combined Geoopt fixes
+on:
+  push:
+    branches:
+      - validation/combined-six-geoopt-fixes-20261115
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: "3.8"
+            torch: "2.0.1"
+            numpy: "1.24.4"
+            scipy: "1.10.1"
+          - python: "3.12"
+            torch: "2.8.0"
+            numpy: "1.26.4"
+            scipy: "1.13.1"
+    env:
+      PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 4
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install CPU test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "torch==${{ matrix.torch }}+cpu" --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e . "numpy==${{ matrix.numpy }}" "scipy==${{ matrix.scipy }}" "pytest==8.3.5" "ruff==0.4.10"
+          python -c "import sys, torch, numpy, scipy; print(sys.version); print('torch', torch.__version__, 'numpy', numpy.__version__, 'scipy', scipy.__version__)"
+      - name: Run focused and adjacent tests on the fix
+        run: |
+          python -m pytest -q tests/test_product_manifold.py tests/test_stereographic_product_manifold.py tests/test_manifold_basic.py tests/test_bounded_domain_gradient.py tests/test_siegel_distance.py tests/test_rsgd.py tests/test_sphere_logmap_near_antipode.py tests/test_sphere_geodesic_distance_precision.py tests/test_sphere_zero_step_gradients.py tests/test_sphere_subspace_tangent.py tests/test_sphere_batched_subspace.py tests/test_siegel_distance_gradients.py tests/test_cayley_transform.py tests/test_takagi_factorization.py tests/test_canonical_stiefel_broadcast_transport.py tests/test_canonical_stiefel_projection.py tests/test_adam.py tests/test_scaling.py tests/test_tensor_api.py tests/test_rlinesearch_retraction_derivative.py tests/test_euclidean_cdist_gradients.py tests/test_euclidean.py tests/test_euclidean_high_dimensional_norms.py tests/test_tensor_dist.py --junitxml="$RUNNER_TEMP/combined.xml"
+      - name: Check production and regression code
+        run: |
+          ruff check geoopt tests/test_product_manifold.py tests/test_bounded_domain_gradient.py tests/test_manifold_basic.py tests/test_sphere_logmap_near_antipode.py tests/test_siegel_distance_gradients.py tests/test_siegel_distance.py tests/test_canonical_stiefel_broadcast_transport.py tests/test_euclidean_cdist_gradients.py
+          git diff --check
+          git diff --exit-code
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        if: always()
+        with:
+          name: combined-six-geoopt-reports-python-${{ matrix.python }}
+          path: |
+            ${{ runner.temp }}/combined.xml
+          if-no-files-found: warn

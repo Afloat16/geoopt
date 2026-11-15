@@ -72,7 +72,7 @@ class BoundedDomain(SiegelManifold):
 
         .. math::
 
-            \operatorname{grad}_{R}(f(Z)) = A \cdot \operatorname{grad}_E(f(Z)) \cdot A
+            \operatorname{grad}_{R}(f(Z)) = \overline{A} \cdot \operatorname{grad}_E(f(Z)) \cdot A
 
         where :math:`A = Id - \overline{Z}Z`
 
@@ -89,7 +89,7 @@ class BoundedDomain(SiegelManifold):
             Riemannian gradient
         """
         a = get_id_minus_conjugate_z_times_z(z)
-        return lalg.sym(a @ u @ a)  # impose symmetry due to numerical instabilities
+        return lalg.sym(a.conj() @ u @ a)  # project onto the complex symmetric tangent space
 
     def projx(self, z: torch.Tensor) -> torch.Tensor:
         r"""
@@ -138,7 +138,7 @@ class BoundedDomain(SiegelManifold):
 
         .. math::
 
-            g_{Z}(U, V) = \operatorname{Tr}[(Id - \overline{Z}Z)^{-1} U (Id - Z\overline{Z})^{-1} \overline{V}]
+            g_{Z}(U, V) = \operatorname{Tr}[(Id - Z\overline{Z})^{-1} U (Id - \overline{Z}Z)^{-1} \overline{V}]
 
         Parameters
         ----------
@@ -164,7 +164,7 @@ class BoundedDomain(SiegelManifold):
         inv_id_minus_conjz_z = sm.inverse(identity - (conj_z @ z))
         inv_id_minus_z_conjz = sm.inverse(identity - (z @ conj_z))
 
-        res = inv_id_minus_conjz_z @ u @ inv_id_minus_z_conjz @ v.conj()
+        res = inv_id_minus_z_conjz @ u @ inv_id_minus_conjz_z @ v.conj()
         return lalg.trace(res, keepdim=keepdim)
 
     def _check_point_on_manifold(self, x: torch.Tensor, *, atol=1e-4, rtol=1e-5):

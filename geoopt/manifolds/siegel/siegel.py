@@ -61,10 +61,15 @@ class SiegelManifold(Manifold, ABC):
         torch.Tensor
             distance between two points
         """
-        # with Z1 = X + iY, define Z3 = sqrt(Y)^-1 (Z2 - X) sqrt(Y)^-1
+        # Cholesky and symmetric whitening differ by a real orthogonal
+        # congruence, which preserves the Cayley transform's Takagi values.
+        # Triangular solves avoid eigenvector derivatives at repeated spectra.
         x, y = z1.real, z1.imag
-        inv_sqrt_y = lalg.sym_inv_sqrtm1(y).type_as(z1)
-        z3 = inv_sqrt_y @ (z2 - x) @ inv_sqrt_y
+        chol_y = torch.linalg.cholesky(y).type_as(z1)
+        z3 = torch.linalg.solve_triangular(chol_y, z2 - x, upper=False)
+        z3 = torch.linalg.solve_triangular(
+            chol_y, z3.transpose(-1, -2), upper=False
+        ).transpose(-1, -2)
 
         w = sm.inverse_cayley_transform(z3)
         evalues = sm.takagi_eigvals(w)  # evalues are in ascending order e1 < e2 < en

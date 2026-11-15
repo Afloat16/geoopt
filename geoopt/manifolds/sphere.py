@@ -152,12 +152,15 @@ class Sphere(Manifold):
         return self.proju(y, v)
 
     def logmap(self, x: torch.Tensor, y: torch.Tensor) -> torch.Tensor:
-        u = self.proju(x, y - x)
+        # Both chords have the same tangent projection on the unit sphere.
+        # Use the shorter one to avoid cancellation near either endpoint.
+        chord = torch.where((x * y).sum(dim=-1, keepdim=True) >= 0, y - x, y + x)
+        u = self.proju(x, chord)
         dist = self.dist(x, y, keepdim=True)
         cond = dist.gt(EPS[x.dtype])
-        result = torch.where(
-            cond, u * dist / u.norm(dim=-1, keepdim=True).clamp_min(EPS[x.dtype]), u
-        )
+        norm_u = u.norm(dim=-1, keepdim=True)
+        safe_norm = torch.where(norm_u == 0, torch.ones_like(norm_u), norm_u)
+        result = torch.where(cond, u * dist / safe_norm, u)
         return result
 
     def dist(self, x: torch.Tensor, y: torch.Tensor, *, keepdim=False) -> torch.Tensor:
