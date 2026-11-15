@@ -56,10 +56,10 @@ jobs:
           cases = report.findall(".//testcase")
           failures = report.findall(".//failure")
           assert len(cases) == 27, len(cases)
-          assert len(failures) == 21, len(failures)
+          assert len(failures) == 19, len(failures)
           assert not report.findall(".//error")
           assert not report.findall(".//skipped")
-          print("BASELINE: 21 expected failures and 6 passing controls, without collection errors or skips.")
+          print("BASELINE: 19 expected failures and 8 passing controls, without collection errors or skips.")
           PY
       - name: Run focused and adjacent tests on the fix
         run: |
