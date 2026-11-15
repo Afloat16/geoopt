@@ -3,10 +3,10 @@
   "created_at": "2026-11-15 03:44:31 UTC",
   "repository": "geoopt/geoopt",
   "author": "Afloat16",
-  "status": "commit_and_validation_complete_pr_creation_blocked",
+  "status": "duplicate_disqualified_do_not_submit",
   "title": "Keep Euclidean cdist gradients finite at coincident points",
   "body": "## Problem\n\n`Euclidean.cdist(x, x)` contains exact zero distances on its diagonal, and duplicate points add more zero entries. The current square-root backward pass produces NaN gradients at these entries. Summing the distance matrix, squaring it for a training loss, or masking zero-distance entries can therefore contaminate the whole parameter gradient and make a RiemannianSGD update invalid.\n\nThis affects both vector and higher-dimensional Euclidean points. The separate `Euclidean.dist` operation already uses a finite zero-gradient convention at coincident points.\n\n## Change\n\nShare the final square-root calculation between the vector and higher-dimensional branches. Replace zero squared distances with a safe value before evaluating the square root, then select exact zero for those outputs. This keeps the zero-distance backward path finite.\n\nForward distance values, the existing roundoff clamp, scalar `ndim=0` behavior, and derivatives at positive distances remain unchanged.\n\n## Validation\n\nThe regressions compare values and gradients with the separate public `dist` method, cover self distances and duplicate points, equal points in separate inputs, masked entries, both floating dtypes, and broadcast batches. A real RiemannianSGD update is checked against the analytic gradient of the sum of squared pairwise distances. Gradcheck and gradgradcheck verify that first and second derivatives remain available away from coincident points.\n\nOn both Python 3.8 / PyTorch 2.0.1 CPU and Python 3.12 / PyTorch 2.8.0 CPU:\n\n- The unchanged implementation produces **27 failures and 7 passing controls**, without collection errors or skips.\n- All **34 new cases** pass with the fix. The complete regression, Euclidean, high-dimensional-norm, tensor-distance, manifold-basic, Riemannian-SGD, and Adam modules report **2229 passed, 310 existing skips**.\n- Production and regression Ruff checks, `git diff --check`, and the clean-source check pass.\n\n[Baseline and fixed CI results](https://github.com/Afloat16/geoopt/actions/runs/43673457120). The verification workflow is on a separate fork branch.\n",
-  "prefilled_url": "https://github.com/geoopt/geoopt/compare/master...Afloat16:fix/euclidean-cdist-zero-gradients-20261115?expand=1&title=Keep%20Euclidean%20cdist%20gradients%20finite%20at%20coincident%20points&body=%23%23%20Problem%0A%0A%60Euclidean.cdist(x%2C%20x)%60%20contains%20exact%20zero%20distances%20on%20its%20diagonal%2C%20and%20duplicate%20points%20add%20more%20zero%20entries.%20The%20current%20square-root%20backward%20pass%20produces%20NaN%20gradients%20at%20these%20entries.%20Summing%20the%20distance%20matrix%2C%20squaring%20it%20for%20a%20training%20loss%2C%20or%20masking%20zero-distance%20entries%20can%20therefore%20contaminate%20the%20whole%20parameter%20gradient%20and%20make%20a%20RiemannianSGD%20update%20invalid.%0A%0AThis%20affects%20both%20vector%20and%20higher-dimensional%20Euclidean%20points.%20The%20separate%20%60Euclidean.dist%60%20operation%20already%20uses%20a%20finite%20zero-gradient%20convention%20at%20coincident%20points.%0A%0A%23%23%20Change%0A%0AShare%20the%20final%20square-root%20calculation%20between%20the%20vector%20and%20higher-dimensional%20branches.%20Replace%20zero%20squared%20distances%20with%20a%20safe%20value%20before%20evaluating%20the%20square%20root%2C%20then%20select%20exact%20zero%20for%20those%20outputs.%20This%20keeps%20the%20zero-distance%20backward%20path%20finite.%0A%0AForward%20distance%20values%2C%20the%20existing%20roundoff%20clamp%2C%20scalar%20%60ndim%3D0%60%20behavior%2C%20and%20derivatives%20at%20positive%20distances%20remain%20unchanged.%0A%0A%23%23%20Validation%0A%0AThe%20regressions%20compare%20values%20and%20gradients%20with%20the%20separate%20public%20%60dist%60%20method%2C%20cover%20self%20distances%20and%20duplicate%20points%2C%20equal%20points%20in%20separate%20inputs%2C%20masked%20entries%2C%20both%20floating%20dtypes%2C%20and%20broadcast%20batches.%20A%20real%20RiemannianSGD%20update%20is%20checked%20against%20the%20analytic%20gradient%20of%20the%20sum%20of%20squared%20pairwise%20distances.%20Gradcheck%20and%20gradgradcheck%20verify%20that%20first%20and%20second%20derivatives%20remain%20available%20away%20from%20coincident%20points.%0A%0AOn%20both%20Python%203.8%20%2F%20PyTorch%202.0.1%20CPU%20and%20Python%203.12%20%2F%20PyTorch%202.8.0%20CPU%3A%0A%0A-%20The%20unchanged%20implementation%20produces%20**27%20failures%20and%207%20passing%20controls**%2C%20without%20collection%20errors%20or%20skips.%0A-%20All%20**34%20new%20cases**%20pass%20with%20the%20fix.%20The%20complete%20regression%2C%20Euclidean%2C%20high-dimensional-norm%2C%20tensor-distance%2C%20manifold-basic%2C%20Riemannian-SGD%2C%20and%20Adam%20modules%20report%20**2229%20passed%2C%20310%20existing%20skips**.%0A-%20Production%20and%20regression%20Ruff%20checks%2C%20%60git%20diff%20--check%60%2C%20and%20the%20clean-source%20check%20pass.%0A%0A%5BBaseline%20and%20fixed%20CI%20results%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43673457120).%20The%20verification%20workflow%20is%20on%20a%20separate%20fork%20branch.%0A",
+  "prefilled_url": null,
   "base": {
     "repository": "geoopt/geoopt",
     "branch": "master",
@@ -376,7 +376,16 @@
       "repo:geoopt/geoopt cdist",
       "repo:geoopt/geoopt Euclidean gradient"
     ],
-    "notes": "32 old branch source files contain the same original cdist method. The older build branch has no cdist method. No equivalent upstream or old fork fix was found. This source branch is independent of the five other Geoopt fixes prepared in this session."
+    "notes": "32 old branch source files contain the same original cdist method. The older build branch has no cdist method. No equivalent upstream or old fork fix was found. This source branch is independent of the five other Geoopt fixes prepared in this session.",
+    "correction": {
+      "upstream_pr": 288,
+      "url": "https://github.com/geoopt/geoopt/pull/288",
+      "author": "linjiaye929",
+      "actual_diff_read": true,
+      "same_root_cause": true,
+      "same_solution": true,
+      "reason": "The all-state PR list contained #288, but the earlier candidate-specific filtering missed it. Its actual diff already guards the Euclidean.cdist square root at zero and retains higher-order derivatives. This candidate is not novel and must not be submitted or counted."
+    }
   },
   "concurrency": {
     "limit": null,
@@ -393,5 +402,6 @@
       "result": "403 Resource not accessible by integration"
     }
   ],
-  "notes": "No upstream PR created. Browser fallback was not repeated because the parent established the CUA Node runtime is unavailable. Fully prefilled compare URL is ready; user confirmation is pending. No new merge is claimed."
+  "notes": "DISQUALIFIED DUPLICATE. Do not submit this branch and do not count it as a new contribution. The former readiness and novelty conclusions were incorrect. The fork code and CI evidence are retained only as an audit record. No upstream PR was created, so no upstream duplicate needs closing. No new merge is claimed.",
+  "count_as_new_improvement": false
 }

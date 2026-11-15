@@ -2,7 +2,7 @@
   "schema_version": 1,
   "repository": "Afloat16/geoopt",
   "upstream": "geoopt/geoopt",
-  "status": "combined_validation_success",
+  "status": "combined_validation_success_with_one_duplicate_disqualified",
   "base_sha": "4623ea1d2a9808b8e87bf10949cccb2c5ec6233c",
   "validation_branch": "validation/combined-six-geoopt-fixes-20261115",
   "validation_sha": "1a5b1870a804ba4451f6cc574a7ab0c13cb9d825",
@@ -136,5 +136,12 @@
       "junit_artifact_url": "https://github.com/Afloat16/geoopt/actions/runs/43674027375/artifacts/14145621425"
     }
   ],
-  "notes": "The validation commit combines the exact six independently tested source heads as git parents and contains their nonconflicting 14 source/test files plus an isolated validation workflow. No additional production changes were needed. Full union of 24 affected test modules passed in both environments, with unchanged source verified after testing. This is integration evidence only; it creates no upstream PR and claims no merge."
+  "notes": "The combination genuinely passed the recorded tests, but the Euclidean.cdist source branch was later disqualified as a duplicate of upstream #288. The report validates six source branches, only five of which remain eligible new contributions at this stage. Birkhoff was validated separately later and is not part of this integration run. No upstream PR or merge is claimed.",
+  "eligible_new_source_count": 5,
+  "excluded_duplicate": {
+    "source_head": "606d99820a24e8fe5c7e4bc1754f90bcf746ff36",
+    "upstream_pr": 288,
+    "url": "https://github.com/geoopt/geoopt/pull/288",
+    "reason": "Same Euclidean.cdist zero-gradient fix already proposed upstream; do not count or submit."
+  }
 }
