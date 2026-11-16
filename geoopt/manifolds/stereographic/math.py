@@ -24,7 +24,7 @@ following resources:
 import functools
 import torch.jit
 from typing import List, Optional
-from ...utils import list_range, drop_dims, sign, clamp_abs, sabs
+from ...utils import list_range, drop_dims, canonical_dims, sign, clamp_abs, sabs
 
 
 @torch.jit.script
@@ -2001,6 +2001,8 @@ def _weighted_midpoint(
     if reducedim is None:
         reducedim = list_range(xs.dim())
         reducedim.pop(dim)
+    else:
+        reducedim = sorted(canonical_dims(reducedim, xs.dim()))
     gamma = _lambda_x(xs, k=k, dim=dim, keepdim=True)
     if weights is None:
         weights = torch.tensor(1.0, dtype=xs.dtype, device=xs.device)

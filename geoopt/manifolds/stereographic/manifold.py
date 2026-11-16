@@ -552,6 +552,14 @@ class Stereographic(Manifold):
             posweight=posweight,
         )
         if project:
+            if not keepdim:
+                if reducedim is None:
+                    dim = 0
+                else:
+                    coordinate_dim = dim % xs.ndim
+                    dim = coordinate_dim - sum(
+                        axis % xs.ndim < coordinate_dim for axis in reducedim
+                    )
             return math.project(mid, k=self.k, dim=dim)
         else:
             return mid
