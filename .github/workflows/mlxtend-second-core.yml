@@ -1,0 +1,70 @@
+name: Validate independent mlxtend numerical fixes
+on:
+  push:
+    branches: ['validation/mlxtend-second-core-20261116']
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        candidate: [apriori-sparse-low-memory, minmax-finite-range]
+    env:
+      GITHUB_ACTIONS_CI: 'true'
+      MPLBACKEND: Agg
+      OPENBLAS_NUM_THREADS: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: rasbt/mlxtend
+          ref: 1aee767ef57b84a8191511a08955c583b65de382
+          path: project
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b
+      - name: Install unchanged frozen dependencies
+        working-directory: project
+        run: uv sync --frozen --group dev --python 3.11
+      - name: Reproduce baseline and verify independent patch
+        run: python .validation/validate-mlxtend-second.py .validation/mlxtend-second-payloads.json ${{ matrix.candidate }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mlxtend-${{ matrix.candidate }}-validation
+          path: project/.validation-results
+          include-hidden-files: true
+  lint-clean-base:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: rasbt/mlxtend
+          ref: 1aee767ef57b84a8191511a08955c583b65de382
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.15.2'
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b
+      - name: Reproduce official lint installation failure on clean base
+        shell: bash
+        run: |
+          set +e
+          uv sync --frozen --group dev > lint-install.log 2>&1
+          result=$?
+          set -e
+          cat lint-install.log
+          test "$result" -ne 0
+          grep 'Dependency "OpenBLAS" not found' lint-install.log
+          echo "CLEAN_BASE_LINT_RESULT=expected OpenBLAS dependency failure before formatting"
