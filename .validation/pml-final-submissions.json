@@ -1,7 +1,7 @@
 {
   "repository": "KevinMusgrave/pytorch-metric-learning",
   "base": "b95a42310f50720a766b91008470b278364f705d",
-  "actual_new_open": 19,
+  "actual_new_open": 20,
   "new_merged": 0,
   "last_updated": "2026-11-16",
   "submissions": [
@@ -125,7 +125,7 @@
       "head": "Afloat16:fix/large-vector-normalization-20261116",
       "head_sha": "47bf7b47ca83ee00aef30eb39dea669e0bf1115c",
       "tree": "550361342438be4bc73925990262f027c5eca235",
-      "status": "ready",
+      "status": "published",
       "maintainer_can_modify": false,
       "title": "Preserve normalized directions and gradients for large finite embeddings",
       "body": "## Problem\n\nNormalizing a finite vector can return an all-zero direction and zero gradients when the intermediate power sum overflows. For example, cosine similarity between float32 [3e20, 4e20] and [1, 0] returns 0 instead of 0.6, despite the true norm and normalized direction being finite. The same issue reaches both matrix and pairwise distance paths.\n\n## Change\n\nBefore norm accumulation, scale only vectors whose largest component exceeds the safe power-sum bound derived from their accumulation dtype, norm order, and dimension. Compute normalization in that scaled space and adjust the epsilon by the same scale. Ordinary vectors retain their existing values and gradients exactly, including in mixed batches; empty dimensions, norm orders below one, and the infinity norm keep the existing path.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43859851272/job/133273490099):\n\n- Unchanged production base `b95a423`: 17 regression failures and 39 passing controls.\n- All 187 focused and adjacent tests pass, including the existing ProxyNCA and TupletMargin value/gradient contracts. The 56 new cases use 100-digit Decimal normalization and analytic gradients across four dtypes, norm orders 1/2/3/infinity, and both axes; check matrix/pairwise cosine paths and empty shapes; and require exact ordinary-input values and gradients.\n- Full CPU suite: 1,585 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `550361342438be4bc73925990262f027c5eca235`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
@@ -149,7 +149,14 @@
           811
         ]
       },
-      "prefilled_url": "https://github.com/KevinMusgrave/pytorch-metric-learning/compare/master...Afloat16:fix/large-vector-normalization-20261116?expand=1&title=Preserve%20normalized%20directions%20and%20gradients%20for%20large%20finite%20embeddings"
+      "prefilled_url": "https://github.com/KevinMusgrave/pytorch-metric-learning/compare/master...Afloat16:fix/large-vector-normalization-20261116?expand=1&title=Preserve%20normalized%20directions%20and%20gradients%20for%20large%20finite%20embeddings",
+      "number": 812,
+      "actual_url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/812",
+      "actual_state": "open",
+      "merged_at": null,
+      "ui_verified": true,
+      "api_verified": true,
+      "body_verified": true
     }
   ],
   "official_ci": [
@@ -438,6 +445,198 @@
           "status": "completed",
           "conclusion": "success",
           "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857404692/job/133265099762"
+        }
+      ]
+    },
+    {
+      "number": 809,
+      "sha": "95175fafee503eb5fa0a5c24ff52a240608ae57a",
+      "checks": [
+        {
+          "name": "CPU suite on Python 3.13",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860359630/job/133275464308"
+        },
+        {
+          "name": "CPU suite on Python 3.12",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860359630/job/133275464255"
+        },
+        {
+          "name": "CPU suite on Python 3.14",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860359630/job/133275464253"
+        },
+        {
+          "name": "CPU suite on macos-15",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860359630/job/133275464243"
+        },
+        {
+          "name": "verify",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860359630/job/133275464200"
+        },
+        {
+          "name": "CPU suite on windows-2025",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860359630/job/133275464191"
+        },
+        {
+          "name": "Select verification scope",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860359630/job/133275259790"
+        }
+      ]
+    },
+    {
+      "number": 810,
+      "sha": "f5ca9fdc9040c9221e834e3b2d163d45927d1cad",
+      "checks": [
+        {
+          "name": "CPU suite on Python 3.13",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860640126/job/133276490457"
+        },
+        {
+          "name": "CPU suite on Python 3.14",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860640126/job/133276490341"
+        },
+        {
+          "name": "verify",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860640126/job/133276490339"
+        },
+        {
+          "name": "CPU suite on windows-2025",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860640126/job/133276490316"
+        },
+        {
+          "name": "CPU suite on macos-15",
+          "status": "queued",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860640126/job/133276490306"
+        },
+        {
+          "name": "CPU suite on Python 3.12",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860640126/job/133276490282"
+        },
+        {
+          "name": "Select verification scope",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860640126/job/133276219380"
+        }
+      ]
+    },
+    {
+      "number": 811,
+      "sha": "e0a0f819ede53a0d045287b4763520e38b8eb539",
+      "checks": [
+        {
+          "name": "CPU suite on Python 3.12",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860714237/job/133276678952"
+        },
+        {
+          "name": "CPU suite on Python 3.14",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860714237/job/133276678887"
+        },
+        {
+          "name": "CPU suite on Python 3.13",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860714237/job/133276678862"
+        },
+        {
+          "name": "CPU suite on macos-15",
+          "status": "queued",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860714237/job/133276678849"
+        },
+        {
+          "name": "CPU suite on windows-2025",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860714237/job/133276678842"
+        },
+        {
+          "name": "verify",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860714237/job/133276678839"
+        },
+        {
+          "name": "Select verification scope",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860714237/job/133276481316"
+        }
+      ]
+    },
+    {
+      "number": 812,
+      "sha": "47bf7b47ca83ee00aef30eb39dea669e0bf1115c",
+      "checks": [
+        {
+          "name": "CPU suite on windows-2025",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860998165/job/133277657548"
+        },
+        {
+          "name": "CPU suite on macos-15",
+          "status": "queued",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860998165/job/133277657480"
+        },
+        {
+          "name": "CPU suite on Python 3.14",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860998165/job/133277657430"
+        },
+        {
+          "name": "CPU suite on Python 3.13",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860998165/job/133277657406"
+        },
+        {
+          "name": "verify",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860998165/job/133277657359"
+        },
+        {
+          "name": "CPU suite on Python 3.12",
+          "status": "in_progress",
+          "conclusion": null,
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860998165/job/133277657331"
+        },
+        {
+          "name": "Select verification scope",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860998165/job/133277470710"
         }
       ]
     }
@@ -749,5 +948,255 @@
       "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/779"
     }
   ],
-  "note": "PRs #809-#811 verified Open. Fourth and final candidate is fully validated and ready; no normalization PR has yet been created. Actual new Open remains 19, merged remains 0."
+  "note": "All twenty independent upstream PML PRs #793-#812 were read back Open with no new merges. Last four individually verified through UI and API with exact head/body and maintainer_can_modify=false. Sixteen earlier PRs have all seven official checks green; final four official runs still tracked separately.",
+  "progress": {
+    "repository": "KevinMusgrave/pytorch-metric-learning",
+    "goal": 20,
+    "published_count": 20,
+    "open_count": 20,
+    "new_merged_count": 0,
+    "updated_at": "2026-11-16T11:49:22.045Z",
+    "pull_requests": [
+      {
+        "number": 793,
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/793",
+        "head": "f671e8fc1869ced29c146d92efc9c288371e8b9f",
+        "state": "open",
+        "merged_at": null,
+        "checks_success": 7,
+        "checks_total": 7,
+        "title": "Keep manifold ranking values and gradients finite",
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 794,
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/794",
+        "head": "f6d934b91a282c14534b2ee07d0b66028dc3c954",
+        "state": "open",
+        "merged_at": null,
+        "checks_success": 7,
+        "checks_total": 7,
+        "title": "Preserve ArcFace gradients through linear target-logit branches",
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 795,
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/795",
+        "head": "a1d3d845516494cb93a37880a0120ce7590c0f7c",
+        "state": "open",
+        "merged_at": null,
+        "checks_success": 7,
+        "checks_total": 7,
+        "title": "Preserve spherical regularization before applying its loss weight",
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 796,
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/796",
+        "head": "e194c2ec2f8308609729ae05872c3bd355aeda04",
+        "state": "open",
+        "merged_at": null,
+        "checks_success": 7,
+        "checks_total": 7,
+        "title": "Preserve weighted triplet sampling across finite weight scales",
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 797,
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/797",
+        "head": "ffc1df4a394f673267c13f24e59e9b2824cfee96",
+        "state": "open",
+        "merged_at": null,
+        "checks_success": 7,
+        "checks_total": 7,
+        "title": "Preserve caller-owned matrix precision in MultiSupConLoss",
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 798,
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/798",
+        "head": "1cfc27836f0fc5dcea8068a0b7ef69691dca8f58",
+        "state": "open",
+        "merged_at": null,
+        "checks_success": 7,
+        "checks_total": 7,
+        "title": "Keep finite boundary scores inside batch miner candidate sets",
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 799,
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/799",
+        "head": "a98dde1eb698ed8a108aeeeb011403662ca3000f",
+        "state": "open",
+        "merged_at": null,
+        "checks_success": 7,
+        "checks_total": 7,
+        "title": "Preserve NCA objectives and gradients across large score offsets",
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 800,
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/800",
+        "head": "ef5008f09b921e53e07d833eb956d1efe04f20d6",
+        "state": "open",
+        "merged_at": null,
+        "checks_success": 7,
+        "checks_total": 7,
+        "title": "Stabilize RankedList weighting before temperature scaling",
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 801,
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/801",
+        "head": "adf3328949f798f6aa2786172feea6c91f27ec9d",
+        "state": "open",
+        "merged_at": null,
+        "checks_success": 7,
+        "checks_total": 7,
+        "title": "Preserve PNP ranking penalties and gradients near zero",
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 802,
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/802",
+        "head": "5d53b880daeaaa81abb340157824f6b75f55342b",
+        "state": "open",
+        "merged_at": null,
+        "checks_success": 7,
+        "checks_total": 7,
+        "title": "Handle empty query sets throughout retrieval evaluation",
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 803,
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/803",
+        "head": "151b0a60faff118b140da957dd68656057db35b1",
+        "state": "open",
+        "merged_at": null,
+        "title": "Stabilize SoftTriple center weighting at small temperatures",
+        "checks_success": 7,
+        "checks_total": 7,
+        "checks_pending": 0,
+        "checks_failure": 0,
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 804,
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/804",
+        "head": "820abe0006980a75d792add579c2bf4b5532dee4",
+        "state": "open",
+        "merged_at": null,
+        "title": "Preserve NormalizedSoftmax logits through temperature scaling",
+        "checks_success": 7,
+        "checks_total": 7,
+        "checks_pending": 0,
+        "checks_failure": 0,
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 805,
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/805",
+        "head": "a827cec58fb1b87b8fba967adf25d02ac13e4a2b",
+        "state": "open",
+        "merged_at": null,
+        "title": "Keep DynamicArcFace class margins finite across count and power ranges",
+        "checks_success": 7,
+        "checks_total": 7,
+        "checks_pending": 0,
+        "checks_failure": 0,
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 806,
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/806",
+        "head": "649f423312aaee5d2c07d2f9662cfdbd3462546c",
+        "state": "open",
+        "merged_at": null,
+        "title": "Keep distance-weighted mining density finite for low-precision inputs",
+        "checks_success": 7,
+        "checks_total": 7,
+        "checks_pending": 0,
+        "checks_failure": 0,
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 807,
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/807",
+        "head": "0fe3a3e59cbd506165c3f03fac30d0930ebf9292",
+        "state": "open",
+        "merged_at": null,
+        "title": "Preserve decoupled contrastive objectives across large score offsets",
+        "checks_success": 7,
+        "checks_total": 7,
+        "checks_pending": 0,
+        "checks_failure": 0,
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 808,
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/808",
+        "head": "9bfa9156fd728550ae8ec67573cc52665d1253cf",
+        "state": "open",
+        "merged_at": null,
+        "title": "Preserve intra-pair variance penalties and gradients before reduction",
+        "checks_success": 7,
+        "checks_total": 7,
+        "checks_pending": 0,
+        "checks_failure": 0,
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 809,
+        "title": "Preserve NDCG ratios across finite gain scales",
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/809",
+        "head": "95175fafee503eb5fa0a5c24ff52a240608ae57a",
+        "state": "open",
+        "merged_at": null,
+        "checks_success": 4,
+        "checks_total": 7,
+        "checks_pending": 3,
+        "checks_failure": 0,
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 810,
+        "title": "Preserve P2SGrad learning signals close to class centers",
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/810",
+        "head": "f5ca9fdc9040c9221e834e3b2d163d45927d1cad",
+        "state": "open",
+        "merged_at": null,
+        "checks_success": 1,
+        "checks_total": 7,
+        "checks_pending": 6,
+        "checks_failure": 0,
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 811,
+        "title": "Keep CircleLoss adaptive-weight arithmetic finite before reduction",
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/811",
+        "head": "e0a0f819ede53a0d045287b4763520e38b8eb539",
+        "state": "open",
+        "merged_at": null,
+        "checks_success": 1,
+        "checks_total": 7,
+        "checks_pending": 6,
+        "checks_failure": 0,
+        "maintainer_can_modify": false
+      },
+      {
+        "number": 812,
+        "title": "Preserve normalized directions and gradients for large finite embeddings",
+        "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/812",
+        "head": "47bf7b47ca83ee00aef30eb39dea669e0bf1115c",
+        "state": "open",
+        "merged_at": null,
+        "checks_success": 1,
+        "checks_total": 7,
+        "checks_pending": 6,
+        "checks_failure": 0,
+        "maintainer_can_modify": false
+      }
+    ]
+  }
 }
