@@ -1,0 +1,12 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "perf/rrf-relevance-membership-20261116",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "tree": "e9229da18c91a552181cda903a5c518bd2d38c27",
+  "head": "e3e41bae376a29b27a9da7c111dfa841e8d43837",
+  "local_tests": {
+    "baseline_passed": 23,
+    "candidate_passed": 23
+  },
+  "dedup": "19 reachable source blobs, 2 aliases, 16 __call__/compute_metrics variants; every __call__ repeats list membership for dense/sparse/fused rankings. No per-query positive set in any prior intermediate history."
+}

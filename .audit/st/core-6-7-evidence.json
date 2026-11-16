@@ -1,0 +1,59 @@
+{
+  "run": 43914106445,
+  "evidence": [
+    {
+      "job": 133463515641,
+      "lines": [
+        "2026-11-16T17:03:50.2799207Z \u001b[36;1mexpected = os.environ['ST_FAILED'] + ' failed, ' + os.environ['ST_PASSED'] + ' passed'\u001b[0m",
+        "2026-11-16T17:03:58.5955689Z 1 failed, 27 passed in 0.18s",
+        "2026-11-16T17:04:06.0965127Z {\"revision\": \"before\", \"layers\": 13, \"layer_start\": 4, \"median_seconds\": 0.19964637100000004, \"unique_saved_tensor_storage_bytes\": 88080424}",
+        "2026-11-16T17:04:08.3822164Z {\"revision\": \"before\", \"layers\": 25, \"layer_start\": 21, \"median_seconds\": 0.19047918500000094, \"unique_saved_tensor_storage_bytes\": 163577876}",
+        "2026-11-16T17:04:18.9650931Z 275 passed, 156 skipped in 3.36s",
+        "2026-11-16T17:04:26.9826253Z {\"revision\": \"after\", \"layers\": 13, \"layer_start\": 4, \"median_seconds\": 0.15648843400001056, \"unique_saved_tensor_storage_bytes\": 62914600}",
+        "2026-11-16T17:04:27.7829843Z {\"revision\": \"after\", \"layers\": 25, \"layer_start\": 21, \"median_seconds\": 0.04670277200000328, \"unique_saved_tensor_storage_bytes\": 31457300}",
+        "2026-11-16T17:04:27.8313098Z [{\"layers\": 13, \"speed_ratio\": 1.2757899475176968, \"saved_storage_ratio\": 1.3999997456870106}, {\"layers\": 25, \"speed_ratio\": 4.07854131227987, \"saved_storage_ratio\": 5.199997329713612}]",
+        "2026-11-16T17:04:39.2328847Z ruff check...............................................................Passed",
+        "2026-11-16T17:04:39.5104634Z ruff format..............................................................Passed",
+        "2026-11-16T17:04:41.2201881Z typos....................................................................Passed"
+      ]
+    },
+    {
+      "job": 133463515712,
+      "lines": [
+        "2026-11-16T17:03:47.8891577Z \u001b[36;1mexpected = os.environ['ST_FAILED'] + ' failed, ' + os.environ['ST_PASSED'] + ' passed'\u001b[0m",
+        "2026-11-16T17:03:55.8317992Z 1 failed, 27 passed in 0.18s",
+        "2026-11-16T17:04:03.6752046Z {\"revision\": \"before\", \"layers\": 13, \"layer_start\": 4, \"median_seconds\": 0.2868206389999983, \"unique_saved_tensor_storage_bytes\": 88080424}",
+        "2026-11-16T17:04:06.0090898Z {\"revision\": \"before\", \"layers\": 25, \"layer_start\": 21, \"median_seconds\": 0.19244217700000377, \"unique_saved_tensor_storage_bytes\": 163577876}",
+        "2026-11-16T17:04:16.5272875Z 275 passed, 156 skipped in 4.29s",
+        "2026-11-16T17:04:23.7228385Z {\"revision\": \"after\", \"layers\": 13, \"layer_start\": 4, \"median_seconds\": 0.13885659800000383, \"unique_saved_tensor_storage_bytes\": 62914600}",
+        "2026-11-16T17:04:24.4343880Z {\"revision\": \"after\", \"layers\": 25, \"layer_start\": 21, \"median_seconds\": 0.039578266999996004, \"unique_saved_tensor_storage_bytes\": 31457300}",
+        "2026-11-16T17:04:24.4876410Z [{\"layers\": 13, \"speed_ratio\": 2.0655888386376167, \"saved_storage_ratio\": 1.3999997456870106}, {\"layers\": 25, \"speed_ratio\": 4.862319439100838, \"saved_storage_ratio\": 5.199997329713612}]",
+        "2026-11-16T17:04:36.1910487Z ruff check...............................................................Passed",
+        "2026-11-16T17:04:36.4620907Z ruff format..............................................................Passed",
+        "2026-11-16T17:04:38.1143561Z typos....................................................................Passed"
+      ]
+    },
+    {
+      "job": 133463515986,
+      "lines": [
+        "2026-11-16T17:03:38.9914706Z \u001b[36;1mexpected = os.environ['ST_FAILED'] + ' failed, ' + os.environ['ST_PASSED'] + ' passed'\u001b[0m",
+        "2026-11-16T17:03:49.3079082Z 50 failed, 34 passed in 1.85s",
+        "2026-11-16T17:03:56.8281865Z 110 passed, 8 skipped in 2.81s",
+        "2026-11-16T17:04:07.1945395Z ruff check...............................................................Passed",
+        "2026-11-16T17:04:07.4024521Z ruff format..............................................................Passed",
+        "2026-11-16T17:04:08.6391089Z typos....................................................................Passed"
+      ]
+    },
+    {
+      "job": 133463516331,
+      "lines": [
+        "2026-11-16T17:03:49.3774257Z \u001b[36;1mexpected = os.environ['ST_FAILED'] + ' failed, ' + os.environ['ST_PASSED'] + ' passed'\u001b[0m",
+        "2026-11-16T17:03:59.2351564Z 50 failed, 34 passed in 2.17s",
+        "2026-11-16T17:04:08.7077014Z 110 passed, 8 skipped in 3.72s",
+        "2026-11-16T17:04:20.2931941Z ruff check...............................................................Passed",
+        "2026-11-16T17:04:20.5656196Z ruff format..............................................................Passed",
+        "2026-11-16T17:04:22.3749188Z typos....................................................................Passed"
+      ]
+    }
+  ]
+}

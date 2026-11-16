@@ -22,5 +22,44 @@
   {
     "candidate": "TSDAE left-padding and shared EOS/PAD reconstruction",
     "reason": "Existing upstream PR #4136 covers the same root cause; no new patch."
+  },
+  {
+    "candidate": "FLOPS low-precision accumulation",
+    "reason": "Existing reachable fork/upstream source already contains the same core improvement; excluded even if no titled PR exists.",
+    "evidence": [
+      {
+        "blob": {
+          "oid": "2ab9f45ea699d8259ef82708708823c33150f33f",
+          "path": "sentence_transformers/sparse_encoder/losses/flops.py"
+        },
+        "commits": [
+          "cd4939d76ae26dc182eeb61219b9895a8051f200 fix(sparse): accumulate FLOPS regularization in float32"
+        ]
+      },
+      {
+        "blob": {
+          "oid": "1f3f89850457d7faa990ff30b706e2e322c45b8e",
+          "path": "sentence_transformers/sparse_encoder/losses/flops.py"
+        },
+        "commits": [
+          "ed63ef5f1da4ab3936af5a43429e27ffdbef8fae Accumulate FLOPS regularization in float32 for reduced-precision embeddings"
+        ]
+      }
+    ]
+  },
+  {
+    "candidate": "BoW vectorized term accumulation",
+    "reason": "Existing reachable fork/upstream source already contains the same core improvement; excluded even if no titled PR exists.",
+    "evidence": [
+      {
+        "blob": {
+          "oid": "f4f6f3fb2980b29cd5eefbeda7440ef010d63d09",
+          "path": "sentence_transformers/sentence_transformer/modules/bow.py"
+        },
+        "commits": [
+          "d6db5b1f333c28d2d266fbf8bd3b0f3198f4abe0 perf(models): vectorize BoW token accumulation"
+        ]
+      }
+    ]
   }
 ]

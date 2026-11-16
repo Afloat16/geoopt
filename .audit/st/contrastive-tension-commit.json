@@ -1,0 +1,13 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "fix/contrastive-tension-dot-precision-20261116",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "tree": "edfcf665dfe9873ce848f08715ade641e5a9f4cd",
+  "head": "0beec3daeabb3f1428cf830768926fef11b3470c",
+  "local_tests": {
+    "baseline_failed": 22,
+    "baseline_passed": 12,
+    "candidate_passed": 51
+  },
+  "dedup": "Full renamed-path and intermediate history: every prior ContrastiveTensionLoss forward uses raw batched matmul. No previous stable pairwise-dot scorer; inferred-label and trainable-model rebinding changes remain separate."
+}

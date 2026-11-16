@@ -1,0 +1,150 @@
+name: Validate contrastive tension precision and loading/evaluation performance
+'on':
+  push:
+    branches:
+    - validation/st-core-8-10-20261116
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - torch: 2.6.0
+          candidate: ct
+          head: 0beec3daeabb3f1428cf830768926fef11b3470c
+          source: sentence_transformers/sentence_transformer/losses/contrastive_tension.py
+          test: tests/sentence_transformer/losses/test_contrastive_tension_precision.py
+          failed: 22
+          passed: 12
+          adjacent: tests/sentence_transformer/losses/test_contrastive_tension.py
+        - torch: 2.6.0
+          candidate: parser
+          head: dec6a099db9c4b22aff6264161ab200a1c8121ec
+          source: sentence_transformers/sentence_transformer/modules/word_embeddings.py
+          test: tests/sentence_transformer/modules/test_word_embedding_text_loading.py
+          failed: 0
+          passed: 39
+          adjacent: tests/sentence_transformer/modules/test_word_embeddings.py
+        - torch: 2.6.0
+          candidate: rrf
+          head: e3e41bae376a29b27a9da7c111dfa841e8d43837
+          source: sentence_transformers/sparse_encoder/evaluation/reciprocal_rank_fusion.py
+          test: tests/sparse_encoder/test_rrf_relevance_membership.py
+          failed: 0
+          passed: 5
+          adjacent: tests/sparse_encoder/test_reciprocal_rank_fusion.py
+        - torch: 2.14.1
+          candidate: ct
+          head: 0beec3daeabb3f1428cf830768926fef11b3470c
+          source: sentence_transformers/sentence_transformer/losses/contrastive_tension.py
+          test: tests/sentence_transformer/losses/test_contrastive_tension_precision.py
+          failed: 22
+          passed: 12
+          adjacent: tests/sentence_transformer/losses/test_contrastive_tension.py
+        - torch: 2.14.1
+          candidate: parser
+          head: dec6a099db9c4b22aff6264161ab200a1c8121ec
+          source: sentence_transformers/sentence_transformer/modules/word_embeddings.py
+          test: tests/sentence_transformer/modules/test_word_embedding_text_loading.py
+          failed: 0
+          passed: 39
+          adjacent: tests/sentence_transformer/modules/test_word_embeddings.py
+        - torch: 2.14.1
+          candidate: rrf
+          head: e3e41bae376a29b27a9da7c111dfa841e8d43837
+          source: sentence_transformers/sparse_encoder/evaluation/reciprocal_rank_fusion.py
+          test: tests/sparse_encoder/test_rrf_relevance_membership.py
+          failed: 0
+          passed: 5
+          adjacent: tests/sparse_encoder/test_reciprocal_rank_fusion.py
+    defaults:
+      run:
+        working-directory: project
+    env:
+      OMP_NUM_THREADS: 1
+      OPENBLAS_NUM_THREADS: 1
+      PYTHONPATH: .
+      ST_BASE: 9ac7fdb4edce2f1dbc171b036ecbb60383653e74
+      ST_CANDIDATE: ${{ matrix.head }}
+      ST_SOURCE: ${{ matrix.source }}
+      ST_TEST: ${{ matrix.test }}
+      ST_FAILED: ${{ matrix.failed }}
+      ST_PASSED: ${{ matrix.passed }}
+      ST_ADJACENT: ${{ matrix.adjacent }}
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        path: harness
+        persist-credentials: false
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        repository: Afloat16/sentence-transformers
+        ref: ${{ matrix.head }}
+        path: project
+        fetch-depth: 2
+        persist-credentials: false
+    - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+      with:
+        python-version: '3.12'
+    - name: Install CPU dependencies
+      run: 'python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+
+        python -m pip install numpy==2.3.5 scipy==1.17.0 scikit-learn==1.8.0 transformers==5.23.0 huggingface-hub==2.4.0 datasets==5.2.0
+        accelerate==1.15.0 pytest==9.2.0 pytest-env pytest-subtests pre-commit socksio pillow
+
+        python -m pip install -e . --no-deps
+
+        '
+    - name: Verify exact-base behavior
+      run: 'test "$(git rev-parse HEAD)" = "$ST_CANDIDATE"
+
+        git show "$ST_BASE:$ST_SOURCE" > "$ST_SOURCE"
+
+        python - <<''PYTEST''
+
+        import os, subprocess, sys
+
+        result = subprocess.run([sys.executable, ''-m'', ''pytest'', os.environ[''ST_TEST''], ''-q'', ''--tb=short''], text=True, stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT)
+
+        print(result.stdout)
+
+        failed = int(os.environ[''ST_FAILED''])
+
+        assert result.returncode == (1 if failed else 0), result.returncode
+
+        expected = (str(failed) + '' failed, '' if failed else '''') + os.environ[''ST_PASSED''] + '' passed''
+
+        assert expected in result.stdout, expected
+
+        PYTEST
+
+        '
+    - name: Benchmark unchanged implementation
+      if: matrix.candidate != 'ct'
+      run: 'python ../harness/.validation/st-${{ matrix.candidate }}-benchmark.py before
+
+        '
+    - name: Verify candidate and adjacent tests
+      run: 'git restore --source="$ST_CANDIDATE" -- "$ST_SOURCE"
+
+        python -m pytest "$ST_TEST" $ST_ADJACENT -q --tb=short
+
+        '
+    - name: Benchmark candidate and compare complete results
+      if: matrix.candidate != 'ct'
+      run: 'python ../harness/.validation/st-${{ matrix.candidate }}-benchmark.py after before
+
+        '
+    - name: Check repository style
+      run: 'pre-commit run --all-files
+
+        git diff --exit-code
+
+        git diff --check
+
+        '

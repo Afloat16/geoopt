@@ -1,0 +1,12 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "perf/word-embedding-text-buffer-20261116",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "tree": "2ab2e1ff87c905b90bd1e59079dc2c86d7dd1761",
+  "head": "dec6a099db9c4b22aff6264161ab200a1c8121ec",
+  "local_tests": {
+    "baseline_passed": 39,
+    "candidate_passed": 50
+  },
+  "dedup": "50 reachable blobs, 4 aliases, 16 parsed from_text_file variants all retaining list of separate float64 arrays then stacking; one malformed historical file manually inspected with same parser. No prior contiguous buffer/native string parsing."
+}

@@ -1,0 +1,166 @@
+{
+  "checked_at": "2026-11-16",
+  "latest": [
+    {
+      "number": 4387,
+      "title": "[fix] Dequantize int8 model2vec embeddings in StaticEmbedding",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4387",
+      "head": "0dc58ac541ba75abb46203999536fe7a3e1e8276",
+      "state": "open",
+      "merged_at": null
+    },
+    {
+      "number": 4385,
+      "title": "[feat] Add optional NumPy output to cos_sim",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4385",
+      "head": "afa6e8de3ab8c0b3e0549d128cab540aa0908170",
+      "state": "closed",
+      "merged_at": null
+    },
+    {
+      "number": 4384,
+      "title": "[docs] Clarify maintenance policy for legacy compatibility code",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4384",
+      "head": "6d24684243f8589c3bc04a6b1f6844af8c5fd6be",
+      "state": "closed",
+      "merged_at": "2026-11-16T11:26:58Z"
+    },
+    {
+      "number": 4383,
+      "title": "[fix] Always evaluate `main_similarity` when `similarity_fn_names` omits it",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4383",
+      "head": "1b3bec8ff3f672753f14180068d722da10083308",
+      "state": "closed",
+      "merged_at": "2026-11-16T13:39:24Z"
+    },
+    {
+      "number": 4382,
+      "title": "[fix] Raise a clear error when RerankingEvaluator has no usable samples",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4382",
+      "head": "86f50934c63f032416b05977c7748b333cc2c302",
+      "state": "closed",
+      "merged_at": "2026-11-16T11:41:04Z"
+    },
+    {
+      "number": 4381,
+      "title": "Fhgjj",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4381",
+      "head": "08d1e0b4c5ac8126c285a4e103daab186aafce05",
+      "state": "closed",
+      "merged_at": null
+    },
+    {
+      "number": 4380,
+      "title": "[fix] Accept single vectors in pairwise_angle_sim",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4380",
+      "head": "4971d2b399285c4cb8f628a33eece114a5a932f9",
+      "state": "closed",
+      "merged_at": "2026-11-16T09:43:31Z"
+    },
+    {
+      "number": 4379,
+      "title": "[fix] Strip Unicode punctuation in WhitespaceTokenizer and PhraseTokenizer",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4379",
+      "head": "883f1f0ee443aa2f68248027c0e9777daeca011a",
+      "state": "closed",
+      "merged_at": null
+    },
+    {
+      "number": 4376,
+      "title": "Fix input validation in CrossEncoder.rank()",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4376",
+      "head": "3e83fd9700c9954e97efe1848ec918d5e675d67a",
+      "state": "closed",
+      "merged_at": "2026-11-16T10:35:35Z"
+    },
+    {
+      "number": 4375,
+      "title": "Fix upstream gradient scaling for trainable cached-loss heads",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4375",
+      "head": "1c25da5a108769ec0652d1678d359f8731ef05dd",
+      "state": "open",
+      "merged_at": null
+    },
+    {
+      "number": 4374,
+      "title": "fix(model): quantize token embeddings and dict outputs in encode()",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4374",
+      "head": "6a3ae69ba5fc43b183bef70c9ab893ae7a3f1115",
+      "state": "closed",
+      "merged_at": null
+    },
+    {
+      "number": 4373,
+      "title": "Fix MatryoshkaLoss and EmbedDistillLoss when model has truncate_dim",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4373",
+      "head": "81881542bfa559f11f87cd9d85ee95ebe09a2596",
+      "state": "closed",
+      "merged_at": null
+    },
+    {
+      "number": 4372,
+      "title": "Prevent autocast overflow in GOR moment accumulation",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4372",
+      "head": "9c2da4eeecaf0afd814595ae8f2d4ca774c6dad1",
+      "state": "closed",
+      "merged_at": null
+    },
+    {
+      "number": 4371,
+      "title": "Add semantic_search_mlxvs: semantic search on the GPU of Apple silicon Macs",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4371",
+      "head": "d8d95b40e297673dc07ad6b6966e6c16d2e59aaa",
+      "state": "closed",
+      "merged_at": null
+    },
+    {
+      "number": 4369,
+      "title": "[fix] Accept pathlib.Path as model_name_or_path in the other model classes",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4369",
+      "head": "9dc2ffc44bf3d5e938732beb0ac0513d6df7d6cf",
+      "state": "closed",
+      "merged_at": "2026-11-13T08:51:20Z"
+    },
+    {
+      "number": 4368,
+      "title": "Support losses that return a dictionary in MatryoshkaLoss and AdaptiveLayerLoss",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4368",
+      "head": "88c0e01cb6afd163f3315e0df95a3184ea0e4da6",
+      "state": "closed",
+      "merged_at": "2026-11-13T10:51:22Z"
+    },
+    {
+      "number": 4367,
+      "title": "Disable tokenizer truncation in StaticEmbedding",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4367",
+      "head": "e4f686271cfffe2b28b768b6c79f8dc1510d539a",
+      "state": "open",
+      "merged_at": null
+    },
+    {
+      "number": 4365,
+      "title": "[feat] Add Intel XPU support to `start_multi_process_pool`",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4365",
+      "head": "a8965228da26f74157167e2434970d37f97ca188",
+      "state": "closed",
+      "merged_at": "2026-11-12T16:20:04Z"
+    },
+    {
+      "number": 4364,
+      "title": "Fix semantic search with empty query batches",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4364",
+      "head": "d610d6f65f160275f0a8482b115aee7a8ce4c385",
+      "state": "closed",
+      "merged_at": "2026-11-12T13:25:53Z"
+    },
+    {
+      "number": 4363,
+      "title": "[`fix`] Score `main_score_function` in IR evaluators when `score_functions` is unset",
+      "url": "https://github.com/huggingface/sentence-transformers/pull/4363",
+      "head": "092717a5eb7f8383bdaf5563eae3566e10d5994a",
+      "state": "closed",
+      "merged_at": "2026-11-12T15:07:06Z"
+    }
+  ],
+  "note": "No newly numbered pull requests beyond the initial complete 1479-record all-state inventory; maximum remains 4387."
+}
