@@ -35,3 +35,35 @@ def test_incorrect_init():
     with pytest.raises(ValueError) as e:
         geoopt.optim.SparseRiemannianAdam([param])
     assert e.match("should be matrix valued")
+
+
+@pytest.mark.parametrize(
+    "options,group_options,interval",
+    [
+        ({"stabilize": 2}, {}, 2),
+        ({"stabilize": 2}, {"stabilize": 3}, 3),
+        ({"stabilize": 2}, {"stabilize": None}, None),
+        ({}, {}, None),
+    ],
+)
+def test_sparse_adam_periodic_stabilization(options, group_options, interval):
+    manifold = geoopt.Sphere()
+    point = geoopt.ManifoldParameter(
+        torch.tensor([[1.0, 0.0], [0.0, 1.0]], dtype=torch.float64), manifold=manifold
+    )
+    optimizer = geoopt.optim.SparseRiemannianAdam([{"params": [point], **group_options}], **options)
+    with torch.no_grad():
+        point[1].mul_(3)
+
+    for step in range(1, 4):
+        point.grad = torch.sparse_coo_tensor(
+            [[0]], torch.zeros(1, 2, dtype=point.dtype), point.shape
+        )
+        optimizer.step()
+        if step == 1:
+            optimizer.state[point]["exp_avg"][1].copy_(point.new_tensor([0.0, 4.0]))
+        stabilized = interval is not None and step >= interval
+        expected_point = point.new_tensor([0.0, 1.0 if stabilized else 3.0])
+        expected_momentum = point.new_tensor([0.0, 0.0 if stabilized else 4.0])
+        torch.testing.assert_close(point[1], expected_point)
+        torch.testing.assert_close(optimizer.state[point]["exp_avg"][1], expected_momentum)

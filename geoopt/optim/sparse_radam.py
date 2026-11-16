@@ -47,7 +47,17 @@ class SparseRiemannianAdam(OptimMixin, SparseMixin, torch.optim.Optimizer):
 
     """
 
-    def __init__(self, params, lr=1e-3, betas=(0.9, 0.999), eps=1e-8, amsgrad=False, maximize=False):
+    def __init__(
+        self,
+        params,
+        lr=1e-3,
+        betas=(0.9, 0.999),
+        eps=1e-8,
+        amsgrad=False,
+        maximize=False,
+        *,
+        stabilize=None,
+    ):
         if not 0.0 <= lr:
             raise ValueError("Invalid learning rate: {}".format(lr))
         if not 0.0 <= eps:
@@ -57,7 +67,7 @@ class SparseRiemannianAdam(OptimMixin, SparseMixin, torch.optim.Optimizer):
         if not 0.0 <= betas[1] < 1.0:
             raise ValueError("Invalid beta parameter at index 1: {}".format(betas[1]))
         defaults = dict(lr=lr, betas=betas, eps=eps, amsgrad=amsgrad, maximize=maximize)
-        super(SparseRiemannianAdam, self).__init__(params, defaults)
+        super(SparseRiemannianAdam, self).__init__(params, defaults, stabilize=stabilize)
 
     def __setstate__(self, state):
         super(SparseRiemannianAdam, self).__setstate__(state)
