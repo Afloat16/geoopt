@@ -44,7 +44,7 @@ class StereographicTreeDataset(torch.utils.data.Dataset):
         self.origin_data, self.origin_labels, self.data, self.labels = map(
             torch.detach, self.bst()
         )
-        self.num_classes = self.origin_labels.max().item() + 1
+        self.num_classes = len(self.origin_data)
 
     def __len__(self):
         return len(self.data)
@@ -115,10 +115,7 @@ class StereographicTreeDataset(torch.utils.data.Dataset):
                 for clone in clones:
                     values_clones.append(clone[0])
                     labels_clones.append(clone[1])
-        length = int(
-            ((self.numberOfChildren) ** (self.depth + 1) - 1)
-            / (self.numberOfChildren - 1)
-        )
+        length = len(visited)
         images = torch.cat([i for i in visited]).reshape(length, self.dim)
         labels_visited = torch.cat([i for i in labels_visited]).reshape(
             length, self.depth + 1
