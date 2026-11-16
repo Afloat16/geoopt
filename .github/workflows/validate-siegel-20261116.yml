@@ -1,9 +1,7 @@
 name: Validate Siegel regressions
 on:
-  pull_request:
-    branches: [master]
-    paths:
-      - '.github/workflows/validate-siegel-20261116.yml'
+  push:
+    branches: ['validation/siegel-regressions-20261116']
 permissions:
   contents: read
 jobs:
