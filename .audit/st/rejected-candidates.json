@@ -80,5 +80,15 @@
     "candidate": "Materialize PhraseTokenizer vocabulary iterators",
     "reason": "Already implemented in reachable historical source variant c8da21b4; exclude regardless of PR title.",
     "evidence": "audit/st/phrase-tokenizer-prefix-history-variants.json"
+  },
+  {
+    "candidate": "Apply ReLU to selected SparseAutoEncoder top-k values before dense scattering",
+    "reason": "Already implemented in the reachable refactor _SparseAutoEncoderProjection.top_k_sparse/top_k_dense; excluded after following delegation into the historical helper module.",
+    "evidence": "audit/st/sparse-projection-topk-history-variants.json"
+  },
+  {
+    "candidate": "Make distributed all_gather inputs contiguous",
+    "reason": "No observed defect on real two-process Gloo: unchanged base handles noncontiguous slices with correct gathered values and gradients in both tested PyTorch versions. NCCL not tested; no speculative patch.",
+    "evidence": "https://github.com/Afloat16/geoopt/actions/runs/43922897739"
   }
 ]

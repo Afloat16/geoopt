@@ -1,0 +1,13 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "fix/csr-normalization-inverse-20261116",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "tree": "76487594f17bafba0c1402428767ca797f513081",
+  "head": "d6d7b7b50a34378cad386378ec63a3b5720e2bff",
+  "local_tests": {
+    "baseline_failed": 30,
+    "baseline_passed": 8,
+    "candidate_passed": 64,
+    "candidate_skipped": 8
+  }
+}

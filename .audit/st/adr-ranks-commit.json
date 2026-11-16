@@ -1,0 +1,13 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "perf/adr-target-rank-search-20261116",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "tree": "a7998d1e37a8bf91114ef4a9a2c9a788fffdaab0",
+  "head": "02fe393c18a24d617819a97d3e22d3a1a8d91726",
+  "local_tests": {
+    "baseline_failed": 0,
+    "baseline_passed": 121,
+    "candidate_passed": 233,
+    "candidate_skipped": 6
+  }
+}
