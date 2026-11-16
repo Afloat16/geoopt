@@ -1,0 +1,39 @@
+{
+  "candidate": "MS_SSIMLoss separable Gaussian filtering",
+  "state": "Investigation only; no product source edit, branch, commit, PR, or completed benchmark.",
+  "novelty_review_observed_before_loss": {
+    "source_blobs": 59,
+    "paths": [
+      "kornia/losses/ms_ssim.py",
+      "kornia/losses/ms_ssim_l1.py"
+    ],
+    "result": "No separable implementation was found in the inspected reachable historical source versions.",
+    "raw_audit": "Only local; currently not recovered."
+  },
+  "existing_idea": {
+    "issue": "https://github.com/kornia/kornia/issues/1850",
+    "state": "closed",
+    "closed_at": "2023-05-25T22:12:00Z",
+    "comment": "https://github.com/kornia/kornia/issues/1850#issuecomment-1553684760",
+    "meaning": "A contributor already suggested separable Gaussian filtering in 2023. Any later implementation must cite this idea and cannot claim the idea originated in this task.",
+    "reservations": "No current assignee or active reservation was found in the observed issue/comments."
+  },
+  "last_attempt": "The call attempting to write an exploratory scratch script did not return before environment loss; its exec cell subsequently no longer existed. File creation and benchmark start are unconfirmed; there are no observed benchmark results.",
+  "exclusions": [
+    {
+      "candidate": "SSIM3D separable Gaussian filtering",
+      "reason": "Already implemented in a reachable historical source blob; excluded.",
+      "blob": "2f57b7d792f110b14df5cf922a95e0c6e6a23634"
+    },
+    {
+      "candidate": "Tversky one-hot-free CPU training",
+      "reason": "Already implemented in reachable historical source; excluded.",
+      "blob": "a8a9088803605ed3268dfd69bce61fae944b7f06",
+      "commit": "d9dfaff2e2"
+    },
+    {
+      "candidate": "Subsampled YUV optimization prototypes",
+      "reason": "Mixed or worse training performance in exploratory runs; no accepted implementation or claimed speedup."
+    }
+  ]
+}

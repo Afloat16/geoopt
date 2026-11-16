@@ -1,0 +1,27 @@
+{
+  "latest_product_head": "f05f4d2c74d3d891c38d05ee1d33925a18bdca8b",
+  "changes": "After 1f03856ec4a65a1bcaf22f3a46372c5825ebe6c6, follow-ups renamed the changelog and adjusted only test selection for unsupported MPS dtypes. Product calculation unchanged.",
+  "published_reply": {
+    "thread_comment_id": 4590970294,
+    "actual_id": 4591177897,
+    "url": "https://github.com/kornia/kornia/pull/6803#discussion_r4591177897",
+    "fix_head": "706284ca7f6dca296602c00e210f18f22302a1e3",
+    "verified": "UI and API were verified before execution-environment loss."
+  },
+  "pending_reply": {
+    "thread_comment_id": 4591070188,
+    "status": "prepared_not_posted",
+    "comment": "Addressed in f05f4d2c74d3d891c38d05ee1d33925a18bdca8b. The additional applies_to marker excludes bfloat16 only on MPS systems older than macOS 14; macOS 14+ retains both bfloat16 cases. Real pytest collection with only the reported macOS version mocked selects 3 cases on macOS 13 and 5 on macOS 14/15. The six CPU regressions and full pre-commit pass. This checks selection, not execution on an older Mac. Product code is unchanged.\n\nPosted on behalf of @Afloat16 by OpenAI Codex (GPT-6 Astra Pro)."
+  },
+  "local_validation_before_loss": {
+    "cpu_regressions": "6 passed in 18.83s",
+    "macos_collection": {
+      "13": 3,
+      "14": 5,
+      "15": 5
+    },
+    "collection_scope": "Real pytest collection with platform.mac_ver mocked, not execution of MPS kernels.",
+    "pre_commit": "All hooks passed after Ruff formatting was applied by the first run.",
+    "raw_logs": "Only local files; not recovered after execution-environment loss."
+  }
+}

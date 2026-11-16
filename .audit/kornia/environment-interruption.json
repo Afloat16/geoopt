@@ -1,0 +1,17 @@
+{
+  "status": "Local execution environment unavailable; CUA namespace removed. Local tools stopped.",
+  "raw_local_files_not_recovered": [
+    "audit/robotics-independent-final-review.json",
+    "audit/robotics-independent-supplied-j-order-c4e6.log",
+    "audit/robotics-independent-asada-global-j-c4e6.log",
+    "audit/robotics-independent-tool-revised.log",
+    "audit/kornia/map-macos-bfloat16-cpu-regressions.log",
+    "audit/kornia/map-macos-bfloat16-collection.log",
+    "audit/kornia/map-macos-bfloat16-precommit-final.log",
+    "audit/kornia/ms-ssim-loss-history-variants.json",
+    "audit/kornia/ms-ssim-fresh-pr-search.json"
+  ],
+  "scope": "This checkpoint preserves fresh remote PR/CI reads and accurately labelled summaries of already observed local output. It does not claim to recover raw local logs.",
+  "blocked_operations": "The denied official Qwen CLI and local Kornia ONNX telemetry operations were not retried or migrated.",
+  "next_step": "Retain the two submitted PRs; finish the pending review reply when the authorized UI capability returns. Resume new Kornia development only in a functioning, authorized execution environment."
+}
