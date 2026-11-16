@@ -41,4 +41,4 @@ jobs:
         run: ./code-polishyw supply-chain
       - name: Probe unchanged production contracts
         working-directory: source
-        run: uv run --frozen --no-sync --env-file tests/cpu.env python ../validation-source/.validation/pml-probes.py
+        run: PYTHONPATH=src uv run --frozen --no-sync --env-file tests/cpu.env python ../validation-source/.validation/pml-probes.py
