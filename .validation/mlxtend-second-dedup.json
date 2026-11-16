@@ -1,0 +1,39 @@
+{
+  "base": "1aee767ef57b84a8191511a08955c583b65de382",
+  "forks": 121,
+  "prs": 685,
+  "apriori": {
+    "all_forks_have_base_blob": "376f518e7bd282a05f4b7c542a03f5ca14db75f6",
+    "reviewed_prs": [
+      404,
+      567,
+      619,
+      621,
+      1179,
+      1191
+    ],
+    "proposal": "Keep prefix and candidate support computations sparse in the low_memory helper; preserve join/prune and support boundaries"
+  },
+  "scaling": {
+    "historical_blobs": [
+      "a2604046c821af6a081df953d250a33d0d8f1eeb",
+      "bab5018acb697a931a7419fc30e7f0852fdfe72a"
+    ],
+    "reviewed_prs": [
+      1210,
+      1211,
+      1279,
+      1281,
+      1168,
+      1169,
+      1171
+    ],
+    "excluded": [
+      "Single changed minmax endpoint",
+      "Retaining supplied standardize parameters",
+      "Nondefault DataFrame row indexes",
+      "Selected constant-column indexes"
+    ],
+    "proposal": "Avoid intermediate overflow when finite input and output minmax ranges span opposite signs"
+  }
+}

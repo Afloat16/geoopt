@@ -1,0 +1,33 @@
+name: Reproduce mlxtend sparse and scaling defects
+on:
+  push:
+    branches: ['validation/mlxtend-investigation-20261116']
+permissions:
+  contents: read
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: rasbt/mlxtend
+          ref: 1aee767ef57b84a8191511a08955c583b65de382
+          path: project
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b
+      - name: Install unchanged frozen dependencies
+        working-directory: project
+        run: uv sync --frozen --group dev --python 3.11
+      - name: Reproduce on unchanged upstream source
+        working-directory: project
+        run: uv run --frozen --group dev python ../.validation/mlxtend-investigation.py
