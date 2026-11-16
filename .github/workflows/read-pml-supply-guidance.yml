@@ -1,0 +1,30 @@
+name: Inspect metric-learning dependency guidance
+on:
+  push:
+    branches: ['validation/pml-supply-guidance-20261116']
+permissions:
+  contents: read
+jobs:
+  pinned-guidance:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: KevinMusgrave/pytorch-metric-learning
+          ref: b95a42310f50720a766b91008470b278364f705d
+          path: policy-source
+          persist-credentials: false
+      - name: Install the exact repository-pinned policy tool
+        working-directory: policy-source
+        run: ./code-polishyw setup
+      - name: Read the mandatory contribution workflow before any source edits
+        working-directory: policy-source
+        run: |
+          ./code-polishyw docs read supply-chain > ../pml-agent-workflows.md
+          cat ../pml-agent-workflows.md
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pml-pinned-guidance
+          path: pml-agent-workflows.md
