@@ -1,0 +1,82 @@
+name: Validate sparse row-gradient fast path
+on:
+  push:
+    branches: ['validation/sparse-optimizer-coalesced-rows-20261116']
+permissions:
+  contents: read
+jobs:
+  numerical-contracts:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: '3.8'
+            torch: '2.0.1'
+            numpy: '1.24.4'
+            scipy: '1.10.1'
+            benchmark: false
+          - python: '3.12'
+            torch: '2.6.0'
+            numpy: '2.2.6'
+            scipy: '1.15.3'
+            benchmark: true
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 3
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install pinned CPU validation dependencies
+        run: |
+          python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==${{ matrix.numpy }} scipy==${{ matrix.scipy }} pytest==8.3.5 ruff
+          python -m pip install -e . --no-deps
+      - name: Check candidate files
+        run: python -m ruff check geoopt/optim/mixin.py geoopt/optim/sparse_radam.py geoopt/optim/sparse_rsgd.py tests/test_sparse_gradient_rows.py
+      - name: Verify and measure unchanged upstream
+        run: |
+          git fetch --depth=1 origin 4623ea1d2a9808b8e87bf10949cccb2c5ec6233c
+          git restore --source=4623ea1d2a9808b8e87bf10949cccb2c5ec6233c -- geoopt/optim/mixin.py geoopt/optim/sparse_radam.py geoopt/optim/sparse_rsgd.py
+          python -m pytest -q tests/test_sparse_gradient_rows.py --junitxml=baseline.xml
+          if [ "${{ matrix.benchmark }}" = "true" ]; then python validation/benchmark_sparse_gradient_rows.py baseline.json; fi
+      - name: Verify and measure the exact candidate
+        run: |
+          git fetch --depth=1 origin 9b348472f807b68590c137bbd798be621b64f642
+          git restore --source=9b348472f807b68590c137bbd798be621b64f642 -- geoopt/optim/mixin.py geoopt/optim/sparse_radam.py geoopt/optim/sparse_rsgd.py
+          python -m pytest -q tests/test_sparse_gradient_rows.py tests/test_sparse_adam.py tests/test_sparse_rsgd.py tests/test_sparse_amsgrad_raw_second_moment.py --junitxml=candidate.xml
+          if [ "${{ matrix.benchmark }}" = "true" ]; then python validation/benchmark_sparse_gradient_rows.py candidate.json; fi
+          git diff --exit-code
+      - name: Check independent Siegel inner products on minimum supported versions
+        if: matrix.python == '3.8'
+        run: |
+          git fetch --depth=1 origin d1ea20de7503e688f3b37b32b92845a9c101a221
+          git worktree add --detach ../siegel-inner-minimum d1ea20de7503e688f3b37b32b92845a9c101a221
+          cd ../siegel-inner-minimum
+          PYTHONPATH="$PWD" python -c 'import pathlib,geoopt; assert pathlib.Path.cwd() in pathlib.Path(geoopt.__file__).resolve().parents'
+          PYTHONPATH="$PWD" python -m pytest -q tests/test_siegel_inner_solves.py tests/test_manifold_basic.py
+      - name: Compare timings
+        if: matrix.benchmark
+        run: |
+          python - <<'PY'
+          import json
+          baseline = json.load(open("baseline.json"))["results"]
+          candidate = json.load(open("candidate.json"))["results"]
+          for before, after in zip(baseline, candidate):
+              keys = ("optimizer", "entries", "coalesced")
+              assert tuple(before[key] for key in keys) == tuple(after[key] for key in keys)
+              print(json.dumps({"case": {key: before[key] for key in keys}, "before_ms": before["median_ms"], "after_ms": after["median_ms"], "speedup": before["median_ms"] / after["median_ms"]}))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sparse-gradient-rows-${{ matrix.python }}
+          path: |
+            baseline.xml
+            candidate.xml
+            baseline.json
+            candidate.json
