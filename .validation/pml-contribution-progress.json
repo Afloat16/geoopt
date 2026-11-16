@@ -4,7 +4,7 @@
   "published_count": 20,
   "open_count": 20,
   "new_merged_count": 0,
-  "updated_at": "2026-11-16T11:49:22.045Z",
+  "updated_at": "2026-11-16T12:12:02.857Z",
   "pull_requests": [
     {
       "number": 793,
@@ -201,9 +201,9 @@
       "head": "95175fafee503eb5fa0a5c24ff52a240608ae57a",
       "state": "open",
       "merged_at": null,
-      "checks_success": 4,
+      "checks_success": 7,
       "checks_total": 7,
-      "checks_pending": 3,
+      "checks_pending": 0,
       "checks_failure": 0,
       "maintainer_can_modify": false
     },
@@ -214,9 +214,9 @@
       "head": "f5ca9fdc9040c9221e834e3b2d163d45927d1cad",
       "state": "open",
       "merged_at": null,
-      "checks_success": 1,
+      "checks_success": 7,
       "checks_total": 7,
-      "checks_pending": 6,
+      "checks_pending": 0,
       "checks_failure": 0,
       "maintainer_can_modify": false
     },
@@ -227,9 +227,9 @@
       "head": "e0a0f819ede53a0d045287b4763520e38b8eb539",
       "state": "open",
       "merged_at": null,
-      "checks_success": 1,
+      "checks_success": 7,
       "checks_total": 7,
-      "checks_pending": 6,
+      "checks_pending": 0,
       "checks_failure": 0,
       "maintainer_can_modify": false
     },
@@ -240,9 +240,9 @@
       "head": "47bf7b47ca83ee00aef30eb39dea669e0bf1115c",
       "state": "open",
       "merged_at": null,
-      "checks_success": 1,
+      "checks_success": 7,
       "checks_total": 7,
-      "checks_pending": 6,
+      "checks_pending": 0,
       "checks_failure": 0,
       "maintainer_can_modify": false
     }
