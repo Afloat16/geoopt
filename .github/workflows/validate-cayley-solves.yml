@@ -1,0 +1,55 @@
+name: Validate Siegel Cayley direct solves
+on:
+  push:
+    branches: ['validation/siegel-cayley-direct-solves-20261116']
+permissions:
+  contents: read
+jobs:
+  correctness-and-performance:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 3
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install CPU validation dependencies
+        run: |
+          python -m pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e . pytest ruff
+      - name: Check the candidate files
+        run: python -m ruff check geoopt/manifolds/siegel/csym_math.py tests/test_cayley_solve.py
+      - name: Verify and measure unchanged upstream
+        run: |
+          git show 4623ea1d2a9808b8e87bf10949cccb2c5ec6233c:geoopt/manifolds/siegel/csym_math.py > geoopt/manifolds/siegel/csym_math.py
+          python -m pytest -q tests/test_cayley_solve.py --junitxml=baseline.xml
+          python validation/benchmark_cayley_solves.py baseline.json
+      - name: Verify and measure the exact candidate
+        run: |
+          git restore --source=5162a2a7cc5147545ddaa3ee5dc8fe98d8d965f3 -- geoopt/manifolds/siegel/csym_math.py
+          python -m pytest -q tests/test_cayley_solve.py tests/test_cayley_transform.py tests/test_siegel_distance.py tests/test_manifold_basic.py --junitxml=candidate.xml
+          python validation/benchmark_cayley_solves.py candidate.json
+          git diff --exit-code
+      - name: Compare operations and timings
+        run: |
+          python - <<'PY'
+          import json
+          baseline = json.load(open("baseline.json"))["results"]
+          candidate = json.load(open("candidate.json"))["results"]
+          for before, after in zip(baseline, candidate):
+              keys = ("name", "backward", "batch", "size")
+              assert tuple(before[key] for key in keys) == tuple(after[key] for key in keys)
+              assert before["inversion_calls"] > 0, before
+              assert after["inversion_calls"] == 0, after
+              print(json.dumps({"case": {key: before[key] for key in keys}, "before_ms": before["median_ms"], "after_ms": after["median_ms"], "speedup": before["median_ms"] / after["median_ms"]}))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: siegel-cayley-results
+          path: |
+            baseline.xml
+            candidate.xml
+            baseline.json
+            candidate.json
