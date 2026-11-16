@@ -1,0 +1,65 @@
+name: Kornia MS-SSIM float64 public API validation
+on:
+  push:
+    branches: [validation/kornia-ms-ssim64-20261116]
+permissions:
+  contents: read
+jobs:
+  cpu:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        torch: ['2.5.1', '2.15.0']
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: validation
+          persist-credentials: false
+      - uses: actions/checkout@v7
+        with:
+          repository: Afloat16/kornia
+          ref: a4c31b02a00e627782b7551bcb5216a2adbf98ab
+          path: kornia
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: prefix-dev/setup-pixi@v0.11.3
+        with:
+          pixi-version: v0.84.2
+          working-directory: kornia
+          environments: py312
+          locked: true
+          cache: true
+      - name: Install locked packages and CPU Torch
+        working-directory: kornia
+        env:
+          TORCH_VERSION: ${{ matrix.torch }}
+        run: pixi run -e py312 python ../validation/.validation/kornia-install-locked-cpu.py
+      - name: Compare exact base and candidate public APIs without compile or ONNX
+        working-directory: kornia
+        run: pixi run -e py312 uv run --no-sync python ../validation/.validation/kornia-ms-ssim64-validate.py
+      - name: Run affected eager loss tests
+        working-directory: kornia
+        env:
+          PYTHONDONTWRITEBYTECODE: '1'
+        run: pixi run -e py312 uv run --no-sync pytest tests/losses/test_ssim.py --device=cpu --dtype=float32,float64 -k "not jit and not compile and not dynamo and not onnx" -q
+      - name: Full pre-commit
+        if: always() && matrix.torch == '2.15.0'
+        working-directory: kornia
+        run: pixi run -e py312 uv run --no-sync pre-commit run --all-files
+      - name: Typecheck
+        if: always() && matrix.torch == '2.15.0'
+        working-directory: kornia
+        run: pixi run -e py312 typecheck
+      - name: Preserve any formatting changes
+        if: always()
+        working-directory: kornia
+        run: |
+          git diff --stat
+          git diff
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: kornia-ms-ssim64-${{ matrix.torch }}
+          path: kornia-ms-ssim64-results/
