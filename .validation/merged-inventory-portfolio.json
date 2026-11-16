@@ -22,7 +22,7 @@
       "merged_at": null,
       "head": "528664cf7b5a5ba96ff5ae4a036dff1c2361b459",
       "head_ref": "fix/tensor-path-interpolation-20261116",
-      "maintainer_can_modify": true,
+      "maintainer_can_modify": false,
       "created_at": "2026-11-16T06:32:05Z",
       "official_checks": {
         "total": 14,
@@ -144,7 +144,7 @@
       "merged_at": null,
       "head": "05638a12adcca5d913d667dd8968af3da2866bf7",
       "head_ref": "fix/nfold-membership-point-shape-20261116",
-      "maintainer_can_modify": true,
+      "maintainer_can_modify": false,
       "created_at": "2026-11-16T06:43:10Z",
       "official_checks": {
         "total": 14,
@@ -266,7 +266,7 @@
       "merged_at": null,
       "head": "863af5018ef694c75858bf437f48d49543949308",
       "head_ref": "fix/connection-barycenter-backtracking-20261116",
-      "maintainer_can_modify": true,
+      "maintainer_can_modify": false,
       "created_at": "2026-11-16T06:44:11Z",
       "official_checks": {
         "total": 14,
@@ -388,7 +388,7 @@
       "merged_at": null,
       "head": "9b6b6cfc9b987d04bd98fd5a69970b2cfbbca7d4",
       "head_ref": "fix/finite-difference-integer-arithmetic-20261116",
-      "maintainer_can_modify": true,
+      "maintainer_can_modify": false,
       "created_at": "2026-11-16T06:45:06Z",
       "official_checks": {
         "total": 14,
@@ -510,7 +510,7 @@
       "merged_at": null,
       "head": "5e09ba4d8123f0a40799004f8f7d7f8d0eed1a2e",
       "head_ref": "fix/autograd-matrix-adjoint-batch-axes-20261116",
-      "maintainer_can_modify": true,
+      "maintainer_can_modify": false,
       "created_at": "2026-11-16T06:58:35Z",
       "official_checks": {
         "total": 14,
@@ -632,7 +632,7 @@
       "merged_at": null,
       "head": "b6b7ec188dabc42fe64c5f95ad7884f730cca463",
       "head_ref": "fix/callable-ivp-step-evaluation-counts-20261116",
-      "maintainer_can_modify": true,
+      "maintainer_can_modify": false,
       "created_at": "2026-11-16T07:22:06Z",
       "official_checks": {
         "total": 14,
@@ -754,7 +754,7 @@
       "merged_at": null,
       "head": "6c3a5bd6eafd7e9e214da086b97ae848e9dd29f3",
       "head_ref": "fix/backend-boundary-jacobian-callbacks-20261116",
-      "maintainer_can_modify": true,
+      "maintainer_can_modify": false,
       "created_at": "2026-11-16T07:22:49Z",
       "official_checks": {
         "total": 14,
@@ -876,7 +876,7 @@
       "merged_at": null,
       "head": "e4d3ce2fb14989d0171261901ef4810f835ae74b",
       "head_ref": "fix/bvp-endpoint-broadcasting-20261116",
-      "maintainer_can_modify": true,
+      "maintainer_can_modify": false,
       "created_at": "2026-11-16T07:23:43Z",
       "official_checks": {
         "total": 14,
@@ -998,7 +998,7 @@
       "merged_at": null,
       "head": "9c15306358c54ed8ed29d3ef799b0e1cdd19851d",
       "head_ref": "fix/scipy-numerical-jacobian-modes-20261116",
-      "maintainer_can_modify": true,
+      "maintainer_can_modify": false,
       "created_at": "2026-11-16T07:37:12Z",
       "official_checks": {
         "total": 14,
@@ -1120,7 +1120,7 @@
       "merged_at": null,
       "head": "412403aaff6e2b2535ff772fb3443454804db65c",
       "head_ref": "fix/newton-final-iterate-convergence-20261116",
-      "maintainer_can_modify": true,
+      "maintainer_can_modify": false,
       "created_at": "2026-11-16T07:55:59Z",
       "official_checks": {
         "total": 14,
@@ -1242,7 +1242,7 @@
       "merged_at": null,
       "head": "beba696acf5471d55fec4705e072857dd7f39d26",
       "head_ref": "fix/differentiable-symmetric-reconstruction-20261116",
-      "maintainer_can_modify": true,
+      "maintainer_can_modify": false,
       "created_at": "2026-11-16T07:57:37Z",
       "official_checks": {
         "total": 14,
@@ -1364,7 +1364,7 @@
       "merged_at": null,
       "head": "68d8da50704d676acf7d0d520f6438e1fb2d1668",
       "head_ref": "fix/torch-optimizer-differentiable-initial-state-20261116",
-      "maintainer_can_modify": true,
+      "maintainer_can_modify": false,
       "created_at": "2026-11-16T08:12:33Z",
       "official_checks": {
         "total": 14,
@@ -1486,7 +1486,7 @@
       "merged_at": null,
       "head": "f7af36102164dae14a13c359b4437d513437100a",
       "head_ref": "fix/backend-hessian-vector-callbacks-20261116",
-      "maintainer_can_modify": true,
+      "maintainer_can_modify": false,
       "created_at": "2026-11-16T08:13:38Z",
       "official_checks": {
         "total": 14,
@@ -1608,7 +1608,7 @@
       "merged_at": null,
       "head": "411a6a7cdec459db8c72842d824e90cdaa35639d",
       "head_ref": "fix/pointwise-derivative-batch-axes-20261116",
-      "maintainer_can_modify": true,
+      "maintainer_can_modify": false,
       "created_at": "2026-11-16T08:14:40Z",
       "official_checks": {
         "total": 14,
@@ -1730,7 +1730,7 @@
       "merged_at": null,
       "head": "81534adb2b25ccee49550ce7d32ce8aec1b29fba",
       "head_ref": "fix/torch-value-gradient-caller-state-20261116",
-      "maintainer_can_modify": true,
+      "maintainer_can_modify": false,
       "created_at": "2026-11-16T08:23:48Z",
       "official_checks": {
         "total": 14,
@@ -1835,9 +1835,9 @@
           }
         ]
       },
-      "official_ci_explanation": "### Official PyTorch coverage follow-up\r\n\r\nThe PyTorch functional job and patch-coverage check pass. Comparing the [base coverage table](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204766) and [PR coverage table](https://github.com/geomstats/geomstats/actions/runs/43830873467/job/133175636646), the changed autodiff module goes from 99/102 to 95/98 covered statements because the new implementation removes four previously covered statements; its three previously uncovered statements remain unchanged. All changed executable lines are covered by the focused regressions. Project coverage moves from 14241/16093 (88.4919%) to 14235/16089 (88.4766%), with covered-line differences in unchanged hypersphere (+1), expectation maximization (-2), geometric median (-1), online k-means (-1), and PCA (+1).\r\n",
+      "official_ci_explanation": "### Official PyTorch coverage follow-up\r\n\r\nThe PyTorch functional job and patch-coverage check pass. Comparing the [base coverage table](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204766) and [PR coverage table](https://github.com/geomstats/geomstats/actions/runs/43830873467/job/133175636646), the changed autodiff module goes from 99/102 to 95/98 covered statements because the new implementation removes four previously covered statements; its three previously uncovered statements remain unchanged. All changed executable lines are covered by the focused regressions. Project coverage moves from 14241/16093 (88.4919%) to 14235/16089 (88.4766%), with covered-line differences in unchanged hypersphere (+1), expectation maximization (-2), geometric median (-1), online k-means (-1), and PCA (+1).\r\n\r\n### Additional Autograd CI follow-up\r\n\r\nThe later [Autograd job](https://github.com/geomstats/geomstats/actions/runs/43830873467/job/133175637066) fails `TestBetaMetric.test_inner_product_derivative_matrix_vec` when an Autograd `ArrayBox` reaches the in-place sparse assignment in `SymmetricMatrices.matrix_representation`, raising `ValueError: setting an array element with a sequence`. The [official job on unchanged base `2fc8e25`](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622) contains the same exception and call chain. That reconstruction is unchanged here and is corrected separately in #2235. This identifies the existing exception path; the jobs did not record their original random parameters.\r\n",
       "official_ci_diagnosis": {
-        "summary": "Autograd has the existing Beta reconstruction ValueError, confirmed in the latest official log. PyTorch functional and patch checks pass; project coverage changes reflect removed covered statements and coverage changes in unchanged modules.",
+        "summary": "Latest Autograd failure is the same Beta sparse-reconstruction ArrayBox ValueError present on exact upstream base. Published note preserves the separate precise Torch coverage explanation.",
         "published_notes_recovered": true,
         "original_random_inputs_not_recovered": false,
         "additional_investigation_remaining": false,
@@ -1849,7 +1849,8 @@
             ]
           }
         ],
-        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622"
+        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622",
+        "followup_notes_published": true
       }
     },
     {
@@ -1861,7 +1862,7 @@
       "merged_at": null,
       "head": "cb1a8ea97cd28efd23e3706cc01b9e3b17eedd8f",
       "head_ref": "fix/nfold-geodesic-broadcast-shapes-20261116",
-      "maintainer_can_modify": true,
+      "maintainer_can_modify": false,
       "created_at": "2026-11-16T08:36:12Z",
       "official_checks": {
         "total": 14,
@@ -1966,9 +1967,9 @@
           }
         ]
       },
-      "official_ci_explanation": "### Official CI follow-up\r\n\r\nThe [NumPy job](https://github.com/geomstats/geomstats/actions/runs/43832578500/job/133181193813) fails `TestAACRegression.test_fit_and_predict_constant[3-1e-06]`. A [fixed-input replay](https://github.com/Afloat16/geomstats/actions/runs/43835466155/job/133190863675) using Python 3.13, NumPy 2.5.5, SciPy 1.18.1, and scikit-learn 1.9.1 compares exact base `2fc8e25` with this isolated patch. Both produce identical total-space distances 0.71674257 and quotient-space distances zero: the predicted graphs differ only by a vertex permutation. Neither execution calls `nfold_manifold.py`. This establishes the existing failure mode; the original job did not record its random graph, so the replay does not claim to recover that exact input.\r\n\r\nThe PyTorch functional job and patch-coverage check pass. Comparing the [base coverage table](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204766) and [PR coverage table](https://github.com/geomstats/geomstats/actions/runs/43832578500/job/133181193269), the modified n-fold module improves from 115/124 to 116/124 covered statements. Total coverage moves from 14241/16093 (88.4919%) to 14236/16093 (88.4608%), with covered-line differences in unchanged discrete curves (-1), matrices (-2), expectation maximization (-2), and geometric median (-1). Both moved executable lines are covered by the focused regressions.\r\n",
+      "official_ci_explanation": "### Official CI follow-up\r\n\r\nThe [NumPy job](https://github.com/geomstats/geomstats/actions/runs/43832578500/job/133181193813) fails `TestAACRegression.test_fit_and_predict_constant[3-1e-06]`. A [fixed-input replay](https://github.com/Afloat16/geomstats/actions/runs/43835466155/job/133190863675) using Python 3.13, NumPy 2.5.5, SciPy 1.18.1, and scikit-learn 1.9.1 compares exact base `2fc8e25` with this isolated patch. Both produce identical total-space distances 0.71674257 and quotient-space distances zero: the predicted graphs differ only by a vertex permutation. Neither execution calls `nfold_manifold.py`. This establishes the existing failure mode; the original job did not record its random graph, so the replay does not claim to recover that exact input.\r\n\r\nThe PyTorch functional job and patch-coverage check pass. Comparing the [base coverage table](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204766) and [PR coverage table](https://github.com/geomstats/geomstats/actions/runs/43832578500/job/133181193269), the modified n-fold module improves from 115/124 to 116/124 covered statements. Total coverage moves from 14241/16093 (88.4919%) to 14236/16093 (88.4608%), with covered-line differences in unchanged discrete curves (-1), matrices (-2), expectation maximization (-2), and geometric median (-1). Both moved executable lines are covered by the focused regressions.\r\n\r\n### Additional Autograd CI follow-up\r\n\r\nThe later [Autograd job](https://github.com/geomstats/geomstats/actions/runs/43832578500/job/133181193641) fails `TestBetaMetric.test_inner_product_derivative_matrix_vec` when an Autograd `ArrayBox` reaches the in-place sparse assignment in `SymmetricMatrices.matrix_representation`, raising `ValueError: setting an array element with a sequence`. The [official job on unchanged base `2fc8e25`](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622) contains the same exception and call chain. That reconstruction is unchanged here and is corrected separately in #2235. This identifies the existing exception path; the jobs did not record their original random parameters.\r\n",
       "official_ci_diagnosis": {
-        "summary": "NumPy AAC constant graph regression has identical base/patch fixed-input results with zero quotient distance but nonzero total-space distance. Autograd has the existing Beta reconstruction ValueError in its latest log. PyTorch functional and patch checks pass; project coverage falls outside the modified module.",
+        "summary": "Latest Autograd failure is the same base Beta reconstruction ValueError. Prior fixed-input AAC graph replay and exact coverage-table explanation remain published.",
         "published_notes_recovered": true,
         "original_random_inputs_not_recovered": true,
         "additional_investigation_remaining": false,
@@ -1980,7 +1981,8 @@
             ]
           }
         ],
-        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622"
+        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622",
+        "followup_notes_published": true
       }
     },
     {
@@ -2097,12 +2099,12 @@
           }
         ]
       },
-      "official_ci_explanation": null,
+      "official_ci_explanation": "### Official CI follow-up\r\n\r\nThe later [Autograd job](https://github.com/geomstats/geomstats/actions/runs/43834691969/job/133188302959) fails `TestBetaMetric.test_inner_product_derivative_matrix_vec` when an Autograd `ArrayBox` reaches the in-place sparse assignment in `SymmetricMatrices.matrix_representation`, raising `ValueError: setting an array element with a sequence`. The [official job on unchanged base `2fc8e25`](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622) contains the same exception and call chain. That reconstruction is unchanged here and is corrected separately in #2235. This identifies the existing exception path; the jobs did not record their original random parameters.\r\n\r\nThe NumPy and PyTorch functional jobs and patch-coverage checks pass. Comparing the official [base NumPy](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204695) and [PR NumPy](https://github.com/geomstats/geomstats/actions/runs/43834691969/job/133188302426) tables, the modified `riemannian_metric.py` improves from 111/132 to 112/133 covered statements; total flag coverage moves from 13406/15689 to 13402/15690. The remaining covered-line changes are in unchanged discrete curves (-1), NFold (+1), EM (-3), geometric median (-1), PCA (+1), trees (-1), and Wald space (-1).\r\n\r\nThe [base PyTorch](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204766) and [PR PyTorch](https://github.com/geomstats/geomstats/actions/runs/43834691969/job/133188301996) tables show the modified module improving from 115/132 to 116/133. Total flag coverage moves from 14241/16093 to 14239/16094; the other changes are in unchanged hyperboloid (-1), matrices (-2), NFold (+1), EM (-3), PCA (+1), and trees (+1). These counts apply the repository's existing Codecov ignore rules.\r\n",
       "official_ci_diagnosis": {
-        "summary": "Autograd has the existing Beta reconstruction ValueError. NumPy and PyTorch project-coverage checks fail; a new exact coverage-table comparison for these two checks has not yet been performed.",
+        "summary": "Autograd has the base Beta reconstruction ValueError. Both functional NumPy/Torch jobs and patch checks pass; modified riemannian_metric gains one covered statement. Exact flag table comparison locates project decreases in unchanged modules.",
         "published_notes_recovered": false,
         "original_random_inputs_not_recovered": false,
-        "additional_investigation_remaining": true,
+        "additional_investigation_remaining": false,
         "latest_log_failures": [
           {
             "job_id": 133188302959,
@@ -2111,7 +2113,8 @@
             ]
           }
         ],
-        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622"
+        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622",
+        "followup_notes_published": true
       }
     },
     {
@@ -2228,12 +2231,12 @@
           }
         ]
       },
-      "official_ci_explanation": null,
+      "official_ci_explanation": "### Official CI follow-up\r\n\r\nThe later [Autograd job](https://github.com/geomstats/geomstats/actions/runs/43834812075/job/133188696219) fails `TestBetaMetric.test_inner_product_derivative_matrix_vec` when an Autograd `ArrayBox` reaches the in-place sparse assignment in `SymmetricMatrices.matrix_representation`, raising `ValueError: setting an array element with a sequence`. The [official job on unchanged base `2fc8e25`](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622) contains the same exception and call chain. That reconstruction is unchanged here and is corrected separately in #2235. This identifies the existing exception path; the jobs did not record their original random parameters.\r\n\r\nThe [PyTorch job](https://github.com/geomstats/geomstats/actions/runs/43834812075/job/133188695757) fails `TestReparametrizationAligner.test_align_in_same_fiber` for the four-point `DynamicProgrammingAligner` fixture: its maximum coordinate error is approximately 0.11848 against an absolute tolerance of 0.1. A [base/patch replay](https://github.com/Afloat16/geoopt/actions/runs/43871335696/job/133313011781) reconstructs the base curve from the four-decimal values printed in that failure. Exact base `2fc8e25` and this isolated patch produce bit-for-bit identical aligned coordinates and maximum error **0.11846655443322096**, using Python 3.13.18, PyTorch 2.15.0 CPU, NumPy 2.5.5, and SciPy 1.18.1. A call tracer, checked with a real positive-control invocation, confirms that this calculation does not call the changed von Mises-Fisher sampling routine. The original full-precision curve was not logged, so this is a replay of the printed input, not a claim to recover those missing digits.\r\n\r\nThe NumPy functional job and patch-coverage check pass. In the [base](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204695) and [PR](https://github.com/geomstats/geomstats/actions/runs/43834812075/job/133188696917) coverage tables, the modified hypersphere module improves from 326/378 to 331/382 covered statements. Total flag coverage changes from 13406/15689 to 13407/15693. Unchanged EM (-3), Frechet mean (+1), geometric median (-1), online k-means (-2), and PCA (+1) account for the remaining covered-line differences.\r\n",
       "official_ci_diagnosis": {
-        "summary": "Autograd has the existing Beta reconstruction ValueError. PyTorch discrete-curve DynamicProgrammingAligner same-fiber assertion has maximum coordinate error about 0.11848 against atol 0.1. That particular randomized failure has not been replayed on exact base and patch. NumPy project-coverage check also fails.",
+        "summary": "Autograd has the base Beta reconstruction ValueError. Torch same-fiber curve assertion is reproduced on the four-decimal input printed by official CI; exact base and isolated patch yield bit-identical error 0.11846655443322096 without calling the changed sampler. Original full precision is unavailable. NumPy project decrease is explained by complete coverage tables; changed hypersphere coverage improves.",
         "published_notes_recovered": false,
         "original_random_inputs_not_recovered": true,
-        "additional_investigation_remaining": true,
+        "additional_investigation_remaining": false,
         "latest_log_failures": [
           {
             "job_id": 133188696219,
@@ -2248,7 +2251,8 @@
             ]
           }
         ],
-        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622"
+        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622",
+        "followup_notes_published": true
       }
     },
     {
@@ -2365,12 +2369,12 @@
           }
         ]
       },
-      "official_ci_explanation": null,
+      "official_ci_explanation": "### Official CI follow-up\r\n\r\nThe later [Autograd job](https://github.com/geomstats/geomstats/actions/runs/43836177531/job/133193246930) fails `TestBetaMetric.test_inner_product_derivative_matrix_vec` when an Autograd `ArrayBox` reaches the in-place sparse assignment in `SymmetricMatrices.matrix_representation`, raising `ValueError: setting an array element with a sequence`. The [official job on unchanged base `2fc8e25`](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622) contains the same exception and call chain. That reconstruction is unchanged here and is corrected separately in #2235. This identifies the existing exception path; the jobs did not record their original random parameters.\r\n\r\nThe NumPy and PyTorch functional jobs and patch-coverage checks pass. Comparing the [base NumPy](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204695) and [PR NumPy](https://github.com/geomstats/geomstats/actions/runs/43836177531/job/133193247134) tables, total flag coverage changes from 13406/15689 to 13401/15689. The modified Autograd/PyTorch modules are excluded from the NumPy flag; its differences are in unchanged EM (-4), online k-means (-1), PCA (+1), and trees (-1).\r\n\r\nFor [PyTorch base](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204766) versus [this PR](https://github.com/geomstats/geomstats/actions/runs/43836177531/job/133193247189), the autodiff module changes from 99/102 to 92/100 covered statements. The implementation removes two executable statements and replaces the call to `_get_max_ndim_point`; the five statements in that retained private helper therefore no longer execute. All changed executable lines are covered, as the passing patch check and focused validation show. Total flag coverage moves from 14241/16093 to 14229/16091, with additional differences in unchanged hyperboloid (-1), matrices (-2), EM (-2), geometric median (-1), and PCA (+1). The helper-related decrease is part of this refactoring, rather than an unrelated coverage fluctuation.\r\n",
       "official_ci_diagnosis": {
-        "summary": "Autograd has the existing Beta reconstruction ValueError. NumPy and PyTorch project-coverage checks fail; a new exact coverage-table comparison for these two checks has not yet been performed.",
+        "summary": "Autograd has the base Beta reconstruction ValueError. NumPy/Torch functional and patch checks pass. Torch project decrease includes two removed statements and five old statements in the retained, now-uncalled _get_max_ndim_point helper, plus unchanged-module differences; this is explicitly separated from unrelated coverage variation.",
         "published_notes_recovered": false,
         "original_random_inputs_not_recovered": false,
-        "additional_investigation_remaining": true,
+        "additional_investigation_remaining": false,
         "latest_log_failures": [
           {
             "job_id": 133193246930,
@@ -2379,7 +2383,8 @@
             ]
           }
         ],
-        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622"
+        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622",
+        "followup_notes_published": true
       }
     },
     {
@@ -2496,12 +2501,12 @@
           }
         ]
       },
-      "official_ci_explanation": null,
+      "official_ci_explanation": "### Official CI follow-up\r\n\r\nThe later [Autograd job](https://github.com/geomstats/geomstats/actions/runs/43836389278/job/133193952209) fails `TestBetaMetric.test_inner_product_derivative_matrix_vec` when an Autograd `ArrayBox` reaches the in-place sparse assignment in `SymmetricMatrices.matrix_representation`, raising `ValueError: setting an array element with a sequence`. The [official job on unchanged base `2fc8e25`](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622) contains the same exception and call chain. That reconstruction is unchanged here and is corrected separately in #2235. This identifies the existing exception path; the jobs did not record their original random parameters.\r\n\r\nThe [PyTorch job](https://github.com/geomstats/geomstats/actions/runs/43836389278/job/133193952059) fails `TestUnitNormedRowsPLTMatricesPullbackMetric.test_parallel_transport_ivp_transported_is_tangent` and `TestAACRegression.test_fit_and_predict_constant`. The original matrices and graph were not printed. Two deterministic replays therefore record complete inputs from the same fixture definitions, then compare exact base `2fc8e25` with this isolated patch using Python 3.13.18, PyTorch 2.15.0 CPU, NumPy 2.5.5, SciPy 1.18.1, and scikit-learn 1.9.1.\r\n\r\nThe [transport replay](https://github.com/Afloat16/geoopt/actions/runs/43871636636/job/133314061514) returns the same tangency result, `[True, True, True, False]`, on both versions. The transported vectors and endpoints also agree element-for-element, including matching NaNs. The [AAC replay](https://github.com/Afloat16/geoopt/actions/runs/43871636636/job/133314061031) returns the same total-space distances, `[0.784986936670632, 0.784986936670632]`, while both quotient-space distances are zero: the graph predictions differ only by vertex permutation.\r\n\r\nCall tracing, verified first with an actual IVP positive control, shows that neither failing calculation invokes `numerics/ivp.py`. The replay artifacts retain the full input arrays and results. These comparisons establish existing failure modes and unchanged outputs; they do not claim to recover the original unrecorded random draws. An initial diagnostic run used the wrong callback argument order in its trace positive control; the linked follow-up corrects that diagnostic only, with no change to the candidate.\r\n",
       "official_ci_diagnosis": {
-        "summary": "Autograd has the existing Beta reconstruction ValueError. PyTorch positive-lower-triangular transport tangency and AAC constant graph regression fail; these particular randomized inputs have not been replayed on exact base and patch. Prior AAC evidence establishes a failure mode, not these exact draws.",
+        "summary": "Autograd has the base Beta reconstruction ValueError. Matching-fixture fixed inputs reproduce Torch PLT tangent and AAC constant-graph failures on exact base and isolated patch, with identical full outputs and no calls to ivp.py; tracer positive controls verified. Original random inputs were not logged, so the result establishes the existing failure modes rather than recovering the original draws.",
         "published_notes_recovered": false,
         "original_random_inputs_not_recovered": true,
-        "additional_investigation_remaining": true,
+        "additional_investigation_remaining": false,
         "latest_log_failures": [
           {
             "job_id": 133193952209,
@@ -2517,7 +2522,8 @@
             ]
           }
         ],
-        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622"
+        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622",
+        "followup_notes_published": true
       }
     },
     {
@@ -2529,7 +2535,7 @@
       "merged_at": null,
       "head": "f671e8fc1869ced29c146d92efc9c288371e8b9f",
       "head_ref": "fix/manifold-ranking-log-domain-20261116",
-      "maintainer_can_modify": true,
+      "maintainer_can_modify": false,
       "created_at": "2026-11-16T08:30:25Z",
       "official_checks": {
         "total": 7,
@@ -3880,7 +3886,7 @@
       "official_ci_diagnosis": {
         "summary": "Both functional test jobs pass. The official linter fails during locked SciPy 1.16.3 installation on Python 3.15.2 because OpenBLAS is unavailable; no style check is reached. The unchanged base reproduces the same installation failure. Frozen Python 3.11 formatting, changed-file lint, full suite and package checks pass.",
         "exact_base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
-        "notes_published": false
+        "notes_published": true
       }
     },
     {
@@ -3923,7 +3929,7 @@
       "official_ci_diagnosis": {
         "summary": "Both functional test jobs pass. The official linter fails during locked SciPy 1.16.3 installation on Python 3.15.2 because OpenBLAS is unavailable; no style check is reached. The unchanged base reproduces the same installation failure. Frozen Python 3.11 formatting, changed-file lint, full suite and package checks pass.",
         "exact_base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
-        "notes_published": false
+        "notes_published": true
       }
     },
     {
@@ -3938,9 +3944,30 @@
       "maintainer_can_modify": false,
       "created_at": "2026-11-16T12:50:44Z",
       "official_checks": {
-        "total": 0,
-        "checks": [],
-        "note": "New upstream jobs started; completion not yet checked."
+        "total": 3,
+        "checks": [
+          {
+            "name": "build-linux-latest-sklearn",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/rasbt/mlxtend/actions/runs/43870262081/job/133309244056",
+            "completed_at": "2026-11-16T12:52:44Z"
+          },
+          {
+            "name": "formatting",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/rasbt/mlxtend/actions/runs/43870262047/job/133309243604",
+            "completed_at": "2026-11-16T12:53:01Z"
+          },
+          {
+            "name": "build-linux",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/rasbt/mlxtend/actions/runs/43870262081/job/133309243443",
+            "completed_at": "2026-11-16T12:53:36Z"
+          }
+        ]
       },
       "validation": {
         "run": "https://github.com/Afloat16/geoopt/actions/runs/43867750166",
@@ -3951,6 +3978,11 @@
       "historical_dedupe": {
         "fork_refs": 125,
         "all_reachable_intermediate_commits_checked": true
+      },
+      "official_ci_diagnosis": {
+        "summary": "Both official functional jobs pass; the linter fails before style checks during locked SciPy installation under Python 3.15.2. Same installation failure reproduced on exact base; frozen Python 3.11 full/style/package validation passes.",
+        "exact_base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "notes_published": true
       }
     },
     {
@@ -3965,9 +3997,30 @@
       "maintainer_can_modify": false,
       "created_at": "2026-11-16T12:53:00Z",
       "official_checks": {
-        "total": 0,
-        "checks": [],
-        "note": "New upstream jobs started; completion not yet checked."
+        "total": 3,
+        "checks": [
+          {
+            "name": "build-linux-latest-sklearn",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/rasbt/mlxtend/actions/runs/43870594441/job/133310409592",
+            "completed_at": "2026-11-16T12:54:37Z"
+          },
+          {
+            "name": "build-linux",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/rasbt/mlxtend/actions/runs/43870594441/job/133310409312",
+            "completed_at": "2026-11-16T12:56:51Z"
+          },
+          {
+            "name": "formatting",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/rasbt/mlxtend/actions/runs/43870594433/job/133310408820",
+            "completed_at": "2026-11-16T12:55:26Z"
+          }
+        ]
       },
       "validation": {
         "run": "https://github.com/Afloat16/geoopt/actions/runs/43867750166",
@@ -3978,6 +4031,11 @@
       "historical_dedupe": {
         "fork_refs": 125,
         "all_reachable_intermediate_commits_checked": true
+      },
+      "official_ci_diagnosis": {
+        "summary": "Both official functional jobs pass; the linter fails before style checks during locked SciPy installation under Python 3.15.2. Same installation failure reproduced on exact base; frozen Python 3.11 full/style/package validation passes.",
+        "exact_base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "notes_published": true
       }
     }
   ],
@@ -3996,5 +4054,5 @@
       "path": ".validation/mlxtend-submissions.json"
     }
   },
-  "ci_diagnosis_updated_at": "2026-11-16T12:48:24.344Z"
+  "ci_diagnosis_updated_at": "2026-11-16T13:15:57.465Z"
 }
