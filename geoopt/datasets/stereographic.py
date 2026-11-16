@@ -85,8 +85,8 @@ class StereographicTreeDataset(torch.utils.data.Dataset):
         else:
             children = []
             for _ in range(numberOfChildren):
-                child_value = self.ball.random(
-                    self.dim, mean=parent_value, std=sigma**0.5
+                child_value = self.ball.wrapped_normal(
+                    self.dim, mean=parent_value, std=2 * (sigma / self.dim) ** 0.5
                 )
                 child_label = parent_label.clone()
                 children.append((child_value, child_label))
