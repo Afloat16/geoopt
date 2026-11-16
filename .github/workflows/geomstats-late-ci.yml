@@ -1,0 +1,78 @@
+name: Replay late geometric CI failures on base and isolated patches
+on:
+  push:
+    branches: ["validation/geomstats-late-ci-20261116"]
+permissions:
+  contents: read
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - kind: curves
+            pr: 2242
+            sha: 97e2c8f1437c5c78c3192e135d4b89ef6dc565e0
+            source: geomstats/geometry/hypersphere.py
+          - kind: plt_tangent
+            pr: 2244
+            sha: bc4d7d953aa37836b26a06f2aef16bbe1474f7b6
+            source: geomstats/numerics/ivp.py
+          - kind: aac
+            pr: 2244
+            sha: bc4d7d953aa37836b26a06f2aef16bbe1474f7b6
+            source: geomstats/numerics/ivp.py
+    env:
+      GEOMSTATS_BACKEND: pytorch
+      SCIPY_ARRAY_API: "1"
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONPATH: "."
+    defaults:
+      run:
+        working-directory: work
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: diagnostic
+      - uses: actions/checkout@v4
+        with:
+          repository: Afloat16/geomstats
+          ref: ${{ matrix.sha }}
+          fetch-depth: 3
+          path: work
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13.18"
+      - name: Install the official job's numerical versions
+        run: |
+          python -m pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e . numpy==2.5.5 scipy==1.18.1 scikit-learn==1.9.1 pytest
+          python -m pip freeze > versions.txt
+      - name: Reproduce the failure on exact unchanged upstream
+        run: |
+          git show 2fc8e25eb8955767292552f9c0c1438be362ba8f:${{ matrix.source }} > ${{ matrix.source }}
+          python ../diagnostic/.validation/geomstats-late-ci-probe.py ${{ matrix.kind }} baseline.json --max-seeds 500
+      - name: Replay the recorded input with the isolated patch
+        run: |
+          git checkout ${{ matrix.sha }} -- ${{ matrix.source }}
+          python ../diagnostic/.validation/geomstats-late-ci-probe.py ${{ matrix.kind }} candidate.json --replay baseline.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for name in ["baseline.json", "candidate.json"]:
+              result = json.loads(Path(name).read_text())
+              assert result["result"]["passed"] is False
+              assert result["changed_functions_called"] == []
+              assert result["trace_positive_control_passed"]
+          print("Recorded inputs give identical outputs and the same failure on both versions.")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pr-${{ matrix.pr }}-${{ matrix.kind }}-exact-input-comparison
+          path: |
+            work/baseline.json
+            work/candidate.json
+            work/versions.txt
