@@ -43,9 +43,9 @@ for ndim, cls in [(2, kornia.losses.HausdorffERLoss), (3, kornia.losses.Hausdorf
                     else:
                         alpha = torch.tensor(2., dtype=adtype, requires_grad=True)
                 pred = pred0.clone().requires_grad_(dtype.is_floating_point)
-                op = cls(k=k, alpha=alpha)
                 row = {"ndim": ndim, "input_dtype": str(dtype), "alpha_kind": alpha_kind, "k": k}
                 try:
+                    op = cls(k=k, alpha=alpha)
                     value = op(pred, target)
                     direct = op.perform_erosion(pred[:, :1], (target == 0).long())
                     row.update({"output_dtype": str(value.dtype), "direct_dtype": str(direct.dtype), "output_shape": list(value.shape), "direct_shape": list(direct.shape), "value": value.item()})
