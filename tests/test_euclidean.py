@@ -1,4 +1,5 @@
 import pytest
+import torch
 import geoopt
 
 
@@ -35,3 +36,32 @@ def test_ndim_expected_behaviour(ndim):
 
     dist = eucl.dist(point, point1, keepdim=True)
     assert dist.dim() == point.dim()
+
+
+@pytest.mark.parametrize("ndim", [0, 1, 2, 3])
+@pytest.mark.parametrize("keepdim", [False, True])
+@pytest.mark.parametrize("shared", [False, True])
+def test_norm_broadcasts_point_batches(ndim, keepdim, shared):
+    manifold = geoopt.Euclidean(ndim=ndim)
+    shape = (2,) * ndim
+    point = torch.zeros((4, 3) + shape if shared else (4, 1) + shape, dtype=torch.float64)
+    tangent_shape = shape if shared else (1, 3) + shape
+    tangent = torch.arange(torch.Size(tangent_shape).numel(), dtype=point.dtype).reshape(
+        tangent_shape
+    )
+    if not shared:
+        tangent[:, 0] = 0
+    tangent.requires_grad_()
+    expanded = tangent.expand(torch.broadcast_shapes(point.shape, tangent.shape))
+    if ndim:
+        expected = torch.linalg.vector_norm(expanded, dim=tuple(range(-ndim, 0)), keepdim=keepdim)
+    else:
+        expected = expanded.abs()
+
+    actual = manifold.norm(point, tangent, keepdim=keepdim)
+    torch.testing.assert_close(actual, expected)
+    torch.testing.assert_close(actual.square(), manifold.inner(point, tangent, keepdim=keepdim))
+    actual_grad = torch.autograd.grad(actual.sum(), tangent, retain_graph=True)[0]
+    expected_grad = torch.autograd.grad(expected.sum(), tangent)[0]
+    torch.testing.assert_close(actual_grad, expected_grad)
+    assert torch.isfinite(actual_grad).all()

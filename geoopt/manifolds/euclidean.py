@@ -70,11 +70,14 @@ class Euclidean(Manifold):
 
     def norm(self, x: torch.Tensor, u: torch.Tensor, *, keepdim=False):
         if self.ndim > 0:
-            return torch.linalg.vector_norm(
+            norm = torch.linalg.vector_norm(
                 u, dim=tuple(range(-self.ndim, 0)), keepdim=keepdim
             )
+            x_shape = x.shape[: -self.ndim] + (1,) * self.ndim * keepdim
         else:
-            return u.abs()
+            norm = u.abs()
+            x_shape = x.shape
+        return norm.expand(broadcast_shapes(x_shape, norm.shape))
 
     def proju(self, x: torch.Tensor, u: torch.Tensor) -> torch.Tensor:
         target_shape = broadcast_shapes(x.shape, u.shape)
