@@ -1,0 +1,213 @@
+{
+  "run": 43867750166,
+  "validation_ref": "f1b9a7cdadfdd58081671e37efd5a41b002b80ce",
+  "jobs": [
+    133300579334,
+    133300579285,
+    133300579092
+  ],
+  "benchmark": [
+    {
+      "shape": [
+        50000,
+        500
+      ],
+      "nnz": 500,
+      "measurements": [
+        {
+          "peak_bytes": 25099732,
+          "elapsed_seconds": 0.0053390550000003145
+        },
+        {
+          "peak_bytes": 25071606,
+          "elapsed_seconds": 0.003553085000000067
+        },
+        {
+          "peak_bytes": 25071606,
+          "elapsed_seconds": 0.003928496000000337
+        }
+      ]
+    },
+    {
+      "shape": [
+        50000,
+        500
+      ],
+      "nnz": 500,
+      "measurements": [
+        {
+          "peak_bytes": 891457,
+          "elapsed_seconds": 0.004480491999999003
+        },
+        {
+          "peak_bytes": 861899,
+          "elapsed_seconds": 0.002696111000005885
+        },
+        {
+          "peak_bytes": 861867,
+          "elapsed_seconds": 0.0026544389999969553
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "name": "apriori-sparse-low-memory",
+      "base": "1aee767ef57b84a8191511a08955c583b65de382",
+      "issue": 1308,
+      "baseline_focused": {
+        "total": 21,
+        "failed": 20,
+        "skipped": 0,
+        "failures": {
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_candidates_match_enumerated_supports[bool-csr_matrix]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_candidates_match_enumerated_supports[bool-csc_matrix]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_candidates_match_enumerated_supports[bool-csr_array]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_candidates_match_enumerated_supports[bool-csc_array]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_candidates_match_enumerated_supports[uint8-csr_matrix]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_candidates_match_enumerated_supports[uint8-csc_matrix]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_candidates_match_enumerated_supports[uint8-csr_array]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_candidates_match_enumerated_supports[uint8-csc_array]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_apriori_matches_brute_force[None-bool]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_apriori_matches_brute_force[None-uint8]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_apriori_matches_brute_force[2-bool]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_apriori_matches_brute_force[2-uint8]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_explicit_sparse_zeros_do_not_satisfy_a_prefix[csr_matrix]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_explicit_sparse_zeros_do_not_satisfy_a_prefix[csc_matrix]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_explicit_sparse_zeros_do_not_satisfy_a_prefix[csr_array]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_explicit_sparse_zeros_do_not_satisfy_a_prefix[csc_array]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_prefix_count_does_not_overflow_uint8": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_duplicate_boolean_entries_keep_dense_logical_values[csc_matrix]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_duplicate_boolean_entries_keep_dense_logical_values[csc_array]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_prefix_without_matching_rows": "AssertionError: Sparse support counting must not densify candidate blocks"
+        }
+      },
+      "baseline_full": {
+        "total": 764,
+        "failed": 20,
+        "skipped": 3,
+        "failures": {
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_candidates_match_enumerated_supports[bool-csr_matrix]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_candidates_match_enumerated_supports[bool-csc_matrix]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_candidates_match_enumerated_supports[bool-csr_array]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_candidates_match_enumerated_supports[bool-csc_array]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_candidates_match_enumerated_supports[uint8-csr_matrix]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_candidates_match_enumerated_supports[uint8-csc_matrix]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_candidates_match_enumerated_supports[uint8-csr_array]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_candidates_match_enumerated_supports[uint8-csc_array]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_apriori_matches_brute_force[None-bool]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_apriori_matches_brute_force[None-uint8]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_apriori_matches_brute_force[2-bool]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_apriori_matches_brute_force[2-uint8]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_explicit_sparse_zeros_do_not_satisfy_a_prefix[csr_matrix]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_explicit_sparse_zeros_do_not_satisfy_a_prefix[csc_matrix]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_explicit_sparse_zeros_do_not_satisfy_a_prefix[csr_array]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_explicit_sparse_zeros_do_not_satisfy_a_prefix[csc_array]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_prefix_count_does_not_overflow_uint8": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_duplicate_boolean_entries_keep_dense_logical_values[csc_matrix]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_duplicate_boolean_entries_keep_dense_logical_values[csc_array]": "AssertionError: Sparse support counting must not densify candidate blocks",
+          "mlxtend.frequent_patterns.tests.test_apriori_sparse_memory::test_sparse_prefix_without_matching_rows": "AssertionError: Sparse support counting must not densify candidate blocks"
+        }
+      },
+      "candidate_focused": {
+        "total": 132,
+        "failed": 0,
+        "skipped": 0,
+        "failures": {}
+      },
+      "candidate_full": {
+        "total": 764,
+        "failed": 0,
+        "skipped": 3,
+        "failures": {}
+      },
+      "new_full_suite_failures": []
+    },
+    {
+      "name": "minmax-finite-range",
+      "base": "1aee767ef57b84a8191511a08955c583b65de382",
+      "issue": 1309,
+      "baseline_focused": {
+        "total": 38,
+        "failed": 27,
+        "skipped": 0,
+        "failures": {
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds0-values0]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds0-values1]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds1-values0]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds1-values1]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds2-values0]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds2-values1]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds2-values2]": "FloatingPointError: invalid value encountered in multiply",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds2-values3]": "FloatingPointError: invalid value encountered in multiply",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds2-values4]": "FloatingPointError: invalid value encountered in multiply",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds2-values5]": "FloatingPointError: invalid value encountered in multiply",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds2-values6]": "FloatingPointError: invalid value encountered in multiply",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds3-values0]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds3-values1]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds3-values2]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds3-values3]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds3-values4]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds3-values5]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds3-values6]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds4-values0]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds4-values1]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds4-values2]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds4-values3]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds4-values4]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds4-values5]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds4-values6]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_mixed_dataframe_ranges_preserve_selection_and_input": "AssertionError: DataFrame.iloc[:, 0] (column name=\"wide\") are different\n\nDataFrame.iloc[:, 0] (column name=\"wide\") values are different (80.0 %)\n[index]: [4, 8, 15, 16, 23]\n[left]:  [0.0, 0.0, 0.0, 0.0, nan]\n[right]: [0.0, 0.25, 0.5, 0.75, 1.0]\nAt positional index 1, first diff: 0.0 != 0.25",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_one_dimensional_wide_input": "FloatingPointError: overflow encountered in subtract"
+        }
+      },
+      "baseline_full": {
+        "total": 781,
+        "failed": 27,
+        "skipped": 3,
+        "failures": {
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds0-values0]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds0-values1]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds1-values0]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds1-values1]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds2-values0]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds2-values1]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds2-values2]": "FloatingPointError: invalid value encountered in multiply",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds2-values3]": "FloatingPointError: invalid value encountered in multiply",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds2-values4]": "FloatingPointError: invalid value encountered in multiply",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds2-values5]": "FloatingPointError: invalid value encountered in multiply",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds2-values6]": "FloatingPointError: invalid value encountered in multiply",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds3-values0]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds3-values1]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds3-values2]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds3-values3]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds3-values4]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds3-values5]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds3-values6]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds4-values0]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds4-values1]": "FloatingPointError: overflow encountered in subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds4-values2]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds4-values3]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds4-values4]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds4-values5]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_finite_ranges_match_decimal_reference[bounds4-values6]": "FloatingPointError: overflow encountered in scalar subtract",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_mixed_dataframe_ranges_preserve_selection_and_input": "AssertionError: DataFrame.iloc[:, 0] (column name=\"wide\") are different\n\nDataFrame.iloc[:, 0] (column name=\"wide\") values are different (80.0 %)\n[index]: [4, 8, 15, 16, 23]\n[left]:  [0.0, 0.0, 0.0, 0.0, nan]\n[right]: [0.0, 0.25, 0.5, 0.75, 1.0]\nAt positional index 1, first diff: 0.0 != 0.25",
+          "mlxtend.preprocessing.tests.test_minmax_finite_range::test_one_dimensional_wide_input": "FloatingPointError: overflow encountered in subtract"
+        }
+      },
+      "candidate_focused": {
+        "total": 82,
+        "failed": 0,
+        "skipped": 0,
+        "failures": {}
+      },
+      "candidate_full": {
+        "total": 781,
+        "failed": 0,
+        "skipped": 3,
+        "failures": {}
+      },
+      "new_full_suite_failures": []
+    }
+  ]
+}

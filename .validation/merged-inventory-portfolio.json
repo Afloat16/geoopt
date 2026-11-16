@@ -1,0 +1,3946 @@
+{
+  "checked_at": "2026-11-16T12:32:20.744Z",
+  "scope": "new contributions prepared by merged_inventory agent in current task",
+  "counts": {
+    "published": 42,
+    "merged": 0,
+    "open": 42
+  },
+  "excluded_duplicate": {
+    "repo": "geomstats/geomstats",
+    "number": 2223,
+    "status": "closed",
+    "counted": false
+  },
+  "entries": [
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2225,
+      "url": "https://github.com/geomstats/geomstats/pull/2225",
+      "title": "Preserve the time axis when interpolating tensor-valued paths",
+      "state": "open",
+      "merged_at": null,
+      "head": "528664cf7b5a5ba96ff5ae4a036dff1c2361b459",
+      "head_ref": "fix/tensor-path-interpolation-20261116",
+      "maintainer_can_modify": true,
+      "created_at": "2026-11-16T06:32:05Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133138161622",
+            "completed_at": "2026-11-16T06:47:39Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133138155136",
+            "completed_at": "2026-11-16T06:47:38Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133136278535",
+            "completed_at": "2026-11-16T06:42:33Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133136272122",
+            "completed_at": "2026-11-16T06:42:32Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133136259329",
+            "completed_at": "2026-11-16T06:42:30Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133136252610",
+            "completed_at": "2026-11-16T06:42:29Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43817415297/job/133132509033",
+            "completed_at": "2026-11-16T07:11:31Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43817415297/job/133132509008",
+            "completed_at": "2026-11-16T06:39:32Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43817415297/job/133132509004",
+            "completed_at": "2026-11-16T06:41:47Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43817415297/job/133132508916",
+            "completed_at": "2026-11-16T06:41:57Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43817415297/job/133132508872",
+            "completed_at": "2026-11-16T06:47:35Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43817415297/job/133132508676",
+            "completed_at": "2026-11-16T06:37:07Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43817415181/job/133132508492",
+            "completed_at": "2026-11-16T06:32:28Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43817415185/job/133132508430",
+            "completed_at": "2026-11-16T06:35:28Z"
+          }
+        ]
+      },
+      "official_ci_explanation": "### Official CI follow-up\r\n\r\nThe Autograd failure is `TestBetaMetric.test_inner_product_derivative_matrix_vec`: symmetric-matrix reconstruction passes an Autograd `ArrayBox` into an in-place sparse assignment, raising `ValueError: setting an array element with a sequence`. The [official job on the unchanged base](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622) already has this failure. A [fixed-input replay](https://github.com/Afloat16/geomstats/actions/runs/43826682548/job/133162070416), using Python 3.13 and the current official NumPy/SciPy versions, produces the same exception on exact base `2fc8e25` and this isolated patch; neither execution calls `interpolation.py`.\r\n",
+      "official_ci_diagnosis": {
+        "summary": "Autograd Beta metric differentiation fails in unchanged sparse symmetric-matrix reconstruction; exact-base and isolated-patch replay produce the same ArrayBox assignment ValueError.",
+        "published_notes_recovered": true,
+        "original_random_inputs_not_recovered": false,
+        "additional_investigation_remaining": false
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2226,
+      "url": "https://github.com/geomstats/geomstats/pull/2226",
+      "title": "Validate n-fold point shapes before checking membership",
+      "state": "open",
+      "merged_at": null,
+      "head": "05638a12adcca5d913d667dd8968af3da2866bf7",
+      "head_ref": "fix/nfold-membership-point-shape-20261116",
+      "maintainer_can_modify": true,
+      "created_at": "2026-11-16T06:43:10Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133139158262",
+            "completed_at": "2026-11-16T06:50:23Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133139151773",
+            "completed_at": "2026-11-16T06:50:22Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133139145714",
+            "completed_at": "2026-11-16T06:50:21Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133139138895",
+            "completed_at": "2026-11-16T06:50:20Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133139133423",
+            "completed_at": "2026-11-16T06:50:19Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133139124928",
+            "completed_at": "2026-11-16T06:50:18Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818701559/job/133136536577",
+            "completed_at": "2026-11-16T06:47:17Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818701559/job/133136536544",
+            "completed_at": "2026-11-16T07:09:33Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818701559/job/133136536535",
+            "completed_at": "2026-11-16T06:49:36Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818701559/job/133136536497",
+            "completed_at": "2026-11-16T06:56:09Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818701559/job/133136536401",
+            "completed_at": "2026-11-16T06:49:51Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818701592/job/133136536364",
+            "completed_at": "2026-11-16T06:46:24Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818701531/job/133136536158",
+            "completed_at": "2026-11-16T06:43:29Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818701559/job/133136536094",
+            "completed_at": "2026-11-16T06:52:40Z"
+          }
+        ]
+      },
+      "official_ci_explanation": "## Official CI follow-up\r\n\r\nThe official PyTorch job fails in `TestInvariantMetricMatrixSO.test_exp_after_log`. An [isolated replay](https://github.com/Afloat16/geomstats/actions/runs/43823522685) reproduces that SO(3) numerical failure on unchanged upstream `2fc8e25` and obtains identical results after applying this PR, using Python 3.13, PyTorch 2.15.0 (CPU), NumPy 2.5.5, and SciPy 1.18.1. Profiling confirms that this calculation never calls the changed NFold source.\r\n\r\nThe separate NumPy project-coverage check drops from 85.4484% to 85.4375%: comparing the [base coverage log](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204695) and [this PR's coverage log](https://github.com/geomstats/geomstats/actions/runs/43818701559/job/133136536401), NFold coverage improves from 115/124 to 118/126 statements, while existing branches in EM, online k-means, PCA, and trees change coverage outside the patch. The changed-line coverage checks pass; the official failing checks remain visible.\r\n\r\n### Additional Autograd CI follow-up\r\n\r\nThe later Autograd failure is `TestBetaMetric.test_inner_product_derivative_matrix_vec`, which raises `ValueError` when an Autograd `ArrayBox` reaches the in-place sparse assignment in symmetric-matrix reconstruction. This also appears in the [official unchanged-base job](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622). A [fixed-input replay](https://github.com/Afloat16/geomstats/actions/runs/43826682548/job/133162070132) with the current official numerical-library versions produces the same exception on exact base `2fc8e25` and this isolated patch, without calling `nfold_manifold.py`.\r\n",
+      "official_ci_diagnosis": {
+        "summary": "PyTorch SO(3) exp/log fails identically on exact-base and isolated-patch fixed inputs. Autograd has the base Beta reconstruction ValueError. NumPy project coverage falls despite improved NFold coverage; detailed base/patch tables are in the published note.",
+        "published_notes_recovered": true,
+        "original_random_inputs_not_recovered": false,
+        "additional_investigation_remaining": false
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2227,
+      "url": "https://github.com/geomstats/geomstats/pull/2227",
+      "title": "Keep accepted barycenter iterates when backtracking",
+      "state": "open",
+      "merged_at": null,
+      "head": "863af5018ef694c75858bf437f48d49543949308",
+      "head_ref": "fix/connection-barycenter-backtracking-20261116",
+      "maintainer_can_modify": true,
+      "created_at": "2026-11-16T06:44:11Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133140637937",
+            "completed_at": "2026-11-16T06:54:21Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133140631117",
+            "completed_at": "2026-11-16T06:54:20Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133139911145",
+            "completed_at": "2026-11-16T06:52:23Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133139904414",
+            "completed_at": "2026-11-16T06:52:22Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133139890696",
+            "completed_at": "2026-11-16T06:52:20Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133139884732",
+            "completed_at": "2026-11-16T06:52:19Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818821182/job/133136918201",
+            "completed_at": "2026-11-16T06:47:40Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818821127/job/133136917861",
+            "completed_at": "2026-11-16T06:51:30Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818821127/job/133136917779",
+            "completed_at": "2026-11-16T06:54:02Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818821127/job/133136917778",
+            "completed_at": "2026-11-16T06:56:38Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818821127/job/133136917771",
+            "completed_at": "2026-11-16T07:18:00Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818821127/job/133136917761",
+            "completed_at": "2026-11-16T06:48:39Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818821147/job/133136917589",
+            "completed_at": "2026-11-16T06:44:36Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818821127/job/133136917556",
+            "completed_at": "2026-11-16T06:51:54Z"
+          }
+        ]
+      },
+      "official_ci_explanation": "### Official CI follow-up\r\n\r\nThe Autograd job has two failures. `TestBetaMetric.test_inner_product_derivative_matrix_vec` raises an `ArrayBox`/in-place sparse-assignment `ValueError`, also present in the [official unchanged-base job](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622). A [fixed-parameter replay](https://github.com/Afloat16/geomstats/actions/runs/43826682548/job/133162070122) produces the same exception on base `2fc8e25` and this patch. `TestBrownianMotion.test_normal_distribution_of_increments` rejects its sampled increments at the 0.05 threshold; a [replay using identical standard-normal draws](https://github.com/Afloat16/geomstats/actions/runs/43826682548/job/133162070280) obtains the same p-value, 0.0368032, on both versions. Both comparisons use the current official numerical-library versions and neither calls `exponential_barycenter.py`. The Brownian replay demonstrates the existing failure mode, rather than recovering the original job's unrecorded random draws.\r\n",
+      "official_ci_diagnosis": {
+        "summary": "Autograd has the base Beta reconstruction ValueError plus a Brownian normality-test rejection. Fixed common draws reproduce the rejection on base and patch, but the original random draws were not logged.",
+        "published_notes_recovered": true,
+        "original_random_inputs_not_recovered": true,
+        "additional_investigation_remaining": false
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2228,
+      "url": "https://github.com/geomstats/geomstats/pull/2228",
+      "title": "Avoid integer overflow when computing finite differences",
+      "state": "open",
+      "merged_at": null,
+      "head": "9b6b6cfc9b987d04bd98fd5a69970b2cfbbca7d4",
+      "head_ref": "fix/finite-difference-integer-arithmetic-20261116",
+      "maintainer_can_modify": true,
+      "created_at": "2026-11-16T06:45:06Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133144240821",
+            "completed_at": "2026-11-16T07:03:57Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133144233297",
+            "completed_at": "2026-11-16T07:03:56Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133144227027",
+            "completed_at": "2026-11-16T07:03:55Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133144221049",
+            "completed_at": "2026-11-16T07:03:54Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133144214848",
+            "completed_at": "2026-11-16T07:03:53Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133144192268",
+            "completed_at": "2026-11-16T07:03:52Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818927917/job/133137251120",
+            "completed_at": "2026-11-16T06:52:55Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818927917/job/133137250841",
+            "completed_at": "2026-11-16T06:58:04Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818927917/job/133137250589",
+            "completed_at": "2026-11-16T07:03:17Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818927917/job/133137250561",
+            "completed_at": "2026-11-16T06:53:10Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818927917/job/133137250483",
+            "completed_at": "2026-11-16T06:49:02Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818927915/job/133137250468",
+            "completed_at": "2026-11-16T06:45:27Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818927923/job/133137250261",
+            "completed_at": "2026-11-16T06:48:35Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43818927917/job/133137250174",
+            "completed_at": "2026-11-16T06:50:32Z"
+          }
+        ]
+      },
+      "official_ci_explanation": "## Official CI follow-up\r\n\r\nThe official jobs fail in `TestOpenHemispheresProductMetric.test_parallel_transport_ivp_transported_is_tangent` (Autograd) and `TestInvariantMetricMatrixSO.test_dist_is_symmetric` (NumPy). An [isolated replay](https://github.com/Afloat16/geomstats/actions/runs/43823522685) reproduces both failures on unchanged upstream `2fc8e25` and obtains identical results with this PR's source, on their respective backends with Python 3.13, NumPy 2.5.5, and SciPy 1.18.1. Profiling confirms that neither failing calculation calls `numerics/finite_differences.py`. The new finite-difference regressions and changed-line coverage checks pass; these two official failures remain visible.\r\n",
+      "official_ci_diagnosis": {
+        "summary": "Autograd hemisphere tangent transport and NumPy SO(3) distance symmetry failures are reproduced with identical fixed inputs and unchanged results on exact base and patch; neither uses finite_differences.py.",
+        "published_notes_recovered": true,
+        "original_random_inputs_not_recovered": false,
+        "additional_investigation_remaining": false
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2229,
+      "url": "https://github.com/geomstats/geomstats/pull/2229",
+      "title": "Preserve batch axes in Autograd matrix-function adjoints",
+      "state": "open",
+      "merged_at": null,
+      "head": "5e09ba4d8123f0a40799004f8f7d7f8d0eed1a2e",
+      "head_ref": "fix/autograd-matrix-adjoint-batch-axes-20261116",
+      "maintainer_can_modify": true,
+      "created_at": "2026-11-16T06:58:35Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133146975316",
+            "completed_at": "2026-11-16T07:11:09Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133146968496",
+            "completed_at": "2026-11-16T07:11:08Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133146961960",
+            "completed_at": "2026-11-16T07:11:07Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133146955711",
+            "completed_at": "2026-11-16T07:11:06Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133146948536",
+            "completed_at": "2026-11-16T07:11:05Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133146941767",
+            "completed_at": "2026-11-16T07:11:04Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43820500367/job/133142243435",
+            "completed_at": "2026-11-16T06:58:58Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "in_progress",
+            "conclusion": null,
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43820500245/job/133142243013",
+            "completed_at": null
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43820500245/job/133142242969",
+            "completed_at": "2026-11-16T07:06:38Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43820500245/job/133142242948",
+            "completed_at": "2026-11-16T07:02:21Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43820500245/job/133142242944",
+            "completed_at": "2026-11-16T07:09:07Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43820500245/job/133142242903",
+            "completed_at": "2026-11-16T07:10:46Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43820500281/job/133142242699",
+            "completed_at": "2026-11-16T07:02:10Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43820500245/job/133142242613",
+            "completed_at": "2026-11-16T07:05:06Z"
+          }
+        ]
+      },
+      "official_ci_explanation": "## Official CI follow-up\r\n\r\nThe official PyTorch job fails in `TestAgainstFrechetMean.test_against_frechet_mean` with the existing group-logarithm exception for antipodal rotations. An [isolated replay](https://github.com/Afloat16/geomstats/actions/runs/43823522685) reproduces that exception on unchanged upstream `2fc8e25` and with this PR, using identical recorded inputs and Python 3.13, PyTorch 2.15.0 (CPU), NumPy 2.5.5, and SciPy 1.18.1. The replay confirms that the changed Autograd linear-algebra module is not imported on this backend. The dedicated Autograd matrix-function regressions pass; the official PyTorch failure remains visible.\r\n",
+      "official_ci_diagnosis": {
+        "summary": "PyTorch antipodal group-logarithm failure is reproduced on exact base and patch; the changed Autograd module is not imported by this backend.",
+        "published_notes_recovered": true,
+        "original_random_inputs_not_recovered": false,
+        "additional_investigation_remaining": false
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2230,
+      "url": "https://github.com/geomstats/geomstats/pull/2230",
+      "title": "Support callable IVP steps and report their evaluation counts",
+      "state": "open",
+      "merged_at": null,
+      "head": "b6b7ec188dabc42fe64c5f95ad7884f730cca463",
+      "head_ref": "fix/callable-ivp-step-evaluation-counts-20261116",
+      "maintainer_can_modify": true,
+      "created_at": "2026-11-16T07:22:06Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133157251770",
+            "completed_at": "2026-11-16T07:37:58Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133157245502",
+            "completed_at": "2026-11-16T07:37:57Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133155468326",
+            "completed_at": "2026-11-16T07:32:59Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133155462275",
+            "completed_at": "2026-11-16T07:32:58Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133155449717",
+            "completed_at": "2026-11-16T07:32:56Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133155443169",
+            "completed_at": "2026-11-16T07:32:55Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823356459/job/133151313627",
+            "completed_at": "2026-11-16T07:37:59Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823356459/job/133151313606",
+            "completed_at": "2026-11-16T07:29:39Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823356459/job/133151313574",
+            "completed_at": "2026-11-16T07:41:09Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823356459/job/133151313545",
+            "completed_at": "2026-11-16T07:27:13Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823356459/job/133151313501",
+            "completed_at": "2026-11-16T07:32:27Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823356459/job/133151313261",
+            "completed_at": "2026-11-16T07:28:35Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823356370/job/133151313142",
+            "completed_at": "2026-11-16T07:22:26Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823356323/job/133151312987",
+            "completed_at": "2026-11-16T07:25:33Z"
+          }
+        ]
+      },
+      "official_ci_explanation": "### Official CI follow-up\r\n\r\nThe Autograd failures are seven `TestMatrixPower` cases in `test_hpd_matrices.py`: inverse membership, inverse round-trips, and tangent round-trips. That fixture samples a power anywhere in (0, 1), so its inverse can raise a well-conditioned HPD matrix to a very large power. A [fixed-input replay](https://github.com/Afloat16/geomstats/actions/runs/43826682548/job/133162069816) with power 0.001 reproduces the NaN inverse-round-trip failure on both exact base `2fc8e25` and this patch using the current official numerical-library versions; neither execution calls `ivp.py`. The original random power was not logged, so this establishes an existing failure mode rather than reproducing the exact original draw. The other six assertions share that fixture; their exact random inputs have not been recovered.\r\n",
+      "official_ci_diagnosis": {
+        "summary": "Seven Autograd HPD matrix-power assertions fail. A small positive power produces the same NaN inverse on base and patch; the original random power and other six exact failing inputs were not recorded.",
+        "published_notes_recovered": true,
+        "original_random_inputs_not_recovered": true,
+        "additional_investigation_remaining": false
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2231,
+      "url": "https://github.com/geomstats/geomstats/pull/2231",
+      "title": "Convert BVP boundary Jacobian states to the selected backend",
+      "state": "open",
+      "merged_at": null,
+      "head": "6c3a5bd6eafd7e9e214da086b97ae848e9dd29f3",
+      "head_ref": "fix/backend-boundary-jacobian-callbacks-20261116",
+      "maintainer_can_modify": true,
+      "created_at": "2026-11-16T07:22:49Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133155408339",
+            "completed_at": "2026-11-16T07:32:49Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133155401416",
+            "completed_at": "2026-11-16T07:32:48Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133154701694",
+            "completed_at": "2026-11-16T07:31:00Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133154694807",
+            "completed_at": "2026-11-16T07:30:59Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133154681552",
+            "completed_at": "2026-11-16T07:30:57Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133154674716",
+            "completed_at": "2026-11-16T07:30:56Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823441068/job/133151590687",
+            "completed_at": "2026-11-16T07:30:22Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823441068/job/133151590664",
+            "completed_at": "2026-11-16T07:28:10Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823441068/job/133151590630",
+            "completed_at": "2026-11-16T07:26:33Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823441068/job/133151590617",
+            "completed_at": "2026-11-16T07:52:21Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823441068/job/133151590519",
+            "completed_at": "2026-11-16T07:38:33Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823441068/job/133151590212",
+            "completed_at": "2026-11-16T07:32:19Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823441050/job/133151588893",
+            "completed_at": "2026-11-16T07:23:11Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823441031/job/133151588607",
+            "completed_at": "2026-11-16T07:25:55Z"
+          }
+        ]
+      },
+      "official_ci_explanation": "### Official coverage follow-up\r\n\r\nThe PyTorch project coverage check reports 88.48% against 88.49% on base `2fc8e25`; the patch coverage check passes. Comparing the [base coverage table](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204766) with the [PR coverage table](https://github.com/geomstats/geomstats/actions/runs/43823441068/job/133151590212), `numerics/bvp.py` improves from 23/24 to 28/28 covered statements. Across unchanged files, coverage changes by -1 in discrete curves, -2 in matrices, +3 in Stiefel, -4 in expectation maximization, -1 in geometric median, and +1 in PCA. Those net -4 covered statements outside the patch produce the small project-level decrease (14241/16093 to 14242/16097); the new boundary-Jacobian code is fully covered.\r\n\r\nThe later [Autograd job](https://github.com/geomstats/geomstats/actions/runs/43823441068/job/133151590617) also fails `TestBetaMetric.test_inner_product_derivative_matrix_vec[2-1e-06]` with the `ArrayBox`/in-place sparse-assignment `ValueError`. The [official unchanged-base job](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622) has the same exception and call chain. The symmetric-reconstruction fix is tracked separately in #2235; no numerical BVP integration is involved in that metric-derivative calculation.\r\n",
+      "official_ci_diagnosis": {
+        "summary": "Autograd has the existing Beta reconstruction ValueError. PyTorch project coverage drops slightly although modified BVP coverage increases from 23/24 to 28/28 statements.",
+        "published_notes_recovered": true,
+        "original_random_inputs_not_recovered": false,
+        "additional_investigation_remaining": false
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2232,
+      "url": "https://github.com/geomstats/geomstats/pull/2232",
+      "title": "Preserve all broadcasted endpoint pairs in numerical BVP solvers",
+      "state": "open",
+      "merged_at": null,
+      "head": "e4d3ce2fb14989d0171261901ef4810f835ae74b",
+      "head_ref": "fix/bvp-endpoint-broadcasting-20261116",
+      "maintainer_can_modify": true,
+      "created_at": "2026-11-16T07:23:43Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133156709185",
+            "completed_at": "2026-11-16T07:36:25Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133156702417",
+            "completed_at": "2026-11-16T07:36:24Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133156696461",
+            "completed_at": "2026-11-16T07:36:23Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133156690000",
+            "completed_at": "2026-11-16T07:36:22Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133156683254",
+            "completed_at": "2026-11-16T07:36:21Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133156677356",
+            "completed_at": "2026-11-16T07:36:20Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823546391/job/133151925515",
+            "completed_at": "2026-11-16T07:28:07Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823546391/job/133151925498",
+            "completed_at": "2026-11-16T07:36:24Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823546391/job/133151925496",
+            "completed_at": "2026-11-16T08:12:26Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823546391/job/133151925451",
+            "completed_at": "2026-11-16T07:30:37Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823546391/job/133151925444",
+            "completed_at": "2026-11-16T07:29:21Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823546391/job/133151925284",
+            "completed_at": "2026-11-16T07:33:35Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823546348/job/133151924099",
+            "completed_at": "2026-11-16T07:27:48Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43823546339/job/133151924053",
+            "completed_at": "2026-11-16T07:24:02Z"
+          }
+        ]
+      },
+      "official_ci_explanation": "### Official CI follow-up\r\n\r\nThe NumPy failure is `TestOpenHemispheresProductMetric.test_parallel_transport_ivp_norm`. A [fixed-input replay](https://github.com/Afloat16/geomstats/actions/runs/43826682548/job/133162070156) using the current official numerical-library versions produces identical norms on exact base `2fc8e25` and this patch, with maximum error 0.000165391; neither execution calls `numerics/geodesic.py`.\r\n\r\nThe PyTorch project coverage check reports 88.47% against 88.49%, while patch coverage passes. The [base](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204766) and [PR](https://github.com/geomstats/geomstats/actions/runs/43823546391/job/133151925498) tables show `numerics/geodesic.py` improving from 308/313 to 316/320 covered statements. Unchanged hyperboloid, matrices, and expectation-maximization code has 1, 2, and 3 fewer covered statements respectively; project coverage changes from 14241/16093 to 14243/16100.\r\n\r\nThe later [Autograd job](https://github.com/geomstats/geomstats/actions/runs/43823546391/job/133151925496) fails `TestBetaMetric.test_inner_product_derivative_matrix_vec[3-1e-06]` with the `ArrayBox`/in-place sparse-assignment `ValueError`. The [official unchanged-base job](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622) has the same exception and call chain. That symmetric-matrix reconstruction defect is addressed separately in #2235; the metric-derivative calculation does not run a numerical BVP solver.\r\n",
+      "official_ci_diagnosis": {
+        "summary": "NumPy hemisphere transport norm failure is reproduced identically on base and patch. Autograd has the existing Beta reconstruction ValueError. PyTorch project coverage drops despite improved geodesic coverage.",
+        "published_notes_recovered": true,
+        "original_random_inputs_not_recovered": false,
+        "additional_investigation_remaining": false
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2233,
+      "url": "https://github.com/geomstats/geomstats/pull/2233",
+      "title": "Preserve scalar objectives for numerical Jacobian modes",
+      "state": "open",
+      "merged_at": null,
+      "head": "9c15306358c54ed8ed29d3ef799b0e1cdd19851d",
+      "head_ref": "fix/scipy-numerical-jacobian-modes-20261116",
+      "maintainer_can_modify": true,
+      "created_at": "2026-11-16T07:37:12Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133161266514",
+            "completed_at": "2026-11-16T07:48:47Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133161260801",
+            "completed_at": "2026-11-16T07:48:46Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133159517070",
+            "completed_at": "2026-11-16T07:44:11Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133159510141",
+            "completed_at": "2026-11-16T07:44:10Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133159497572",
+            "completed_at": "2026-11-16T07:44:08Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133159490130",
+            "completed_at": "2026-11-16T07:44:06Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43825125834/job/133157030626",
+            "completed_at": "2026-11-16T07:43:32Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43825125834/job/133157030593",
+            "completed_at": "2026-11-16T07:48:54Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43825125834/job/133157030560",
+            "completed_at": "2026-11-16T07:49:37Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43825125834/job/133157030556",
+            "completed_at": "2026-11-16T08:20:47Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43825125834/job/133157030526",
+            "completed_at": "2026-11-16T07:42:46Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43825125944/job/133157030470",
+            "completed_at": "2026-11-16T07:37:33Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43825125834/job/133157030362",
+            "completed_at": "2026-11-16T07:43:45Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43825125895/job/133157029861",
+            "completed_at": "2026-11-16T07:40:38Z"
+          }
+        ]
+      },
+      "official_ci_explanation": "### Official coverage follow-up\r\n\r\nThe NumPy project coverage check reports 85.43% against 85.45% on base `2fc8e25`; patch coverage passes. Comparing the [base](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204695) and [PR](https://github.com/geomstats/geomstats/actions/runs/43825125834/job/133157030626) coverage tables, `numerics/optimization/_scipy.py` improves from 79/91 to 83/94 covered statements. Unchanged Stiefel and expectation-maximization code has 3 and 2 fewer covered statements respectively, producing the project-level change from 13406/15689 to 13405/15692. The new regression file is included and the changed executable lines are covered.\r\n\r\n### Later Autograd CI result\r\n\r\nThe later [Autograd job](https://github.com/geomstats/geomstats/actions/runs/43825125834/job/133157030556) fails `tests/tests_geomstats/test_information_geometry/test_beta.py::TestBetaMetric::test_inner_product_derivative_matrix_vec[3-1e-06]`. Its traceback reaches `SymmetricMatrices.matrix_representation` and then `array_from_sparse`, where assigning an Autograd `ArrayBox` raises `ValueError: setting an array element with a sequence`. The [official job on exact base `2fc8e25`](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622) already contains the same exception in this test. The sparse reconstruction path is unchanged here; its separate correction is #2235, whose official Autograd job now passes. This comparison establishes the existing exception path; it does not claim to recover either job's unrecorded random input.\r\n",
+      "official_ci_diagnosis": {
+        "summary": "Autograd has the existing Beta reconstruction ValueError. NumPy project coverage drops due to unchanged modules while changed optimizer coverage improves.",
+        "published_notes_recovered": true,
+        "original_random_inputs_not_recovered": false,
+        "additional_investigation_remaining": false
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2234,
+      "url": "https://github.com/geomstats/geomstats/pull/2234",
+      "title": "Check the final Newton iterate before reporting convergence",
+      "state": "open",
+      "merged_at": null,
+      "head": "412403aaff6e2b2535ff772fb3443454804db65c",
+      "head_ref": "fix/newton-final-iterate-convergence-20261116",
+      "maintainer_can_modify": true,
+      "created_at": "2026-11-16T07:55:59Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133169085134",
+            "completed_at": "2026-11-16T08:08:35Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133169077945",
+            "completed_at": "2026-11-16T08:08:34Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133167066995",
+            "completed_at": "2026-11-16T08:03:37Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133167060423",
+            "completed_at": "2026-11-16T08:03:36Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133167046897",
+            "completed_at": "2026-11-16T08:03:34Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133167039819",
+            "completed_at": "2026-11-16T08:03:33Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43827306520/job/133164082714",
+            "completed_at": "2026-11-16T08:08:23Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43827306520/job/133164082668",
+            "completed_at": "2026-11-16T08:01:00Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43827306520/job/133164082658",
+            "completed_at": "2026-11-16T08:31:36Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43827306520/job/133164082609",
+            "completed_at": "2026-11-16T08:08:34Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43827306520/job/133164082536",
+            "completed_at": "2026-11-16T08:02:57Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43827306481/job/133164082273",
+            "completed_at": "2026-11-16T07:56:21Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43827306521/job/133164082208",
+            "completed_at": "2026-11-16T07:59:37Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43827306520/job/133164082167",
+            "completed_at": "2026-11-16T08:01:24Z"
+          }
+        ]
+      },
+      "official_ci_explanation": "### Official coverage follow-up\r\n\r\nThe NumPy and PyTorch functional test jobs pass, while their project coverage checks report small decreases. Comparing the [base NumPy](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204695) and [PR NumPy](https://github.com/geomstats/geomstats/actions/runs/43827306520/job/133164082536) tables, the modified `_optimization.py` improves from 35/38 to 41/41 covered statements. Coverage in unchanged files changes by +1 in hyperboloid, -3 in Stiefel, -1 in geometric median, -1 in online k-means, +1 in PCA, -1 in trees, and -1 in Wald space; total coverage moves from 13406/15689 (85.4484%) to 13407/15692 (85.4384%).\r\n\r\nThe [base PyTorch](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204766) and [PR PyTorch](https://github.com/geomstats/geomstats/actions/runs/43827306520/job/133164082714) tables likewise show the modified module reaching 41/41. Unchanged hyperboloid, matrices, Stiefel, expectation maximization, geometric median, and online k-means contribute -1, -2, +3, -2, -1, and -1 covered statements respectively; total coverage moves from 14241/16093 to 14243/16096. Both patch coverage checks pass; all new Newton branches are covered.\r\n\r\n### Later Autograd CI result\r\n\r\nThe later [Autograd job](https://github.com/geomstats/geomstats/actions/runs/43827306520/job/133164082658) fails `tests/tests_geomstats/test_information_geometry/test_beta.py::TestBetaMetric::test_inner_product_derivative_matrix_vec[3-1e-06]`. Its traceback reaches `SymmetricMatrices.matrix_representation` and then `array_from_sparse`, where assigning an Autograd `ArrayBox` raises `ValueError: setting an array element with a sequence`. The [official job on exact base `2fc8e25`](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622) already contains the same exception in this test. The sparse reconstruction path is unchanged here; its separate correction is #2235, whose official Autograd job now passes. This comparison establishes the existing exception path; it does not claim to recover either job's unrecorded random input.\r\n",
+      "official_ci_diagnosis": {
+        "summary": "Autograd has the existing Beta reconstruction ValueError. NumPy/PyTorch functional jobs pass; changed Newton module reaches 41/41 statements while project coverage decreases in unchanged modules.",
+        "published_notes_recovered": true,
+        "original_random_inputs_not_recovered": false,
+        "additional_investigation_remaining": false
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2235,
+      "url": "https://github.com/geomstats/geomstats/pull/2235",
+      "title": "Preserve differentiation when reconstructing symmetric matrices",
+      "state": "open",
+      "merged_at": null,
+      "head": "beba696acf5471d55fec4705e072857dd7f39d26",
+      "head_ref": "fix/differentiable-symmetric-reconstruction-20261116",
+      "maintainer_can_modify": true,
+      "created_at": "2026-11-16T07:57:37Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133182296340",
+            "completed_at": "2026-11-16T08:38:44Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133182287173",
+            "completed_at": "2026-11-16T08:38:43Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133182269279",
+            "completed_at": "2026-11-16T08:38:42Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133182260032",
+            "completed_at": "2026-11-16T08:38:40Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133182252278",
+            "completed_at": "2026-11-16T08:38:39Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133182245040",
+            "completed_at": "2026-11-16T08:38:38Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43827501133/job/133164705913",
+            "completed_at": "2026-11-16T08:04:23Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43827501133/job/133164705906",
+            "completed_at": "2026-11-16T08:06:26Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43827501133/job/133164705900",
+            "completed_at": "2026-11-16T08:01:21Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43827501133/job/133164705898",
+            "completed_at": "2026-11-16T08:38:10Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43827501177/job/133164705859",
+            "completed_at": "2026-11-16T08:01:03Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43827501133/job/133164705822",
+            "completed_at": "2026-11-16T08:05:54Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43827501133/job/133164705658",
+            "completed_at": "2026-11-16T08:03:21Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43827501073/job/133164705529",
+            "completed_at": "2026-11-16T07:57:58Z"
+          }
+        ]
+      },
+      "official_ci_explanation": "### Official CI follow-up\r\n\r\nThe NumPy job fails `TestVonMisesFisher.test_sample_mean` and `TestAACRegression.test_fit_and_predict_constant`; the PyTorch job fails `TestUnitNormedRowsPLTMatricesPullbackMetric.test_parallel_transport_ivp_norm`. Each path was compared on exact base `2fc8e25` and this isolated patch with identical recorded inputs and the official NumPy/SciPy versions (PyTorch 2.15.0 on CPU for the transport case).\r\n\r\nThe [von Mises-Fisher replay](https://github.com/Afloat16/geomstats/actions/runs/43830701961/job/133175082281), using 1000 samples and an allowed concentration of 5, has identical maximum mean-direction error 0.02872475 in both versions. The [AAC replay](https://github.com/Afloat16/geomstats/actions/runs/43830701961/job/133175082809) has identical total-space distances 0.71674257, while the corresponding quotient-space distances are zero: the predicted graphs differ only by a vertex permutation. The [parallel-transport replay](https://github.com/Afloat16/geomstats/actions/runs/43830701961/job/133175082936) has identical maximum norm error 980844.7185 on both versions. Profiling confirms that none of these evaluations calls `symmetric_matrices.py`.\r\n\r\nThese fixed-input comparisons establish existing failure modes. The original jobs did not record their random inputs and concentration, so these are not claimed to recover their exact random draws.\r\n",
+      "official_ci_diagnosis": {
+        "summary": "NumPy von Mises-Fisher mean and AAC graph regression and PyTorch transport norm failures have matching base/patch fixed-input failure modes. Original randomized inputs were not recovered. Official Autograd passes after this symmetric-reconstruction fix.",
+        "published_notes_recovered": true,
+        "original_random_inputs_not_recovered": true,
+        "additional_investigation_remaining": false
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2236,
+      "url": "https://github.com/geomstats/geomstats/pull/2236",
+      "title": "Accept differentiable initial points in Torch optimizers",
+      "state": "open",
+      "merged_at": null,
+      "head": "68d8da50704d676acf7d0d520f6438e1fb2d1668",
+      "head_ref": "fix/torch-optimizer-differentiable-initial-state-20261116",
+      "maintainer_can_modify": true,
+      "created_at": "2026-11-16T08:12:33Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133177270406",
+            "completed_at": "2026-11-16T08:27:39Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133177261865",
+            "completed_at": "2026-11-16T08:27:38Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133175214013",
+            "completed_at": "2026-11-16T08:22:57Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133175199777",
+            "completed_at": "2026-11-16T08:22:56Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133175184214",
+            "completed_at": "2026-11-16T08:22:53Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133175174674",
+            "completed_at": "2026-11-16T08:22:51Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829411240/job/133170831786",
+            "completed_at": "2026-11-16T08:18:11Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829411240/job/133170831689",
+            "completed_at": "2026-11-16T08:40:22Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829411240/job/133170831655",
+            "completed_at": "2026-11-16T08:22:00Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829411240/job/133170831638",
+            "completed_at": "2026-11-16T08:27:28Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829411319/job/133170831533",
+            "completed_at": "2026-11-16T08:12:52Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829411240/job/133170831432",
+            "completed_at": "2026-11-16T08:24:00Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829411240/job/133170831423",
+            "completed_at": "2026-11-16T08:16:21Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829411269/job/133170831210",
+            "completed_at": "2026-11-16T08:15:54Z"
+          }
+        ]
+      },
+      "official_ci_explanation": "### Official CI follow-up\r\n\r\nThe later [Autograd job](https://github.com/geomstats/geomstats/actions/runs/43829411240/job/133170831689) fails `tests/tests_geomstats/test_information_geometry/test_beta.py::TestBetaMetric::test_inner_product_derivative_matrix_vec[3-1e-06]`. Its traceback reaches `SymmetricMatrices.matrix_representation` and then `array_from_sparse`, where assigning an Autograd `ArrayBox` raises `ValueError: setting an array element with a sequence`. The [official job on exact base `2fc8e25`](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622) already contains the same exception in this test. The sparse reconstruction path is unchanged here; its separate correction is #2235, whose official Autograd job now passes. This comparison establishes the existing exception path; it does not claim to recover either job's unrecorded random input.\r\n\r\nThe NumPy patch-coverage check reports 0%, while the PyTorch patch-coverage check reports 100%. The changed code is the Torch optimizer implementation in `numerics/optimization/_torch.py`, and the new regressions are correctly restricted to the Torch backend. The NumPy Codecov flag excludes `_backend/pytorch` but does not exclude this separate Torch-only optimizer module. Both changed lines execute in the focused Torch validation and the official Torch job. No coverage settings are changed here.\r\n\r\nThe NumPy functional tests pass. Comparing the [base coverage table](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204695) and [PR coverage table](https://github.com/geomstats/geomstats/actions/runs/43829411240/job/133170831655), total covered statements move from 13406/15689 (85.4484%) to 13404/15689 (85.4357%). The changed Torch-only module has no NumPy execution; the covered-line differences are in unchanged hyperboloid (+1), Stiefel (-3), expectation maximization (-2), Frechet mean (+2), PCA (+1), and trees (-1).\r\n",
+      "official_ci_diagnosis": {
+        "summary": "Autograd has the existing Beta reconstruction ValueError. NumPy patch coverage is 0 for a Torch-only optimizer that is not excluded by that flag; Torch patch coverage is 100. NumPy functional tests pass; project decrease is outside changed code.",
+        "published_notes_recovered": true,
+        "original_random_inputs_not_recovered": false,
+        "additional_investigation_remaining": false
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2237,
+      "url": "https://github.com/geomstats/geomstats/pull/2237",
+      "title": "Convert Hessian-vector callback inputs to the selected backend",
+      "state": "open",
+      "merged_at": null,
+      "head": "f7af36102164dae14a13c359b4437d513437100a",
+      "head_ref": "fix/backend-hessian-vector-callbacks-20261116",
+      "maintainer_can_modify": true,
+      "created_at": "2026-11-16T08:13:38Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133177001983",
+            "completed_at": "2026-11-16T08:27:03Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133176993432",
+            "completed_at": "2026-11-16T08:27:01Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133174501993",
+            "completed_at": "2026-11-16T08:21:17Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133174489646",
+            "completed_at": "2026-11-16T08:21:15Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133174470671",
+            "completed_at": "2026-11-16T08:21:13Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133174458272",
+            "completed_at": "2026-11-16T08:21:11Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829547382/job/133171289144",
+            "completed_at": "2026-11-16T08:47:37Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829547382/job/133171288777",
+            "completed_at": "2026-11-16T08:23:57Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829547382/job/133171288756",
+            "completed_at": "2026-11-16T08:18:36Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829547382/job/133171288735",
+            "completed_at": "2026-11-16T08:20:31Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829547382/job/133171288671",
+            "completed_at": "2026-11-16T08:26:54Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829547461/job/133171288550",
+            "completed_at": "2026-11-16T08:16:38Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829547382/job/133171288350",
+            "completed_at": "2026-11-16T08:18:09Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829547203/job/133171288045",
+            "completed_at": "2026-11-16T08:13:57Z"
+          }
+        ]
+      },
+      "official_ci_explanation": "### Official CI follow-up\r\n\r\nThe later [Autograd job](https://github.com/geomstats/geomstats/actions/runs/43829547382/job/133171289144) fails `tests/tests_geomstats/test_information_geometry/test_beta.py::TestBetaMetric::test_inner_product_derivative_matrix_vec[2-1e-06]`. Its traceback reaches `SymmetricMatrices.matrix_representation` and then `array_from_sparse`, where assigning an Autograd `ArrayBox` raises `ValueError: setting an array element with a sequence`. The [official job on exact base `2fc8e25`](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622) already contains the same exception in this test. The sparse reconstruction path is unchanged here; its separate correction is #2235, whose official Autograd job now passes. This comparison establishes the existing exception path; it does not claim to recover either job's unrecorded random input.\r\n\r\nThe NumPy and PyTorch functional jobs pass, but project coverage drops slightly. The modified `_scipy.py` gains three covered statements on each backend: 79/91 to 82/94 on NumPy, and 86/91 to 89/94 on PyTorch. Comparing the [base NumPy](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204695) and [PR NumPy](https://github.com/geomstats/geomstats/actions/runs/43829547382/job/133171288735) tables, total coverage moves from 13406/15689 (85.4484%) to 13401/15692 (85.4002%); unchanged discrete curves, Stiefel, expectation maximization, trees, and Wald space lose 1, 3, 2, 1, and 1 covered statements respectively. The [base PyTorch](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204766) and [PR PyTorch](https://github.com/geomstats/geomstats/actions/runs/43829547382/job/133171288671) tables move from 14241/16093 (88.4919%) to 14239/16096 (88.4630%); unchanged hyperboloid, matrices, expectation maximization, online k-means, and PCA contribute -1, -2, -2, -1, and +1 covered statements. Patch coverage passes on both backends.\r\n",
+      "official_ci_diagnosis": {
+        "summary": "Autograd has the existing Beta reconstruction ValueError. NumPy/PyTorch functional and patch-coverage checks pass; project coverage decreases in unchanged modules despite improved modified optimizer coverage.",
+        "published_notes_recovered": true,
+        "original_random_inputs_not_recovered": false,
+        "additional_investigation_remaining": false
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2238,
+      "url": "https://github.com/geomstats/geomstats/pull/2238",
+      "title": "Preserve batch axes in pointwise Jacobians and Hessians",
+      "state": "open",
+      "merged_at": null,
+      "head": "411a6a7cdec459db8c72842d824e90cdaa35639d",
+      "head_ref": "fix/pointwise-derivative-batch-axes-20261116",
+      "maintainer_can_modify": true,
+      "created_at": "2026-11-16T08:14:40Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133176979453",
+            "completed_at": "2026-11-16T08:26:59Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133176970134",
+            "completed_at": "2026-11-16T08:26:58Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133175831927",
+            "completed_at": "2026-11-16T08:24:23Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133175823426",
+            "completed_at": "2026-11-16T08:24:22Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133175807511",
+            "completed_at": "2026-11-16T08:24:20Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133175797285",
+            "completed_at": "2026-11-16T08:24:18Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829681639/job/133171736740",
+            "completed_at": "2026-11-16T08:21:27Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829681639/job/133171736631",
+            "completed_at": "2026-11-16T08:39:38Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829681639/job/133171736604",
+            "completed_at": "2026-11-16T08:26:58Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829681639/job/133171736602",
+            "completed_at": "2026-11-16T08:18:38Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829681639/job/133171736530",
+            "completed_at": "2026-11-16T08:26:32Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829681639/job/133171736265",
+            "completed_at": "2026-11-16T08:24:01Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829681645/job/133171736228",
+            "completed_at": "2026-11-16T08:14:59Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43829681636/job/133171736142",
+            "completed_at": "2026-11-16T08:18:02Z"
+          }
+        ]
+      },
+      "official_ci_explanation": "### Official CI follow-up\r\n\r\nThe later [Autograd job](https://github.com/geomstats/geomstats/actions/runs/43829681639/job/133171736631) fails `tests/tests_geomstats/test_information_geometry/test_beta.py::TestBetaMetric::test_inner_product_derivative_matrix_vec[2-1e-06]`. Its traceback reaches `SymmetricMatrices.matrix_representation` and then `array_from_sparse`, where assigning an Autograd `ArrayBox` raises `ValueError: setting an array element with a sequence`. The [official job on exact base `2fc8e25`](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622) already contains the same exception in this test. The sparse reconstruction path is unchanged here; its separate correction is #2235, whose official Autograd job now passes. This comparison establishes the existing exception path; it does not claim to recover either job's unrecorded random input.\r\n\r\nThe PyTorch functional job passes. In the [base coverage table](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204766) and [PR coverage table](https://github.com/geomstats/geomstats/actions/runs/43829681639/job/133171736530), the changed PyTorch autodiff module improves from 99/102 to 107/110 covered statements. Total project coverage moves from 14241/16093 (88.4919%) to 14245/16101 (88.4728%). The remaining differences are in unchanged hyperboloid (-1), matrices (-2), Stiefel (+3), expectation maximization (-4), geometric median (-1), online k-means (-1), PCA (+1), and trees (+1). The PyTorch patch-coverage check passes.\r\n",
+      "official_ci_diagnosis": {
+        "summary": "Autograd has the existing Beta reconstruction ValueError. PyTorch functional and patch checks pass; changed autodiff coverage increases while project coverage decreases in unchanged modules.",
+        "published_notes_recovered": true,
+        "original_random_inputs_not_recovered": false,
+        "additional_investigation_remaining": false
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2239,
+      "url": "https://github.com/geomstats/geomstats/pull/2239",
+      "title": "Compute PyTorch gradients without accumulating caller state",
+      "state": "open",
+      "merged_at": null,
+      "head": "81534adb2b25ccee49550ce7d32ce8aec1b29fba",
+      "head_ref": "fix/torch-value-gradient-caller-state-20261116",
+      "maintainer_can_modify": true,
+      "created_at": "2026-11-16T08:23:48Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133183468233",
+            "completed_at": "2026-11-16T08:41:19Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133183459187",
+            "completed_at": "2026-11-16T08:41:18Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133179966858",
+            "completed_at": "2026-11-16T08:33:37Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133179958560",
+            "completed_at": "2026-11-16T08:33:36Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133179942323",
+            "completed_at": "2026-11-16T08:33:34Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133179933975",
+            "completed_at": "2026-11-16T08:33:33Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43830873467/job/133175637458",
+            "completed_at": "2026-11-16T08:32:47Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43830873467/job/133175637165",
+            "completed_at": "2026-11-16T08:29:02Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43830873467/job/133175637107",
+            "completed_at": "2026-11-16T08:40:16Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43830873467/job/133175637066",
+            "completed_at": "2026-11-16T08:57:54Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43830873467/job/133175637023",
+            "completed_at": "2026-11-16T08:28:40Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43830873467/job/133175636646",
+            "completed_at": "2026-11-16T08:41:06Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43830873318/job/133175636268",
+            "completed_at": "2026-11-16T08:24:09Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43830873237/job/133175636110",
+            "completed_at": "2026-11-16T08:28:36Z"
+          }
+        ]
+      },
+      "official_ci_explanation": "### Official PyTorch coverage follow-up\r\n\r\nThe PyTorch functional job and patch-coverage check pass. Comparing the [base coverage table](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204766) and [PR coverage table](https://github.com/geomstats/geomstats/actions/runs/43830873467/job/133175636646), the changed autodiff module goes from 99/102 to 95/98 covered statements because the new implementation removes four previously covered statements; its three previously uncovered statements remain unchanged. All changed executable lines are covered by the focused regressions. Project coverage moves from 14241/16093 (88.4919%) to 14235/16089 (88.4766%), with covered-line differences in unchanged hypersphere (+1), expectation maximization (-2), geometric median (-1), online k-means (-1), and PCA (+1).\r\n",
+      "official_ci_diagnosis": {
+        "summary": "Autograd has the existing Beta reconstruction ValueError, confirmed in the latest official log. PyTorch functional and patch checks pass; project coverage changes reflect removed covered statements and coverage changes in unchanged modules.",
+        "published_notes_recovered": true,
+        "original_random_inputs_not_recovered": false,
+        "additional_investigation_remaining": false,
+        "latest_log_failures": [
+          {
+            "job_id": 133175637066,
+            "failed_tests": [
+              "FAILED tests/tests_geomstats/test_information_geometry/test_beta.py::TestBetaMetric::test_inner_product_derivative_matrix_vec[3-1e-06] - ValueError: setting an array element with a sequence."
+            ]
+          }
+        ],
+        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622"
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2240,
+      "url": "https://github.com/geomstats/geomstats/pull/2240",
+      "title": "Preserve broadcasted batch shapes in n-fold exponential and logarithm maps",
+      "state": "open",
+      "merged_at": null,
+      "head": "cb1a8ea97cd28efd23e3706cc01b9e3b17eedd8f",
+      "head_ref": "fix/nfold-geodesic-broadcast-shapes-20261116",
+      "maintainer_can_modify": true,
+      "created_at": "2026-11-16T08:36:12Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133189209086",
+            "completed_at": "2026-11-16T08:53:43Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133189199033",
+            "completed_at": "2026-11-16T08:53:42Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133189190893",
+            "completed_at": "2026-11-16T08:53:41Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133189180140",
+            "completed_at": "2026-11-16T08:53:39Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133189170122",
+            "completed_at": "2026-11-16T08:53:38Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133189159958",
+            "completed_at": "2026-11-16T08:53:37Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43832578500/job/133181193871",
+            "completed_at": "2026-11-16T08:43:24Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43832578500/job/133181193813",
+            "completed_at": "2026-11-16T08:40:59Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43832578500/job/133181193677",
+            "completed_at": "2026-11-16T08:40:19Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43832578500/job/133181193648",
+            "completed_at": "2026-11-16T08:46:32Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43832578500/job/133181193641",
+            "completed_at": "2026-11-16T09:08:38Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43832578502/job/133181193412",
+            "completed_at": "2026-11-16T08:39:19Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43832578500/job/133181193269",
+            "completed_at": "2026-11-16T08:53:17Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43832578490/job/133181193220",
+            "completed_at": "2026-11-16T08:36:38Z"
+          }
+        ]
+      },
+      "official_ci_explanation": "### Official CI follow-up\r\n\r\nThe [NumPy job](https://github.com/geomstats/geomstats/actions/runs/43832578500/job/133181193813) fails `TestAACRegression.test_fit_and_predict_constant[3-1e-06]`. A [fixed-input replay](https://github.com/Afloat16/geomstats/actions/runs/43835466155/job/133190863675) using Python 3.13, NumPy 2.5.5, SciPy 1.18.1, and scikit-learn 1.9.1 compares exact base `2fc8e25` with this isolated patch. Both produce identical total-space distances 0.71674257 and quotient-space distances zero: the predicted graphs differ only by a vertex permutation. Neither execution calls `nfold_manifold.py`. This establishes the existing failure mode; the original job did not record its random graph, so the replay does not claim to recover that exact input.\r\n\r\nThe PyTorch functional job and patch-coverage check pass. Comparing the [base coverage table](https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204766) and [PR coverage table](https://github.com/geomstats/geomstats/actions/runs/43832578500/job/133181193269), the modified n-fold module improves from 115/124 to 116/124 covered statements. Total coverage moves from 14241/16093 (88.4919%) to 14236/16093 (88.4608%), with covered-line differences in unchanged discrete curves (-1), matrices (-2), expectation maximization (-2), and geometric median (-1). Both moved executable lines are covered by the focused regressions.\r\n",
+      "official_ci_diagnosis": {
+        "summary": "NumPy AAC constant graph regression has identical base/patch fixed-input results with zero quotient distance but nonzero total-space distance. Autograd has the existing Beta reconstruction ValueError in its latest log. PyTorch functional and patch checks pass; project coverage falls outside the modified module.",
+        "published_notes_recovered": true,
+        "original_random_inputs_not_recovered": true,
+        "additional_investigation_remaining": false,
+        "latest_log_failures": [
+          {
+            "job_id": 133181193641,
+            "failed_tests": [
+              "FAILED tests/tests_geomstats/test_information_geometry/test_beta.py::TestBetaMetric::test_inner_product_derivative_matrix_vec[4-1e-06] - ValueError: setting an array element with a sequence."
+            ]
+          }
+        ],
+        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622"
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2241,
+      "url": "https://github.com/geomstats/geomstats/pull/2241",
+      "title": "Normalize vector and tensor bases without assuming matrix coordinates",
+      "state": "open",
+      "merged_at": null,
+      "head": "4bb57d8e9c621c973f7b62a10fbd335789d59425",
+      "head_ref": "fix/metric-basis-point-and-batch-axes-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T08:51:38Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133193385150",
+            "completed_at": "2026-11-16T09:02:37Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133193376575",
+            "completed_at": "2026-11-16T09:02:35Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133191654266",
+            "completed_at": "2026-11-16T08:58:57Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133191645945",
+            "completed_at": "2026-11-16T08:58:56Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133191627709",
+            "completed_at": "2026-11-16T08:58:54Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133191618595",
+            "completed_at": "2026-11-16T08:58:53Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43834692086/job/133188303561",
+            "completed_at": "2026-11-16T08:54:58Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43834691969/job/133188302959",
+            "completed_at": "2026-11-16T09:25:06Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43834691969/job/133188302666",
+            "completed_at": "2026-11-16T08:57:51Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43834691969/job/133188302513",
+            "completed_at": "2026-11-16T08:56:24Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43834691969/job/133188302446",
+            "completed_at": "2026-11-16T09:04:06Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43834691969/job/133188302426",
+            "completed_at": "2026-11-16T08:58:07Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43834691969/job/133188301996",
+            "completed_at": "2026-11-16T09:02:24Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43834691910/job/133188301900",
+            "completed_at": "2026-11-16T08:52:08Z"
+          }
+        ]
+      },
+      "official_ci_explanation": null,
+      "official_ci_diagnosis": {
+        "summary": "Autograd has the existing Beta reconstruction ValueError. NumPy and PyTorch project-coverage checks fail; a new exact coverage-table comparison for these two checks has not yet been performed.",
+        "published_notes_recovered": false,
+        "original_random_inputs_not_recovered": false,
+        "additional_investigation_remaining": true,
+        "latest_log_failures": [
+          {
+            "job_id": 133188302959,
+            "failed_tests": [
+              "FAILED tests/tests_geomstats/test_information_geometry/test_beta.py::TestBetaMetric::test_inner_product_derivative_matrix_vec[2-1e-06] - ValueError: setting an array element with a sequence."
+            ]
+          }
+        ],
+        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622"
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2242,
+      "url": "https://github.com/geomstats/geomstats/pull/2242",
+      "title": "Stabilize von Mises-Fisher rejection sampling at high concentration",
+      "state": "open",
+      "merged_at": null,
+      "head": "97e2c8f1437c5c78c3192e135d4b89ef6dc565e0",
+      "head_ref": "fix/von-mises-fisher-high-concentration-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T08:52:29Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133191832423",
+            "completed_at": "2026-11-16T08:59:21Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133191824049",
+            "completed_at": "2026-11-16T08:59:20Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133191814980",
+            "completed_at": "2026-11-16T08:59:19Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133191806575",
+            "completed_at": "2026-11-16T08:59:17Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133191797948",
+            "completed_at": "2026-11-16T08:59:16Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133191789033",
+            "completed_at": "2026-11-16T08:59:15Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43834812075/job/133188696917",
+            "completed_at": "2026-11-16T08:58:44Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43834812075/job/133188696475",
+            "completed_at": "2026-11-16T08:57:38Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43834812075/job/133188696248",
+            "completed_at": "2026-11-16T09:08:33Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43834812075/job/133188696219",
+            "completed_at": "2026-11-16T09:21:59Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43834812075/job/133188696201",
+            "completed_at": "2026-11-16T09:00:20Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43834812075/job/133188695757",
+            "completed_at": "2026-11-16T09:01:24Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43834812020/job/133188694618",
+            "completed_at": "2026-11-16T08:52:54Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43834812034/job/133188694434",
+            "completed_at": "2026-11-16T08:55:40Z"
+          }
+        ]
+      },
+      "official_ci_explanation": null,
+      "official_ci_diagnosis": {
+        "summary": "Autograd has the existing Beta reconstruction ValueError. PyTorch discrete-curve DynamicProgrammingAligner same-fiber assertion has maximum coordinate error about 0.11848 against atol 0.1. That particular randomized failure has not been replayed on exact base and patch. NumPy project-coverage check also fails.",
+        "published_notes_recovered": false,
+        "original_random_inputs_not_recovered": true,
+        "additional_investigation_remaining": true,
+        "latest_log_failures": [
+          {
+            "job_id": 133188696219,
+            "failed_tests": [
+              "FAILED tests/tests_geomstats/test_information_geometry/test_beta.py::TestBetaMetric::test_inner_product_derivative_matrix_vec[4-1e-06] - ValueError: setting an array element with a sequence."
+            ]
+          },
+          {
+            "job_id": 133188695757,
+            "failed_tests": [
+              "FAILED tests/tests_geomstats/test_geometry/test_discrete_curves.py::TestReparametrizationAligner::test_align_in_same_fiber[<class 'geomstats.geometry.discrete_curves.DynamicProgrammingAligner'>-4-1-0.1] - AssertionError: "
+            ]
+          }
+        ],
+        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622"
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2243,
+      "url": "https://github.com/geomstats/geomstats/pull/2243",
+      "title": "Broadcast input batches before evaluating pointwise gradients",
+      "state": "open",
+      "merged_at": null,
+      "head": "0e37b88062c9e9498c7ccd3efdb4ceaa79a0096a",
+      "head_ref": "fix/value-and-grad-input-broadcasting-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T09:02:10Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133197920578",
+            "completed_at": "2026-11-16T09:11:53Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133197910099",
+            "completed_at": "2026-11-16T09:11:52Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133197255179",
+            "completed_at": "2026-11-16T09:10:33Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133197236547",
+            "completed_at": "2026-11-16T09:10:31Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133197216962",
+            "completed_at": "2026-11-16T09:10:28Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/runs/133197208005",
+            "completed_at": "2026-11-16T09:10:27Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43836177386/job/133193247722",
+            "completed_at": "2026-11-16T09:02:32Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43836177531/job/133193247287",
+            "completed_at": "2026-11-16T09:17:05Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43836177531/job/133193247189",
+            "completed_at": "2026-11-16T09:10:59Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43836177531/job/133193247188",
+            "completed_at": "2026-11-16T09:07:13Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43836177531/job/133193247141",
+            "completed_at": "2026-11-16T09:08:55Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43836177531/job/133193247134",
+            "completed_at": "2026-11-16T09:10:12Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43836177531/job/133193246930",
+            "completed_at": "2026-11-16T09:50:01Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43836177375/job/133193246018",
+            "completed_at": "2026-11-16T09:05:59Z"
+          }
+        ]
+      },
+      "official_ci_explanation": null,
+      "official_ci_diagnosis": {
+        "summary": "Autograd has the existing Beta reconstruction ValueError. NumPy and PyTorch project-coverage checks fail; a new exact coverage-table comparison for these two checks has not yet been performed.",
+        "published_notes_recovered": false,
+        "original_random_inputs_not_recovered": false,
+        "additional_investigation_remaining": true,
+        "latest_log_failures": [
+          {
+            "job_id": 133193246930,
+            "failed_tests": [
+              "FAILED tests/tests_geomstats/test_information_geometry/test_beta.py::TestBetaMetric::test_inner_product_derivative_matrix_vec[4-1e-06] - ValueError: setting an array element with a sequence."
+            ]
+          }
+        ],
+        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622"
+      }
+    },
+    {
+      "repo": "geomstats/geomstats",
+      "number": 2244,
+      "url": "https://github.com/geomstats/geomstats/pull/2244",
+      "title": "Return the initial state when an IVP is evaluated only at time zero",
+      "state": "open",
+      "merged_at": null,
+      "head": "bc4d7d953aa37836b26a06f2aef16bbe1474f7b6",
+      "head_ref": "fix/ivp-initial-time-evaluation-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T09:03:38Z",
+      "official_checks": {
+        "total": 14,
+        "checks": [
+          {
+            "name": "codecov/patch/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133200041811",
+            "completed_at": "2026-11-16T09:16:12Z"
+          },
+          {
+            "name": "codecov/patch/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133200032524",
+            "completed_at": "2026-11-16T09:16:11Z"
+          },
+          {
+            "name": "codecov/patch/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133200023335",
+            "completed_at": "2026-11-16T09:16:10Z"
+          },
+          {
+            "name": "codecov/project/pytorch",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133200014893",
+            "completed_at": "2026-11-16T09:16:09Z"
+          },
+          {
+            "name": "codecov/project/autograd",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133200006565",
+            "completed_at": "2026-11-16T09:16:08Z"
+          },
+          {
+            "name": "codecov/project/numpy",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/runs/133199997392",
+            "completed_at": "2026-11-16T09:16:07Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43836389278/job/133193952209",
+            "completed_at": "2026-11-16T09:39:58Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43836389278/job/133193952059",
+            "completed_at": "2026-11-16T09:13:18Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43836389278/job/133193951924",
+            "completed_at": "2026-11-16T09:12:20Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, autograd, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43836389278/job/133193951881",
+            "completed_at": "2026-11-16T09:16:22Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, pytorch, tests/tests_scripts)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43836389278/job/133193951869",
+            "completed_at": "2026-11-16T09:08:09Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43836389430/job/133193951732",
+            "completed_at": "2026-11-16T09:06:55Z"
+          },
+          {
+            "name": "lint (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43836389302/job/133193951562",
+            "completed_at": "2026-11-16T09:04:01Z"
+          },
+          {
+            "name": "build (ubuntu-latest, 3.13, numpy, tests/tests_geomstats/)",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/geomstats/geomstats/actions/runs/43836389278/job/133193951433",
+            "completed_at": "2026-11-16T09:15:21Z"
+          }
+        ]
+      },
+      "official_ci_explanation": null,
+      "official_ci_diagnosis": {
+        "summary": "Autograd has the existing Beta reconstruction ValueError. PyTorch positive-lower-triangular transport tangency and AAC constant graph regression fail; these particular randomized inputs have not been replayed on exact base and patch. Prior AAC evidence establishes a failure mode, not these exact draws.",
+        "published_notes_recovered": false,
+        "original_random_inputs_not_recovered": true,
+        "additional_investigation_remaining": true,
+        "latest_log_failures": [
+          {
+            "job_id": 133193952209,
+            "failed_tests": [
+              "FAILED tests/tests_geomstats/test_information_geometry/test_beta.py::TestBetaMetric::test_inner_product_derivative_matrix_vec[3-1e-06] - ValueError: setting an array element with a sequence."
+            ]
+          },
+          {
+            "job_id": 133193952059,
+            "failed_tests": [
+              "FAILED tests/tests_geomstats/test_geometry/test_positive_lower_triangular_matrices.py::TestUnitNormedRowsPLTMatricesPullbackMetric::test_parallel_transport_ivp_transported_is_tangent[4-1e-06] - AssertionError: None",
+              "FAILED tests/tests_geomstats/test_learning/test_aac.py::TestAACRegression::test_fit_and_predict_constant[2-1e-06] - AssertionError: "
+            ]
+          }
+        ],
+        "same_beta_failure_base_evidence": "https://github.com/geomstats/geomstats/actions/runs/42744796656/job/129594204622"
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 793,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/793",
+      "title": "Keep manifold ranking values and gradients finite",
+      "state": "open",
+      "merged_at": null,
+      "head": "f671e8fc1869ced29c146d92efc9c288371e8b9f",
+      "head_ref": "fix/manifold-ranking-log-domain-20261116",
+      "maintainer_can_modify": true,
+      "created_at": "2026-11-16T08:30:25Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43831774920/job/133178814561",
+            "completed_at": "2026-11-16T08:34:34Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43831774920/job/133178814188",
+            "completed_at": "2026-11-16T08:35:54Z"
+          },
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43831774920/job/133178814181",
+            "completed_at": "2026-11-16T08:35:32Z"
+          },
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43831774920/job/133178814169",
+            "completed_at": "2026-11-16T08:35:56Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43831774920/job/133178814098",
+            "completed_at": "2026-11-16T08:37:20Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43831774920/job/133178814036",
+            "completed_at": "2026-11-16T08:36:10Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43831774920/job/133178565242",
+            "completed_at": "2026-11-16T08:31:03Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 794,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/794",
+      "title": "Preserve ArcFace gradients through linear target-logit branches",
+      "state": "open",
+      "merged_at": null,
+      "head": "f6d934b91a282c14534b2ee07d0b66028dc3c954",
+      "head_ref": "fix/arcface-linear-target-gradients-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T10:06:23Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43845818365/job/133225812484",
+            "completed_at": "2026-11-16T10:10:19Z"
+          },
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43845818365/job/133225812462",
+            "completed_at": "2026-11-16T10:10:21Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43845818365/job/133225812413",
+            "completed_at": "2026-11-16T10:11:45Z"
+          },
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43845818365/job/133225812400",
+            "completed_at": "2026-11-16T10:21:05Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43845818365/job/133225812386",
+            "completed_at": "2026-11-16T10:13:09Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43845818365/job/133225812325",
+            "completed_at": "2026-11-16T10:14:22Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43845818365/job/133225592201",
+            "completed_at": "2026-11-16T10:06:56Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 795,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/795",
+      "title": "Preserve spherical regularization before applying its loss weight",
+      "state": "open",
+      "merged_at": null,
+      "head": "a1d3d845516494cb93a37880a0120ce7590c0f7c",
+      "head_ref": "fix/spherical-regularizer-weighted-precision-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T10:15:06Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43847151659/job/133230362431",
+            "completed_at": "2026-11-16T10:20:23Z"
+          },
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43847151659/job/133230362418",
+            "completed_at": "2026-11-16T10:19:41Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43847151659/job/133230362415",
+            "completed_at": "2026-11-16T10:19:58Z"
+          },
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43847151659/job/133230362354",
+            "completed_at": "2026-11-16T10:20:35Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43847151659/job/133230362327",
+            "completed_at": "2026-11-16T10:21:06Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43847151659/job/133230362326",
+            "completed_at": "2026-11-16T10:20:05Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43847151659/job/133230078168",
+            "completed_at": "2026-11-16T10:15:45Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 796,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/796",
+      "title": "Preserve weighted triplet sampling across finite weight scales",
+      "state": "open",
+      "merged_at": null,
+      "head": "e194c2ec2f8308609729ae05872c3bd355aeda04",
+      "head_ref": "fix/weighted-triplet-sampling-scale-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T10:22:12Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43848221345/job/133234030279",
+            "completed_at": "2026-11-16T10:26:52Z"
+          },
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43848221345/job/133234030258",
+            "completed_at": "2026-11-16T10:26:22Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43848221345/job/133234030256",
+            "completed_at": "2026-11-16T10:27:49Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43848221345/job/133234030230",
+            "completed_at": "2026-11-16T10:27:21Z"
+          },
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43848221345/job/133234030116",
+            "completed_at": "2026-11-16T10:26:15Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43848221345/job/133234030048",
+            "completed_at": "2026-11-16T10:29:39Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43848221345/job/133233746862",
+            "completed_at": "2026-11-16T10:22:51Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 797,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/797",
+      "title": "Preserve caller-owned matrix precision in MultiSupConLoss",
+      "state": "open",
+      "merged_at": null,
+      "head": "ffc1df4a394f673267c13f24e59e9b2824cfee96",
+      "head_ref": "fix/multisupcon-caller-matrix-precision-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T10:28:10Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43849129146/job/133237016452",
+            "completed_at": "2026-11-16T10:34:04Z"
+          },
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43849129146/job/133237016375",
+            "completed_at": "2026-11-16T10:32:31Z"
+          },
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43849129146/job/133237016325",
+            "completed_at": "2026-11-16T10:32:08Z"
+          },
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43849129146/job/133237016301",
+            "completed_at": "2026-11-16T10:32:04Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43849129146/job/133237016290",
+            "completed_at": "2026-11-16T10:32:45Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43849129146/job/133237016279",
+            "completed_at": "2026-11-16T10:33:53Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43849129146/job/133236826398",
+            "completed_at": "2026-11-16T10:28:39Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 798,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/798",
+      "title": "Keep finite boundary scores inside batch miner candidate sets",
+      "state": "open",
+      "merged_at": null,
+      "head": "1cfc27836f0fc5dcea8068a0b7ef69691dca8f58",
+      "head_ref": "fix/batch-miner-finite-boundaries-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T10:29:33Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43849334039/job/133237761905",
+            "completed_at": "2026-11-16T10:34:28Z"
+          },
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43849334039/job/133237761831",
+            "completed_at": "2026-11-16T10:33:36Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43849334039/job/133237761772",
+            "completed_at": "2026-11-16T10:33:42Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43849334039/job/133237761764",
+            "completed_at": "2026-11-16T10:37:16Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43849334039/job/133237761653",
+            "completed_at": "2026-11-16T10:37:32Z"
+          },
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43849334039/job/133237761608",
+            "completed_at": "2026-11-16T10:34:39Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43849334039/job/133237546968",
+            "completed_at": "2026-11-16T10:30:06Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 799,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/799",
+      "title": "Preserve NCA objectives and gradients across large score offsets",
+      "state": "open",
+      "merged_at": null,
+      "head": "a98dde1eb698ed8a108aeeeb011403662ca3000f",
+      "head_ref": "fix/nca-row-score-offsets-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T10:40:59Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43851047746/job/133243598291",
+            "completed_at": "2026-11-16T10:46:25Z"
+          },
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43851047746/job/133243598280",
+            "completed_at": "2026-11-16T10:55:25Z"
+          },
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43851047746/job/133243598252",
+            "completed_at": "2026-11-16T10:44:56Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43851047746/job/133243598232",
+            "completed_at": "2026-11-16T10:46:28Z"
+          },
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43851047746/job/133243598193",
+            "completed_at": "2026-11-16T10:45:29Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43851047746/job/133243598127",
+            "completed_at": "2026-11-16T10:49:00Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43851047746/job/133243362081",
+            "completed_at": "2026-11-16T10:41:33Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 800,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/800",
+      "title": "Stabilize RankedList weighting before temperature scaling",
+      "state": "open",
+      "merged_at": null,
+      "head": "ef5008f09b921e53e07d833eb956d1efe04f20d6",
+      "head_ref": "fix/ranked-list-temperature-stability-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T10:41:37Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43851134728/job/133244045638",
+            "completed_at": "2026-11-16T10:51:31Z"
+          },
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43851134728/job/133244045477",
+            "completed_at": "2026-11-16T10:46:25Z"
+          },
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43851134728/job/133244045391",
+            "completed_at": "2026-11-16T10:47:17Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43851134728/job/133244045390",
+            "completed_at": "2026-11-16T10:47:35Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43851134728/job/133244045383",
+            "completed_at": "2026-11-16T10:49:44Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43851134728/job/133244045325",
+            "completed_at": "2026-11-16T10:46:25Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43851134728/job/133243665378",
+            "completed_at": "2026-11-16T10:42:28Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 801,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/801",
+      "title": "Preserve PNP ranking penalties and gradients near zero",
+      "state": "open",
+      "merged_at": null,
+      "head": "adf3328949f798f6aa2786172feea6c91f27ec9d",
+      "head_ref": "fix/pnp-small-ranking-penalties-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T11:00:24Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43853877351/job/133253235379",
+            "completed_at": "2026-11-16T11:04:14Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43853877351/job/133253235361",
+            "completed_at": "2026-11-16T11:06:26Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43853877351/job/133253235321",
+            "completed_at": "2026-11-16T11:05:58Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43853877351/job/133253235251",
+            "completed_at": "2026-11-16T11:06:11Z"
+          },
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43853877351/job/133253235240",
+            "completed_at": "2026-11-16T11:05:13Z"
+          },
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43853877351/job/133253235169",
+            "completed_at": "2026-11-16T11:04:16Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43853877351/job/133253063151",
+            "completed_at": "2026-11-16T11:00:50Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 802,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/802",
+      "title": "Handle empty query sets throughout retrieval evaluation",
+      "state": "open",
+      "merged_at": null,
+      "head": "5d53b880daeaaa81abb340157824f6b75f55342b",
+      "head_ref": "fix/empty-retrieval-query-evaluation-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T11:00:50Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43853947577/job/133253582882",
+            "completed_at": "2026-11-16T11:05:20Z"
+          },
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43853947577/job/133253582799",
+            "completed_at": "2026-11-16T11:05:26Z"
+          },
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43853947577/job/133253582778",
+            "completed_at": "2026-11-16T11:04:59Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43853947577/job/133253582713",
+            "completed_at": "2026-11-16T11:07:10Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43853947577/job/133253582684",
+            "completed_at": "2026-11-16T11:05:04Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43853947577/job/133253582640",
+            "completed_at": "2026-11-16T11:06:58Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43853947577/job/133253293858",
+            "completed_at": "2026-11-16T11:01:29Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 803,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/803",
+      "title": "Stabilize SoftTriple center weighting at small temperatures",
+      "state": "open",
+      "merged_at": null,
+      "head": "151b0a60faff118b140da957dd68656057db35b1",
+      "head_ref": "fix/soft-triple-center-temperature-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T11:15:14Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856122281/job/133260861298",
+            "completed_at": "2026-11-16T11:20:26Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856122281/job/133260861231",
+            "completed_at": "2026-11-16T11:18:55Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856122281/job/133260861200",
+            "completed_at": "2026-11-16T11:22:44Z"
+          },
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856122281/job/133260861198",
+            "completed_at": "2026-11-16T11:19:30Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856122281/job/133260861181",
+            "completed_at": "2026-11-16T11:21:27Z"
+          },
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856122281/job/133260861157",
+            "completed_at": "2026-11-16T11:21:19Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856122281/job/133260701143",
+            "completed_at": "2026-11-16T11:15:40Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 804,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/804",
+      "title": "Preserve NormalizedSoftmax logits through temperature scaling",
+      "state": "open",
+      "merged_at": null,
+      "head": "820abe0006980a75d792add579c2bf4b5532dee4",
+      "head_ref": "fix/normalized-softmax-temperature-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T11:15:47Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856203017/job/133261248424",
+            "completed_at": "2026-11-16T11:21:34Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856203017/job/133261248386",
+            "completed_at": "2026-11-16T11:23:39Z"
+          },
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856203017/job/133261248347",
+            "completed_at": "2026-11-16T11:21:10Z"
+          },
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856203017/job/133261248331",
+            "completed_at": "2026-11-16T11:21:09Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856203017/job/133261248311",
+            "completed_at": "2026-11-16T11:22:12Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856203017/job/133261248252",
+            "completed_at": "2026-11-16T11:19:49Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856203017/job/133260977112",
+            "completed_at": "2026-11-16T11:16:25Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 805,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/805",
+      "title": "Keep DynamicArcFace class margins finite across count and power ranges",
+      "state": "open",
+      "merged_at": null,
+      "head": "a827cec58fb1b87b8fba967adf25d02ac13e4a2b",
+      "head_ref": "fix/dynamic-arcface-margin-range-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T11:16:13Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856264384/job/133261398910",
+            "completed_at": "2026-11-16T11:20:19Z"
+          },
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856264384/job/133261398859",
+            "completed_at": "2026-11-16T11:20:36Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856264384/job/133261398840",
+            "completed_at": "2026-11-16T11:21:31Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856264384/job/133261398737",
+            "completed_at": "2026-11-16T11:24:07Z"
+          },
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856264384/job/133261398713",
+            "completed_at": "2026-11-16T11:21:09Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856264384/job/133261398678",
+            "completed_at": "2026-11-16T11:22:07Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856264384/job/133261187144",
+            "completed_at": "2026-11-16T11:16:42Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 806,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/806",
+      "title": "Keep distance-weighted mining density finite for low-precision inputs",
+      "state": "open",
+      "merged_at": null,
+      "head": "649f423312aaee5d2c07d2f9662cfdbd3462546c",
+      "head_ref": "fix/distance-weighted-density-precision-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T11:16:38Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856325897/job/133261692200",
+            "completed_at": "2026-11-16T11:23:49Z"
+          },
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856325897/job/133261692189",
+            "completed_at": "2026-11-16T11:22:56Z"
+          },
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856325897/job/133261692119",
+            "completed_at": "2026-11-16T11:24:18Z"
+          },
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856325897/job/133261692083",
+            "completed_at": "2026-11-16T11:20:49Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856325897/job/133261692075",
+            "completed_at": "2026-11-16T11:26:12Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856325897/job/133261692040",
+            "completed_at": "2026-11-16T11:21:58Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856325897/job/133261402835",
+            "completed_at": "2026-11-16T11:17:17Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 807,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/807",
+      "title": "Preserve decoupled contrastive objectives across large score offsets",
+      "state": "open",
+      "merged_at": null,
+      "head": "0fe3a3e59cbd506165c3f03fac30d0930ebf9292",
+      "head_ref": "fix/decoupled-score-offsets-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T11:23:23Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857323111/job/133264986148",
+            "completed_at": "2026-11-16T11:28:13Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857323111/job/133264986102",
+            "completed_at": "2026-11-16T11:29:24Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857323111/job/133264985986",
+            "completed_at": "2026-11-16T11:27:15Z"
+          },
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857323111/job/133264985974",
+            "completed_at": "2026-11-16T11:28:32Z"
+          },
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857323111/job/133264985973",
+            "completed_at": "2026-11-16T11:27:15Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857323111/job/133264985963",
+            "completed_at": "2026-11-16T11:31:06Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857323111/job/133264818978",
+            "completed_at": "2026-11-16T11:23:48Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 808,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/808",
+      "title": "Preserve intra-pair variance penalties and gradients before reduction",
+      "state": "open",
+      "merged_at": null,
+      "head": "9bfa9156fd728550ae8ec67573cc52665d1253cf",
+      "head_ref": "fix/intra-pair-variance-precision-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T11:23:55Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857404692/job/133265283045",
+            "completed_at": "2026-11-16T11:30:00Z"
+          },
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857404692/job/133265282445",
+            "completed_at": "2026-11-16T11:27:26Z"
+          },
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857404692/job/133265282410",
+            "completed_at": "2026-11-16T11:29:25Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857404692/job/133265282397",
+            "completed_at": "2026-11-16T11:27:53Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857404692/job/133265282320",
+            "completed_at": "2026-11-16T11:29:49Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857404692/job/133265282299",
+            "completed_at": "2026-11-16T11:29:40Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857404692/job/133265099762",
+            "completed_at": "2026-11-16T11:24:24Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 809,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/809",
+      "title": "Preserve NDCG ratios across finite gain scales",
+      "state": "open",
+      "merged_at": null,
+      "head": "95175fafee503eb5fa0a5c24ff52a240608ae57a",
+      "head_ref": "fix/ndcg-gain-range-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T11:44:09Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860359630/job/133275464308",
+            "completed_at": "2026-11-16T11:49:17Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860359630/job/133275464255",
+            "completed_at": "2026-11-16T11:48:14Z"
+          },
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860359630/job/133275464253",
+            "completed_at": "2026-11-16T11:49:18Z"
+          },
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860359630/job/133275464243",
+            "completed_at": "2026-11-16T11:50:23Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860359630/job/133275464200",
+            "completed_at": "2026-11-16T11:50:07Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860359630/job/133275464191",
+            "completed_at": "2026-11-16T11:51:54Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860359630/job/133275259790",
+            "completed_at": "2026-11-16T11:44:40Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 810,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/810",
+      "title": "Preserve P2SGrad learning signals close to class centers",
+      "state": "open",
+      "merged_at": null,
+      "head": "f5ca9fdc9040c9221e834e3b2d163d45927d1cad",
+      "head_ref": "fix/p2s-center-precision-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T11:46:02Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860640126/job/133276490457",
+            "completed_at": "2026-11-16T11:49:51Z"
+          },
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860640126/job/133276490341",
+            "completed_at": "2026-11-16T11:50:15Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860640126/job/133276490339",
+            "completed_at": "2026-11-16T11:52:41Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860640126/job/133276490316",
+            "completed_at": "2026-11-16T11:52:12Z"
+          },
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860640126/job/133276490306",
+            "completed_at": "2026-11-16T12:02:07Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860640126/job/133276490282",
+            "completed_at": "2026-11-16T11:50:48Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860640126/job/133276219380",
+            "completed_at": "2026-11-16T11:46:42Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 811,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/811",
+      "title": "Keep CircleLoss adaptive-weight arithmetic finite before reduction",
+      "state": "open",
+      "merged_at": null,
+      "head": "e0a0f819ede53a0d045287b4763520e38b8eb539",
+      "head_ref": "fix/circle-weight-precision-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T11:46:34Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860714237/job/133276678952",
+            "completed_at": "2026-11-16T11:50:42Z"
+          },
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860714237/job/133276678887",
+            "completed_at": "2026-11-16T11:50:34Z"
+          },
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860714237/job/133276678862",
+            "completed_at": "2026-11-16T11:50:53Z"
+          },
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860714237/job/133276678849",
+            "completed_at": "2026-11-16T11:56:18Z"
+          },
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860714237/job/133276678842",
+            "completed_at": "2026-11-16T11:54:18Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860714237/job/133276678839",
+            "completed_at": "2026-11-16T11:52:20Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860714237/job/133276481316",
+            "completed_at": "2026-11-16T11:47:04Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "KevinMusgrave/pytorch-metric-learning",
+      "number": 812,
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/812",
+      "title": "Preserve normalized directions and gradients for large finite embeddings",
+      "state": "open",
+      "merged_at": null,
+      "head": "47bf7b47ca83ee00aef30eb39dea669e0bf1115c",
+      "head_ref": "fix/large-vector-normalization-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T11:48:36Z",
+      "official_checks": {
+        "total": 7,
+        "checks": [
+          {
+            "name": "CPU suite on windows-2025",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860998165/job/133277657548",
+            "completed_at": "2026-11-16T11:57:04Z"
+          },
+          {
+            "name": "CPU suite on macos-15",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860998165/job/133277657480",
+            "completed_at": "2026-11-16T12:06:45Z"
+          },
+          {
+            "name": "CPU suite on Python 3.14",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860998165/job/133277657430",
+            "completed_at": "2026-11-16T11:52:58Z"
+          },
+          {
+            "name": "CPU suite on Python 3.13",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860998165/job/133277657406",
+            "completed_at": "2026-11-16T11:52:15Z"
+          },
+          {
+            "name": "verify",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860998165/job/133277657359",
+            "completed_at": "2026-11-16T11:56:24Z"
+          },
+          {
+            "name": "CPU suite on Python 3.12",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860998165/job/133277657331",
+            "completed_at": "2026-11-16T11:52:40Z"
+          },
+          {
+            "name": "Select verification scope",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43860998165/job/133277470710",
+            "completed_at": "2026-11-16T11:49:05Z"
+          }
+        ]
+      }
+    },
+    {
+      "repo": "rasbt/mlxtend",
+      "number": 1306,
+      "url": "https://github.com/rasbt/mlxtend/pull/1306",
+      "title": "Preserve basis vectors across finite column scales",
+      "state": "open",
+      "merged_at": null,
+      "head": "9cd05e45234e7e904c507b81c9309c0496ec1adb",
+      "head_ref": "fix/orthonormal-range-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T12:24:26Z",
+      "official_checks": {
+        "total": 3,
+        "checks": [
+          {
+            "name": "build-linux-latest-sklearn",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/rasbt/mlxtend/actions/runs/43866296957/job/133295599061",
+            "completed_at": "2026-11-16T12:27:30Z"
+          },
+          {
+            "name": "formatting",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/rasbt/mlxtend/actions/runs/43866296972/job/133295598997",
+            "completed_at": "2026-11-16T12:26:36Z"
+          },
+          {
+            "name": "build-linux",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/rasbt/mlxtend/actions/runs/43866296957/job/133295598600",
+            "completed_at": "2026-11-16T12:26:57Z"
+          }
+        ]
+      },
+      "official_ci_diagnosis": {
+        "summary": "Both functional test jobs pass. The official linter fails during locked SciPy 1.16.3 installation on Python 3.15.2 because OpenBLAS is unavailable; no style check is reached. The unchanged base reproduces the same installation failure. Frozen Python 3.11 formatting, changed-file lint, full suite and package checks pass.",
+        "exact_base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "notes_published": false
+      }
+    },
+    {
+      "repo": "rasbt/mlxtend",
+      "number": 1307,
+      "url": "https://github.com/rasbt/mlxtend/pull/1307",
+      "title": "Fit QR linear regression on underdetermined and rank-deficient designs",
+      "state": "open",
+      "merged_at": null,
+      "head": "b4baa76d7f4c95e2999770c224bcdbde49005269",
+      "head_ref": "fix/qr-rank-deficient-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T12:25:09Z",
+      "official_checks": {
+        "total": 3,
+        "checks": [
+          {
+            "name": "formatting",
+            "status": "completed",
+            "conclusion": "failure",
+            "url": "https://github.com/rasbt/mlxtend/actions/runs/43866404551/job/133295962706",
+            "completed_at": "2026-11-16T12:27:16Z"
+          },
+          {
+            "name": "build-linux",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/rasbt/mlxtend/actions/runs/43866404461/job/133295962219",
+            "completed_at": "2026-11-16T12:29:08Z"
+          },
+          {
+            "name": "build-linux-latest-sklearn",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/rasbt/mlxtend/actions/runs/43866404461/job/133295961971",
+            "completed_at": "2026-11-16T12:27:50Z"
+          }
+        ]
+      },
+      "official_ci_diagnosis": {
+        "summary": "Both functional test jobs pass. The official linter fails during locked SciPy 1.16.3 installation on Python 3.15.2 because OpenBLAS is unavailable; no style check is reached. The unchanged base reproduces the same installation failure. Frozen Python 3.11 formatting, changed-file lint, full suite and package checks pass.",
+        "exact_base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "notes_published": false
+      }
+    }
+  ],
+  "remote_checkpoints": {
+    "pml": {
+      "repo": "Afloat16/geoopt",
+      "ref": "audit/pml-final-submissions-20261116",
+      "head": "0a8f63093edec8f885d34e8146f744684be51a54",
+      "path": ".validation/pml-final-submissions.json"
+    },
+    "mlxtend": {
+      "repo": "Afloat16/geoopt",
+      "branch": "audit/mlxtend-history-20261116",
+      "head": "383358d38f4151998a6888148bbb810f815dc4d5",
+      "tree": "cb5de87f67d389112d036cd2286992f8767ae334",
+      "path": ".validation/mlxtend-submissions.json"
+    }
+  },
+  "ci_diagnosis_updated_at": "2026-11-16T12:48:24.344Z"
+}
