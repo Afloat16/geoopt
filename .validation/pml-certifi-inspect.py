@@ -35,4 +35,4 @@ for scope in ("src", "tests", "scripts", "benchmarks", "docs/recipes"):
         if imports:
             repo_hits[str(path.relative_to(root))] = imports
 config = (root / "mkdocs.yml").read_text()
-print(json.dumps({"material_version": material["version"], "wheel_url": wheel["url"], "wheel_hash_verified": True, "wheel_https_clients": wheel_hits, "repository_client_imports": repo_hits, "config": config, "material_theme_defaults": archive.read("material/mkdocs_theme.yml").decode()}, indent=2))
+print(json.dumps({"material_version": material["version"], "wheel_url": wheel["url"], "wheel_hash_verified": True, "wheel_https_clients": wheel_hits, "repository_client_imports": repo_hits, "config": config, "material_theme_defaults": {name: archive.read(name).decode() for name in archive.namelist() if name.endswith("mkdocs_theme.yml")}}, indent=2))
