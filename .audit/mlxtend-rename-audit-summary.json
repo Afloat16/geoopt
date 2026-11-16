@@ -1,0 +1,411 @@
+{
+  "rename_records": 910,
+  "historical_python_paths": 497,
+  "path_ancestry": {
+    "mlxtend/math/linalg.py": [],
+    "mlxtend/regressor/linear_regression.py": [
+      "mlxtend/regression/linear_regression.py"
+    ],
+    "mlxtend/frequent_patterns/apriori.py": [
+      "mlxtend/association/apriori.py"
+    ],
+    "mlxtend/preprocessing/scaling.py": [],
+    "mlxtend/feature_extraction/linear_discriminant_analysis.py": [],
+    "mlxtend/evaluate/bias_variance_decomp.py": [],
+    "mlxtend/frequent_patterns/fpmax.py": [],
+    "mlxtend/data/local_mnist.py": [],
+    "mlxtend/evaluate/ttest.py": [],
+    "mlxtend/evaluate/f_test.py": [],
+    "mlxtend/plotting/plot_confusion_matrix.py": [
+      "mlxtend/evaluate/plot_confusion_matrix.py"
+    ],
+    "mlxtend/evaluate/bootstrap.py": [],
+    "mlxtend/frequent_patterns/hmine.py": [],
+    "mlxtend/frequent_patterns/fpcommon.py": [],
+    "mlxtend/frequent_patterns/fpgrowth.py": [],
+    "mlxtend/frequent_patterns/association_rules.py": [
+      "mlxtend/association/association_rules.py"
+    ],
+    "mlxtend/data/multiplexer.py": [],
+    "mlxtend/data/mnist.py": [],
+    "mlxtend/data/iris.py": [],
+    "mlxtend/data/boston_housing.py": [],
+    "mlxtend/data/three_blobs.py": [],
+    "mlxtend/preprocessing/transactionencoder.py": [],
+    "mlxtend/classifier/ensemble_vote.py": [
+      "mlxtend/classifier/ensemble.py",
+      "mlxtend/sklearn/ensemble.py"
+    ],
+    "mlxtend/feature_extraction/rbf_kernel_pca.py": []
+  },
+  "former_paths": [
+    {
+      "path": "mlxtend/association/apriori.py",
+      "commits": [
+        "efec0827aeb4d6ce742106e3f276cdc760040564",
+        "0fe470ba017a1ace76983f75f594bf4372a0b3de",
+        "ce7f975010d0b0d720a5a26e0719c563e61f5929",
+        "77bd7c2ce7d45c17ceac79a48145b68f0e94f69c",
+        "3df35423f62b2d8002283d47c7a410fb4c521693",
+        "179334c9c7ef0b02339f28f0cb8cc090f689ee5e",
+        "4e71ad19f219f84dc4373a4698a0f68a958580d8",
+        "5d35b88f8d71384d9463877c0a0c59f3e63f8364",
+        "5d9938626fe98ff26ce89fbd0ae0557619864630",
+        "b48f23f7f63a7268871ecfa402d8e2bc8061e267",
+        "d438c9c2aa32efa30dda505c614f4d9f97f508e9",
+        "7945b9754bdaec1b5c729b7b590b52b21977e94d"
+      ],
+      "variants": [
+        {
+          "sha": "620231b63b1185211e7fbecc232e87600a0cd384",
+          "commits": [
+            "ce7f975010d0b0d720a5a26e0719c563e61f5929"
+          ]
+        },
+        {
+          "sha": "46a820da6d2a2dbfc9f258c383c6cf30a2f91d2a",
+          "commits": [
+            "77bd7c2ce7d45c17ceac79a48145b68f0e94f69c",
+            "3df35423f62b2d8002283d47c7a410fb4c521693"
+          ]
+        },
+        {
+          "sha": "b17f71154cd066586c3dd52452f0fa848e71d2e5",
+          "commits": [
+            "179334c9c7ef0b02339f28f0cb8cc090f689ee5e"
+          ]
+        },
+        {
+          "sha": "46096d97a8f1454330d0a0fde4b008f305962caa",
+          "commits": [
+            "4e71ad19f219f84dc4373a4698a0f68a958580d8",
+            "5d35b88f8d71384d9463877c0a0c59f3e63f8364",
+            "5d9938626fe98ff26ce89fbd0ae0557619864630",
+            "b48f23f7f63a7268871ecfa402d8e2bc8061e267"
+          ]
+        },
+        {
+          "sha": "6e23693c51b443d4742a1c041e8b1f507b7a2cb9",
+          "commits": [
+            "d438c9c2aa32efa30dda505c614f4d9f97f508e9",
+            "7945b9754bdaec1b5c729b7b590b52b21977e94d"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "mlxtend/association/association_rules.py",
+      "commits": [
+        "efec0827aeb4d6ce742106e3f276cdc760040564",
+        "0fe470ba017a1ace76983f75f594bf4372a0b3de",
+        "ce7f975010d0b0d720a5a26e0719c563e61f5929",
+        "9f565eb5958997288313dad57df595826b68dc92",
+        "179334c9c7ef0b02339f28f0cb8cc090f689ee5e",
+        "f3c43a36ca96f1956477363c577a101f512f9c19",
+        "a89d37ebce2205562008127ac4307fd69692a565",
+        "92e97b940ad204099164f760cc3117d424f4f2d7"
+      ],
+      "variants": [
+        {
+          "sha": "cfa120816a5c138c1e98792194008dcd29fcff49",
+          "commits": [
+            "ce7f975010d0b0d720a5a26e0719c563e61f5929",
+            "9f565eb5958997288313dad57df595826b68dc92"
+          ]
+        },
+        {
+          "sha": "28ab751c35088505287fbef3fb0a8cdcace3bab6",
+          "commits": [
+            "179334c9c7ef0b02339f28f0cb8cc090f689ee5e"
+          ]
+        },
+        {
+          "sha": "c23690cb585a7be8e905d5f9188db762c1019458",
+          "commits": [
+            "f3c43a36ca96f1956477363c577a101f512f9c19"
+          ]
+        },
+        {
+          "sha": "b9540d9ccfa6421ee6eec395e205a38f39304429",
+          "commits": [
+            "a89d37ebce2205562008127ac4307fd69692a565"
+          ]
+        },
+        {
+          "sha": "88bc8c32059342d694f3663552be7ae6148c4d75",
+          "commits": [
+            "92e97b940ad204099164f760cc3117d424f4f2d7"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "mlxtend/classifier/ensemble.py",
+      "commits": [
+        "eaaca8cd26a55cc2840f804127472410a3047b7f",
+        "49b46b6b00029845a902fa177d6787e50444e64d"
+      ],
+      "variants": [
+        {
+          "sha": "653da5635e395a4d03af88ed8e0a22af4e0c254e",
+          "commits": [
+            "49b46b6b00029845a902fa177d6787e50444e64d"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "mlxtend/data/_mnist.py",
+      "commits": [
+        "555dc8fb2d27cb09d991ae6d09701e0a37e231bc",
+        "eb988ced891a5f4453da2d4e752f585b88cbd905",
+        "232cc04f7d29baa405c93a7568fc9d5fd78de546",
+        "102c6ff4798dc685b7b335272e9fd51b5fe9a85a",
+        "47dfc03e3917f3157e64a9f0a9d7a089cb5a9192"
+      ],
+      "variants": [
+        {
+          "sha": "3033ed94b01927b7a0f0aa67399331d00f7f8249",
+          "commits": [
+            "232cc04f7d29baa405c93a7568fc9d5fd78de546",
+            "102c6ff4798dc685b7b335272e9fd51b5fe9a85a",
+            "47dfc03e3917f3157e64a9f0a9d7a089cb5a9192"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "mlxtend/evaluate/plot_confusion_matrix.py",
+      "commits": [
+        "0d263209d30e4ecb61d2f81f5e436e7796bb7f92",
+        "51e6bca681cb1926c9b71965218ed5978b1c93fc",
+        "3b4361c8d0aa3402ba5a3932c1975236d94ec32b",
+        "07a0ce09c934bcf12127378bb598aad1da87e78d",
+        "46b549282fdb1b72f088e245467b95fe37827966",
+        "425d6bb3b75aa009e145b66852d920ffed07cca4",
+        "3cf5caac706a91861b90bce33bf39bc435a6e60a",
+        "b21e02ffc2c86737978a9e9c039d82c542408632",
+        "fccb88c5a4d0dde4933b93bccc109b9c885435e4",
+        "103b4f77cc53dce98f7165cbafd33e1d2f84ef5c",
+        "4f875bcbc1784045a8e781c6df76e08a6fe5348d",
+        "5718ebe9bf55096e65f21c9962c836e0bcf880a8",
+        "e8bb49412b3770d64436fa2985d309b5f8d6770c",
+        "25cfbd2ccd8a93bb326b5cd4595262e33213de6e"
+      ],
+      "variants": [
+        {
+          "sha": "51cbc43ac680af13a6d7ef4f64e2c93676ec8e86",
+          "commits": [
+            "3b4361c8d0aa3402ba5a3932c1975236d94ec32b",
+            "07a0ce09c934bcf12127378bb598aad1da87e78d"
+          ]
+        },
+        {
+          "sha": "f91707246aa9cb06322acd354f81693f67d35a28",
+          "commits": [
+            "46b549282fdb1b72f088e245467b95fe37827966",
+            "425d6bb3b75aa009e145b66852d920ffed07cca4"
+          ]
+        },
+        {
+          "sha": "ff711f34a105f1fd4ff5c688f04ad55f4c2f5f96",
+          "commits": [
+            "fccb88c5a4d0dde4933b93bccc109b9c885435e4",
+            "103b4f77cc53dce98f7165cbafd33e1d2f84ef5c"
+          ]
+        },
+        {
+          "sha": "de83878ea6d8c3b5684479ce558b77ae92371b4e",
+          "commits": [
+            "4f875bcbc1784045a8e781c6df76e08a6fe5348d"
+          ]
+        },
+        {
+          "sha": "0394de688c25c44472540583bf8846eee408893b",
+          "commits": [
+            "5718ebe9bf55096e65f21c9962c836e0bcf880a8"
+          ]
+        },
+        {
+          "sha": "84e61cd707ac38c505b5662ac874219f09cd24b8",
+          "commits": [
+            "e8bb49412b3770d64436fa2985d309b5f8d6770c"
+          ]
+        },
+        {
+          "sha": "02b6953d5a5e4e48f7a6b5fe7e04cb1ee0d2a1ef",
+          "commits": [
+            "25cfbd2ccd8a93bb326b5cd4595262e33213de6e"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "mlxtend/pandas/scaling.py",
+      "commits": [
+        "e818aaadbdf12d322ba1c6bcd4816eef6c43f76b",
+        "53384ef60495802d0f58fb89f33e1d0facd4e5bb",
+        "9244b7b6972d8db1e7ecf58459def875bf342b2f",
+        "83a7231599ce60f726ba6ef490ceb39ff14dcce7",
+        "71aeaf6825e5fd7092594e2edefe9e8730df7fe3",
+        "e0507de64b7be38323dfc7a1510cfd1a162f36eb",
+        "2e5d5cff0174ee8a2fad1ca58d82fb0cf62a1e19",
+        "5cc09ace0ad010f73a6fa1c8f360c04d672fdeec"
+      ],
+      "variants": [
+        {
+          "sha": "c48aafb373b5fa720c9c96468da12144e847817a",
+          "commits": [
+            "83a7231599ce60f726ba6ef490ceb39ff14dcce7",
+            "71aeaf6825e5fd7092594e2edefe9e8730df7fe3"
+          ]
+        },
+        {
+          "sha": "4295ccccc4b412580c0ef389790d75377cfd92b0",
+          "commits": [
+            "e0507de64b7be38323dfc7a1510cfd1a162f36eb"
+          ]
+        },
+        {
+          "sha": "7f451c8a206ab7a6aa50bcdc4d42178cf42d835a",
+          "commits": [
+            "2e5d5cff0174ee8a2fad1ca58d82fb0cf62a1e19"
+          ]
+        },
+        {
+          "sha": "320b659f6c4fa59f2a2ce402d3c1476f66e3be24",
+          "commits": [
+            "5cc09ace0ad010f73a6fa1c8f360c04d672fdeec"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "mlxtend/regression/linear_regression.py",
+      "commits": [
+        "0c6daedb0e3575be3449bbabda26ca30f694aa4a",
+        "206f681e3a08d2f6079484de1ba3ea7abaf1dadc",
+        "53384ef60495802d0f58fb89f33e1d0facd4e5bb",
+        "9244b7b6972d8db1e7ecf58459def875bf342b2f",
+        "83a7231599ce60f726ba6ef490ceb39ff14dcce7",
+        "2316ca58e7ee6082b568c720b172a6985233b21a"
+      ],
+      "variants": [
+        {
+          "sha": "9a2c18ba16b911c07afb986ae40c33206add52d4",
+          "commits": [
+            "206f681e3a08d2f6079484de1ba3ea7abaf1dadc"
+          ]
+        },
+        {
+          "sha": "8aacae24c56a2379d6c439f798775e29fa259327",
+          "commits": [
+            "83a7231599ce60f726ba6ef490ceb39ff14dcce7",
+            "2316ca58e7ee6082b568c720b172a6985233b21a"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "mlxtend/sklearn/ensemble.py",
+      "commits": [
+        "49b46b6b00029845a902fa177d6787e50444e64d",
+        "53384ef60495802d0f58fb89f33e1d0facd4e5bb",
+        "9244b7b6972d8db1e7ecf58459def875bf342b2f",
+        "83a7231599ce60f726ba6ef490ceb39ff14dcce7",
+        "b9d50b5aa192cfd87169c0bf6a901737ebafe5fd",
+        "0f4a23f9c62e281989b865fe66a2e44478a8e2f1",
+        "d00bca551b5bdc0e045540e451408b96dbadaa49",
+        "0cd8b3ee4da7d4eb094e0457fb012f10b132ac86",
+        "6bd0dcebe8996de9e1a8b9f5259e956b9dd4b7d0",
+        "51e751dbb8f22719c07d6771990638363d7868db",
+        "232fad00e7a3c3335457b44d07e39d185663fb25",
+        "b367e976cd31be373458d2adf4273c41e5c284aa",
+        "aefd8bcf146d6de8f19fc0c3c5873880bc82886f",
+        "99e3ed2674b388a8aae221335da03d9f1c101cb6",
+        "4afb882a76aa6b18eb3801e5351841cf7ee4b5a9",
+        "eb46c1e8ebc9393da7169bff76f93b4536b792fd",
+        "ac8d19a1136c06b1904eed1a3370b8cf23305cf5",
+        "b04a3f1ba2fc02b6cbf5159c0400fa41cdb88320"
+      ],
+      "variants": [
+        {
+          "sha": "73403f835e1b08f204a360cf67473ea05ac68fc4",
+          "commits": [
+            "83a7231599ce60f726ba6ef490ceb39ff14dcce7",
+            "b9d50b5aa192cfd87169c0bf6a901737ebafe5fd"
+          ]
+        },
+        {
+          "sha": "d056115ffbfb91a1ce593987a972195ec9071697",
+          "commits": [
+            "0f4a23f9c62e281989b865fe66a2e44478a8e2f1"
+          ]
+        },
+        {
+          "sha": "8f6b32ab887eaf9ba748d6360d5155dc1b370444",
+          "commits": [
+            "d00bca551b5bdc0e045540e451408b96dbadaa49",
+            "0cd8b3ee4da7d4eb094e0457fb012f10b132ac86",
+            "6bd0dcebe8996de9e1a8b9f5259e956b9dd4b7d0"
+          ]
+        },
+        {
+          "sha": "7698f1be20ffcdd73e588c9c64240bf672beb5a5",
+          "commits": [
+            "51e751dbb8f22719c07d6771990638363d7868db"
+          ]
+        },
+        {
+          "sha": "5b7e1a49bbbb4d94cedcd0de0127c56b6373189a",
+          "commits": [
+            "232fad00e7a3c3335457b44d07e39d185663fb25"
+          ]
+        },
+        {
+          "sha": "b71aed1b24941ad3dbd6c5148d06f0ae26c537dd",
+          "commits": [
+            "b367e976cd31be373458d2adf4273c41e5c284aa"
+          ]
+        },
+        {
+          "sha": "4a5f6924477cb0313dae70a4b9aa0c19a1de115c",
+          "commits": [
+            "aefd8bcf146d6de8f19fc0c3c5873880bc82886f"
+          ]
+        },
+        {
+          "sha": "c4c2c8fe291ddbb3fee78c22f50ca23c572efc90",
+          "commits": [
+            "99e3ed2674b388a8aae221335da03d9f1c101cb6"
+          ]
+        },
+        {
+          "sha": "eb721d298110bb4a3505afc361256f52dcbf8967",
+          "commits": [
+            "4afb882a76aa6b18eb3801e5351841cf7ee4b5a9"
+          ]
+        },
+        {
+          "sha": "d50f58483643c11d040091c3be00c8ebc8505bb0",
+          "commits": [
+            "eb46c1e8ebc9393da7169bff76f93b4536b792fd"
+          ]
+        },
+        {
+          "sha": "2007676a329c22e7ad5b794212d9acf357209806",
+          "commits": [
+            "ac8d19a1136c06b1904eed1a3370b8cf23305cf5"
+          ]
+        },
+        {
+          "sha": "2834a8e069dfbfeb71d1ae8988d8e63ccc50c639",
+          "commits": [
+            "b04a3f1ba2fc02b6cbf5159c0400fa41cdb88320"
+          ]
+        }
+      ]
+    }
+  ],
+  "semantic_review": "Inspected former source variants as well as current paths, all upstream pull refs and reachable fork intermediate commits. No prior equivalent core change was found for the retained twenty candidate improvements. BootstrapOutOfBag boolean-mask optimization was found in old commit 25a7596001 and excluded."
+}

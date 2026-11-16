@@ -1,0 +1,281 @@
+{
+  "run": 43895793702,
+  "head": "301e8adf01b2411e7806426d24bade52d695a304",
+  "jobs": [
+    {
+      "id": 133398866000,
+      "name": "validate (rbf-transform-blocks)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 133398866222,
+      "name": "validate (paired-statistic-scale)",
+      "status": "in_progress",
+      "conclusion": null
+    },
+    {
+      "id": 133398866476,
+      "name": "validate (ensemble-batched-hard-votes)",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 133398866537,
+      "name": "validate (transaction-inverse-nonzero)",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "verified": [
+    {
+      "name": "transaction-inverse-nonzero",
+      "validation": {
+        "name": "transaction-inverse-nonzero",
+        "base": "1aee767ef57b84a8191511a08955c583b65de382",
+        "issue": 1334,
+        "baseline_focused": {
+          "total": 43,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "baseline_full": {
+          "total": 786,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        },
+        "candidate_focused": {
+          "total": 51,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "candidate_full": {
+          "total": 786,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        },
+        "new_full_suite_failures": []
+      },
+      "performance": {
+        "before": {
+          "kind": "runtime",
+          "results": [
+            {
+              "shape": [
+                1000,
+                10000
+              ],
+              "items": 49956,
+              "seconds": [
+                0.2785763529999983,
+                0.2764792969999945,
+                0.27821267000000205,
+                0.2786445050000026,
+                0.2758718780000038
+              ],
+              "median_seconds": 0.27821267000000205,
+              "digest": "4a3acb27eb981f4c872ee49b218ce23340633b299e6106a8fc53bfb8279dd06a"
+            }
+          ]
+        },
+        "after": {
+          "kind": "runtime",
+          "results": [
+            {
+              "shape": [
+                1000,
+                10000
+              ],
+              "items": 49956,
+              "seconds": [
+                0.008499115999995865,
+                0.007293490000009228,
+                0.007166681999990487,
+                0.006880451000000676,
+                0.00685117800000512
+              ],
+              "median_seconds": 0.007166681999990487,
+              "digest": "4a3acb27eb981f4c872ee49b218ce23340633b299e6106a8fc53bfb8279dd06a"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "ensemble-batched-hard-votes",
+      "validation": {
+        "name": "ensemble-batched-hard-votes",
+        "base": "1aee767ef57b84a8191511a08955c583b65de382",
+        "issue": 1335,
+        "baseline_focused": {
+          "total": 30,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "baseline_full": {
+          "total": 773,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        },
+        "candidate_focused": {
+          "total": 46,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "candidate_full": {
+          "total": 773,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        },
+        "new_full_suite_failures": []
+      },
+      "performance": {
+        "before": {
+          "kind": "runtime",
+          "results": [
+            {
+              "weighted": false,
+              "rows": 100000,
+              "seconds": [
+                0.1760347600000003,
+                0.17594827899999999,
+                0.17333439299999753,
+                0.17497164899999973,
+                0.18045049200000207
+              ],
+              "median_seconds": 0.17594827899999999,
+              "digest": "8568d6b117678d53edec66018e6d52abe48837f64aebd6aee0153ddf2001ea51"
+            },
+            {
+              "weighted": true,
+              "rows": 100000,
+              "seconds": [
+                0.2245757899999994,
+                0.20063430499999768,
+                0.1996134670000025,
+                0.20321971999999988,
+                0.20129482099999763
+              ],
+              "median_seconds": 0.20129482099999763,
+              "digest": "8568d6b117678d53edec66018e6d52abe48837f64aebd6aee0153ddf2001ea51"
+            }
+          ]
+        },
+        "after": {
+          "kind": "runtime",
+          "results": [
+            {
+              "weighted": false,
+              "rows": 100000,
+              "seconds": [
+                0.005299100000001999,
+                0.004125340000001643,
+                0.0024949419999984457,
+                0.002483264000005647,
+                0.0024894839999944907
+              ],
+              "median_seconds": 0.0024949419999984457,
+              "digest": "8568d6b117678d53edec66018e6d52abe48837f64aebd6aee0153ddf2001ea51"
+            },
+            {
+              "weighted": true,
+              "rows": 100000,
+              "seconds": [
+                0.0031045909999960486,
+                0.002999773000013306,
+                0.003008625999996184,
+                0.0030046800000036455,
+                0.0031052810000034015
+              ],
+              "median_seconds": 0.003008625999996184,
+              "digest": "8568d6b117678d53edec66018e6d52abe48837f64aebd6aee0153ddf2001ea51"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "rbf-transform-blocks",
+      "validation": {
+        "name": "rbf-transform-blocks",
+        "base": "1aee767ef57b84a8191511a08955c583b65de382",
+        "issue": 1336,
+        "baseline_focused": {
+          "total": 33,
+          "failed": 1,
+          "skipped": 0,
+          "failures": {
+            "mlxtend.feature_extraction.tests.test_rbf_kernel_pca_blocks::test_transform_peak_memory_is_bounded_for_large_query_batches": "AssertionError: 73728512\nassert 73728512 < ((8 * 1024) * 1024)"
+          }
+        },
+        "baseline_full": {
+          "total": 776,
+          "failed": 1,
+          "skipped": 3,
+          "failures": {
+            "mlxtend.feature_extraction.tests.test_rbf_kernel_pca_blocks::test_transform_peak_memory_is_bounded_for_large_query_batches": "AssertionError: 73728512\nassert 73728512 < ((8 * 1024) * 1024)"
+          }
+        },
+        "candidate_focused": {
+          "total": 41,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "candidate_full": {
+          "total": 776,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        },
+        "new_full_suite_failures": []
+      },
+      "performance": {
+        "before": {
+          "kind": "memory",
+          "peak_bytes": 73728512,
+          "seconds": [
+            0.10416225200000895,
+            0.1002746499999887,
+            0.09895894799998928,
+            0.09905976999999666,
+            0.09881634899997493
+          ],
+          "median_seconds": 0.09905976999999666,
+          "shape": [
+            12000,
+            3
+          ],
+          "compared_values": 36000,
+          "max_absolute_difference": 0
+        },
+        "after": {
+          "kind": "memory",
+          "peak_bytes": 4546320,
+          "seconds": [
+            0.009978567000018757,
+            0.010587998000005427,
+            0.009257118000022047,
+            0.009246165999996947,
+            0.009232380000014473
+          ],
+          "median_seconds": 0.009257118000022047,
+          "shape": [
+            12000,
+            3
+          ],
+          "compared_values": 36000,
+          "max_absolute_difference": 0
+        }
+      }
+    }
+  ]
+}

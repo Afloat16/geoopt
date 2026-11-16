@@ -2,9 +2,9 @@
   "checked_at": "2026-11-16T12:54:17.779Z",
   "scope": "new contributions prepared by merged_inventory agent in current task",
   "counts": {
-    "published": 54,
+    "published": 56,
     "merged": 0,
-    "open": 54
+    "open": 56
   },
   "excluded_duplicate": {
     "repo": "geomstats/geomstats",
@@ -4753,6 +4753,322 @@
       "ui_verified": true,
       "api_verified": true,
       "body_verified": true
+    },
+    {
+      "repo": "rasbt/mlxtend",
+      "number": 1338,
+      "url": "https://github.com/rasbt/mlxtend/pull/1338",
+      "title": "Vectorize multiplexer bit draws while preserving seeded datasets",
+      "state": "open",
+      "merged_at": null,
+      "head": "02b5f317a75afb268cdb41e7cc8c7bc797f2eefe",
+      "head_ref": "fix/multiplexer-vectorized-draws-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T15:28:34Z",
+      "validation": {
+        "run_id": 43891867287,
+        "job_id": 133384927985,
+        "name": "multiplexer-vectorized-draws",
+        "base": "1aee767ef57b84a8191511a08955c583b65de382",
+        "issue": 1331,
+        "baseline_focused": {
+          "total": 25,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "baseline_full": {
+          "total": 768,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        },
+        "candidate_focused": {
+          "total": 31,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "candidate_full": {
+          "total": 768,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        },
+        "new_full_suite_failures": []
+      },
+      "performance": {
+        "before": {
+          "kind": "runtime",
+          "results": [
+            {
+              "shape": [
+                2000,
+                264
+              ],
+              "positive": 600,
+              "seconds": [
+                0.7697777110000743,
+                0.7674788340000305,
+                0.7714931100000513,
+                0.7638793859999851,
+                0.7617425550000689
+              ],
+              "median_seconds": 0.7674788340000305,
+              "digest": "cd5bc4f738b4df8a9b23c2fb8fb700115c5a074beaf18990b5b928c32b68ffb8"
+            }
+          ]
+        },
+        "after": {
+          "kind": "runtime",
+          "results": [
+            {
+              "shape": [
+                2000,
+                264
+              ],
+              "positive": 600,
+              "seconds": [
+                0.026002543000004152,
+                0.020355521999931625,
+                0.019644864999918354,
+                0.01934931800008144,
+                0.018580126999950153
+              ],
+              "median_seconds": 0.019644864999918354,
+              "digest": "cd5bc4f738b4df8a9b23c2fb8fb700115c5a074beaf18990b5b928c32b68ffb8"
+            }
+          ]
+        }
+      },
+      "ui_verified": true,
+      "api_verified": true,
+      "body_verified": true
+    },
+    {
+      "repo": "rasbt/mlxtend",
+      "number": 1339,
+      "url": "https://github.com/rasbt/mlxtend/pull/1339",
+      "title": "Reduce numeric dataset loading cost while retaining parser compatibility",
+      "state": "open",
+      "merged_at": null,
+      "head": "b29a63b6f63b7122e5d1002e78a2d6e97f29ff24",
+      "head_ref": "fix/numeric-dataset-loading-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T15:29:10Z",
+      "validation": {
+        "run_id": 43893510097,
+        "job_id": 133390720852,
+        "name": "numeric-dataset-loading",
+        "base": "1aee767ef57b84a8191511a08955c583b65de382",
+        "issue": 1332,
+        "baseline_focused": {
+          "total": 41,
+          "failed": 1,
+          "skipped": 0,
+          "failures": {
+            "mlxtend.data.tests.test_numeric_dataset_loading::test_mnist_peak_allocation_stays_close_to_numeric_output_size": "AssertionError: 228558397\nassert 228558397 < (3 * (31360000 + 40000))\n +  where 31360000 = array([[0., 0., 0., ..., 0., 0., 0.],\\n       [0., 0., 0., ..., 0., 0., 0.],\\n       [0., 0., 0., ..., 0., 0., 0.],\\n    ..., 0., ..., 0., 0., 0.],\\n       [0., 0., 0., ..., 0., 0., 0.],\\n       [0., 0., 0., ..., 0., 0., 0.]], shape=(5000, 784)).nbytes\n +  and   40000 = array([0, 0, 0, ..., 9, 9, 9], shape=(5000,)).nbytes"
+          }
+        },
+        "baseline_full": {
+          "total": 784,
+          "failed": 1,
+          "skipped": 3,
+          "failures": {
+            "mlxtend.data.tests.test_numeric_dataset_loading::test_mnist_peak_allocation_stays_close_to_numeric_output_size": "AssertionError: 228558181\nassert 228558181 < (3 * (31360000 + 40000))\n +  where 31360000 = array([[0., 0., 0., ..., 0., 0., 0.],\\n       [0., 0., 0., ..., 0., 0., 0.],\\n       [0., 0., 0., ..., 0., 0., 0.],\\n    ..., 0., ..., 0., 0., 0.],\\n       [0., 0., 0., ..., 0., 0., 0.],\\n       [0., 0., 0., ..., 0., 0., 0.]], shape=(5000, 784)).nbytes\n +  and   40000 = array([0, 0, 0, ..., 9, 9, 9], shape=(5000,)).nbytes"
+          }
+        },
+        "candidate_focused": {
+          "total": 56,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "candidate_full": {
+          "total": 784,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        },
+        "new_full_suite_failures": []
+      },
+      "performance": {
+        "before": {
+          "kind": "runtime",
+          "results": [
+            {
+              "dataset": "MNIST",
+              "shape": [
+                5000,
+                784
+              ],
+              "seconds": [
+                1.2045394099999953,
+                1.1837866259999998,
+                1.1789234860000022,
+                1.2457560309999849,
+                1.2076894509999931
+              ],
+              "median_seconds": 1.2045394099999953,
+              "digest": "6089a7e5ad43045e16fe0c759fc1c4d5eaba8a5c830f47d4e883123d9e14acea"
+            },
+            {
+              "dataset": "Iris UCI",
+              "shape": [
+                150,
+                4
+              ],
+              "seconds": [
+                0.006677581999980475,
+                0.0005253300000163108,
+                0.0004982389999952375,
+                0.0005253500000037548,
+                0.0004606589999980315
+              ],
+              "median_seconds": 0.0005253300000163108,
+              "digest": "3f0309f781377c5ca5daac0d08ebea531a39243dbd178524b6fe23eda6cc7bf0"
+            },
+            {
+              "dataset": "Iris corrected",
+              "shape": [
+                150,
+                4
+              ],
+              "seconds": [
+                0.00048385199997369455,
+                0.00045800399999507135,
+                0.00046995700000707075,
+                0.00044598200000223187,
+                0.0004763680000223758
+              ],
+              "median_seconds": 0.00046995700000707075,
+              "digest": "ce8e0dc69b2268a57fa68e916dc3195aaa54425570934bc8e493210d9738a15e"
+            },
+            {
+              "dataset": "Boston Housing",
+              "shape": [
+                506,
+                13
+              ],
+              "seconds": [
+                0.003084331999986034,
+                0.002948057999986986,
+                0.002932528999991746,
+                0.002927249000009624,
+                0.0029541789999996126
+              ],
+              "median_seconds": 0.002948057999986986,
+              "digest": "34858561400899d4268328e758e61789217329e917c83afc1ae498f6b721fa26"
+            },
+            {
+              "dataset": "Three Blobs",
+              "shape": [
+                150,
+                2
+              ],
+              "seconds": [
+                0.0005482120000124269,
+                0.0005279750000113381,
+                0.0004972669999858681,
+                0.0005137679999904776,
+                0.0004921480000064093
+              ],
+              "median_seconds": 0.0005137679999904776,
+              "digest": "ba8b80d4568a4d4cff06d5f3ea64e37c9586f409895faf678ca5e70a8491541a"
+            }
+          ],
+          "peak_bytes": 228558237
+        },
+        "after": {
+          "kind": "runtime",
+          "results": [
+            {
+              "dataset": "MNIST",
+              "shape": [
+                5000,
+                784
+              ],
+              "seconds": [
+                0.15694238999998333,
+                0.15893282199999703,
+                0.15886585699996658,
+                0.1828704220000077,
+                0.15596826400002328
+              ],
+              "median_seconds": 0.15886585699996658,
+              "digest": "6089a7e5ad43045e16fe0c759fc1c4d5eaba8a5c830f47d4e883123d9e14acea"
+            },
+            {
+              "dataset": "Iris UCI",
+              "shape": [
+                150,
+                4
+              ],
+              "seconds": [
+                0.0003045579999820802,
+                0.0001954550000391464,
+                0.00020705700001144578,
+                0.00017491599999175378,
+                0.0001666619999696195
+              ],
+              "median_seconds": 0.0001954550000391464,
+              "digest": "3f0309f781377c5ca5daac0d08ebea531a39243dbd178524b6fe23eda6cc7bf0"
+            },
+            {
+              "dataset": "Iris corrected",
+              "shape": [
+                150,
+                4
+              ],
+              "seconds": [
+                0.00020360999997137696,
+                0.00017256199998882948,
+                0.00017046799996478512,
+                0.00016515800001570824,
+                0.00016200200002458587
+              ],
+              "median_seconds": 0.00017046799996478512,
+              "digest": "ce8e0dc69b2268a57fa68e916dc3195aaa54425570934bc8e493210d9738a15e"
+            },
+            {
+              "dataset": "Boston Housing",
+              "shape": [
+                506,
+                13
+              ],
+              "seconds": [
+                0.0015014289999726316,
+                0.001454110999986824,
+                0.0014505160000339856,
+                0.0014418789999695036,
+                0.001493856000024607
+              ],
+              "median_seconds": 0.001454110999986824,
+              "digest": "34858561400899d4268328e758e61789217329e917c83afc1ae498f6b721fa26"
+            },
+            {
+              "dataset": "Three Blobs",
+              "shape": [
+                150,
+                2
+              ],
+              "seconds": [
+                0.0002879870000356277,
+                0.00025550599997359313,
+                0.0002628700000286699,
+                0.0002439550000303825,
+                0.00023667099998192498
+              ],
+              "median_seconds": 0.00025550599997359313,
+              "digest": "ba8b80d4568a4d4cff06d5f3ea64e37c9586f409895faf678ca5e70a8491541a"
+            }
+          ],
+          "peak_bytes": 35068071
+        }
+      },
+      "ui_verified": true,
+      "api_verified": true,
+      "body_verified": true
     }
   ],
   "remote_checkpoints": {
@@ -4771,5 +5087,5 @@
     }
   },
   "ci_diagnosis_updated_at": "2026-11-16T13:15:57.465Z",
-  "last_submission_check_at": "2026-11-16T15:05:25.337Z"
+  "last_submission_check_at": "2026-11-16T15:29:28.255Z"
 }
