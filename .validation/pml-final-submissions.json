@@ -115,6 +115,41 @@
       "ui_verified": true,
       "api_verified": true,
       "body_verified": true
+    },
+    {
+      "name": "large-vector-normalization",
+      "repository": "KevinMusgrave/pytorch-metric-learning",
+      "base": "master",
+      "base_sha": "b95a42310f50720a766b91008470b278364f705d",
+      "branch": "fix/large-vector-normalization-20261116",
+      "head": "Afloat16:fix/large-vector-normalization-20261116",
+      "head_sha": "47bf7b47ca83ee00aef30eb39dea669e0bf1115c",
+      "tree": "550361342438be4bc73925990262f027c5eca235",
+      "status": "ready",
+      "maintainer_can_modify": false,
+      "title": "Preserve normalized directions and gradients for large finite embeddings",
+      "body": "## Problem\n\nNormalizing a finite vector can return an all-zero direction and zero gradients when the intermediate power sum overflows. For example, cosine similarity between float32 [3e20, 4e20] and [1, 0] returns 0 instead of 0.6, despite the true norm and normalized direction being finite. The same issue reaches both matrix and pairwise distance paths.\n\n## Change\n\nBefore norm accumulation, scale only vectors whose largest component exceeds the safe power-sum bound derived from their accumulation dtype, norm order, and dimension. Compute normalization in that scaled space and adjust the epsilon by the same scale. Ordinary vectors retain their existing values and gradients exactly, including in mixed batches; empty dimensions, norm orders below one, and the infinity norm keep the existing path.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43859851272/job/133273490099):\n\n- Unchanged production base `b95a423`: 17 regression failures and 39 passing controls.\n- All 187 focused and adjacent tests pass, including the existing ProxyNCA and TupletMargin value/gradient contracts. The 56 new cases use 100-digit Decimal normalization and analytic gradients across four dtypes, norm orders 1/2/3/infinity, and both axes; check matrix/pairwise cosine paths and empty shapes; and require exact ordinary-input values and gradients.\n- Full CPU suite: 1,585 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `550361342438be4bc73925990262f027c5eca235`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "validation": {
+        "run": 43859851272,
+        "job": 133273490099,
+        "baseline_failures": 17,
+        "baseline_controls": 39,
+        "adjacent_passed": 187,
+        "full_cpu_passed": 1585,
+        "device_deselected": 10,
+        "all_required_gates_passed": true
+      },
+      "dedup": {
+        "old_full_source_branches": 37,
+        "all_state_pr_count": 207,
+        "source_history": "https://github.com/Afloat16/geoopt/blob/0049069244b408f200d0cbac6e1e8118ede51673/.validation/pml-final-source-history.json",
+        "new_own_prs_reviewed": [
+          809,
+          810,
+          811
+        ]
+      },
+      "prefilled_url": "https://github.com/KevinMusgrave/pytorch-metric-learning/compare/master...Afloat16:fix/large-vector-normalization-20261116?expand=1&title=Preserve%20normalized%20directions%20and%20gradients%20for%20large%20finite%20embeddings"
     }
   ],
   "official_ci": [
@@ -714,5 +749,5 @@
       "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/779"
     }
   ],
-  "note": "PRs #809, #810, #811 are Open and individually verified through UI and API, including exact head/body and maintainer_can_modify=false; no new merged PR. Final normalization validation still tracked separately."
+  "note": "PRs #809-#811 verified Open. Fourth and final candidate is fully validated and ready; no normalization PR has yet been created. Actual new Open remains 19, merged remains 0."
 }
