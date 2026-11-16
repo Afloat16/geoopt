@@ -21,8 +21,8 @@ jobs:
         run: ./code-polishyw docs read agent-workflows
       - name: Capture clean task base and component design context
         run: |
-          ./code-polishyw task-start --module numerics --module evaluation --module sampling --module distributed --format json > task-context.json
-          cat task-context.json
+          ./code-polishyw task-start --module numerics --module evaluation --module sampling --module distributed --format json > ../task-context.json
+          cat ../task-context.json
       - name: Retrieve context for the existing applicability record
         run: ./code-polishyw design-context --files .code-polishy.json docs/security/dependency-assessments.md
       - name: Verify source and policy remain unchanged
@@ -30,4 +30,4 @@ jobs:
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: pml-followup-task-context
-          path: task-context.json
+          path: ../task-context.json
