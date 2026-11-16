@@ -36,7 +36,7 @@ aliases.update(path for path in all_paths if "/losses/" in path and "ssim" in pa
 # A class moved into a differently named file can evade basename-only searches.
 definitions = git(
     "log", "--all", "--full-history", "--format=", "--name-only",
-    "-G", "class[[:space:]]+MS_SSIMLoss|def[[:space:]]+ms_ssim", "--", "*.py"
+    "-G", "class[[:space:]]+MS_SSIM|def[[:space:]]+ms_ssim", "--", "*.py"
 ).splitlines()
 aliases.update(path for path in definitions if path.endswith(".py"))
 changed = True
@@ -72,7 +72,7 @@ for oid, paths in sorted(objects.items()):
         continue
     targets = [
         node for node in ast.walk(parsed)
-        if isinstance(node, ast.ClassDef) and node.name == "MS_SSIMLoss"
+        if isinstance(node, ast.ClassDef) and node.name.startswith("MS_SSIM")
         or isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)) and node.name.lower().startswith("ms_ssim")
     ]
     if not targets:
