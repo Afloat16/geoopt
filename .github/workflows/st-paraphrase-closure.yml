@@ -1,0 +1,116 @@
+name: Validate paraphrase transitive closure traversal
+'on':
+  push:
+    branches:
+    - validation/st-paraphrase-closure-20261116
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - torch: 2.6.0
+          candidate: closure
+          head: 6c3835e07bd2f030b014b6b77c851d9560ac0612
+          source: sentence_transformers/sentence_transformer/evaluation/paraphrase_mining.py
+          test: tests/sentence_transformer/evaluation/test_paraphrase_closure_queue.py
+          failed: 0
+          passed: 11
+          adjacent: tests/sentence_transformer/evaluation/test_paraphrase_mining_evaluator.py
+        - torch: 2.14.1
+          candidate: closure
+          head: 6c3835e07bd2f030b014b6b77c851d9560ac0612
+          source: sentence_transformers/sentence_transformer/evaluation/paraphrase_mining.py
+          test: tests/sentence_transformer/evaluation/test_paraphrase_closure_queue.py
+          failed: 0
+          passed: 11
+          adjacent: tests/sentence_transformer/evaluation/test_paraphrase_mining_evaluator.py
+    defaults:
+      run:
+        working-directory: project
+    env:
+      OMP_NUM_THREADS: 1
+      OPENBLAS_NUM_THREADS: 1
+      PYTHONPATH: .
+      ST_BASE: 9ac7fdb4edce2f1dbc171b036ecbb60383653e74
+      ST_CANDIDATE: ${{ matrix.head }}
+      ST_SOURCE: ${{ matrix.source }}
+      ST_TEST: ${{ matrix.test }}
+      ST_FAILED: ${{ matrix.failed }}
+      ST_PASSED: ${{ matrix.passed }}
+      ST_ADJACENT: ${{ matrix.adjacent }}
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        path: harness
+        persist-credentials: false
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        repository: Afloat16/sentence-transformers
+        ref: ${{ matrix.head }}
+        path: project
+        fetch-depth: 2
+        persist-credentials: false
+    - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+      with:
+        python-version: '3.12'
+    - name: Install CPU dependencies
+      run: 'python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+
+        python -m pip install numpy==2.3.5 scipy==1.17.0 scikit-learn==1.8.0 transformers==5.23.0 huggingface-hub==2.4.0 datasets==5.2.0
+        accelerate==1.15.0 pytest==9.2.0 pytest-env pytest-subtests pre-commit socksio pillow
+
+        python -m pip install -e . --no-deps
+
+        '
+    - name: Verify exact-base behavior
+      run: 'test "$(git rev-parse HEAD)" = "$ST_CANDIDATE"
+
+        git show "$ST_BASE:$ST_SOURCE" > "$ST_SOURCE"
+
+        python - <<''PYTEST''
+
+        import os, subprocess, sys
+
+        result = subprocess.run([sys.executable, ''-m'', ''pytest'', os.environ[''ST_TEST''], ''-q'', ''--tb=short''], text=True,
+        stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+
+        print(result.stdout)
+
+        failed = int(os.environ[''ST_FAILED''])
+
+        assert result.returncode == (1 if failed else 0), result.returncode
+
+        expected = (str(failed) + '' failed, '' if failed else '''') + os.environ[''ST_PASSED''] + '' passed''
+
+        assert expected in result.stdout, expected
+
+        PYTEST
+
+        '
+    - name: Benchmark unchanged implementation
+      run: 'python ../harness/.validation/st-${{ matrix.candidate }}-benchmark.py before
+
+        '
+    - name: Verify candidate and adjacent tests
+      run: 'git restore --source="$ST_CANDIDATE" -- "$ST_SOURCE"
+
+        python -m pytest "$ST_TEST" $ST_ADJACENT -q --tb=short
+
+        '
+    - name: Benchmark candidate and compare complete results
+      run: 'python ../harness/.validation/st-${{ matrix.candidate }}-benchmark.py after before
+
+        '
+    - name: Check repository style
+      run: 'pre-commit run --all-files
+
+        git diff --exit-code
+
+        git diff --check
+
+        '

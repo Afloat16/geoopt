@@ -1,0 +1,96 @@
+{
+  "run": 43916628776,
+  "run_url": "https://github.com/Afloat16/geoopt/actions/runs/43916628776",
+  "head": "83e1c683da360ab8d6028721fca1f4eeeaad6656",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 133472397432,
+      "name": "verify (2.6.0, rrf, e3e41bae376a29b27a9da7c111dfa841e8d43837, sentence_transformers/sparse_encode...",
+      "conclusion": "success",
+      "lines": [
+        "2026-11-16T17:17:35.8789205Z \u001b[36;1mexpected = (str(failed) + ' failed, ' if failed else '') + os.environ['ST_PASSED'] + ' passed'\u001b[0m",
+        "2026-11-16T17:17:43.8831821Z 5 passed in 0.08s",
+        "2026-11-16T17:17:48.5938154Z {\"revision\": \"before\", \"queries\": 20, \"documents_per_retriever\": 512, \"known_positives\": 20, \"median_seconds\": 0.07566661299999566, \"metrics\": {\"dense_map\": 0.0014327852932575415, \"dense_mrr@10\": 0.0125, \"dense_ndcg@10\": 0.004739418218477538, \"sparse_map\": 0.0012897032926614497, \"sparse_mrr@10\": 0.005, \"sparse_ndcg@10\": 0.0031810394099475838, \"map\": 0.0015381164802104204, \"mrr@10\": 0.00625, \"ndcg@10\": 0.0034715610968388657}, \"predictions_sha256\": \"7bd5c7b77d928fce84605d656b9637bc3ae78ad01a5664583115aee71119ea70\"}",
+        "2026-11-16T17:17:54.5782436Z {\"revision\": \"before\", \"queries\": 20, \"documents_per_retriever\": 2048, \"known_positives\": 512, \"median_seconds\": 1.0229133079999997, \"metrics\": {\"dense_map\": 0.016234773524789508, \"dense_mrr@10\": 0.18839285714285714, \"dense_ndcg@10\": 0.07479290471987499, \"sparse_map\": 0.0160742656111185, \"sparse_mrr@10\": 0.0964484126984127, \"sparse_ndcg@10\": 0.04804861461622388, \"map\": 0.02772659973682613, \"mrr@10\": 0.23805555555555555, \"ndcg@10\": 0.0798120834859289}, \"predictions_sha256\": \"92ec020d3be767d824100fa84e0334b4872d7cfa8eb51b17155df6a236ded9e2\"}",
+        "2026-11-16T17:18:00.5283299Z 23 passed in 0.11s",
+        "2026-11-16T17:18:06.1707535Z {\"revision\": \"after\", \"queries\": 20, \"documents_per_retriever\": 512, \"known_positives\": 20, \"median_seconds\": 0.06260237999998708, \"metrics\": {\"dense_map\": 0.0014327852932575415, \"dense_mrr@10\": 0.0125, \"dense_ndcg@10\": 0.004739418218477538, \"sparse_map\": 0.0012897032926614497, \"sparse_mrr@10\": 0.005, \"sparse_ndcg@10\": 0.0031810394099475838, \"map\": 0.0015381164802104204, \"mrr@10\": 0.00625, \"ndcg@10\": 0.0034715610968388657}, \"predictions_sha256\": \"7bd5c7b77d928fce84605d656b9637bc3ae78ad01a5664583115aee71119ea70\", \"speed_ratio\": 1.2086858838276002}",
+        "2026-11-16T17:18:07.2159664Z {\"revision\": \"after\", \"queries\": 20, \"documents_per_retriever\": 2048, \"known_positives\": 512, \"median_seconds\": 0.17260640899999657, \"metrics\": {\"dense_map\": 0.016234773524789508, \"dense_mrr@10\": 0.18839285714285714, \"dense_ndcg@10\": 0.07479290471987499, \"sparse_map\": 0.0160742656111185, \"sparse_mrr@10\": 0.0964484126984127, \"sparse_ndcg@10\": 0.04804861461622388, \"map\": 0.02772659973682613, \"mrr@10\": 0.23805555555555555, \"ndcg@10\": 0.0798120834859289}, \"predictions_sha256\": \"92ec020d3be767d824100fa84e0334b4872d7cfa8eb51b17155df6a236ded9e2\", \"speed_ratio\": 5.926276515028014}",
+        "2026-11-16T17:18:17.3746174Z ruff check...............................................................Passed",
+        "2026-11-16T17:18:17.5832827Z ruff format..............................................................Passed"
+      ]
+    },
+    {
+      "id": 133472397717,
+      "name": "verify (2.14.1, rrf, e3e41bae376a29b27a9da7c111dfa841e8d43837, sentence_transformers/sparse_encod...",
+      "conclusion": "success",
+      "lines": [
+        "2026-11-16T17:17:36.7044718Z \u001b[36;1mexpected = (str(failed) + ' failed, ' if failed else '') + os.environ['ST_PASSED'] + ' passed'\u001b[0m",
+        "2026-11-16T17:17:44.8629675Z 5 passed in 0.10s",
+        "2026-11-16T17:17:48.5224597Z {\"revision\": \"before\", \"queries\": 20, \"documents_per_retriever\": 512, \"known_positives\": 20, \"median_seconds\": 0.05632839800000511, \"metrics\": {\"dense_map\": 0.0014327852932575415, \"dense_mrr@10\": 0.0125, \"dense_ndcg@10\": 0.004739418218477538, \"sparse_map\": 0.0012897032926614497, \"sparse_mrr@10\": 0.005, \"sparse_ndcg@10\": 0.0031810394099475838, \"map\": 0.0015381164802104204, \"mrr@10\": 0.00625, \"ndcg@10\": 0.0034715610968388657}, \"predictions_sha256\": \"7bd5c7b77d928fce84605d656b9637bc3ae78ad01a5664583115aee71119ea70\"}",
+        "2026-11-16T17:17:53.4599087Z {\"revision\": \"before\", \"queries\": 20, \"documents_per_retriever\": 2048, \"known_positives\": 512, \"median_seconds\": 0.8165323960000137, \"metrics\": {\"dense_map\": 0.016234773524789508, \"dense_mrr@10\": 0.18839285714285714, \"dense_ndcg@10\": 0.07479290471987499, \"sparse_map\": 0.0160742656111185, \"sparse_mrr@10\": 0.0964484126984127, \"sparse_ndcg@10\": 0.04804861461622388, \"map\": 0.02772659973682613, \"mrr@10\": 0.23805555555555555, \"ndcg@10\": 0.0798120834859289}, \"predictions_sha256\": \"92ec020d3be767d824100fa84e0334b4872d7cfa8eb51b17155df6a236ded9e2\"}",
+        "2026-11-16T17:17:58.0359816Z 23 passed in 0.10s",
+        "2026-11-16T17:18:02.2845737Z {\"revision\": \"after\", \"queries\": 20, \"documents_per_retriever\": 512, \"known_positives\": 20, \"median_seconds\": 0.04928137999999649, \"metrics\": {\"dense_map\": 0.0014327852932575415, \"dense_mrr@10\": 0.0125, \"dense_ndcg@10\": 0.004739418218477538, \"sparse_map\": 0.0012897032926614497, \"sparse_mrr@10\": 0.005, \"sparse_ndcg@10\": 0.0031810394099475838, \"map\": 0.0015381164802104204, \"mrr@10\": 0.00625, \"ndcg@10\": 0.0034715610968388657}, \"predictions_sha256\": \"7bd5c7b77d928fce84605d656b9637bc3ae78ad01a5664583115aee71119ea70\", \"speed_ratio\": 1.142995549231964}",
+        "2026-11-16T17:18:03.0946367Z {\"revision\": \"after\", \"queries\": 20, \"documents_per_retriever\": 2048, \"known_positives\": 512, \"median_seconds\": 0.13261936000000674, \"metrics\": {\"dense_map\": 0.016234773524789508, \"dense_mrr@10\": 0.18839285714285714, \"dense_ndcg@10\": 0.07479290471987499, \"sparse_map\": 0.0160742656111185, \"sparse_mrr@10\": 0.0964484126984127, \"sparse_ndcg@10\": 0.04804861461622388, \"map\": 0.02772659973682613, \"mrr@10\": 0.23805555555555555, \"ndcg@10\": 0.0798120834859289}, \"predictions_sha256\": \"92ec020d3be767d824100fa84e0334b4872d7cfa8eb51b17155df6a236ded9e2\", \"speed_ratio\": 6.1569622715716035}",
+        "2026-11-16T17:18:15.3725130Z ruff check...............................................................Passed",
+        "2026-11-16T17:18:15.5423189Z ruff format..............................................................Passed"
+      ]
+    },
+    {
+      "id": 133472397827,
+      "name": "verify (2.14.1, ct, 0beec3daeabb3f1428cf830768926fef11b3470c, sentence_transformers/sentence_tran...",
+      "conclusion": "success",
+      "lines": [
+        "2026-11-16T17:17:39.9153159Z \u001b[36;1mexpected = (str(failed) + ' failed, ' if failed else '') + os.environ['ST_PASSED'] + ' passed'\u001b[0m",
+        "2026-11-16T17:17:47.6819437Z 22 failed, 12 passed in 0.23s",
+        "2026-11-16T17:17:53.4337090Z 51 passed in 0.18s",
+        "2026-11-16T17:18:06.3846908Z ruff check...............................................................Passed",
+        "2026-11-16T17:18:06.6540213Z ruff format..............................................................Passed"
+      ]
+    },
+    {
+      "id": 133472397867,
+      "name": "verify (2.6.0, ct, 0beec3daeabb3f1428cf830768926fef11b3470c, sentence_transformers/sentence_trans...",
+      "conclusion": "success",
+      "lines": [
+        "2026-11-16T17:17:25.5597059Z \u001b[36;1mexpected = (str(failed) + ' failed, ' if failed else '') + os.environ['ST_PASSED'] + ' passed'\u001b[0m",
+        "2026-11-16T17:17:31.9698163Z 22 failed, 12 passed in 0.19s",
+        "2026-11-16T17:17:36.5491880Z 51 passed in 0.12s",
+        "2026-11-16T17:17:46.5146946Z ruff check...............................................................Passed",
+        "2026-11-16T17:17:46.7200992Z ruff format..............................................................Passed"
+      ]
+    },
+    {
+      "id": 133472397908,
+      "name": "verify (2.6.0, parser, dec6a099db9c4b22aff6264161ab200a1c8121ec, sentence_transformers/sentence_t...",
+      "conclusion": "success",
+      "lines": [
+        "2026-11-16T17:17:31.5197724Z \u001b[36;1mexpected = (str(failed) + ' failed, ' if failed else '') + os.environ['ST_PASSED'] + ' passed'\u001b[0m",
+        "2026-11-16T17:17:38.6167192Z 39 passed in 0.21s",
+        "2026-11-16T17:17:46.5079141Z {\"revision\": \"before\", \"vocab_size\": 5000, \"dimension\": 128, \"median_seconds\": 0.1448426780000034, \"peak_traced_bytes\": 11341583, \"weights_sha256\": \"8db943c711a2317ca31f4910d3ff5bc289f2cd33605ef13f047921476e76b256\", \"vocabulary_sha256\": \"2731383adf54bb4142292141942ee7fa9720bedef83eb40c4cc0719a28c335ba\"}",
+        "2026-11-16T17:18:11.2702285Z {\"revision\": \"before\", \"vocab_size\": 20000, \"dimension\": 300, \"median_seconds\": 1.3230441800000108, \"peak_traced_bytes\": 100284918, \"weights_sha256\": \"f081ea2dd0f712a51cbf7dba360ef55a7358b783956c37e8d8aed12d02513f05\", \"vocabulary_sha256\": \"09bc3f06a60c714535ab64d321af8e7223221c4d76d474843a3c92cd9fa56441\"}",
+        "2026-11-16T17:18:19.9296874Z 50 passed in 2.61s",
+        "2026-11-16T17:18:27.5858469Z {\"revision\": \"after\", \"vocab_size\": 5000, \"dimension\": 128, \"median_seconds\": 0.11403355999999576, \"peak_traced_bytes\": 6671477, \"weights_sha256\": \"8db943c711a2317ca31f4910d3ff5bc289f2cd33605ef13f047921476e76b256\", \"vocabulary_sha256\": \"2731383adf54bb4142292141942ee7fa9720bedef83eb40c4cc0719a28c335ba\", \"speed_ratio\": 1.2701758850640879, \"peak_traced_ratio\": 1.7000108072020634}",
+        "2026-11-16T17:18:43.3553845Z {\"revision\": \"after\", \"vocab_size\": 20000, \"dimension\": 300, \"median_seconds\": 1.0941167419999829, \"peak_traced_bytes\": 57894204, \"weights_sha256\": \"f081ea2dd0f712a51cbf7dba360ef55a7358b783956c37e8d8aed12d02513f05\", \"vocabulary_sha256\": \"09bc3f06a60c714535ab64d321af8e7223221c4d76d474843a3c92cd9fa56441\", \"speed_ratio\": 1.2092349282413517, \"peak_traced_ratio\": 1.732209980812587}",
+        "2026-11-16T17:18:54.9391851Z ruff check...............................................................Passed",
+        "2026-11-16T17:18:55.2153483Z ruff format..............................................................Passed"
+      ]
+    },
+    {
+      "id": 133472397957,
+      "name": "verify (2.14.1, parser, dec6a099db9c4b22aff6264161ab200a1c8121ec, sentence_transformers/sentence_...",
+      "conclusion": "success",
+      "lines": [
+        "2026-11-16T17:17:39.8667874Z \u001b[36;1mexpected = (str(failed) + ' failed, ' if failed else '') + os.environ['ST_PASSED'] + ' passed'\u001b[0m",
+        "2026-11-16T17:17:49.3942185Z 39 passed in 0.23s",
+        "2026-11-16T17:17:57.8717422Z {\"revision\": \"before\", \"vocab_size\": 5000, \"dimension\": 128, \"median_seconds\": 0.1445148319999987, \"peak_traced_bytes\": 11341583, \"weights_sha256\": \"8db943c711a2317ca31f4910d3ff5bc289f2cd33605ef13f047921476e76b256\", \"vocabulary_sha256\": \"2731383adf54bb4142292141942ee7fa9720bedef83eb40c4cc0719a28c335ba\"}",
+        "2026-11-16T17:18:23.0142596Z {\"revision\": \"before\", \"vocab_size\": 20000, \"dimension\": 300, \"median_seconds\": 1.3320080609999962, \"peak_traced_bytes\": 100284918, \"weights_sha256\": \"f081ea2dd0f712a51cbf7dba360ef55a7358b783956c37e8d8aed12d02513f05\", \"vocabulary_sha256\": \"09bc3f06a60c714535ab64d321af8e7223221c4d76d474843a3c92cd9fa56441\"}",
+        "2026-11-16T17:18:32.0812476Z 50 passed in 2.25s",
+        "2026-11-16T17:18:40.5679016Z {\"revision\": \"after\", \"vocab_size\": 5000, \"dimension\": 128, \"median_seconds\": 0.11371972099999539, \"peak_traced_bytes\": 6671477, \"weights_sha256\": \"8db943c711a2317ca31f4910d3ff5bc289f2cd33605ef13f047921476e76b256\", \"vocabulary_sha256\": \"2731383adf54bb4142292141942ee7fa9720bedef83eb40c4cc0719a28c335ba\", \"speed_ratio\": 1.2707983340902196, \"peak_traced_ratio\": 1.7000108072020634}",
+        "2026-11-16T17:18:56.4336433Z {\"revision\": \"after\", \"vocab_size\": 20000, \"dimension\": 300, \"median_seconds\": 1.059357005999999, \"peak_traced_bytes\": 57894204, \"weights_sha256\": \"f081ea2dd0f712a51cbf7dba360ef55a7358b783956c37e8d8aed12d02513f05\", \"vocabulary_sha256\": \"09bc3f06a60c714535ab64d321af8e7223221c4d76d474843a3c92cd9fa56441\", \"speed_ratio\": 1.257374099057969, \"peak_traced_ratio\": 1.732209980812587}",
+        "2026-11-16T17:19:09.5944099Z ruff check...............................................................Passed",
+        "2026-11-16T17:19:09.8657682Z ruff format..............................................................Passed"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "perf/paraphrase-closure-queue-20261116",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "tree": "ad3749cdd27580abbcaa97c8637620b7009efe81",
+  "head": "6c3835e07bd2f030b014b6b77c851d9560ac0612",
+  "local_tests": {
+    "baseline_passed": 11,
+    "candidate_passed": 25
+  },
+  "dedup": "53 reachable blobs across 3 historical path aliases; both add_transitive_closure variants use list.pop(0) and repeatedly enqueue pending nodes. #4120 true-edge semantics unchanged."
+}
