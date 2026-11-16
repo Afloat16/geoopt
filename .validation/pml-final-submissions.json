@@ -1,0 +1,667 @@
+{
+  "repository": "KevinMusgrave/pytorch-metric-learning",
+  "base": "b95a42310f50720a766b91008470b278364f705d",
+  "actual_new_open": 16,
+  "new_merged": 0,
+  "last_updated": "2026-11-16",
+  "submissions": [
+    {
+      "name": "ndcg-gain-range",
+      "repository": "KevinMusgrave/pytorch-metric-learning",
+      "base": "master",
+      "base_sha": "b95a42310f50720a766b91008470b278364f705d",
+      "branch": "fix/ndcg-gain-range-20261116",
+      "head": "Afloat16:fix/ndcg-gain-range-20261116",
+      "head_sha": "95175fafee503eb5fa0a5c24ff52a240608ae57a",
+      "tree": "31b5cd9eab919555f057089d6df236312ecafb41",
+      "status": "ready",
+      "maintainer_can_modify": false,
+      "title": "Preserve NDCG ratios across finite gain scales",
+      "body": "## Problem\n\nNDCG can return NaN even when every custom gain is finite: gains [1.5, 1.3, 1.0] scaled by 1e308 overflow the discounted sums. At subnormal gain scales, accumulating before taking the ratio also loses information that remains representable in the normalized score.\n\n## Change\n\nNormalize the actual and ideal gain vectors by the same per-class scale before discounting. Choose that scale after self-exclusion and ideal top-k selection, then retain the existing zero-ideal convention and pooled/per-class aggregation.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43858549503/job/133269026491):\n\n- Unchanged production base `b95a423`: 16 regression failures and 20 passing controls.\n- All 90 focused and adjacent tests pass; 2 device-specific cases deselected. 36 new cases use a 100-digit Decimal ratio computed from the actual quantized gain inputs. They cover large, ordinary, and subnormal scales; ranking order; cutoff depth; self-exclusion; pooled and per-class registered metrics; and empty or zero-ideal controls.\n- Full CPU suite: 1,565 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `31b5cd9eab919555f057089d6df236312ecafb41`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "validation": {
+        "run": 43858549503,
+        "job": 133269026491,
+        "baseline_failures": 16,
+        "baseline_controls": 20,
+        "adjacent_passed": 90,
+        "full_cpu_passed": 1565,
+        "device_deselected": 10,
+        "all_required_gates_passed": true
+      },
+      "dedup": {
+        "old_full_source_branches": 37,
+        "all_state_pr_count": 204,
+        "source_history": "https://github.com/Afloat16/geoopt/blob/0049069244b408f200d0cbac6e1e8118ede51673/.validation/pml-final-source-history.json"
+      },
+      "prefilled_url": "https://github.com/KevinMusgrave/pytorch-metric-learning/compare/master...Afloat16:fix/ndcg-gain-range-20261116?expand=1&title=Preserve%20NDCG%20ratios%20across%20finite%20gain%20scales"
+    },
+    {
+      "name": "p2s-center-precision",
+      "repository": "KevinMusgrave/pytorch-metric-learning",
+      "base": "master",
+      "base_sha": "b95a42310f50720a766b91008470b278364f705d",
+      "branch": "fix/p2s-center-precision-20261116",
+      "head": "Afloat16:fix/p2s-center-precision-20261116",
+      "head_sha": "f5ca9fdc9040c9221e834e3b2d163d45927d1cad",
+      "tree": "5e1b247f92756ea70b21a1d9871183fa9c690e17",
+      "status": "ready",
+      "maintainer_can_modify": false,
+      "title": "Preserve P2SGrad learning signals close to class centers",
+      "body": "## Problem\n\nFor an embedding close to its target class center, low-precision cosine multiplication rounds the cosine to 1 before P2SGrad forms the squared residual. For example, [1, 0.02] against [1, 0] produces zero loss and zero training gradients in float16/bfloat16 and under CPU autocast, although the squared residual is about 4e-8 and the parameter gradient is representable.\n\n## Change\n\nKeep embedding normalization, cosine multiplication, and mean-squared residuals in the accumulation dtype, with autocast disabled for the cosine calculation. Preserve the original normalization epsilon, in-place no-grad center normalization, public scalar dtype outside autocast, and autocast's float32 MSE result.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43858549503/job/133269026126):\n\n- Unchanged production base `b95a423`: 12 regression failures and 15 passing controls.\n- All 47 focused and adjacent tests pass. 27 new cases compare values, embedding gradients, and parameter gradients against independent float64 equations across four dtypes, multiple near-center offsets, and one/two class centers. They also verify optimizer updates, autocast behavior, and the existing float16 normalization epsilon.\n- Full CPU suite: 1,556 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `5e1b247f92756ea70b21a1d9871183fa9c690e17`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "validation": {
+        "run": 43858549503,
+        "job": 133269026126,
+        "baseline_failures": 12,
+        "baseline_controls": 15,
+        "adjacent_passed": 47,
+        "full_cpu_passed": 1556,
+        "device_deselected": 10,
+        "all_required_gates_passed": true
+      },
+      "dedup": {
+        "old_full_source_branches": 37,
+        "all_state_pr_count": 204,
+        "source_history": "https://github.com/Afloat16/geoopt/blob/0049069244b408f200d0cbac6e1e8118ede51673/.validation/pml-final-source-history.json"
+      },
+      "prefilled_url": "https://github.com/KevinMusgrave/pytorch-metric-learning/compare/master...Afloat16:fix/p2s-center-precision-20261116?expand=1&title=Preserve%20P2SGrad%20learning%20signals%20close%20to%20class%20centers"
+    }
+  ],
+  "official_ci": [
+    {
+      "number": "803",
+      "sha": "151b0a60faff118b140da957dd68656057db35b1",
+      "checks": [
+        {
+          "name": "CPU suite on Python 3.14",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856122281/job/133260861298"
+        },
+        {
+          "name": "CPU suite on Python 3.12",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856122281/job/133260861231"
+        },
+        {
+          "name": "verify",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856122281/job/133260861200"
+        },
+        {
+          "name": "CPU suite on Python 3.13",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856122281/job/133260861198"
+        },
+        {
+          "name": "CPU suite on windows-2025",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856122281/job/133260861181"
+        },
+        {
+          "name": "CPU suite on macos-15",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856122281/job/133260861157"
+        },
+        {
+          "name": "Select verification scope",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856122281/job/133260701143"
+        }
+      ]
+    },
+    {
+      "number": "804",
+      "sha": "820abe0006980a75d792add579c2bf4b5532dee4",
+      "checks": [
+        {
+          "name": "CPU suite on macos-15",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856203017/job/133261248424"
+        },
+        {
+          "name": "verify",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856203017/job/133261248386"
+        },
+        {
+          "name": "CPU suite on Python 3.14",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856203017/job/133261248347"
+        },
+        {
+          "name": "CPU suite on Python 3.13",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856203017/job/133261248331"
+        },
+        {
+          "name": "CPU suite on windows-2025",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856203017/job/133261248311"
+        },
+        {
+          "name": "CPU suite on Python 3.12",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856203017/job/133261248252"
+        },
+        {
+          "name": "Select verification scope",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856203017/job/133260977112"
+        }
+      ]
+    },
+    {
+      "number": "805",
+      "sha": "a827cec58fb1b87b8fba967adf25d02ac13e4a2b",
+      "checks": [
+        {
+          "name": "CPU suite on Python 3.14",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856264384/job/133261398910"
+        },
+        {
+          "name": "CPU suite on Python 3.13",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856264384/job/133261398859"
+        },
+        {
+          "name": "CPU suite on Python 3.12",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856264384/job/133261398840"
+        },
+        {
+          "name": "CPU suite on windows-2025",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856264384/job/133261398737"
+        },
+        {
+          "name": "CPU suite on macos-15",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856264384/job/133261398713"
+        },
+        {
+          "name": "verify",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856264384/job/133261398678"
+        },
+        {
+          "name": "Select verification scope",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856264384/job/133261187144"
+        }
+      ]
+    },
+    {
+      "number": "806",
+      "sha": "649f423312aaee5d2c07d2f9662cfdbd3462546c",
+      "checks": [
+        {
+          "name": "CPU suite on Python 3.12",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856325897/job/133261692200"
+        },
+        {
+          "name": "CPU suite on Python 3.14",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856325897/job/133261692189"
+        },
+        {
+          "name": "CPU suite on macos-15",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856325897/job/133261692119"
+        },
+        {
+          "name": "CPU suite on Python 3.13",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856325897/job/133261692083"
+        },
+        {
+          "name": "CPU suite on windows-2025",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856325897/job/133261692075"
+        },
+        {
+          "name": "verify",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856325897/job/133261692040"
+        },
+        {
+          "name": "Select verification scope",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43856325897/job/133261402835"
+        }
+      ]
+    },
+    {
+      "number": "807",
+      "sha": "0fe3a3e59cbd506165c3f03fac30d0930ebf9292",
+      "checks": [
+        {
+          "name": "CPU suite on macos-15",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857323111/job/133264986148"
+        },
+        {
+          "name": "verify",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857323111/job/133264986102"
+        },
+        {
+          "name": "CPU suite on Python 3.12",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857323111/job/133264985986"
+        },
+        {
+          "name": "CPU suite on Python 3.13",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857323111/job/133264985974"
+        },
+        {
+          "name": "CPU suite on Python 3.14",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857323111/job/133264985973"
+        },
+        {
+          "name": "CPU suite on windows-2025",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857323111/job/133264985963"
+        },
+        {
+          "name": "Select verification scope",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857323111/job/133264818978"
+        }
+      ]
+    },
+    {
+      "number": "808",
+      "sha": "9bfa9156fd728550ae8ec67573cc52665d1253cf",
+      "checks": [
+        {
+          "name": "CPU suite on macos-15",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857404692/job/133265283045"
+        },
+        {
+          "name": "CPU suite on Python 3.14",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857404692/job/133265282445"
+        },
+        {
+          "name": "CPU suite on Python 3.13",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857404692/job/133265282410"
+        },
+        {
+          "name": "CPU suite on Python 3.12",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857404692/job/133265282397"
+        },
+        {
+          "name": "CPU suite on windows-2025",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857404692/job/133265282320"
+        },
+        {
+          "name": "verify",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857404692/job/133265282299"
+        },
+        {
+          "name": "Select verification scope",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43857404692/job/133265099762"
+        }
+      ]
+    }
+  ],
+  "remaining_validation": {
+    "branch": "validation/pml-final-core-fixes-20261116",
+    "head": "0049069244b408f200d0cbac6e1e8118ede51673",
+    "tree": "a8964843c082cd9894e319e8c63e4197aa9f8fd8"
+  },
+  "history_refresh": [
+    {
+      "number": 808,
+      "title": "Preserve intra-pair variance penalties and gradients before reduction",
+      "body": "## Problem\n\nIntraPairVariance rounds the selected-pair mean in float16/bfloat16 before subtracting it. Two adjacent scores near 0.5 can therefore produce zero positive variance or four times the negative variance, with zero or doubled training gradients. Squaring larger finite half-precision residuals can overflow before reduction.\n\n## Change\n\nWiden selected float16/bfloat16 pair values before their mean, epsilon adjustment, and squared hinge. Keep these terms in float32 through the configured reducer; float32/float64 inputs keep their dtype. Document the resulting float32 scalar for low-precision nonempty losses. The existing equation test compares its reference in the returned dtype without changing its numerical tolerance.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43855813044/job/133259652310):\n\n- Unchanged production base `b95a423`: 33 regression failures and 34 passing controls.\n- All 93 focused and adjacent tests pass. Independent float64 pair equations verify values and gradients across four dtypes, both distance polarities, positive/negative terms, epsilon settings, and small/large residuals. Tests also cover nonzero reduction and differentiable empty selections.\n- Full CPU suite: 1,596 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `71c55ec114aca92d7853ac41b7ef7111be81f777`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "state": "open",
+      "head": "9bfa9156fd728550ae8ec67573cc52665d1253cf",
+      "merged_at": null,
+      "created_at": "2026-11-16T11:23:55Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/808"
+    },
+    {
+      "number": 807,
+      "title": "Preserve decoupled contrastive objectives across large score offsets",
+      "body": "## Problem\n\nDCL subtracts an absolute positive score from an absolute negative log-partition. With four equal float32 scores at 1e8, this cancellation returns zero instead of log(2). Dividing large finite scores by a small temperature can also overflow before normalization and silently discard valid anchors.\n\n## Change\n\nRemove a per-anchor negative maximum before temperature scaling, and keep the log-partition and positive attraction in those shared coordinates. DCLW retains the exact correction using its uncentered positive scores, so the weighted objective and cross-positive gradients remain unchanged. Normalize the weighting softmax before dividing by sigma. Preserve output dtype, reducers, and exclusion of anchors without negatives.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43855582436/job/133258870954):\n\n- Unchanged production base `b95a423`: 25 regression failures and 16 passing controls.\n- All 110 focused and adjacent tests pass. An independent 100-digit Decimal reference checks values and analytic matrix gradients across four dtypes, both distance polarities, mean/sum reducers, multiple positives, rectangular references, and weighted variants. Tests also cover pre-division overflow and differentiable zero when negatives are absent.\n- Full CPU suite: 1,570 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `e43ae93392518d394189e66b6a0bc6c853312eba`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "state": "open",
+      "head": "0fe3a3e59cbd506165c3f03fac30d0930ebf9292",
+      "merged_at": null,
+      "created_at": "2026-11-16T11:23:23Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/807"
+    },
+    {
+      "number": 806,
+      "title": "Keep distance-weighted mining density finite for low-precision inputs",
+      "body": "## Problem\n\nDistanceWeightedMiner evaluates its dimension-scaled log-density in the distance dtype before normalizing per-anchor sampling weights. For finite float16 distances at the 0.5 cutoff in 131072 dimensions, this arithmetic overflows. Filtering nonfinite log weights then silently removes every otherwise eligible anchor. Subsequent row normalization cannot recover those candidates.\n\n## Change\n\nWiden float16/bfloat16 distances before evaluating the density logarithm. Preserve the existing cutoffs, candidate restrictions, inverse-density equation, and per-anchor sampling normalization. This addresses the earlier density calculation, independently of the previous row-normalization correction.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43854961310/job/133256750622):\n\n- Unchanged production base `b95a423`: 3 regression failures and 18 passing controls.\n- All 67 focused and adjacent tests pass. Tests exercise real normalized embeddings and caller-provided distance matrices across four dtypes and two dimensions. They verify eligible-anchor coverage, positive/negative label validity, rectangular reference restrictions, strict cutoff exclusion, and empty candidate rows.\n- Full CPU suite: 1,550 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `bd722a50099b94b65b59b1a9bd4bd9e444ac51a4`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "state": "open",
+      "head": "649f423312aaee5d2c07d2f9662cfdbd3462546c",
+      "merged_at": null,
+      "created_at": "2026-11-16T11:16:38Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/806"
+    },
+    {
+      "number": 805,
+      "title": "Keep DynamicArcFace class margins finite across count and power ranges",
+      "body": "## Problem\n\nDynamicArcFace normalizes inverse powers of class counts by their absolute range. Distinct counts such as [10, 100, 1000] with power = 1000 or 1e-20 produce a zero range and NaN margins. Adjacent int64 counts above 2^53 can also collapse when converted to floating point before their differences are formed. The invalid margins propagate into training.\n\n## Change\n\nEvaluate the normalized power-law range from relative logarithms and stable exponential differences. Form integer count differences before converting to float64, and use the analytic small-span limit when normalization would otherwise divide subnormal values. Preserve the configured margin endpoints, scale invariance, and class ordering. Reject nonfinite powers as well as nonpositive powers.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43854961310/job/133256750099):\n\n- Unchanged production base `b95a423`: 25 regression failures and 11 passing controls.\n- All 53 focused and adjacent tests pass. A 400-digit Decimal power-law reference checks the configured endpoints and intermediate margins across four count ranges, three powers, and two margin intervals. Tests cover count scaling/permutation, adjacent int64 counts, finite training values and gradients, the smallest positive finite power, and invalid powers.\n- Full CPU suite: 1,565 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `dddfe114f2ad9a2deb2d0b6fd563eeccb534b78d`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "state": "open",
+      "head": "a827cec58fb1b87b8fba967adf25d02ac13e4a2b",
+      "merged_at": null,
+      "created_at": "2026-11-16T11:16:13Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/805"
+    },
+    {
+      "number": 804,
+      "title": "Preserve NormalizedSoftmax logits through temperature scaling",
+      "body": "## Problem\n\nNormalizedSoftmax divides normalized similarities by temperature in the score dtype. With half-precision scores near 1 and temperature = 1e-5, the finite public logits overflow and cross-entropy produces NaN values and gradients. The same issue affects the public get_logits result before any loss reduction.\n\n## Change\n\nWiden float16/bfloat16 similarities before temperature division. Return the actual, unshifted logits from get_logits, and retain the original score dtype for the completed loss outside autocast. Preserve wider custom-distance outputs and PyTorch's float32 cross-entropy behavior under autocast. No logits are centered or otherwise rescaled in the public API.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43854638580/job/133255639464):\n\n- Unchanged production base `b95a423`: 6 regression failures and 22 passing controls.\n- All 30 focused and adjacent tests pass. Equal-center formulas check values, matrix and parameter gradients, and an SGD step across four dtypes and three temperatures. Public absolute logits, empty batches, custom float64 similarities, and CPU autocast behavior are covered. Existing unbounded-distance precision and weighted regularizer composition tests also pass.\n- Full CPU suite: 1,557 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `aa9d62bd20cbab674fa81e3f502cb13d117bfb77`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "state": "open",
+      "head": "820abe0006980a75d792add579c2bf4b5532dee4",
+      "merged_at": null,
+      "created_at": "2026-11-16T11:15:47Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/804"
+    },
+    {
+      "number": 803,
+      "title": "Stabilize SoftTriple center weighting at small temperatures",
+      "body": "## Problem\n\nSoftTriple divides each center similarity by gamma before computing the center softmax. A finite half-precision similarity of 1 with gamma = 1e-5 overflows at that division, so center probabilities, the loss, and training gradients become NaN. A common large float32 offset can cause the same failure even though only the differences between centers determine their probabilities.\n\n## Change\n\nWiden float16/bfloat16 center similarities before the weighting arithmetic and remove the maximum within each class before dividing by gamma. Compute the weighted class score in that arithmetic dtype, then preserve the existing score and loss dtype. Each class retains its own normalization; the public logits retain their original absolute scale.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43852886703/job/133249697874):\n\n- Unchanged production base `b95a423`: 3 regression failures and 23 passing controls.\n- All 28 focused and adjacent tests pass. Closed-form equal-center values, gradients, and an optimizer step are checked across four floating dtypes and positive/negative temperatures; independent float64 equations cover unequal centers. A large common float32 offset and differentiable empty batches are also covered.\n- Full CPU suite: 1,555 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `a2aa1440438513e97e2b81627277a0d908dec373`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "state": "open",
+      "head": "151b0a60faff118b140da957dd68656057db35b1",
+      "merged_at": null,
+      "created_at": "2026-11-16T11:15:14Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/803"
+    },
+    {
+      "number": 802,
+      "title": "Handle empty query sets throughout retrieval evaluation",
+      "body": "## Problem\n\nAn empty query set can fail before retrieval metrics are reduced: empty self-search requests a negative neighbor count, custom label comparison stacks no relevant-count tensors, and registered NDCG stacks no ideal rankings. These failures occur even when a nearest-neighbor backend supports empty queries.\n\n## Change\n\nKeep relevant counts, neighbor indices, and NDCG values correctly shaped when there are no queries. Empty self-search has zero available neighbors, and no nearest-neighbor backend is invoked. Existing reductions then return NaN aggregates and empty per-class dictionaries. Input validation and custom metric output-shape validation still run; nonempty-query and clustering behavior are unchanged. Document the empty-query contract.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43851701759/job/133245600784):\n\n- Unchanged production base `b95a423`: 58 regression failures and 1 passing control.\n- All 245 evaluation tests pass; 6 device-specific tests deselected. The 59 new cases cover empty self-search, empty/nonempty galleries, default/custom/multicolumn label comparisons, pooled and per-class results, each k mode, standalone NDCG, backend independence, and preserved input/custom-output validation.\n- Full CPU suite: 1,588 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `7ee0181334fc35d37c1efd3a17903a4c23076cc9`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "state": "open",
+      "head": "5d53b880daeaaa81abb340157824f6b75f55342b",
+      "merged_at": null,
+      "created_at": "2026-11-16T11:00:50Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/802"
+    },
+    {
+      "number": 801,
+      "title": "Preserve PNP ranking penalties and gradients near zero",
+      "body": "## Problem\n\nThe PNP variant transforms can erase or distort small soft-ranking penalties after the sigmoid has computed them correctly. For a valid cosine-similarity matrix with positive similarity 0.95, negative similarity 0.65, and the default temperature 0.01, float32 Ds/Dq/Iu losses become zero. Ib returns about 4.71e-14 instead of 8.76e-27 and drops a nonzero gradient. The issue also affects double precision and representable low-precision penalties.\n\n## Change\n\nUse log1p for logarithmic increments and negative expm1 for each Dq penalty before averaging. Evaluate the Ib transform with its small-argument series near zero, masking the unused polynomial input to avoid overflow in backward. Widen float16/bfloat16 similarities before ranking arithmetic, then preserve the existing returned scalar dtype. The variant objectives, sigmoid temperature, and API stay the same.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43851701759/job/133245601517):\n\n- Unchanged production base `b95a423`: 25 regression failures and 21 passing controls.\n- All 78 focused and adjacent tests pass. An independent 100-digit decimal reference checks each variant's values and analytic matrix gradients across multiple positive/negative gaps. Tests cover float16/bfloat16/float32/float64, unchanged output dtype, differentiable zero without negative classes, and the unused-series overflow boundary.\n- Full CPU suite: 1,575 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `b4e260261a8bc017f08f27b97157a271a3cfed44`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "state": "open",
+      "head": "adf3328949f798f6aa2786172feea6c91f27ec9d",
+      "merged_at": null,
+      "created_at": "2026-11-16T11:00:24Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/801"
+    },
+    {
+      "number": 800,
+      "title": "Stabilize RankedList weighting before temperature scaling",
+      "body": "## Problem\n\nRankedListLoss applies temperature multiplication before softmax can normalize the logits. Finite float16 violations around 0.7 and temperature 100000 produce non-finite loss and gradients, although their weighted average is still 0.7. A large negative temperature can instead discard the eligible contribution. The same intermediate overflow can occur with finite float32 distances and temperature products.\n\n## Change\n\nWiden low-precision matrices before computing violations and center the eligible scores before multiplying by the temperature magnitude. Negative temperatures reverse the score direction before centering. Empty eligible sets keep their zero contribution. Float16/bfloat16 matrices retain float32 through weighting and reduction, while the mathematical positive/negative weighted objectives and their imbalance remain unchanged. Update the public dtype and numerical behavior documentation.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43849551901/job/133238251590):\n\n- Unchanged production base `b95a423`: 26 regression failures and 27 passing controls.\n- All 80 focused and adjacent tests pass. Independent per-anchor weighted-mean references cover float16/bfloat16/float32/float64, positive and negative temperatures, zero and ordinary temperatures, each imbalance endpoint, matrix gradients, and finite float32 values whose uncentered temperature product overflows. Empty batches and empty violation sets retain differentiable zero.\n- Full CPU suite: 1,582 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `df5659041e7f3c950af316e8c43f42f2a2263279`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "state": "open",
+      "head": "ef5008f09b921e53e07d833eb956d1efe04f20d6",
+      "merged_at": null,
+      "created_at": "2026-11-16T10:41:37Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/800"
+    },
+    {
+      "number": 799,
+      "title": "Preserve NCA objectives and gradients across large score offsets",
+      "body": "## Problem\n\nNCA subtracts two log-sum-exp values that still carry a potentially large common score offset. Both can round to the same value, erasing a nonzero objective and corrupting its gradient. Four unnormalized float32 simplex vertices with coordinate magnitude 10000 produce loss 0 instead of log(3); the embedding gradient is also incorrect. ProxyNCA uses the same reduction and has the same failure with distant, equally eligible centers.\n\n## Change\n\nSelect rows with positive references, remove one common eligible score offset before scaling, and use that centered score matrix for both reductions. Both normalizers then retain the log probability without cancellation. Rows without positives still contribute no objective, and their removal makes infinite exclusion masks safe for backward. The shared correction covers NCA and ProxyNCA without changing miner weights, self-exclusion, or the returned dtype.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43849551901/job/133238252475):\n\n- Unchanged production base `b95a423`: 20 regression failures and 12 passing controls.\n- All 65 focused and adjacent tests pass. Independent row-wise log-softmax references cover large float32/float64 score offsets, distances and similarities, square and rectangular comparisons, mean/sum reducers, and matrix gradients. Closed-form simplex and equal-center references verify the actual embedding and trainable proxy gradients. Empty and positive-free inputs retain differentiable zero.\n- Full CPU suite: 1,561 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `9a4561d98460559384440f19ea30998fef7c911a`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "state": "open",
+      "head": "a98dde1eb698ed8a108aeeeb011403662ca3000f",
+      "merged_at": null,
+      "created_at": "2026-11-16T10:40:59Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/799"
+    },
+    {
+      "number": 798,
+      "title": "Keep finite boundary scores inside batch miner candidate sets",
+      "body": "## Problem\n\nBatchEasyHardMiner masks excluded entries with the largest or smallest finite value of the matrix dtype. A valid candidate at that boundary ties the mask, so argmin or argmax can select a self-comparison, a wrong-label pair, or an index outside the explicitly supplied candidates. BatchHardMiner inherits the same selection code.\n\n## Change\n\nUse signed infinity for excluded entries, keeping every finite score distinct from the mask. The existing row-eligibility mask continues to discard rows with no candidates. Inclusive allowed ranges, pair restrictions, and existing tie ordering among eligible candidates remain unchanged. Document the finite-boundary contract and register the new regression file in the numerical focused suite.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43846184908/job/133226818956):\n\n- Unchanged production base `b95a423`: 45 regression failures and 18 passing controls.\n- All 174 focused and adjacent tests pass; 2 device-specific tests deselected. Public-output oracles cover three floating dtypes, distance and unnormalized similarity orientations, five pair-mining strategy combinations, BatchHard triplets, rectangular reference matrices, explicit candidate subsets, and inclusive boundary ranges.\n- Full CPU suite: 1,592 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `b7b4bf2afe9cb7169a3d43b853d23727d9255cd0`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "state": "open",
+      "head": "1cfc27836f0fc5dcea8068a0b7ef69691dca8f58",
+      "merged_at": null,
+      "created_at": "2026-11-16T10:29:33Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/798"
+    },
+    {
+      "number": 797,
+      "title": "Preserve caller-owned matrix precision in MultiSupConLoss",
+      "body": "## Problem\n\nMultiSupConLoss selects its working dtype only from the embeddings, even when the caller supplies a higher-precision distance matrix. A float64 matrix is consequently narrowed to float32 for float16/float32 embeddings. Small score differences around a large common offset disappear, changing the objective and its matrix gradients; a nonzero training loss can become zero.\n\n## Change\n\nResolve the distance matrix before choosing the working dtype, promote the embeddings and matrix together, and retain the existing widening of low-precision arithmetic. Label overlaps and log probabilities then preserve the matrix's precision. The result continues to use the matrix dtype. Update the matrix-precision documentation and explicitly register the new regression file in the numerical focused suite.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43845089694/job/133223130704):\n\n- Unchanged production base `b95a423`: 27 regression failures and 37 passing controls.\n- All 139 focused and adjacent tests pass with this independent fix. Independent row-wise log-softmax and set-based Jaccard references cover float16/bfloat16/float32/float64 embeddings with a float64 matrix, square and rectangular comparisons, distances and similarities, fractional label overlap, restricted pairs, unchanged input matrices, and matrix gradients.\n- Full CPU suite: 1,593 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `e65f6665945e987912dc5a200d20f69e5388e7f6`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "state": "open",
+      "head": "ffc1df4a394f673267c13f24e59e9b2824cfee96",
+      "merged_at": null,
+      "created_at": "2026-11-16T10:28:10Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/797"
+    },
+    {
+      "number": 796,
+      "title": "Preserve weighted triplet sampling across finite weight scales",
+      "body": "## Problem\n\nWeighted triplet sampling casts the negative weights to float32 before masking and sampling. Finite double weights can therefore underflow to zero or overflow to infinity. The latter also creates `0 * inf` in masked positive/self positions. Rows with valid positive-weight negatives then silently produce no triplets: a common weight scale of either 1e-50 or 1e50 reproduces the problem.\n\n## Change\n\nMask ineligible entries first and rescale each row by its largest eligible weight before converting to the sampling dtype. This preserves relative probabilities and keeps zero-weight rows empty, including empty comparison axes. The input weights are not mutated. Document that exact seeded weighted draws may change as a consequence of the rescaling, and register the regression file in the numerical focused suite.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43845089694/job/133223130548):\n\n- Unchanged production base `b95a423`: 23 regression failures and 6 passing controls.\n- All 63 focused and adjacent tests pass with this independent fix. Tests cover finite double scales from 1e-300 to 1e300, self/reference sampling, masked large positive weights, exact single-negative oracles, zero eligible weights, and empty comparison axes.\n- Full CPU suite: 1,558 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `b14e65f31c6ce58c59cc5a7a56464eac456a5977`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "state": "open",
+      "head": "e194c2ec2f8308609729ae05872c3bd355aeda04",
+      "merged_at": null,
+      "created_at": "2026-11-16T10:22:12Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/796"
+    },
+    {
+      "number": 795,
+      "title": "Preserve spherical regularization before applying its loss weight",
+      "body": "## Problem\n\nSphericalEmbeddingRegularizer computes norms and deviations in float32 for low-precision inputs, then casts the reduced penalty back to the input dtype. This cast can overflow or erase the penalty before `embedding_reg_weight` is applied. For float16 rows with norms 1 and 1001, the exact variance is 250000. A weight of 0.0001 should produce 25, but the intermediate half scalar is already infinite. Small variances can likewise become zero before a larger weight restores a representable result.\n\n## Change\n\nReturn the reducer's accumulation result directly. Float16 and bfloat16 inputs retain a float32 penalty; float32 and float64 retain their dtype. The SEC objective and gradient stay unchanged. Document the output dtype, update the existing dtype assertion, and register the new regression file in its numerical module's focused test ownership.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43845089694/job/133223130140):\n\n- Unchanged production base `b95a423`: 10 regression failures and 10 passing controls.\n- All 108 focused and adjacent tests pass with this independent fix. Closed-form two-radius references cover large and small penalties, mean/sum reducers, subsequent loss weighting, and actual ContrastiveLoss embedding gradients.\n- Full CPU suite: 1,549 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `d49cb6d8964ce56f6312ccc0ebccbcad5fd173a1`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "state": "open",
+      "head": "a1d3d845516494cb93a37880a0120ce7590c0f7c",
+      "merged_at": null,
+      "created_at": "2026-11-16T10:15:06Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/795"
+    },
+    {
+      "number": 794,
+      "title": "Preserve ArcFace gradients through linear target-logit branches",
+      "body": "## Problem\n\nArcFace reconstructs the target cosine with `cos(acos(clamp(cosine)))` even in its linear monotonic continuation. When floating-point rounding places the cosine at an endpoint, this path loses the target-cosine derivative. A zero margin also loses the identity derivative through the same round trip.\n\nFor a float16 embedding `[1, 0.01]`, class weights `[[1, 0], [-1, 0]]`, and target class 1, the target weight receives no gradient and the embedding directional gradient is halved. With zero margin and scale 1, the current directional gradient is approximately `-0.008804`, versus the independent cosine cross-entropy reference `-0.017617`. The same defect occurs in the normal margin-0.5 continuation and in float32/float64 examples whose target cosines round to an endpoint.\n\n## Change\n\nUse the original target cosine in the monotonic continuation and return it directly for zero margins. The angular branch and its switch retain their current definition. SubCenterArcFaceLoss and DynamicArcFaceLoss inherit the correction, including class-specific zero margins. Update the component documentation, numerical rationale, and unreleased notes.\n\n## Validation\n\n[Independent validation on the exact base and corrected tree](https://github.com/Afloat16/geoopt/actions/runs/43844314617/job/133220519659):\n\n- Unchanged production base `b95a423`: 25 regression failures and 9 passing controls; one unrelated test deselected by the focused selection.\n- All 51 ArcFace, SubCenterArcFace, and DynamicArcFace tests pass after the fix. The regressions check target-logit derivatives and compare actual embedding/proxy gradients against an independent cosine cross-entropy reference across float16, float32, and float64.\n- Full CPU suite: 1,563 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks and task verification passed from the retained clean task base, along with frozen dependency review and supply-chain checks.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nValidation used Linux, Python 3.12.13, PyTorch 2.14.0, and the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree is byte-identical to the fully validated tree `9ba6c9b33baf05787d14c2e0065f4c4fa69fc6d6`.\n\nThe policy files also retain the independently verified, narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "state": "open",
+      "head": "f6d934b91a282c14534b2ee07d0b66028dc3c954",
+      "merged_at": null,
+      "created_at": "2026-11-16T10:06:23Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/794"
+    },
+    {
+      "number": 793,
+      "title": "Keep manifold ranking values and gradients finite",
+      "body": "## Problem\n\n`ManifoldLoss.ranking_term` materializes `exp(violation)` before summing and taking a logarithm. A finite margin can overflow that intermediate even when the mathematical loss and its derivatives remain finite. This affects half-precision training and sufficiently large margins in wider dtypes.\n\n## Change\n\nEvaluate the existing `log(1 + sum(exp(violations)))` expression with `logsumexp`, including a zero baseline for the constant one. Preserve the violation mask, positive-match exclusion, and zero ranking term for a single proxy. The graph construction and graph inverse are unchanged.\n\nAdd regressions to the existing precision suite and document the numerical contract on the component page, in the numerics design notes, and in the release notes. This addresses the final ranking reduction separately from the graph-normalization and inverse-precision changes in #773 and #781.\n\n## Validation\n\n[The complete validation run](https://github.com/Afloat16/geoopt/actions/runs/43830027479) checks the exact candidate tree `63bbbf99655427f0c534cefcdce91082235c8ae8`, which matches this branch. It checks out the upstream base independently and uses the repository-pinned policy tool, Python 3.12.13, and frozen dependencies.\n\n- Tests-only baseline on unchanged production source: **11 failed, 7 passed**.\n- Fixed existing ManifoldLoss and precision suites: **43 passed**.\n- Full CPU suite with the documented CPU environment: **1,547 passed, 10 deselected**.\n- Independent float64 formulas verify the full loss and embedding/proxy gradients across float16, bfloat16, float32 and float64, including `lambdaC=0`, `1` and infinity. A closed-form large-margin case checks values and analytic gradients beyond double-precision exponential range.\n- Pinned `check --git-changes` before committing and `test --changed --base b95a423` after committing both pass. Ruff formatting/lint, `ty check`, and `mkdocs build --strict` pass.\n\n## Required dependency assessment\n\nThe pinned dependency review initially encountered an expired certifi applicability record. The companion record is refreshed through 2026-11-19 after inspecting the hash-verified locked documentation wheel and the active MkDocs configuration: its Requests-using info/privacy/social plugins are disabled, and repository code does not call those certificate-verifying clients. The dependency versions and security policy thresholds are unchanged. Both dependency review before installation and deferred supply-chain checks after the frozen installation pass.",
+      "state": "open",
+      "head": "f671e8fc1869ced29c146d92efc9c288371e8b9f",
+      "merged_at": null,
+      "created_at": "2026-11-16T08:30:25Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/793"
+    },
+    {
+      "number": 792,
+      "title": "Preserve finite scaled logits in LargeMarginSoftmax and SphereFace",
+      "body": "## Problem\n\n`LargeMarginSoftmaxLoss` and `SphereFaceLoss` form embedding norms in the input dtype before scaling their cosine logits. With float16 inputs, an intermediate norm can overflow even when the final logits and training gradients are representable. For example, a one-row embedding `[60000, 60000]` with weights `0.5 * I` and margin 1 has LargeMarginSoftmax logits `[30000, 30000]` and loss `log(2)`, but currently produces infinite logits and non-finite training gradients. SphereFace has the same norm overflow with finite expected logits `[60000, 60000]`.\n\nLargeMarginSoftmax also multiplies the embedding and weight norms before applying the cosine and scale. This product can overflow, or underflow to zero before a larger scale restores a representable value, dropping a real training gradient.\n\n## Change\n\nCompute low-precision norms and the complete magnitude/cosine/scale product in float32, then return logits in the dtype selected by the original operands. Float32 and float64 retain their precision, and mixed-input/autocast promotion is preserved. The change covers both losses in one patch because they share the same norm-scaling calculation.\n\nThe cosine calculation, angular-margin polynomial, normalization epsilon, and final logit dtype are unchanged. The fix does not extend the final dtype's range or promise finite gradients when the existing cosine or margin computation itself exceeds its precision or range. The docs and release notes describe these boundaries.\n\n## Validation\n\n- All **84 new regression cases pass**, alongside the **3 existing tests and 12 subtests** in the affected file. The unchanged base produces **16 failures and 68 passing controls** for the new cases.\n- Independent float64 dot-product and direct trigonometric references check logits, actual cross-entropy training losses, and both embedding and weight gradients. Coverage includes intermediate norm/product overflow, product underflow, margins 1 and 4, both target classes, four floating dtypes, CPU autocast, and empty/zero inputs. Separate controls confirm that final logits outside float16's range retain that dtype and overflow behavior.\n- The complete frozen CPU sweep passes **1,614 tests and 2,471 subtests**, with **10 device-specific deselections** and only the seven baseline Gloo permission failures below.\n- Frozen Ruff formatting/lint, full `ty` checks, strict MkDocs build, `git diff --check`, and Code Polishy `check --git-changes` pass. The required `test --changed` run passes all six non-distributed suites; its distributed suite has the same seven environment failures listed below.\n\nThe following seven checks fail during Gloo initialization with `Operation not permitted`; all seven reproduce on the unchanged base in the same environment:\n\n- `TestDistributedReferences.test_two_rank_references`\n- `TestDistributedReferences.test_two_rank_validation_raises_on_every_rank`\n- `TestDistributedFallback.test_enqueue_mask_requires_memory` (`initialized=True`)\n- `TestDistributedFallback.test_loss_preserves_reference_gradients_and_supplied_pairs` (`initialized=True`)\n- `TestDistributedFallback.test_memory_preserves_queue_and_gradients` (`initialized=True`)\n- `TestDistributedFallback.test_memory_rejects_reference_inputs_before_queue_updates` (`initialized=True`)\n- `TestDistributedFallback.test_miner_preserves_pairs_with_and_without_references` (`initialized=True`)\n\nValidation uses the frozen project environment: Linux, Python 3.12.13, PyTorch 2.14.0+cu130 on CPU, NumPy 2.5.3, and pytest 9.1.1. CUDA and MPS execution were not run. The environment setup validated the dependency lock, but online advisory validation could not complete because the sandbox cannot reach OSV's vulnerability endpoint. Dependencies and security assessments are unchanged.\n",
+      "state": "open",
+      "head": "81d8715e0d77ff317f1364bd131bbb287262b863",
+      "merged_at": null,
+      "created_at": "2026-11-15T19:13:37Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/792"
+    },
+    {
+      "number": 791,
+      "title": "Preserve low-precision Lp and zero-mean regularizer statistics",
+      "body": "## Problem\n\n`LpRegularizer` and `ZeroMeanRegularizer` compute unbounded penalties in the input dtype. A float16 row can overflow before the batch mean or a regularization weight makes its contribution representable. For example, squared L2 regularization of `[40000, 40000]` with weight `1e-5` should contribute 32000 and gradient `[0.8, 0.8]`; the current loss and gradients are infinite.\n\n## Change\n\nWiden float16 and bfloat16 inputs before computing norms, powers, or row sums, and retain float32 through reduction and the returned nonempty scalar. Keeping the scalar wide is necessary because the containing loss applies its regularization weight afterward. Float32 and float64 inputs retain their dtype, and empty reductions retain their existing differentiable zero in the input dtype.\n\nThe component docs and release notes state the result-type change. Existing composition references now compute the corresponding statistics in float64 before converting to the stated statistics dtype; their value/gradient tolerances and the strict no-valid-pairs equality are unchanged.\n\n## Validation\n\n- All **54 new regression cases pass**. On the unchanged base they produce **16 failures and 38 passing controls**. Independent Python scalar sums and analytic gradients cover mean/sum reduction, squared L2 and L1 norms, zero-mean penalties, real weighted contrastive training, four floating dtypes, CPU autocast, and empty/zero inputs.\n- The initial complete CPU sweep produced **1,581 passing tests and 10 device-specific deselections**, plus the seven environment failures listed below and three failures in old regularizer references: `TestNPairsLoss.test_npairs_loss`, `TestSNRContrastiveLoss.test_snr_contrastive_loss`, and `TestSNRContrastiveLoss.test_with_no_valid_pairs`.\n- After correcting those three references for the new statistics dtype, the complete directly related selection passed **179 tests and 376 subtests**. Production source is unchanged from the complete CPU sweep; this is a targeted rerun, not a claim of a second full sweep.\n- A separate compatibility checkout combining this change with #790 passes **120 tests and 55 subtests** across SNR distances, regularizers, and composed losses.\n- Locked Ruff formatting/lint, full `ty` checks, strict MkDocs build, `git diff --check`, and Code Polishy `check --git-changes` pass. The final `test --changed` policy run passes all six non-distributed suites; its distributed suite has the same seven environment failures.\n\nThe following seven checks fail during Gloo initialization with `Operation not permitted`; all seven reproduce on the unchanged base in the same environment:\n\n- `TestDistributedReferences.test_two_rank_references`\n- `TestDistributedReferences.test_two_rank_validation_raises_on_every_rank`\n- `TestDistributedFallback.test_enqueue_mask_requires_memory` (`initialized=True`)\n- `TestDistributedFallback.test_loss_preserves_reference_gradients_and_supplied_pairs` (`initialized=True`)\n- `TestDistributedFallback.test_memory_preserves_queue_and_gradients` (`initialized=True`)\n- `TestDistributedFallback.test_memory_rejects_reference_inputs_before_queue_updates` (`initialized=True`)\n- `TestDistributedFallback.test_miner_preserves_pairs_with_and_without_references` (`initialized=True`)\n\nValidation uses the frozen project environment: Linux, Python 3.12.13, PyTorch 2.14.0+cu130 on CPU, NumPy 2.5.3, and pytest 9.1.1. CUDA and MPS execution were not run. The environment setup validated the dependency lock, but online advisory validation could not complete because the sandbox cannot reach OSV's vulnerability endpoint. Dependencies and security assessments are unchanged.\n",
+      "state": "open",
+      "head": "efd938a5a300198bd6c7d2f5d031bafbcd00e494",
+      "merged_at": null,
+      "created_at": "2026-11-15T19:00:28Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/791"
+    },
+    {
+      "number": 790,
+      "title": "Fix low-precision SNR variances before division",
+      "body": "## Problem\n\nNormalized float16 embeddings can have a nonzero variance that underflows before `SNRDistance` divides the pairwise variance by it. Nearly constant 512-dimensional rows then produce NaN distances even when the correct ratio is near two. `SignalToNoiseRatioContrastiveLoss` can silently discard those NaN terms, return zero instead of a positive loss, and propagate NaN gradients.\n\n## Change\n\nCompute low-precision differences, variances, and their ratio in float32, sharing the calculation between the matrix and pairwise paths. Convert only the final ratio to the existing result dtype. Float32 and float64 inputs are not narrowed, and the normalization and output-dtype contracts stay intact.\n\nThe component docs and release notes describe the precision behavior. Truly zero query variance remains undefined, normalization rounding is unchanged, and ratios outside the result dtype's range can still overflow.\n\n## Validation\n\n- The 19 new regressions produce **3 failures and 16 passing controls on the unchanged base**, and all 19 pass with the fix. Independent float64 centered-sum formulas check values and gradients for both query and reference inputs. Coverage includes all four floating dtypes, normalized/unnormalized paths, actual contrastive training, CPU autocast, empty queries, empty mined pairs, and constant-row behavior.\n- Complete CPU suite: **1,549 passed, 10 device-specific tests deselected**. The seven failures are sandbox-denied Gloo socket operations; all seven reproduce on the unchanged base with the same locked environment.\n- Locked Ruff formatting and lint, full `ty` checks, strict MkDocs build, `git diff --check`, and Code Polishy `check --git-changes` pass.\n- Code Polishy `test --changed` passes all six non-distributed suites, including 770 numerical tests; its distributed suite has the same seven sandbox failures. The post-install supply-chain check validates the lock, but OSV's vulnerability endpoint cannot be reached from the sandbox, so online advisory validation remains incomplete. No dependency or security-assessment changes are included.\n\nValidation uses the frozen project environment: Linux, Python 3.12.13, PyTorch 2.14.0+cu130 running on CPU, NumPy 2.5.3, and pytest 9.1.1. CUDA and MPS execution were not run.\n",
+      "state": "open",
+      "head": "69bb5ff79cbe22e55bc0e323337907250552dcaa",
+      "merged_at": null,
+      "created_at": "2026-11-15T18:38:07Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/790"
+    },
+    {
+      "number": 789,
+      "title": "Release 3.0.3: numerical precision, retrieval fixes, and faster fixed samplers",
+      "body": "Version 3.0.3 fixes precision loss and overflow in six numerical components, accepts strided persistent Faiss inputs, handles empty retrieval queries, and reduces fixed pair/triplet construction work for datasets with many classes.\n\nIncludes #780, #781, #782, #783, #784, #785, #786, #787, and #788 with original contributor commits preserved. All nine diffs were reviewed for malicious behavior, correctness, scope, and maintenance cost. Test ownership and CPU/CUDA device coverage were completed on the contributor branches. Public signatures and dependency versions are unchanged. The release notes document widened low-precision result dtypes and changed exact seeded sampler sequences.\n\nMerged as `b95a42310f50720a766b91008470b278364f705d`. Its Git tree matches the independently tested candidate `0815552a4d0600adfe40c9ed38564753eaaed9b3`.\n\n| Run | Environment | Result |\n| --- | --- | --- |\n| Full CPU | macOS 26.7.3 arm64; Python 3.12.13; PyTorch 2.14.0; CPU | 1,533 passed, 6 device-specific tests deselected, 2,487 subtests passed; 166.89 seconds |\n| Full CUDA, including two-rank distributed checks | Linux 6.8.0-149 x86_64; Python 3.12.13; PyTorch 2.14.0+cu130; 2× NVIDIA RTX PRO 4500 Blackwell; driver 595.91.07 (CUDA 13.2 capable) | 1,537 passed, 4 device-specific tests deselected, 2,479 subtests passed; 255.22 seconds |\n\nBoth runs used `TEST_DTYPES=float16,float32,float64` and one OpenMP/OpenBLAS thread; `TEST_DEVICE` was `cpu` or `cuda` respectively. No NCCL P2P, SHM, or IB disable override was set. The temporary Secure Cloud pod was deleted after saving the results.\n\nThe [master CI run](https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43495420000) passed every job: the CI-owned merge gate, dependency checks, lint, type checking, documentation builds, installed-wheel verification, Linux Python 3.12–3.14, macOS, and Windows. Windows passed after one retry for native PyTorch exception `0xc000001d` in the pre-existing dot-product matrix multiplication test. All focused regression suites also pass. The GE2E equal-score gradient assertion bounds floating-point cancellation by class count and dtype epsilon, including a stricter float64 check.\n\nAn independent 20,000-class CPU benchmark measured 2.90× faster fixed-pair construction and 4.88× faster fixed-triplet construction (three alternating trials, 10,000 tuples, macOS arm64, PyTorch 2.14.0). These measure construction time, not training throughput.\n\nThe annotated `v3.0.3` tag points to the verified master commit, and the release preflight passed before the tag was pushed.\n\nPublished [v3.0.3](https://github.com/KevinMusgrave/pytorch-metric-learning/releases/tag/v3.0.3) to [PyPI](https://pypi.org/project/pytorch-metric-learning/3.0.3/). The [release workflow](https://github.com/KevinMusgrave/pytorch-metric-learning/actions/runs/43498065264) passed all jobs. Public PyPI and GitHub wheel/sdist sizes and SHA-256 digests match, and the [3.0.3 documentation](https://kevinmusgrave.github.io/pytorch-metric-learning/release-notes/3.0.3/) is live.\n",
+      "state": "closed",
+      "head": "0815552a4d0600adfe40c9ed38564753eaaed9b3",
+      "merged_at": "2026-11-13T19:46:57Z",
+      "created_at": "2026-11-13T19:05:57Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/789"
+    },
+    {
+      "number": 788,
+      "title": "fix(retrieval): preserve empty query shapes and distance contracts",
+      "body": "## Summary\n\nEmpty query batches crash both KNN backends when ref_includes_query is enabled: reshaping zero elements with an inferred width is ambiguous. Batched CustomKNN also returns the input dtype for empty queries even when its distance returns float32, and can bypass neighbor-count validation.\n\nUse the known result width when removing self-matches. When batching yields no query blocks, run the distance and topk on the empty matrix so output dtype and validation match unbatched search. Nonempty search and neighbor selection are unchanged.\n\n## Validation\n\n- New tests on unchanged master: 45 failures and 39 passing controls.\n- All 98 targeted retrieval tests and 51 subtests passed; 4 device-specific tests deselected. Native Faiss and CustomKNN cover empty query shapes, self exclusion, zero neighbors where supported, normalized/unnormalized distances, batching, four floating dtypes, index reset, no autograd history, and invalid neighbor counts.\n- Complete CPU suite after committing: 1,411 tests and 2,468 subtests passed; 10 device-specific tests deselected. The only seven failures are sandbox-denied Gloo socket operations, independently reproduced on unchanged master.\n- Ruff format, Ruff lint, full ty checks, strict MkDocs, and git diff --check passed.\n\nLinux, Python 3.12.14, PyTorch 2.14.0+cpu, Faiss CPU 1.15.1, NumPy 2.5.3, pytest 9.1.1. CUDA/MPS and distributed execution are not verified. Contributor checks ran directly; the locked Code Polishy installation is unavailable.",
+      "state": "closed",
+      "head": "946f7daefe8cac0dda7bc55ca11fb4d32f583a59",
+      "merged_at": "2026-11-13T19:46:59Z",
+      "created_at": "2026-11-13T03:59:41Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/788"
+    },
+    {
+      "number": 787,
+      "title": "fix(FaissKNN): accept noncontiguous persistent-index inputs",
+      "body": "## Summary\n\nFaissKNN.train and FaissKNN.add pass CPU tensors directly to the native Faiss index after a dtype conversion. Float32 column slices and transposed views can remain noncontiguous and fail the Faiss tensor bridge assertion, preventing valid embedding views from initializing or extending a persistent index.\n\nMake the CPU float32 tensor contiguous before adding it. This covers train through its existing call to add and preserves the established device-placement behavior. The search-path handling from #643 does not cover these persistent-index methods.\n\n## Validation\n\n- New tests on unchanged master: 11 failures and 8 passing controls.\n- All 102 evaluation tests and 293 subtests passed; 6 device-specific tests deselected. The 19 new native-Faiss tests cover train/add, strided columns/transposes, float16/bfloat16/float32/float64, exact neighbors, unchanged inputs, and save/load after appending. The final added type-narrowing assertion was checked by rerunning all 19 tests.\n- Complete CPU suite: 1,346 tests and 2,468 subtests passed; 10 device-specific tests deselected. The only seven failures are sandbox-denied Gloo socket operations, independently reproduced on unchanged master.\n- Ruff format, Ruff lint, full ty checks, strict MkDocs, and git diff --check passed.\n\nLinux, Python 3.12.14, PyTorch 2.14.0+cpu, Faiss CPU 1.15.1, NumPy 2.5.3, pytest 9.1.1. CUDA/MPS and distributed execution are not verified. Contributor checks ran directly; the locked Code Polishy installation is unavailable.",
+      "state": "closed",
+      "head": "a63628e2318c0b8347560300134e0e97985333f4",
+      "merged_at": "2026-11-13T19:46:59Z",
+      "created_at": "2026-11-13T03:59:34Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/787"
+    },
+    {
+      "number": 786,
+      "title": "perf(samplers): avoid full class permutations for fixed tuples",
+      "body": "## Summary\n\nFixedSetOfPairs and FixedSetOfTriplets currently shuffle all C class IDs for every negative pair or triplet just to select two distinct classes. Draw two distinct classes in constant work instead, using a uniform exclusion mapping, and generate at most 1,024 class pairs at a time. Keep member selection, tuple semantics, and pair batching unchanged.\n\nA seeded generator remains reproducible within the new implementation, but exact tuple sequences for an existing seed change. Document this compatibility detail and include the raw construction benchmark measurements.\n\n## Validation\n\n- All 41 sampler tests and 33 subtests passed, including 11 new public-behavior controls that also pass on unchanged master. Coverage includes two classes, singleton classes, arbitrary labels, one/zero tuples where supported, pair batching, and seeded generator reproducibility.\n- Three alternating measurements on 20,000 two-member classes and 10,000 tuples: median triplet construction 731.44 ms -> 139.11 ms (5.26x); median pair construction 419.96 ms -> 115.93 ms (3.62x). This measures sampler construction, not training throughput. Raw per-run timings and environment details are included in docs/benchmarks/fixed-sampler-class-draws-cpu.json.\n- Complete CPU suite after committing: 1,338 tests and 2,468 subtests passed; 10 device-specific tests deselected. The only seven failures are sandbox-denied Gloo socket operations, independently reproduced on unchanged master.\n- Ruff format, Ruff lint, full ty checks, strict MkDocs, and git diff --check passed.\n\nLinux, Python 3.12.14, PyTorch 2.14.0+cpu, NumPy 2.5.3, pytest 9.1.1. CUDA/MPS and distributed execution are not verified. Contributor checks ran directly; the locked Code Polishy installation is unavailable.",
+      "state": "closed",
+      "head": "46026d24fd08f56fe6ee11dad7a47b56b0a72745",
+      "merged_at": "2026-11-13T19:46:59Z",
+      "created_at": "2026-11-13T03:58:52Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/786"
+    },
+    {
+      "number": 785,
+      "title": "fix(VICRegLoss): keep mixed-precision statistics finite and accurate",
+      "body": "## Summary\n\nVICRegLoss computes covariance products and their squares in the input dtype. Half-precision views with values around 20 already produce an infinite objective, and autocast can overflow the covariance product even when the views are float32.\n\nCompute all statistics in the promoted view dtype, widened to float32 for float16/bfloat16, with autocast disabled around the calculation. Retain that dtype in the scalar result and preserve float64 when either view is float64. Autograd still returns gradients to both original views. Document the result dtype and update the existing reference test to compare numeric values across result dtypes without relaxing its tolerances.\n\n## Validation\n\n- New tests on unchanged master: 11 failures and 2 passing full-precision controls.\n- All 15 VICReg tests and 2 subtests passed. An independent float64 coordinate-wise formula checks the objective and both view gradients at small/large scales and two coefficient sets. Real CPU float16/bfloat16 autocast and mixed half/double views are covered.\n- Complete CPU suite after committing: 1,340 tests and 2,468 subtests passed; 10 device-specific tests deselected. The only seven failures are sandbox-denied Gloo socket operations, independently reproduced on unchanged master.\n- Ruff format (342 files), Ruff lint, full ty checks, strict MkDocs, and git diff --check passed.\n\nLinux, Python 3.12.14, PyTorch 2.14.0+cpu, NumPy 2.5.3, pytest 9.1.1. CUDA/MPS and distributed execution are not verified. Contributor checks ran directly; the locked Code Polishy installation is unavailable.",
+      "state": "closed",
+      "head": "441d8e566a96fbbbb80e66a3abdd8318321a3434",
+      "merged_at": "2026-11-13T19:46:59Z",
+      "created_at": "2026-11-13T03:58:46Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/785"
+    },
+    {
+      "number": 784,
+      "title": "fix(UniformHistogramMiner): preserve tiny ranges and bin boundaries",
+      "body": "## Summary\n\nUniformHistogramMiner clamps the observed distance range to the dtype's smallest normal value. Distinct small or subnormal distances then collapse into the same bin. Low-precision multiplication also rounds some values across bin boundaries before integer conversion, merging adjacent occupied bins.\n\nCompute float16/bfloat16 bin positions in float32 and replace the range only when it is exactly zero. Positive and negative draws now cover the true occupied bins; constant inputs still occupy one bin, supplied candidate pairs remain restricted, and draws remain uniform with replacement. Update the miner page, numerical rationale, and unreleased notes.\n\n## Validation\n\n- Unchanged master with the new tests: 10 failures and 6 passing controls.\n- All miner tests: 87 passed, 46 subtests passed, 2 device-specific tests deselected. Independent Python-float bins verify both positive and negative sampling for float16/bfloat16 boundary values and tiny float16/float32/float64 ranges; controls cover constant, restricted-candidate, and ordinary full-precision cases.\n- Complete CPU suite after committing: 1,343 tests and 2,468 subtests passed; 10 device-specific tests deselected. The only seven failures are the same sandbox-denied Gloo socket failures reproduced on unchanged master.\n- Ruff format (342 files), Ruff lint, full ty checks, strict MkDocs, and git diff --check passed.\n\nLinux, Python 3.12.14, PyTorch 2.14.0+cpu, NumPy 2.5.3, pytest 9.1.1. CUDA/MPS and distributed execution are not verified. Contributor checks ran directly; the locked Code Polishy installation is unavailable.",
+      "state": "closed",
+      "head": "509d05f09b6e066dfeeea92dbfd911ddacbd6e8c",
+      "merged_at": "2026-11-13T19:46:59Z",
+      "created_at": "2026-11-13T03:57:51Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/784"
+    },
+    {
+      "number": 783,
+      "title": "fix(PerAnchorReducer): retain precision through the inner reduction",
+      "body": "## Summary\n\nPerAnchorReducer accumulates in float32 but casts each aggregate back before its inner reducer sees it. This turns a half-precision intermediate sum of 80000 into infinity even though the final mean is 60000, rounds small positive means to zero and removes their gradients, and changes threshold decisions in float16 and bfloat16.\n\nPass the accumulated values directly to the inner reducer. Nonempty low-precision terms now supply float32 values and produce float32 with the default inner reducer; custom inner reducers control their own result. Empty terms retain the existing differentiable zero and dtype. Document this dtype change and its rationale.\n\n## Validation\n\n- Unchanged master with the new regressions: 5 failures and 2 passing controls.\n- All 33 reducer/ContrastiveLoss tests and 10 subtests passed. Coverage includes analytic gradients, threshold boundaries, a subnormal positive mean, untouched float32/float64 behavior, and real ContrastiveLoss with 50,000 references: its finite 70703.125 anchor sum previously became infinity.\n- Complete CPU suite: 1,334 tests and 2,468 subtests passed, 10 device-specific tests deselected. The only seven failures are Gloo socket operations denied by the sandbox; the same seven failures reproduce on unchanged master.\n- Ruff format (342 files), Ruff lint, full ty checks, strict MkDocs, and git diff --check passed. Generated pytest fixture files were moved outside the checkout before rerunning formatting and lint.\n\nLinux, Python 3.12.14, PyTorch 2.14.0+cpu, NumPy 2.5.3, pytest 9.1.1. CUDA/MPS and distributed execution are not verified. Contributor checks ran directly; the locked Code Polishy installation is unavailable.",
+      "state": "closed",
+      "head": "a0b78f1a31f714bc609eca155b593c080805eb05",
+      "merged_at": "2026-11-13T19:46:59Z",
+      "created_at": "2026-11-13T03:57:43Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/783"
+    },
+    {
+      "number": 782,
+      "title": "fix(GE2ELoss): stabilize softmax and cancel the shared bias",
+      "body": "## Summary\n\nA common bias should cancel in GE2ELoss's softmax objective, but adding it to every logit can round away class differences. With init_w=2 and a bias of 1e8, a four-embedding example returns zero instead of 0.126928, gives the bias a gradient of 1, and corrupts embedding and scale gradients. Large identical scores also lose the expected log(class_count) objective.\n\nCancel the shared bias before creating softmax logits and use PyTorch cross_entropy for stable log probabilities. A zero multiple of the bias retains its optimizer/autograd connection and exact zero gradient. Keep the bias in the contrast variant, where it is mathematically required. Update component, design, and release documentation.\n\n## Validation\n\n- New tests on unchanged master: 16 failures and 2 passing contrast controls.\n- All 36 related tests and 37 subtests passed. Independent equation references check embedding, scale, and bias gradients across float16, bfloat16, float32, and float64; equal large-score cases retain log(2) and log(3).\n- Complete CPU suite after committing: 1,345 tests and 2,468 subtests passed; 10 device-specific tests deselected. The only seven failures are sandbox-denied Gloo socket operations, reproduced on unchanged master.\n- Ruff format (342 files), Ruff lint, full ty checks with the project environment explicitly selected, strict MkDocs, and git diff --check passed.\n\nLinux, Python 3.12.14, PyTorch 2.14.0+cpu, NumPy 2.5.3, pytest 9.1.1. CUDA/MPS and distributed execution are not verified. Contributor checks ran directly; the locked Code Polishy installation is unavailable.",
+      "state": "closed",
+      "head": "4302218794176bec37977d44ea0a0f7a4d8b4bad",
+      "merged_at": "2026-11-13T19:46:59Z",
+      "created_at": "2026-11-13T03:55:27Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/782"
+    },
+    {
+      "number": 781,
+      "title": "fix(ManifoldLoss): retain double precision in the graph inverse",
+      "body": "## Summary\n\nManifoldLoss unconditionally casts its random-walk matrix to float32 before inversion, including when embeddings and proxies are float64. This loses value and gradient precision and can turn a valid system into a singular one: alpha=0.99999999 fails in linalg.inv on the supplied six-node graph.\n\nUse the existing accumulation_dtype rule for the inverse. Float64 stays float64; float16 and bfloat16 retain their supported float32 inverse; ordinary float32 calculations are unchanged. The public result dtype and existing graph normalization stay intact. Update the component page, numerical rationale, and unreleased notes.\n\n## Validation\n\n- Unchanged master with the new tests: 14 failures and 3 passing low-precision controls.\n- Fixed implementation: 25 related tests and 4 subtests passed. Tests compare intrinsic, context, and combined objectives plus embedding/proxy gradients with an independent double-precision graph formula using a linear solve, check numerical derivatives at two propagation weights, and exercise a valid near-one weight.\n- Complete CPU suite after committing: 1,344 tests and 2,468 subtests passed; 10 device-specific tests were deselected. The only seven failures are Gloo socket operations denied by this sandbox; those same seven failures were reproduced on unchanged master.\n- Ruff format (342 files), Ruff lint, full-source/test/recipe/benchmark/script ty checks, strict MkDocs, and git diff --check passed.\n\nLinux, Python 3.12.14, PyTorch 2.14.0+cpu, NumPy 2.5.3, pytest 9.1.1. CUDA/MPS and distributed execution are not verified. The contributor checks ran directly; the locked Code Polishy installation is unavailable.",
+      "state": "closed",
+      "head": "fe874d9e0d87ab240a7be4139261af7ccb899694",
+      "merged_at": "2026-11-13T19:46:59Z",
+      "created_at": "2026-11-13T03:54:54Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/781"
+    },
+    {
+      "number": 780,
+      "title": "fix(MultiSupConLoss): preserve label counts under autocast",
+      "body": "## Summary\n\nAutocast narrows the label matrix product in MultiSupConLoss even though the boolean labels were converted to float32. Intersections of 257 labels in bfloat16 and 2049 labels in float16 are rounded, changing Jaccard weights and dropping identical label sets below threshold=1. A concrete training case consequently returns zero instead of 0.0637798.\n\nUse the existing without_autocast helper around the label intersection product. Thresholded pairs, explicitly supplied pair weights, and CrossBatchMemory label sets now retain the requested label arithmetic precision. The embedding computations and the caller's autocast scope remain intact. Update the component documentation, numerical rationale, and unreleased notes.\n\n## Validation\n\n- New tests on unchanged master: 9 failures and 3 passing controls.\n- All 51 MultiSupCon, new autocast, and CrossBatchMemory tests passed, including independent set comparisons, float64 value/gradient references, real CPU bfloat16/float16 autocast, and an actual memory training step.\n- Full CPU suite: 1,338 passed and 2,468 subtests passed; 10 device-specific tests were deselected. Seven Gloo failures reproduce identically on unchanged master because the sandbox denies socket operations. One benchmark worker initially required a clean committed source tree; after committing, its exact rerun passed.\n- Ruff format (342 files), Ruff lint, full-source/test/recipe/benchmark/script ty checks, strict MkDocs, and git diff --check passed.\n\nLinux, Python 3.12.14, PyTorch 2.14.0+cpu, NumPy 2.5.3, pytest 9.1.1. CUDA/MPS and distributed execution are not verified. The contributor checks were run directly; the locked Code Polishy installation is unavailable in this environment.",
+      "state": "closed",
+      "head": "cb4dcba4531165f31eeb84d83dce1e5d2f7fcb34",
+      "merged_at": "2026-11-13T19:46:59Z",
+      "created_at": "2026-11-13T03:53:17Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/780"
+    },
+    {
+      "number": 779,
+      "title": "Report only verified batch sizes in capacity benchmarks",
+      "body": "Return null if no positive batch succeeds. Preserve a failed confirmation's status rather than reporting a successful search cap. Probe the next admissible aligned batch after a nonaligned lower bound. Reject zero or inverted search bounds, invalid granularities, and invalid relative resolutions before running a worker.\n\nExercised capacity_search with deterministic probes, including all failures, a failed confirmation, and a nonaligned start. Added focused regressions.",
+      "state": "closed",
+      "head": "97ffbc50f4e6e09bb3786d05429fbeb67cd9d6c4",
+      "merged_at": "2026-11-08T05:38:20Z",
+      "created_at": "2026-11-07T18:17:18Z",
+      "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/779"
+    }
+  ],
+  "note": "No upstream PR for these two ready candidates has been created yet; 16 earlier PRs #793-#808 are Open and all seven official checks passed. Circle and large-vector normalization still require final verification."
+}
