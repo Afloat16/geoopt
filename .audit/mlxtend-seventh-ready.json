@@ -1,0 +1,206 @@
+[
+  {
+    "name": "bias-variance-streaming",
+    "title": "Bound the memory used by MSE bias-variance decomposition",
+    "issue": 1326,
+    "job": 133370355941,
+    "body": "### Description\n\nThe MSE path in `bias_variance_decomp` retains every bootstrap prediction and creates another rounds-by-test-samples array to calculate variance. With 64 rounds and 200,000 test samples, the aggregation alone peaks at 208,007,696 traced bytes.\n\nThis change accumulates expected loss, mean prediction, and centered second moments as predictions arrive. Memory depends on the number of test samples rather than the number of rounds. Centering the online variance calculation about the first prediction also preserves narrow variation around large common offsets. Prediction conversion, broadcasting, nonfinite results, and the classification path retain their existing behavior.\n\n### Related issues or pull requests\n\nCloses #1326.\n\nThis is separate from #1315, which resets estimator state between bootstrap fits. This branch does not include that pending estimator-state change. Deduplication inspected every reachable intermediate revision of the affected source across upstream PR refs and fork branches: 95 commits and 36 distinct versions. None used an online MSE accumulator.\n\n### Measurements\n\nThe exact base and patch were measured in the same Python 3.11.18 job using the frozen lock, a deterministic mean regressor, 64 rounds, and 200,000 test samples:\n\n| Measurement | Base | Patch |\n| --- | ---: | ---: |\n| Peak traced allocation | 208,007,696 bytes | 16,007,792 bytes |\n| Median time, five untraced runs | 0.08007 s | 0.10022 s |\n\nPeak allocation falls by **92.3%**. The extra online updates make this deliberately inexpensive estimator benchmark about **25% slower**; the benefit is bounded memory, not a claim of faster aggregation. All three returned statistics agree to floating-point precision. The complete benchmark and measurements are retained in the validation artifact.\n\n### Validation\n\n- Exact upstream base: `1aee767ef57b84a8191511a08955c583b65de382`.\n- **3 of 24 new cases fail on unchanged source**: memory growth with round count and two large-offset variance cases. All 24 pass after the change.\n- Independent materialized-prediction comparisons cover linear regression, decision trees, and random forests, multiple round counts, scalar/vector/row predictions, float32/float64 conversion, and nonfinite outputs. A high-precision Decimal calculation checks the large-offset variance cases.\n- New and existing focused tests: **30 passed, 1 skipped**. Complete repository suite: **764 passed, 3 skipped**.\n- Baseline and patch ran in the same job. The TensorFlow-dependent skip follows the repository's existing CI setting.\n- Complete repository isort/Black, changed-file Flake8, `git diff --check`, package build, and strict Twine checks passed. The repository-wide Flake8 report retains existing findings and is not described as a clean lint gate.\n\n[Baseline, complete validation, and benchmark evidence](https://github.com/Afloat16/geoopt/actions/runs/43887747926/job/133370355941).\n\n### Pull Request Checklist\n\n- [x] Added a changelog entry.\n- [x] Added regression and memory-growth tests.\n- [x] Documented the memory behavior.\n- [x] Ran focused and full repository tests.\n- [x] Checked formatting and style with the scope described above.\n",
+    "branch": "fix/bias-variance-streaming-20261116",
+    "head": "0ae0b67daa1983df97f2f0519d960fd1c2795c27",
+    "tree": "014c8ede1bdbe82f8a02124f5049c87860096818",
+    "status": "ready",
+    "base": "master",
+    "maintainer_can_modify": false,
+    "validation": {
+      "run_id": 43887747926,
+      "job_id": 133370355941,
+      "name": "bias-variance-streaming",
+      "base": "1aee767ef57b84a8191511a08955c583b65de382",
+      "issue": 1326,
+      "baseline_focused": {
+        "total": 24,
+        "failed": 3,
+        "skipped": 0,
+        "failures": {
+          "mlxtend.evaluate.tests.test_bias_variance_streaming::test_centered_accumulator_preserves_variance_at_large_offsets[1000000000000.0]": "AssertionError: \nNot equal to tolerance rtol=1e-14, atol=0\n\nMismatched elements: 1 / 1 (100%)\nMax absolute difference among violations: 2.38418579e-09\nMax relative difference among violations: 1.28874908e-08\n ACTUAL: array(0.185)\n DESIRED: array(0.185)",
+          "mlxtend.evaluate.tests.test_bias_variance_streaming::test_centered_accumulator_preserves_variance_at_large_offsets[-1000000000000.0]": "AssertionError: \nNot equal to tolerance rtol=1e-14, atol=0\n\nMismatched elements: 1 / 1 (100%)\nMax absolute difference among violations: 2.38418579e-09\nMax relative difference among violations: 1.28874908e-08\n ACTUAL: array(0.185)\n DESIRED: array(0.185)",
+          "mlxtend.evaluate.tests.test_bias_variance_streaming::test_peak_memory_does_not_scale_with_bootstrap_round_count": "AssertionError: [1927744, 16327656]\nassert 16327656 < (3 * 1927744)"
+        }
+      },
+      "baseline_full": {
+        "total": 767,
+        "failed": 3,
+        "skipped": 3,
+        "failures": {
+          "mlxtend.evaluate.tests.test_bias_variance_streaming::test_centered_accumulator_preserves_variance_at_large_offsets[1000000000000.0]": "AssertionError: \nNot equal to tolerance rtol=1e-14, atol=0\n\nMismatched elements: 1 / 1 (100%)\nMax absolute difference among violations: 2.38418579e-09\nMax relative difference among violations: 1.28874908e-08\n ACTUAL: array(0.185)\n DESIRED: array(0.185)",
+          "mlxtend.evaluate.tests.test_bias_variance_streaming::test_centered_accumulator_preserves_variance_at_large_offsets[-1000000000000.0]": "AssertionError: \nNot equal to tolerance rtol=1e-14, atol=0\n\nMismatched elements: 1 / 1 (100%)\nMax absolute difference among violations: 2.38418579e-09\nMax relative difference among violations: 1.28874908e-08\n ACTUAL: array(0.185)\n DESIRED: array(0.185)",
+          "mlxtend.evaluate.tests.test_bias_variance_streaming::test_peak_memory_does_not_scale_with_bootstrap_round_count": "AssertionError: [1927744, 16327656]\nassert 16327656 < (3 * 1927744)"
+        }
+      },
+      "candidate_focused": {
+        "total": 31,
+        "failed": 0,
+        "skipped": 1,
+        "failures": {}
+      },
+      "candidate_full": {
+        "total": 767,
+        "failed": 0,
+        "skipped": 3,
+        "failures": {}
+      },
+      "new_full_suite_failures": []
+    },
+    "performance": {
+      "before": {
+        "kind": "memory",
+        "peak_bytes": 208007696,
+        "seconds": [
+          0.08242731600000752,
+          0.0813777019999975,
+          0.07983975200005489,
+          0.08006844099998034,
+          0.08007140800003754
+        ],
+        "median_seconds": 0.08007140800003754,
+        "result": [
+          0.16373496090507164,
+          0.14418969106477258,
+          0.019545269840299178
+        ],
+        "n_test": 200000,
+        "rounds": 64
+      },
+      "after": {
+        "kind": "memory",
+        "peak_bytes": 16007792,
+        "seconds": [
+          0.10337956000000759,
+          0.10021138399997653,
+          0.10021745599999576,
+          0.10015160299997206,
+          0.10034945099994275
+        ],
+        "median_seconds": 0.10021745599999576,
+        "result": [
+          0.16373496090507167,
+          0.14418969106477258,
+          0.019545269840299185
+        ],
+        "n_test": 200000,
+        "rounds": 64
+      }
+    },
+    "compare_url": "https://github.com/rasbt/mlxtend/compare/master...Afloat16:fix/bias-variance-streaming-20261116?expand=1&title=Bound%20the%20memory%20used%20by%20MSE%20bias-variance%20decomposition&body=%23%23%23%20Description%0A%0AThe%20MSE%20path%20in%20%60bias_variance_decomp%60%20retains%20every%20bootstrap%20prediction%20and%20creates%20another%20rounds-by-test-samples%20array%20to%20calculate%20variance.%20With%2064%20rounds%20and%20200%2C000%20test%20samples%2C%20the%20aggregation%20alone%20peaks%20at%20208%2C007%2C696%20traced%20bytes.%0A%0AThis%20change%20accumulates%20expected%20loss%2C%20mean%20prediction%2C%20and%20centered%20second%20moments%20as%20predictions%20arrive.%20Memory%20depends%20on%20the%20number%20of%20test%20samples%20rather%20than%20the%20number%20of%20rounds.%20Centering%20the%20online%20variance%20calculation%20about%20the%20first%20prediction%20also%20preserves%20narrow%20variation%20around%20large%20common%20offsets.%20Prediction%20conversion%2C%20broadcasting%2C%20nonfinite%20results%2C%20and%20the%20classification%20path%20retain%20their%20existing%20behavior.%0A%0A%23%23%23%20Related%20issues%20or%20pull%20requests%0A%0ACloses%20%231326.%0A%0AThis%20is%20separate%20from%20%231315%2C%20which%20resets%20estimator%20state%20between%20bootstrap%20fits.%20This%20branch%20does%20not%20include%20that%20pending%20estimator-state%20change.%20Deduplication%20inspected%20every%20reachable%20intermediate%20revision%20of%20the%20affected%20source%20across%20upstream%20PR%20refs%20and%20fork%20branches%3A%2095%20commits%20and%2036%20distinct%20versions.%20None%20used%20an%20online%20MSE%20accumulator.%0A%0A%23%23%23%20Measurements%0A%0AThe%20exact%20base%20and%20patch%20were%20measured%20in%20the%20same%20Python%203.11.18%20job%20using%20the%20frozen%20lock%2C%20a%20deterministic%20mean%20regressor%2C%2064%20rounds%2C%20and%20200%2C000%20test%20samples%3A%0A%0A%7C%20Measurement%20%7C%20Base%20%7C%20Patch%20%7C%0A%7C%20---%20%7C%20---%3A%20%7C%20---%3A%20%7C%0A%7C%20Peak%20traced%20allocation%20%7C%20208%2C007%2C696%20bytes%20%7C%2016%2C007%2C792%20bytes%20%7C%0A%7C%20Median%20time%2C%20five%20untraced%20runs%20%7C%200.08007%20s%20%7C%200.10022%20s%20%7C%0A%0APeak%20allocation%20falls%20by%20**92.3%25**.%20The%20extra%20online%20updates%20make%20this%20deliberately%20inexpensive%20estimator%20benchmark%20about%20**25%25%20slower**%3B%20the%20benefit%20is%20bounded%20memory%2C%20not%20a%20claim%20of%20faster%20aggregation.%20All%20three%20returned%20statistics%20agree%20to%20floating-point%20precision.%20The%20complete%20benchmark%20and%20measurements%20are%20retained%20in%20the%20validation%20artifact.%0A%0A%23%23%23%20Validation%0A%0A-%20Exact%20upstream%20base%3A%20%601aee767ef57b84a8191511a08955c583b65de382%60.%0A-%20**3%20of%2024%20new%20cases%20fail%20on%20unchanged%20source**%3A%20memory%20growth%20with%20round%20count%20and%20two%20large-offset%20variance%20cases.%20All%2024%20pass%20after%20the%20change.%0A-%20Independent%20materialized-prediction%20comparisons%20cover%20linear%20regression%2C%20decision%20trees%2C%20and%20random%20forests%2C%20multiple%20round%20counts%2C%20scalar%2Fvector%2Frow%20predictions%2C%20float32%2Ffloat64%20conversion%2C%20and%20nonfinite%20outputs.%20A%20high-precision%20Decimal%20calculation%20checks%20the%20large-offset%20variance%20cases.%0A-%20New%20and%20existing%20focused%20tests%3A%20**30%20passed%2C%201%20skipped**.%20Complete%20repository%20suite%3A%20**764%20passed%2C%203%20skipped**.%0A-%20Baseline%20and%20patch%20ran%20in%20the%20same%20job.%20The%20TensorFlow-dependent%20skip%20follows%20the%20repository's%20existing%20CI%20setting.%0A-%20Complete%20repository%20isort%2FBlack%2C%20changed-file%20Flake8%2C%20%60git%20diff%20--check%60%2C%20package%20build%2C%20and%20strict%20Twine%20checks%20passed.%20The%20repository-wide%20Flake8%20report%20retains%20existing%20findings%20and%20is%20not%20described%20as%20a%20clean%20lint%20gate.%0A%0A%5BBaseline%2C%20complete%20validation%2C%20and%20benchmark%20evidence%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43887747926%2Fjob%2F133370355941).%0A%0A%23%23%23%20Pull%20Request%20Checklist%0A%0A-%20%5Bx%5D%20Added%20a%20changelog%20entry.%0A-%20%5Bx%5D%20Added%20regression%20and%20memory-growth%20tests.%0A-%20%5Bx%5D%20Documented%20the%20memory%20behavior.%0A-%20%5Bx%5D%20Ran%20focused%20and%20full%20repository%20tests.%0A-%20%5Bx%5D%20Checked%20formatting%20and%20style%20with%20the%20scope%20described%20above.%0A"
+  },
+  {
+    "name": "hmine-incremental-projection",
+    "title": "Avoid repeated prefix scans in recursive H-Mine projection",
+    "issue": 1327,
+    "job": 133370356457,
+    "body": "### Description\n\nEach recursive H-Mine call receives a transaction matrix already filtered by the earlier items in its prefix. It nevertheless slices and sums the entire prefix again, repeating work at every depth and constructing unnecessary sparse intermediates.\n\nThe recursive driver now filters only on the newly appended item. Its input invariant is documented. The general `create_projected_itemsets` helper still tests a complete prefix for callers with an unconditioned matrix.\n\n### Related issues or pull requests\n\nCloses #1327.\n\nThe complete reachable history of this source was checked across upstream PR refs and fork branches, including intermediate commits: 19 commits and 9 distinct versions. Each repeated the complete prefix projection. Earlier item-identity corrections address a separate issue.\n\n### Measurements\n\nThe exact base and patch ran in the same Python 3.11.18 job with the unchanged frozen lock. For 6,000 transactions, 16 items, density 0.8, minimum support 0.35, and maximum length 5, the median of five runs was:\n\n| Input | Base | Patch | Speedup |\n| --- | ---: | ---: | ---: |\n| Dense Boolean frame | 0.28810 s | 0.25430 s | 1.13x |\n| Sparse Boolean frame | 1.28021 s | 0.89177 s | 1.44x |\n\nBoth versions return the same 2,516 itemsets, supports, and canonical output digest. The reproducible benchmark and raw timings are retained in the validation artifact. These measurements describe this workload rather than a universal speedup.\n\n### Validation\n\n- Exact upstream base: `1aee767ef57b84a8191511a08955c583b65de382`.\n- **30 new oracle cases pass on both base and patch**, as expected for a performance change.\n- An independent exhaustive-subset oracle checks dense and sparse inputs, four seeds, four support thresholds, maximum-length settings, column names, and input preservation. Empty/full transaction fixtures and direct complete-prefix helper calls provide additional coverage.\n- New and existing H-Mine tests: **50 passed**. Complete repository suite: **770 passed, 3 skipped**.\n- Complete repository isort/Black, changed-file Flake8, `git diff --check`, package build, and strict Twine checks passed. The repository-wide Flake8 report retains existing findings and is not described as a clean lint gate.\n\n[Baseline, complete validation, and benchmark evidence](https://github.com/Afloat16/geoopt/actions/runs/43887747926/job/133370356457).\n\n### Pull Request Checklist\n\n- [x] Added a changelog entry.\n- [x] Added independent correctness-oracle tests.\n- [x] Documented the recursive input invariant.\n- [x] Ran focused and full repository tests.\n- [x] Checked formatting and style with the scope described above.\n",
+    "branch": "fix/hmine-incremental-projection-20261116",
+    "head": "57cd3e713ac22215ad17ed9ee66daaf3819240e5",
+    "tree": "069e49fab9101a3bf61288ab2fa7ce2efc3f3e0a",
+    "status": "ready",
+    "base": "master",
+    "maintainer_can_modify": false,
+    "validation": {
+      "run_id": 43887747926,
+      "job_id": 133370356457,
+      "name": "hmine-incremental-projection",
+      "base": "1aee767ef57b84a8191511a08955c583b65de382",
+      "issue": 1327,
+      "baseline_focused": {
+        "total": 30,
+        "failed": 0,
+        "skipped": 0,
+        "failures": {}
+      },
+      "baseline_full": {
+        "total": 773,
+        "failed": 0,
+        "skipped": 3,
+        "failures": {}
+      },
+      "candidate_focused": {
+        "total": 50,
+        "failed": 0,
+        "skipped": 0,
+        "failures": {}
+      },
+      "candidate_full": {
+        "total": 773,
+        "failed": 0,
+        "skipped": 3,
+        "failures": {}
+      },
+      "new_full_suite_failures": []
+    },
+    "performance": {
+      "before": {
+        "kind": "runtime",
+        "results": [
+          {
+            "sparse": false,
+            "seconds": [
+              0.2916078880000015,
+              0.2864463149999992,
+              0.2880985239999987,
+              0.31216294100000397,
+              0.2868713530000022
+            ],
+            "median_seconds": 0.2880985239999987,
+            "itemsets": 2516,
+            "digest": "0a6f222de9e7f72f34b96db591215f33b19022a63a224951e3e9df516c1c7dcb"
+          },
+          {
+            "sparse": true,
+            "seconds": [
+              1.2791834300000033,
+              1.2802121319999955,
+              1.2891299469999993,
+              1.2753846350000018,
+              1.2819544090000008
+            ],
+            "median_seconds": 1.2802121319999955,
+            "itemsets": 2516,
+            "digest": "0a6f222de9e7f72f34b96db591215f33b19022a63a224951e3e9df516c1c7dcb"
+          }
+        ]
+      },
+      "after": {
+        "kind": "runtime",
+        "results": [
+          {
+            "sparse": false,
+            "seconds": [
+              0.2542975160000083,
+              0.25452215600000727,
+              0.25321622800001364,
+              0.27316981900000314,
+              0.2520461690000104
+            ],
+            "median_seconds": 0.2542975160000083,
+            "itemsets": 2516,
+            "digest": "0a6f222de9e7f72f34b96db591215f33b19022a63a224951e3e9df516c1c7dcb"
+          },
+          {
+            "sparse": true,
+            "seconds": [
+              0.8917716799999766,
+              0.8914748429999975,
+              0.9011638059999996,
+              0.8897805039999866,
+              0.8938639929999965
+            ],
+            "median_seconds": 0.8917716799999766,
+            "itemsets": 2516,
+            "digest": "0a6f222de9e7f72f34b96db591215f33b19022a63a224951e3e9df516c1c7dcb"
+          }
+        ]
+      }
+    },
+    "compare_url": "https://github.com/rasbt/mlxtend/compare/master...Afloat16:fix/hmine-incremental-projection-20261116?expand=1&title=Avoid%20repeated%20prefix%20scans%20in%20recursive%20H-Mine%20projection&body=%23%23%23%20Description%0A%0AEach%20recursive%20H-Mine%20call%20receives%20a%20transaction%20matrix%20already%20filtered%20by%20the%20earlier%20items%20in%20its%20prefix.%20It%20nevertheless%20slices%20and%20sums%20the%20entire%20prefix%20again%2C%20repeating%20work%20at%20every%20depth%20and%20constructing%20unnecessary%20sparse%20intermediates.%0A%0AThe%20recursive%20driver%20now%20filters%20only%20on%20the%20newly%20appended%20item.%20Its%20input%20invariant%20is%20documented.%20The%20general%20%60create_projected_itemsets%60%20helper%20still%20tests%20a%20complete%20prefix%20for%20callers%20with%20an%20unconditioned%20matrix.%0A%0A%23%23%23%20Related%20issues%20or%20pull%20requests%0A%0ACloses%20%231327.%0A%0AThe%20complete%20reachable%20history%20of%20this%20source%20was%20checked%20across%20upstream%20PR%20refs%20and%20fork%20branches%2C%20including%20intermediate%20commits%3A%2019%20commits%20and%209%20distinct%20versions.%20Each%20repeated%20the%20complete%20prefix%20projection.%20Earlier%20item-identity%20corrections%20address%20a%20separate%20issue.%0A%0A%23%23%23%20Measurements%0A%0AThe%20exact%20base%20and%20patch%20ran%20in%20the%20same%20Python%203.11.18%20job%20with%20the%20unchanged%20frozen%20lock.%20For%206%2C000%20transactions%2C%2016%20items%2C%20density%200.8%2C%20minimum%20support%200.35%2C%20and%20maximum%20length%205%2C%20the%20median%20of%20five%20runs%20was%3A%0A%0A%7C%20Input%20%7C%20Base%20%7C%20Patch%20%7C%20Speedup%20%7C%0A%7C%20---%20%7C%20---%3A%20%7C%20---%3A%20%7C%20---%3A%20%7C%0A%7C%20Dense%20Boolean%20frame%20%7C%200.28810%20s%20%7C%200.25430%20s%20%7C%201.13x%20%7C%0A%7C%20Sparse%20Boolean%20frame%20%7C%201.28021%20s%20%7C%200.89177%20s%20%7C%201.44x%20%7C%0A%0ABoth%20versions%20return%20the%20same%202%2C516%20itemsets%2C%20supports%2C%20and%20canonical%20output%20digest.%20The%20reproducible%20benchmark%20and%20raw%20timings%20are%20retained%20in%20the%20validation%20artifact.%20These%20measurements%20describe%20this%20workload%20rather%20than%20a%20universal%20speedup.%0A%0A%23%23%23%20Validation%0A%0A-%20Exact%20upstream%20base%3A%20%601aee767ef57b84a8191511a08955c583b65de382%60.%0A-%20**30%20new%20oracle%20cases%20pass%20on%20both%20base%20and%20patch**%2C%20as%20expected%20for%20a%20performance%20change.%0A-%20An%20independent%20exhaustive-subset%20oracle%20checks%20dense%20and%20sparse%20inputs%2C%20four%20seeds%2C%20four%20support%20thresholds%2C%20maximum-length%20settings%2C%20column%20names%2C%20and%20input%20preservation.%20Empty%2Ffull%20transaction%20fixtures%20and%20direct%20complete-prefix%20helper%20calls%20provide%20additional%20coverage.%0A-%20New%20and%20existing%20H-Mine%20tests%3A%20**50%20passed**.%20Complete%20repository%20suite%3A%20**770%20passed%2C%203%20skipped**.%0A-%20Complete%20repository%20isort%2FBlack%2C%20changed-file%20Flake8%2C%20%60git%20diff%20--check%60%2C%20package%20build%2C%20and%20strict%20Twine%20checks%20passed.%20The%20repository-wide%20Flake8%20report%20retains%20existing%20findings%20and%20is%20not%20described%20as%20a%20clean%20lint%20gate.%0A%0A%5BBaseline%2C%20complete%20validation%2C%20and%20benchmark%20evidence%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43887747926%2Fjob%2F133370356457).%0A%0A%23%23%23%20Pull%20Request%20Checklist%0A%0A-%20%5Bx%5D%20Added%20a%20changelog%20entry.%0A-%20%5Bx%5D%20Added%20independent%20correctness-oracle%20tests.%0A-%20%5Bx%5D%20Documented%20the%20recursive%20input%20invariant.%0A-%20%5Bx%5D%20Ran%20focused%20and%20full%20repository%20tests.%0A-%20%5Bx%5D%20Checked%20formatting%20and%20style%20with%20the%20scope%20described%20above.%0A"
+  }
+]
