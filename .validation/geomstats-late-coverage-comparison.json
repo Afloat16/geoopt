@@ -1,0 +1,485 @@
+[
+  {
+    "pr": 2241,
+    "backend": "numpy",
+    "job": 133188302426,
+    "base_job": 129594204695,
+    "base": {
+      "covered": 13406,
+      "statements": 15689
+    },
+    "candidate": {
+      "covered": 13402,
+      "statements": 15690
+    },
+    "changes": [
+      {
+        "path": "geomstats/geometry/discrete_curves.py",
+        "base": {
+          "statements": 548,
+          "covered": 517
+        },
+        "candidate": {
+          "statements": 548,
+          "covered": 516
+        },
+        "covered_delta": -1,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/geometry/nfold_manifold.py",
+        "base": {
+          "statements": 124,
+          "covered": 115
+        },
+        "candidate": {
+          "statements": 124,
+          "covered": 116
+        },
+        "covered_delta": 1,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/geometry/riemannian_metric.py",
+        "base": {
+          "statements": 132,
+          "covered": 111
+        },
+        "candidate": {
+          "statements": 133,
+          "covered": 112
+        },
+        "covered_delta": 1,
+        "statements_delta": 1
+      },
+      {
+        "path": "geomstats/learning/expectation_maximization.py",
+        "base": {
+          "statements": 186,
+          "covered": 156
+        },
+        "candidate": {
+          "statements": 186,
+          "covered": 153
+        },
+        "covered_delta": -3,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/learning/geometric_median.py",
+        "base": {
+          "statements": 40,
+          "covered": 39
+        },
+        "candidate": {
+          "statements": 40,
+          "covered": 38
+        },
+        "covered_delta": -1,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/learning/pca.py",
+        "base": {
+          "statements": 232,
+          "covered": 178
+        },
+        "candidate": {
+          "statements": 232,
+          "covered": 179
+        },
+        "covered_delta": 1,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/metric_geometry/trees.py",
+        "base": {
+          "statements": 178,
+          "covered": 170
+        },
+        "candidate": {
+          "statements": 178,
+          "covered": 169
+        },
+        "covered_delta": -1,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/metric_geometry/wald_space.py",
+        "base": {
+          "statements": 268,
+          "covered": 244
+        },
+        "candidate": {
+          "statements": 268,
+          "covered": 243
+        },
+        "covered_delta": -1,
+        "statements_delta": 0
+      }
+    ]
+  },
+  {
+    "pr": 2241,
+    "backend": "pytorch",
+    "job": 133188301996,
+    "base_job": 129594204766,
+    "base": {
+      "covered": 14241,
+      "statements": 16093
+    },
+    "candidate": {
+      "covered": 14239,
+      "statements": 16094
+    },
+    "changes": [
+      {
+        "path": "geomstats/geometry/hyperboloid.py",
+        "base": {
+          "statements": 97,
+          "covered": 89
+        },
+        "candidate": {
+          "statements": 97,
+          "covered": 88
+        },
+        "covered_delta": -1,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/geometry/matrices.py",
+        "base": {
+          "statements": 213,
+          "covered": 201
+        },
+        "candidate": {
+          "statements": 213,
+          "covered": 199
+        },
+        "covered_delta": -2,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/geometry/nfold_manifold.py",
+        "base": {
+          "statements": 124,
+          "covered": 115
+        },
+        "candidate": {
+          "statements": 124,
+          "covered": 116
+        },
+        "covered_delta": 1,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/geometry/riemannian_metric.py",
+        "base": {
+          "statements": 132,
+          "covered": 115
+        },
+        "candidate": {
+          "statements": 133,
+          "covered": 116
+        },
+        "covered_delta": 1,
+        "statements_delta": 1
+      },
+      {
+        "path": "geomstats/learning/expectation_maximization.py",
+        "base": {
+          "statements": 186,
+          "covered": 156
+        },
+        "candidate": {
+          "statements": 186,
+          "covered": 153
+        },
+        "covered_delta": -3,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/learning/pca.py",
+        "base": {
+          "statements": 232,
+          "covered": 77
+        },
+        "candidate": {
+          "statements": 232,
+          "covered": 78
+        },
+        "covered_delta": 1,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/metric_geometry/trees.py",
+        "base": {
+          "statements": 178,
+          "covered": 169
+        },
+        "candidate": {
+          "statements": 178,
+          "covered": 170
+        },
+        "covered_delta": 1,
+        "statements_delta": 0
+      }
+    ]
+  },
+  {
+    "pr": 2242,
+    "backend": "numpy",
+    "job": 133188696917,
+    "base_job": 129594204695,
+    "base": {
+      "covered": 13406,
+      "statements": 15689
+    },
+    "candidate": {
+      "covered": 13407,
+      "statements": 15693
+    },
+    "changes": [
+      {
+        "path": "geomstats/geometry/hypersphere.py",
+        "base": {
+          "statements": 378,
+          "covered": 326
+        },
+        "candidate": {
+          "statements": 382,
+          "covered": 331
+        },
+        "covered_delta": 5,
+        "statements_delta": 4
+      },
+      {
+        "path": "geomstats/learning/expectation_maximization.py",
+        "base": {
+          "statements": 186,
+          "covered": 156
+        },
+        "candidate": {
+          "statements": 186,
+          "covered": 153
+        },
+        "covered_delta": -3,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/learning/frechet_mean.py",
+        "base": {
+          "statements": 337,
+          "covered": 319
+        },
+        "candidate": {
+          "statements": 337,
+          "covered": 320
+        },
+        "covered_delta": 1,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/learning/geometric_median.py",
+        "base": {
+          "statements": 40,
+          "covered": 39
+        },
+        "candidate": {
+          "statements": 40,
+          "covered": 38
+        },
+        "covered_delta": -1,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/learning/online_kmeans.py",
+        "base": {
+          "statements": 42,
+          "covered": 41
+        },
+        "candidate": {
+          "statements": 42,
+          "covered": 39
+        },
+        "covered_delta": -2,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/learning/pca.py",
+        "base": {
+          "statements": 232,
+          "covered": 178
+        },
+        "candidate": {
+          "statements": 232,
+          "covered": 179
+        },
+        "covered_delta": 1,
+        "statements_delta": 0
+      }
+    ]
+  },
+  {
+    "pr": 2243,
+    "backend": "numpy",
+    "job": 133193247134,
+    "base_job": 129594204695,
+    "base": {
+      "covered": 13406,
+      "statements": 15689
+    },
+    "candidate": {
+      "covered": 13401,
+      "statements": 15689
+    },
+    "changes": [
+      {
+        "path": "geomstats/learning/expectation_maximization.py",
+        "base": {
+          "statements": 186,
+          "covered": 156
+        },
+        "candidate": {
+          "statements": 186,
+          "covered": 152
+        },
+        "covered_delta": -4,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/learning/online_kmeans.py",
+        "base": {
+          "statements": 42,
+          "covered": 41
+        },
+        "candidate": {
+          "statements": 42,
+          "covered": 40
+        },
+        "covered_delta": -1,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/learning/pca.py",
+        "base": {
+          "statements": 232,
+          "covered": 178
+        },
+        "candidate": {
+          "statements": 232,
+          "covered": 179
+        },
+        "covered_delta": 1,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/metric_geometry/trees.py",
+        "base": {
+          "statements": 178,
+          "covered": 170
+        },
+        "candidate": {
+          "statements": 178,
+          "covered": 169
+        },
+        "covered_delta": -1,
+        "statements_delta": 0
+      }
+    ]
+  },
+  {
+    "pr": 2243,
+    "backend": "pytorch",
+    "job": 133193247189,
+    "base_job": 129594204766,
+    "base": {
+      "covered": 14241,
+      "statements": 16093
+    },
+    "candidate": {
+      "covered": 14229,
+      "statements": 16091
+    },
+    "changes": [
+      {
+        "path": "geomstats/_backend/pytorch/autodiff.py",
+        "base": {
+          "statements": 102,
+          "covered": 99
+        },
+        "candidate": {
+          "statements": 100,
+          "covered": 92
+        },
+        "covered_delta": -7,
+        "statements_delta": -2
+      },
+      {
+        "path": "geomstats/geometry/hyperboloid.py",
+        "base": {
+          "statements": 97,
+          "covered": 89
+        },
+        "candidate": {
+          "statements": 97,
+          "covered": 88
+        },
+        "covered_delta": -1,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/geometry/matrices.py",
+        "base": {
+          "statements": 213,
+          "covered": 201
+        },
+        "candidate": {
+          "statements": 213,
+          "covered": 199
+        },
+        "covered_delta": -2,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/learning/expectation_maximization.py",
+        "base": {
+          "statements": 186,
+          "covered": 156
+        },
+        "candidate": {
+          "statements": 186,
+          "covered": 154
+        },
+        "covered_delta": -2,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/learning/geometric_median.py",
+        "base": {
+          "statements": 40,
+          "covered": 39
+        },
+        "candidate": {
+          "statements": 40,
+          "covered": 38
+        },
+        "covered_delta": -1,
+        "statements_delta": 0
+      },
+      {
+        "path": "geomstats/learning/pca.py",
+        "base": {
+          "statements": 232,
+          "covered": 77
+        },
+        "candidate": {
+          "statements": 232,
+          "covered": 78
+        },
+        "covered_delta": 1,
+        "statements_delta": 0
+      }
+    ]
+  }
+]

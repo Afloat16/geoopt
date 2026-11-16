@@ -31,7 +31,8 @@
     "merged_at": null,
     "ui_verified": true,
     "api_verified": true,
-    "body_verified": true
+    "body_verified": true,
+    "pending_ci_note": "### Official CI follow-up\n\nBoth official functional-test jobs pass. The linter fails before any formatting check: its `python-version: 3.x` currently selects Python 3.15.2, and the frozen lock's SciPy 1.16.3 attempts a source build that cannot find OpenBLAS. An [exact-base replay](https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092) reproduces the same dependency-installation failure on unchanged `1aee767`. The frozen Python 3.11 validation above passes repository-wide isort/Black and changed-file Flake8; the existing repository-wide W293 is recorded separately.\n"
   },
   {
     "name": "qr-rank-deficient",
@@ -65,7 +66,8 @@
     "merged_at": null,
     "ui_verified": true,
     "api_verified": true,
-    "body_verified": true
+    "body_verified": true,
+    "pending_ci_note": "### Official CI follow-up\n\nBoth official functional-test jobs pass. The linter fails before any formatting check: its `python-version: 3.x` currently selects Python 3.15.2, and the frozen lock's SciPy 1.16.3 attempts a source build that cannot find OpenBLAS. An [exact-base replay](https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092) reproduces the same dependency-installation failure on unchanged `1aee767`. The frozen Python 3.11 validation above passes repository-wide isort/Black and changed-file Flake8; the existing repository-wide W293 is recorded separately.\n"
   },
   {
     "name": "apriori-sparse-low-memory",

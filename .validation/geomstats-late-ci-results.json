@@ -1,0 +1,104 @@
+{
+  "curves": {
+    "run": 43871335696,
+    "job": 133313011781,
+    "max_error": 0.11846655443322096
+  },
+  "followup": {
+    "run": 43871636636,
+    "results": [
+      {
+        "job": 133314061031,
+        "kind": "aac",
+        "seed": 1,
+        "changed_functions_called": [],
+        "trace_positive_control_passed": true,
+        "versions": {
+          "python": "3.13.18 (main, Oct 26 2026, 14:19:33) [GCC 15.2.0]",
+          "numpy": "2.5.5",
+          "scipy": "1.18.1",
+          "torch": "2.15.0+cpu"
+        },
+        "result": {
+          "passed": false,
+          "values": [
+            0.784986936670632,
+            0.784986936670632
+          ],
+          "quotient_distances": [
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "job": 133314061031,
+        "kind": "aac",
+        "seed": 1,
+        "changed_functions_called": [],
+        "trace_positive_control_passed": true,
+        "versions": {
+          "python": "3.13.18 (main, Oct 26 2026, 14:19:33) [GCC 15.2.0]",
+          "numpy": "2.5.5",
+          "scipy": "1.18.1",
+          "torch": "2.15.0+cpu"
+        },
+        "result": {
+          "passed": false,
+          "values": [
+            0.784986936670632,
+            0.784986936670632
+          ],
+          "quotient_distances": [
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "job": 133314061514,
+        "kind": "plt_tangent",
+        "seed": 3,
+        "changed_functions_called": [],
+        "trace_positive_control_passed": true,
+        "versions": {
+          "python": "3.13.18 (main, Oct 26 2026, 14:19:33) [GCC 15.2.0]",
+          "numpy": "2.5.5",
+          "scipy": "1.18.1",
+          "torch": "2.15.0+cpu"
+        },
+        "result": {
+          "passed": false,
+          "values": [
+            true,
+            true,
+            true,
+            false
+          ]
+        }
+      },
+      {
+        "job": 133314061514,
+        "kind": "plt_tangent",
+        "seed": 3,
+        "changed_functions_called": [],
+        "trace_positive_control_passed": true,
+        "versions": {
+          "python": "3.13.18 (main, Oct 26 2026, 14:19:33) [GCC 15.2.0]",
+          "numpy": "2.5.5",
+          "scipy": "1.18.1",
+          "torch": "2.15.0+cpu"
+        },
+        "result": {
+          "passed": false,
+          "values": [
+            true,
+            true,
+            true,
+            false
+          ]
+        }
+      }
+    ]
+  }
+}
