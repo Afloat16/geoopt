@@ -1,0 +1,80 @@
+name: Measure the existing in-memory Qdrant search path
+'on':
+  push:
+    branches:
+    - validation/st-qdrant-local-cost-20261116
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - torch: 2.14.1
+          candidate: qdrant-batch
+          head: aae6927d9b99bc52c1f9f42f650c42d9ddcc49d0
+          source: sentence_transformers/sparse_encoder/search_engines.py
+          test: tests/sparse_encoder/test_qdrant_query_batch.py
+          adjacent: tests/sparse_encoder/test_search_engines.py
+          failed: 20
+          passed: 9
+          benchmark: st-qdrant-batch-benchmark
+    defaults:
+      run:
+        working-directory: project
+    env:
+      OMP_NUM_THREADS: 1
+      OPENBLAS_NUM_THREADS: 1
+      PYTHONPATH: .
+      ST_BASE: 9ac7fdb4edce2f1dbc171b036ecbb60383653e74
+      ST_CANDIDATE: ${{ matrix.head }}
+      ST_SOURCE: ${{ matrix.source }}
+      ST_TEST: ${{ matrix.test }}
+      ST_FAILED: ${{ matrix.failed }}
+      ST_PASSED: ${{ matrix.passed }}
+      ST_ADJACENT: ${{ matrix.adjacent }}
+      ST_BENCHMARK: ${{ matrix.benchmark }}
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        path: harness
+        persist-credentials: false
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        repository: Afloat16/sentence-transformers
+        ref: ${{ matrix.head }}
+        path: project
+        fetch-depth: 2
+        persist-credentials: false
+    - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+      with:
+        python-version: '3.12'
+    - name: Install CPU dependencies
+      run: 'python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+
+        python -m pip install numpy==2.3.5 scipy==1.17.0 scikit-learn==1.8.0 transformers==5.23.0 huggingface-hub==2.4.0 datasets==5.2.0
+        accelerate==1.15.0 pytest==9.2.0 pytest-env pytest-subtests pre-commit socksio pillow
+
+        python -m pip install -e . --no-deps
+
+
+        python -m pip install qdrant-client==1.20.0
+
+        '
+    - name: Restore exact-base search source
+      run: 'git show "$ST_BASE:$ST_SOURCE" > "$ST_SOURCE"
+
+        '
+    - name: Benchmark exact-base public path
+      if: matrix.benchmark != ''
+      run: python ../harness/.validation/$ST_BENCHMARK.py before
+    - name: Restore candidate search source
+      run: 'git restore --source="$ST_CANDIDATE" -- $ST_SOURCE
+
+        '
+    - name: Benchmark candidate against exact-base outputs
+      if: matrix.benchmark != ''
+      run: python ../harness/.validation/$ST_BENCHMARK.py after before
