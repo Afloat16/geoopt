@@ -1,7 +1,7 @@
 {
   "repository": "rasbt/mlxtend",
   "goal": 20,
-  "published_count": 0,
+  "published_count": 2,
   "new_merged_count": 0,
   "submissions": [
     {
@@ -18,7 +18,7 @@
         "docs/sources/CHANGELOG.md"
       ],
       "maintainer_can_modify": false,
-      "status": "ready",
+      "status": "published",
       "body": "### Code of Conduct\n\nI have read the project's Code of Conduct.\n\n### Description\n\nAn unscaled norm can overflow or underflow even though every input component is finite. `vectorspace_orthonormalization` then replaces a nonzero basis vector with zeros. For example, multiplying the orthogonal columns `[[0.6, -0.8], [0.8, 0.6]]` by `1e200` returns a zero matrix; `1e-200` also loses both columns when `eps=0`.\n\nRescale columns whose magnitudes require it before projection and normalization, and carry the absolute residual threshold into the same scale. Ordinary columns retain their existing arithmetic. Add coverage for orthogonal and nonorthogonal inputs, finite vectors with an unrepresentable unscaled norm, mixed scales, exact dependent/zero columns, threshold boundaries, empty shapes, and input preservation.\n\n### Related issues or pull requests\n\nFixes #1303. The issue was opened before implementing the patch. This changes the basis calculation; the separate dimensionality-rounding proposal #1227 is unchanged.\n\n### Validation\n\n[Exact-base reproduction and full-suite checks](https://github.com/Afloat16/geoopt/actions/runs/43863617417/job/133286456225):\n\n- Production base `1aee767`: 12 failing regression cases and 8 passing controls.\n- Patched math suite: **25 passed**, with **100% statement and branch coverage** of `math/linalg.py`.\n- Full repository suite: **760 passed, 3 skipped**.\n- Repository-wide isort and Black checks passed. Changed-file Flake8 and `git diff --check` passed; the repository-wide Flake8 report retains the existing W293 at `frequent_patterns/tests/test_association_rules.py:62`.\n\n[Final-tree and package verification](https://github.com/Afloat16/geoopt/actions/runs/43864707589/job/133290176431) confirms the committed files exactly match those tested, and both the wheel and source distribution pass strict Twine checks. The first validation job's final artifact glob also included `dist/.gitignore`; this follow-up corrects that verification-script mistake without changing the tested production code.\n\nLinux, Python 3.11.18, NumPy 2.4.0, SciPy 1.16.3, scikit-learn 1.8.0, pandas 2.3.3, using the unchanged frozen uv lock.\n\n### Pull Request Checklist\n\n- [x] Added a changelog entry.\n- [x] Added regression and control tests.\n- [x] Updated the API docstring to describe the absolute threshold.\n- [x] Ran the full repository suite and focused branch-coverage checks.\n- [x] Checked formatting and lint.\n- User Guide notebook changes are not applicable to this numerical correction.\n",
       "package_validation_run": 43864707589,
       "package_validation_success": true,
@@ -29,7 +29,14 @@
         "from": "100644",
         "to": "100755",
         "contents_unchanged": true
-      }
+      },
+      "actual_number": 1306,
+      "actual_url": "https://github.com/rasbt/mlxtend/pull/1306",
+      "actual_state": "open",
+      "merged_at": null,
+      "ui_verified": true,
+      "api_verified": true,
+      "body_verified": true
     },
     {
       "name": "qr-rank-deficient",
@@ -45,7 +52,7 @@
         "docs/sources/CHANGELOG.md"
       ],
       "maintainer_can_modify": false,
-      "status": "ready",
+      "status": "published",
       "body": "### Code of Conduct\n\nI have read the project's Code of Conduct.\n\n### Description\n\nThe QR solver explicitly inverts `R`. When the augmented design has more columns than observations, `R` is rectangular and fitting raises `LinAlgError`. A singular or numerically rank-deficient design can also produce undefined or arbitrary coefficients.\n\nUse SciPy's rank-revealing, pivoted QR least-squares driver (`gelsy`) with a precision- and shape-dependent rank threshold. This preserves the existing fitted attribute shapes and returns a minimum-norm solution, including the intercept, when the coefficient vector is nonunique. The other solver paths are unchanged.\n\n### Related issues or pull requests\n\nFixes #1304. The issue was opened before implementing the patch. The QR/SVD alternatives were introduced by #575; #1290 addresses Adaline's analytical path, which this PR does not modify.\n\n### Validation\n\n[Exact-base reproduction and full-suite checks](https://github.com/Afloat16/geoopt/actions/runs/43863617417/job/133286457424):\n\n- Production base `1aee767`: 19 failing regression cases and 3 passing controls.\n- Patched new and existing linear-regression tests: **38 passed**.\n- Independent SVD pseudoinverse references cover wide, duplicate, constant, zero, rank-deficient and full-rank designs across float32, float64 and integer feature arrays. Tests also check residual orthogonality, read-only input preservation, fitted attribute shapes and refitting with a different feature count.\n- Full repository suite: **762 passed, 3 skipped**.\n- Repository-wide isort and Black checks passed. Changed-file Flake8 and `git diff --check` passed; the repository-wide Flake8 report retains the existing W293 at `frequent_patterns/tests/test_association_rules.py:62`.\n\n[Final-tree and package verification](https://github.com/Afloat16/geoopt/actions/runs/43864707589/job/133290176736) confirms the committed files exactly match those tested, and both the wheel and source distribution pass strict Twine checks. The first validation job's final artifact glob also included `dist/.gitignore`; this follow-up corrects that verification-script mistake without changing the tested production code.\n\nLinux, Python 3.11.18, NumPy 2.4.0, SciPy 1.16.3, scikit-learn 1.8.0, pandas 2.3.3, using the unchanged frozen uv lock.\n\n### Pull Request Checklist\n\n- [x] Added a changelog entry.\n- [x] Added regression and control tests.\n- [x] Documented the QR solver's rank-deficient behavior.\n- [x] Ran the full repository suite and focused coverage checks.\n- [x] Checked formatting and lint.\n- User Guide notebook changes are not applicable to this solver correction.\n",
       "package_validation_run": 43864707589,
       "package_validation_success": true,
@@ -56,7 +63,14 @@
         "from": "100644",
         "to": "100755",
         "contents_unchanged": true
-      }
+      },
+      "actual_number": 1307,
+      "actual_url": "https://github.com/rasbt/mlxtend/pull/1307",
+      "actual_state": "open",
+      "merged_at": null,
+      "ui_verified": true,
+      "api_verified": true,
+      "body_verified": true
     }
   ]
 }
