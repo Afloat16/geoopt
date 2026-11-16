@@ -1,0 +1,30 @@
+{
+  "original_portfolio_commit": "0cfad9a1c65ade97eed452b014459810c2cbceec",
+  "original_portfolio_path": ".audit/merged-inventory-portfolio.json",
+  "state_coverage": "All 62 actual submissions were found by fresh GitHub REST reads; all are Open, non-draft, and unmerged. The 60 earlier heads exactly match the recovered portfolio.",
+  "ci_coverage": "Earlier 60 entries preserve their existing same-head checks and causal diagnoses; they were not all repolled. Both Kornia entries have fresh check-run and commit-status reads.",
+  "prepared_integrity": {
+    "crc32": "50387da7",
+    "isize": 126041,
+    "compressed_base64_characters": 41504,
+    "source_commit": "0cfad9a1c65ade97eed452b014459810c2cbceec",
+    "source_path": ".audit/st/all-prepared-submissions.json.gz.b64",
+    "sha256": "b59f6052f757f511ec5a066cce1e926b096db274bdc97761dc7dcaa0d05c8c35",
+    "sha256_matches_original_final_index": true,
+    "crc32_validated": true,
+    "isize_validated": true,
+    "all_twenty_index_entries_match": true,
+    "recovery_method": "Pure JavaScript base64 and DEFLATE decoding in functions runtime; no local execution tools or CUA used."
+  },
+  "environment": "Recovery used GitHub MCP and pure JavaScript only; no local execution or CUA.",
+  "recovered_at_utc": "2026-11-16T21:17:37.706Z",
+  "counts": {
+    "published": 62,
+    "merged": 0,
+    "open": 62,
+    "draft": 0,
+    "closed_unmerged": 0,
+    "prepared_not_created": 20
+  },
+  "kornia_checkpoint_before_portfolio_merge": "40c14dcbc04ca6fa4974b9c8d900286541af48fb"
+}
