@@ -1,0 +1,437 @@
+{
+  "base": "cd2349f67432f0f5b43d2388634aa231613e3cb0",
+  "patch_head": "2cf647172905c7260042ed9fa160547b64e579e1",
+  "map_head": "1f03856ec4a65a1bcaf22f3a46372c5825ebe6c6",
+  "environment": {
+    "albumentations": null,
+    "device": "cpu",
+    "git_commit": "2cf6471",
+    "interpreter": "/home/runner/work/geoopt/geoopt/kornia/.venv-py312/bin/python3",
+    "kornia": "0.9.2.dev",
+    "kornia_module": "kornia/__init__.py",
+    "kornia_rs": "0.2.0",
+    "machine": "x86_64",
+    "memory_metric": "Sum of positive self_cpu_memory_usage events for one public forward; total tensor allocation, not peak RSS.",
+    "numpy": "2.4.0",
+    "opencv": null,
+    "opencv_num_threads": null,
+    "pillow": "13.0.0",
+    "platform": "Linux-7.0.0-1017-azure-x86_64-with-glibc2.39",
+    "poselib": null,
+    "python": "3.12.12",
+    "rayon_num_threads_requested": null,
+    "skimage": null,
+    "source_sha256": "664e3858295e2b4a9b00ab04b987f705cb8ec08b884cc970dc445db000ab5d8e",
+    "timestamp_utc": "2026-11-16T19:34:06+00:00",
+    "torch": "2.5.1+cpu",
+    "torch_num_threads": 1,
+    "torchvision": null
+  },
+  "checks": [
+    {
+      "label": "patch-baseline-tests",
+      "exit_code": 0,
+      "summary": "207 passed in 0.45s"
+    },
+    {
+      "label": "patch-candidate-tests",
+      "exit_code": 0,
+      "summary": "207 passed in 0.54s"
+    },
+    {
+      "label": "map-baseline-regressions",
+      "exit_code": 1,
+      "summary": "4 failed, 2 passed, 57 deselected in 2.80s"
+    },
+    {
+      "label": "map-candidate-tests",
+      "exit_code": 0,
+      "summary": "327 passed, 1 skipped in 3.63s"
+    }
+  ],
+  "patch_measurements": [
+    {
+      "name": "gray",
+      "forward_speedup": 1.0014109485638643,
+      "forward_backward_speedup": 1.0024908739117948,
+      "base": {
+        "dtype": "torch.float32",
+        "forward_backward_iqr_us": 42.323999998927775,
+        "forward_backward_median_us": 2276.344999998514,
+        "forward_iqr_us": 30.4904999950395,
+        "forward_median_us": 1635.2479999994785,
+        "forward_total_positive_tensor_allocation_bytes": 4800512,
+        "gradient_sha256": "ac4c8475cd14c7ef839cefae6032daa88f2383bf9e69b641a8781c047532b835",
+        "name": "gray",
+        "output_sha256": "eebd0086cfcc1f5f8280651d1e7a9f1b77af25f5865fe55144db908d249efc09",
+        "shape": [
+          1,
+          1,
+          256,
+          256
+        ],
+        "stride": 16,
+        "window": 32
+      },
+      "candidate": {
+        "dtype": "torch.float32",
+        "forward_backward_iqr_us": 30.34100001286788,
+        "forward_backward_median_us": 2270.6890000065982,
+        "forward_iqr_us": 14.93199999913486,
+        "forward_median_us": 1632.9440000077966,
+        "forward_total_positive_tensor_allocation_bytes": 4800512,
+        "gradient_sha256": "ac4c8475cd14c7ef839cefae6032daa88f2383bf9e69b641a8781c047532b835",
+        "name": "gray",
+        "output_sha256": "eebd0086cfcc1f5f8280651d1e7a9f1b77af25f5865fe55144db908d249efc09",
+        "shape": [
+          1,
+          1,
+          256,
+          256
+        ],
+        "stride": 16,
+        "window": 32
+      }
+    },
+    {
+      "name": "rgb",
+      "forward_speedup": 1.5403948772215732,
+      "forward_backward_speedup": 1.369106862763532,
+      "base": {
+        "dtype": "torch.float32",
+        "forward_backward_iqr_us": 1834.4865000017307,
+        "forward_backward_median_us": 44333.56000000543,
+        "forward_iqr_us": 926.2405000018958,
+        "forward_median_us": 42413.897999999506,
+        "forward_total_positive_tensor_allocation_bytes": 60604416,
+        "gradient_sha256": "5cc0530a8bd6240867d9826601ab11c17ad3e1c73e6c3359d3971ea0d7c6a23b",
+        "name": "rgb",
+        "output_sha256": "af0f070e40543aa9647d30c2548f21c7f94bed424c41d43fd31b67d5dd5ba14b",
+        "shape": [
+          1,
+          3,
+          512,
+          512
+        ],
+        "stride": 16,
+        "window": 32
+      },
+      "candidate": {
+        "dtype": "torch.float32",
+        "forward_backward_iqr_us": 6655.322999996826,
+        "forward_backward_median_us": 32381.37299999977,
+        "forward_iqr_us": 543.1399999906716,
+        "forward_median_us": 27534.431999995944,
+        "forward_total_positive_tensor_allocation_bytes": 38043648,
+        "gradient_sha256": "5cc0530a8bd6240867d9826601ab11c17ad3e1c73e6c3359d3971ea0d7c6a23b",
+        "name": "rgb",
+        "output_sha256": "af0f070e40543aa9647d30c2548f21c7f94bed424c41d43fd31b67d5dd5ba14b",
+        "shape": [
+          1,
+          3,
+          512,
+          512
+        ],
+        "stride": 16,
+        "window": 32
+      }
+    },
+    {
+      "name": "rgb_batch",
+      "forward_speedup": 3.1301940393402554,
+      "forward_backward_speedup": 2.1174539216476433,
+      "base": {
+        "dtype": "torch.float32",
+        "forward_backward_iqr_us": 267.1645000020817,
+        "forward_backward_median_us": 76482.14450000168,
+        "forward_iqr_us": 811.3029999989863,
+        "forward_median_us": 61951.56400000457,
+        "forward_total_positive_tensor_allocation_bytes": 115212288,
+        "gradient_sha256": "6c8b0dec0137c568b8f1f2bf4407b0770f071012cc7ec6a8b434b1ac8c4bcfb8",
+        "name": "rgb_batch",
+        "output_sha256": "5c26fd4e8c7907e956799dab2d0a8bd6b67c9a8f72a60f6f02ea670503ca3f4b",
+        "shape": [
+          8,
+          3,
+          256,
+          256
+        ],
+        "stride": 16,
+        "window": 32
+      },
+      "candidate": {
+        "dtype": "torch.float32",
+        "forward_backward_iqr_us": 302.80174999219867,
+        "forward_backward_median_us": 36119.86250000143,
+        "forward_iqr_us": 161.4975000094887,
+        "forward_median_us": 19791.605000008873,
+        "forward_total_positive_tensor_allocation_bytes": 53485568,
+        "gradient_sha256": "6c8b0dec0137c568b8f1f2bf4407b0770f071012cc7ec6a8b434b1ac8c4bcfb8",
+        "name": "rgb_batch",
+        "output_sha256": "5c26fd4e8c7907e956799dab2d0a8bd6b67c9a8f72a60f6f02ea670503ca3f4b",
+        "shape": [
+          8,
+          3,
+          256,
+          256
+        ],
+        "stride": 16,
+        "window": 32
+      }
+    },
+    {
+      "name": "features",
+      "forward_speedup": 1.295611606088296,
+      "forward_backward_speedup": 1.1242969980664705,
+      "base": {
+        "dtype": "torch.float32",
+        "forward_backward_iqr_us": 719.7357500015045,
+        "forward_backward_median_us": 39895.041499999454,
+        "forward_iqr_us": 405.0562499973154,
+        "forward_median_us": 29739.94299999916,
+        "forward_total_positive_tensor_allocation_bytes": 76808192,
+        "gradient_sha256": "b93905db14064817e38522e65c52b0d7007122048f4c541db2154b8d8f8617a8",
+        "name": "features",
+        "output_sha256": "71d7bc4bfe59f319e29a19d5ca0faaad51e0a04ac6b62a8e8936cf508ea9e3ec",
+        "shape": [
+          2,
+          32,
+          128,
+          128
+        ],
+        "stride": 8,
+        "window": 16
+      },
+      "candidate": {
+        "dtype": "torch.float32",
+        "forward_backward_iqr_us": 914.0139999885832,
+        "forward_backward_median_us": 35484.433000007695,
+        "forward_iqr_us": 929.6547500028396,
+        "forward_median_us": 22954.36600000045,
+        "forward_total_positive_tensor_allocation_bytes": 34359296,
+        "gradient_sha256": "b93905db14064817e38522e65c52b0d7007122048f4c541db2154b8d8f8617a8",
+        "name": "features",
+        "output_sha256": "71d7bc4bfe59f319e29a19d5ca0faaad51e0a04ac6b62a8e8936cf508ea9e3ec",
+        "shape": [
+          2,
+          32,
+          128,
+          128
+        ],
+        "stride": 8,
+        "window": 16
+      }
+    },
+    {
+      "name": "features_batch",
+      "forward_speedup": 1.4431867207032787,
+      "forward_backward_speedup": 1.1474841099932633,
+      "base": {
+        "dtype": "torch.float32",
+        "forward_backward_iqr_us": 6835.503000003129,
+        "forward_backward_median_us": 266221.977499999,
+        "forward_iqr_us": 337.51875000298526,
+        "forward_median_us": 198299.31499999986,
+        "forward_total_positive_tensor_allocation_bytes": 307232768,
+        "gradient_sha256": "831ae89e8c15a650d9ee94d72514e8978741906216b12a86a547ffe444967f7e",
+        "name": "features_batch",
+        "output_sha256": "567285077fe6adc36e3fb9c828d0d5318c247e5eb7a4f0a76dcfba62b1537aec",
+        "shape": [
+          4,
+          64,
+          128,
+          128
+        ],
+        "stride": 8,
+        "window": 16
+      },
+      "candidate": {
+        "dtype": "torch.float32",
+        "forward_backward_iqr_us": 2143.1520000163573,
+        "forward_backward_median_us": 232004.93599999562,
+        "forward_iqr_us": 669.5400000005236,
+        "forward_median_us": 137403.78300000343,
+        "forward_total_positive_tensor_allocation_bytes": 135415808,
+        "gradient_sha256": "831ae89e8c15a650d9ee94d72514e8978741906216b12a86a547ffe444967f7e",
+        "name": "features_batch",
+        "output_sha256": "567285077fe6adc36e3fb9c828d0d5318c247e5eb7a4f0a76dcfba62b1537aec",
+        "shape": [
+          4,
+          64,
+          128,
+          128
+        ],
+        "stride": 8,
+        "window": 16
+      }
+    }
+  ],
+  "gray_interleaved_controls": {
+    "forward": {
+      "base_samples_us": [
+        1639.796999995724,
+        1635.9735000079922,
+        1635.6819999998606
+      ],
+      "candidate_samples_us": [
+        1639.8220000013453,
+        1637.0084999905998,
+        1634.5670000035284
+      ],
+      "median_speedup": 0.9993677491701396
+    },
+    "forward_backward": {
+      "base_samples_us": [
+        2306.5609999974868,
+        2290.1699999948733,
+        2267.9779999990046
+      ],
+      "candidate_samples_us": [
+        2296.7630000039208,
+        2292.971000002808,
+        2311.29950000053
+      ],
+      "median_speedup": 0.9971294382532999
+    }
+  },
+  "map_measurements": [
+    {
+      "name": "ordinary_float32",
+      "speedup": 0.967199529754758,
+      "base": {
+        "actual": 0.9090909361839294,
+        "detected": 32,
+        "dtype": "torch.float32",
+        "images": 5,
+        "iqr_us": 128.94600001089884,
+        "median_us": 4970.89199998868,
+        "name": "ordinary_float32",
+        "objects": 33,
+        "oracle_exact_fraction": "10/11",
+        "oracle_in_output_dtype": 0.9090909361839294,
+        "per_class": {
+          "1": 0.9090909361839294
+        }
+      },
+      "candidate": {
+        "actual": 0.9090909361839294,
+        "detected": 32,
+        "dtype": "torch.float32",
+        "images": 5,
+        "iqr_us": 105.34050000643447,
+        "median_us": 5139.468999999508,
+        "name": "ordinary_float32",
+        "objects": 33,
+        "oracle_exact_fraction": "10/11",
+        "oracle_in_output_dtype": 0.9090909361839294,
+        "per_class": {
+          "1": 0.9090909361839294
+        }
+      }
+    },
+    {
+      "name": "ordinary_bfloat16",
+      "speedup": 0.9637186020593687,
+      "base": {
+        "actual": 0.91015625,
+        "detected": 32,
+        "dtype": "torch.bfloat16",
+        "images": 5,
+        "iqr_us": 133.0759999973452,
+        "median_us": 5153.624000001855,
+        "name": "ordinary_bfloat16",
+        "objects": 33,
+        "oracle_exact_fraction": "10/11",
+        "oracle_in_output_dtype": 0.91015625,
+        "per_class": {
+          "1": 0.91015625
+        }
+      },
+      "candidate": {
+        "actual": 0.91015625,
+        "detected": 32,
+        "dtype": "torch.bfloat16",
+        "images": 5,
+        "iqr_us": 63.61750000394295,
+        "median_us": 5347.644000011087,
+        "name": "ordinary_bfloat16",
+        "objects": 33,
+        "oracle_exact_fraction": "10/11",
+        "oracle_in_output_dtype": 0.91015625,
+        "per_class": {
+          "1": 0.91015625
+        }
+      }
+    },
+    {
+      "name": "near_full_recall_float32",
+      "speedup": 0.9681799053775413,
+      "base": {
+        "actual": 0.9090909361839294,
+        "detected": 512,
+        "dtype": "torch.float32",
+        "images": 5,
+        "iqr_us": 646.251999995684,
+        "median_us": 91699.59999999833,
+        "name": "near_full_recall_float32",
+        "objects": 513,
+        "oracle_exact_fraction": "10/11",
+        "oracle_in_output_dtype": 0.9090909361839294,
+        "per_class": {
+          "1": 0.9090909361839294
+        }
+      },
+      "candidate": {
+        "actual": 0.9090909361839294,
+        "detected": 512,
+        "dtype": "torch.float32",
+        "images": 5,
+        "iqr_us": 401.1235000120905,
+        "median_us": 94713.38899999182,
+        "name": "near_full_recall_float32",
+        "objects": 513,
+        "oracle_exact_fraction": "10/11",
+        "oracle_in_output_dtype": 0.9090909361839294,
+        "per_class": {
+          "1": 0.9090909361839294
+        }
+      }
+    },
+    {
+      "name": "near_full_recall_bfloat16",
+      "speedup": 0.9658538903420388,
+      "base": {
+        "actual": 1,
+        "detected": 512,
+        "dtype": "torch.bfloat16",
+        "images": 5,
+        "iqr_us": 1215.0685000307249,
+        "median_us": 94959.14799998673,
+        "name": "near_full_recall_bfloat16",
+        "objects": 513,
+        "oracle_exact_fraction": "10/11",
+        "oracle_in_output_dtype": 0.91015625,
+        "per_class": {
+          "1": 1
+        }
+      },
+      "candidate": {
+        "actual": 0.91015625,
+        "detected": 512,
+        "dtype": "torch.bfloat16",
+        "images": 5,
+        "iqr_us": 414.9949999856517,
+        "median_us": 98316.26599998344,
+        "name": "near_full_recall_bfloat16",
+        "objects": 513,
+        "oracle_exact_fraction": "10/11",
+        "oracle_in_output_dtype": 0.91015625,
+        "per_class": {
+          "1": 0.91015625
+        }
+      }
+    }
+  ],
+  "scope": "CPU eager unit tests, TorchScript tests present in the selected files, and public API benchmarks.",
+  "scope_clarification": "The selected metric files also exercise native torch.compile with CompileCounter, plus TorchScript. No ONNX/ORT conformance files or promised-package suites were selected. The only Torch 2.5.1 skip is the unchanged mean_iou fullgraph bincount test requiring torch>=2.14."
+}
