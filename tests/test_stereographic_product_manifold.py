@@ -155,17 +155,10 @@ def test_geodesic_unit():
     pman = StereographicProductManifold(*manifolds)
     x = pman.random(4, 6)
     u = torch.randn(4, 6)
-    t = torch.randn(4, 1)
+    t = 0.5 * torch.randn(4, 1).tanh()
 
     geodesic = pman.geodesic_unit(t, x, u)
-    geodesics = []
-    for i, (manifold, _) in enumerate(manifolds):
-        x_ = pman.take_submanifold_value(x, i)
-        u_ = pman.take_submanifold_value(u, i)
-
-        geodesics.append(manifold.geodesic_unit(t, x_, u_))
-    geodesics = torch.cat(geodesics, dim=-1)
-    assert torch.isclose(geodesics, geodesic).all()
+    torch.testing.assert_close(pman.dist(x, geodesic), t.squeeze(-1).abs())
 
 
 def test_dist0():

@@ -679,11 +679,13 @@ class StereographicProductManifold(ProductManifold):
         *,
         project=True,
     ) -> torch.Tensor:
+        norm = self.inner(x, u, keepdim=True).clamp_min(1e-30).sqrt()
+        u = t * u / norm
         res_list = []
         for i, manifold in enumerate(self.manifolds):
             x_ = self.take_submanifold_value(x, i)
             u_ = self.take_submanifold_value(u, i)
-            res = manifold.geodesic_unit(t, x_, u_, dim=-1, project=project)
+            res = manifold.expmap(x_, u_, dim=-1, project=project)
             res_list.append(res)
         return self.pack_point(*res_list)
 
