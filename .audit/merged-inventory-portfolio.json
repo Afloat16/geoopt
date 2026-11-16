@@ -2,9 +2,9 @@
   "checked_at": "2026-11-16T12:54:17.779Z",
   "scope": "new contributions prepared by merged_inventory agent in current task",
   "counts": {
-    "published": 50,
+    "published": 51,
     "merged": 0,
-    "open": 50
+    "open": 51
   },
   "excluded_duplicate": {
     "repo": "geomstats/geomstats",
@@ -4363,6 +4363,41 @@
       "ui_verified": true,
       "api_verified": true,
       "body_verified": true
+    },
+    {
+      "repo": "rasbt/mlxtend",
+      "number": 1325,
+      "url": "https://github.com/rasbt/mlxtend/pull/1325",
+      "title": "Keep bootstrap standard errors finite across statistic scales",
+      "state": "open",
+      "merged_at": null,
+      "head": "703b11d0ac8e173bd258dfb80a13a1d1f5be7c15",
+      "head_ref": "fix/bootstrap-finite-standard-error-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T14:29:18Z",
+      "validation": {
+        "run_id": 43884351861,
+        "job_id": 133358329515,
+        "baseline_focused": {
+          "total": 37,
+          "failed": 23
+        },
+        "candidate_focused": {
+          "total": 40,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "candidate_full": {
+          "total": 780,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        }
+      },
+      "ui_verified": true,
+      "api_verified": true,
+      "body_verified": true
     }
   ],
   "remote_checkpoints": {
@@ -4381,5 +4416,5 @@
     }
   },
   "ci_diagnosis_updated_at": "2026-11-16T13:15:57.465Z",
-  "last_submission_check_at": "2026-11-16T14:20:42.516Z"
+  "last_submission_check_at": "2026-11-16T14:36:03.037Z"
 }
