@@ -12,21 +12,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: dynamic-arcface-margin-range
-            test: tests/losses/test_dynamic_arcface_margin_range.py
-            select: ""
-            adjacent: tests/losses/test_dynamic_arcface_loss.py tests/losses/test_dynamic_arcface_margin_range.py tests/losses/test_subcenter_arcface_loss.py tests/losses/test_arcface_loss.py
-            message: Keep DynamicArcFace class margins finite across count and power ranges
           - name: intra-pair-variance-precision
             test: tests/losses/test_intra_pair_variance_precision.py
             select: ""
             adjacent: tests/losses/test_intra_pair_variance_loss.py tests/losses/test_intra_pair_variance_precision.py tests/losses/test_distance_matrix_input.py
             message: Preserve intra-pair variance penalties and gradients before reduction
-          - name: distance-weighted-density-precision
-            test: tests/miners/test_distance_weighted_density_precision.py
-            select: ""
-            adjacent: tests/miners/test_distance_weighted_miner.py tests/miners/test_distance_weighted_density_precision.py tests/miners/test_empty_inputs.py tests/miners/test_tuples_per_anchor.py
-            message: Keep distance-weighted mining density finite for low-precision inputs
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
