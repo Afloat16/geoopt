@@ -28,6 +28,7 @@ jobs:
           python validation/benchmark_spd_transport.py baseline.json
       - name: Verify and measure the exact candidate
         run: |
+          git fetch --depth=1 origin 8d0bbddf2f2d2fc748daea2b4500300b0840fab1
           git restore --source=8d0bbddf2f2d2fc748daea2b4500300b0840fab1 -- geoopt/manifolds/symmetric_positive_definite.py
           python -m pytest -q tests/test_spd_transport_sqrt.py tests/test_spd_distance.py tests/test_manifold_basic.py --junitxml=candidate.xml
           python validation/benchmark_spd_transport.py candidate.json
