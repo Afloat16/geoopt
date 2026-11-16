@@ -1,0 +1,71 @@
+name: Validate canonical Stiefel gradient products
+on:
+  push:
+    branches: ['validation/canonical-stiefel-gradient-products-20261116']
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: '3.8'
+            torch: '2.0.1'
+            numpy: '1.24.4'
+            scipy: '1.10.1'
+            benchmark: false
+          - python: '3.12'
+            torch: '2.6.0'
+            numpy: '2.2.6'
+            scipy: '1.15.3'
+            benchmark: true
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install pinned CPU dependencies
+        run: |
+          python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==${{ matrix.numpy }} scipy==${{ matrix.scipy }} pytest==8.3.5 ruff
+          python -m pip install -e . --no-deps
+      - name: Lint changed files
+        run: python -m ruff check geoopt/manifolds/stiefel.py tests/test_canonical_stiefel_gradient_products.py
+      - name: Verify and benchmark original upstream
+        run: |
+          git fetch --depth=1 origin 4623ea1d2a9808b8e87bf10949cccb2c5ec6233c
+          git restore --source=4623ea1d2a9808b8e87bf10949cccb2c5ec6233c -- geoopt/manifolds/stiefel.py
+          python -m pytest -q tests/test_canonical_stiefel_gradient_products.py --junitxml=baseline.xml
+          if [ "${{ matrix.benchmark }}" = "true" ]; then python validation/benchmark_stiefel_gradient.py baseline.json; fi
+      - name: Verify and benchmark exact candidate
+        run: |
+          git fetch --depth=1 origin 784c5a0869fa7f0bda0af0f57749e17be1788e3a
+          git restore --source=784c5a0869fa7f0bda0af0f57749e17be1788e3a -- geoopt/manifolds/stiefel.py
+          python -m pytest -q tests/test_canonical_stiefel_gradient_products.py tests/test_canonical_stiefel_projection.py tests/test_manifold_basic.py tests/test_rsgd.py tests/test_radam_maximize.py --junitxml=candidate.xml
+          if [ "${{ matrix.benchmark }}" = "true" ]; then python validation/benchmark_stiefel_gradient.py candidate.json; fi
+          git diff --exit-code
+      - name: Compare timings and allocations
+        if: matrix.benchmark
+        run: |
+          python - <<'PY'
+          import json
+          baseline = json.load(open("baseline.json"))["results"]
+          candidate = json.load(open("candidate.json"))["results"]
+          for before, after in zip(baseline, candidate):
+              assert before["shape"] == after["shape"] and before["backward"] == after["backward"]
+              print(json.dumps({"shape": before["shape"], "backward": before["backward"], "before_ms": before["median_ms"], "after_ms": after["median_ms"], "speedup": before["median_ms"] / after["median_ms"], "before_product_bytes": before["largest_product_bytes"], "after_product_bytes": after["largest_product_bytes"]}))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stiefel-gradient-${{ matrix.python }}
+          path: |
+            baseline.xml
+            candidate.xml
+            baseline.json
+            candidate.json
