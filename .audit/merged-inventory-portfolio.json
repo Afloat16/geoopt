@@ -4327,7 +4327,35 @@
       },
       "ui_verified": true,
       "api_verified": true,
-      "body_verified": true
+      "body_verified": true,
+      "official_checks": [
+        {
+          "name": "build-linux",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43883789841/job/133356344972"
+        },
+        {
+          "name": "build-linux-latest-sklearn",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43883789841/job/133356344126"
+        },
+        {
+          "name": "formatting",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43883789365/job/133356343528"
+        }
+      ],
+      "official_ci_diagnosis": {
+        "functional": "Both locked and latest-scikit-learn upstream jobs succeeded.",
+        "formatting": "Fails before formatting: python-version 3.x resolves Python 3.15.2; locked SciPy 1.16.3 builds from source and cannot find OpenBLAS. Same failure reproduced on unchanged base.",
+        "exact_base_replay": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "log_inspected": true,
+        "body_note_published": true,
+        "body_note_verified": true
+      }
     },
     {
       "repo": "rasbt/mlxtend",
@@ -4362,7 +4390,35 @@
       },
       "ui_verified": true,
       "api_verified": true,
-      "body_verified": true
+      "body_verified": true,
+      "official_checks": [
+        {
+          "name": "build-linux-latest-sklearn",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43884664631/job/133359436393"
+        },
+        {
+          "name": "formatting",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43884664645/job/133359435615"
+        },
+        {
+          "name": "build-linux",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43884664631/job/133359434741"
+        }
+      ],
+      "official_ci_diagnosis": {
+        "functional": "Both locked and latest-scikit-learn upstream jobs succeeded.",
+        "formatting": "Fails before formatting: python-version 3.x resolves Python 3.15.2; locked SciPy 1.16.3 builds from source and cannot find OpenBLAS. Same failure reproduced on unchanged base.",
+        "exact_base_replay": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "log_inspected": true,
+        "body_note_published": true,
+        "body_note_verified": true
+      }
     },
     {
       "repo": "rasbt/mlxtend",
@@ -4397,7 +4453,35 @@
       },
       "ui_verified": true,
       "api_verified": true,
-      "body_verified": true
+      "body_verified": true,
+      "official_checks": [
+        {
+          "name": "build-linux",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43886253166/job/133365085153"
+        },
+        {
+          "name": "build-linux-latest-sklearn",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43886253166/job/133365084711"
+        },
+        {
+          "name": "formatting",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43886253205/job/133365084499"
+        }
+      ],
+      "official_ci_diagnosis": {
+        "functional": "Both locked and latest-scikit-learn upstream jobs succeeded.",
+        "formatting": "Fails before formatting: python-version 3.x resolves Python 3.15.2; locked SciPy 1.16.3 builds from source and cannot find OpenBLAS. Same failure reproduced on unchanged base.",
+        "exact_base_replay": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "log_inspected": true,
+        "body_note_published": true,
+        "body_note_verified": true
+      }
     },
     {
       "repo": "rasbt/mlxtend",
@@ -4492,7 +4576,35 @@
       },
       "ui_verified": true,
       "api_verified": true,
-      "body_verified": true
+      "body_verified": true,
+      "official_checks": [
+        {
+          "name": "build-linux-latest-sklearn",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43890111983/job/133378699440"
+        },
+        {
+          "name": "build-linux",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43890111983/job/133378698940"
+        },
+        {
+          "name": "formatting",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43890111825/job/133378696877"
+        }
+      ],
+      "official_ci_diagnosis": {
+        "functional": "Both locked and latest-scikit-learn upstream jobs succeeded.",
+        "formatting": "Fails before formatting: python-version 3.x resolves Python 3.15.2; locked SciPy 1.16.3 builds from source and cannot find OpenBLAS. Same failure reproduced on unchanged base.",
+        "exact_base_replay": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "log_inspected": true,
+        "body_note_published": true,
+        "body_note_verified": true
+      }
     },
     {
       "repo": "rasbt/mlxtend",
@@ -4603,7 +4715,35 @@
       },
       "ui_verified": true,
       "api_verified": true,
-      "body_verified": true
+      "body_verified": true,
+      "official_checks": [
+        {
+          "name": "build-linux",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43890226908/job/133379109110"
+        },
+        {
+          "name": "build-linux-latest-sklearn",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43890226908/job/133379108642"
+        },
+        {
+          "name": "formatting",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43890226818/job/133379104448"
+        }
+      ],
+      "official_ci_diagnosis": {
+        "functional": "Both locked and latest-scikit-learn upstream jobs succeeded.",
+        "formatting": "Fails before formatting: python-version 3.x resolves Python 3.15.2; locked SciPy 1.16.3 builds from source and cannot find OpenBLAS. Same failure reproduced on unchanged base.",
+        "exact_base_replay": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "log_inspected": true,
+        "body_note_published": true,
+        "body_note_verified": true
+      }
     },
     {
       "repo": "rasbt/mlxtend",
@@ -4752,7 +4892,35 @@
       },
       "ui_verified": true,
       "api_verified": true,
-      "body_verified": true
+      "body_verified": true,
+      "official_checks": [
+        {
+          "name": "build-linux",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43892784191/job/133388142752"
+        },
+        {
+          "name": "build-linux-latest-sklearn",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43892784191/job/133388142184"
+        },
+        {
+          "name": "formatting",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43892783898/job/133388141844"
+        }
+      ],
+      "official_ci_diagnosis": {
+        "functional": "Both locked and latest-scikit-learn upstream jobs succeeded.",
+        "formatting": "Fails before formatting: python-version 3.x resolves Python 3.15.2; locked SciPy 1.16.3 builds from source and cannot find OpenBLAS. Same failure reproduced on unchanged base.",
+        "exact_base_replay": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "log_inspected": true,
+        "body_note_published": true,
+        "body_note_verified": true
+      }
     },
     {
       "repo": "rasbt/mlxtend",
@@ -4843,7 +5011,35 @@
       },
       "ui_verified": true,
       "api_verified": true,
-      "body_verified": true
+      "body_verified": true,
+      "official_checks": [
+        {
+          "name": "build-linux-latest-sklearn",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43896760385/job/133402287971"
+        },
+        {
+          "name": "build-linux",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43896760385/job/133402287448"
+        },
+        {
+          "name": "formatting",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43896760248/job/133402286481"
+        }
+      ],
+      "official_ci_diagnosis": {
+        "functional": "Both locked and latest-scikit-learn upstream jobs succeeded.",
+        "formatting": "Fails before formatting: python-version 3.x resolves Python 3.15.2; locked SciPy 1.16.3 builds from source and cannot find OpenBLAS. Same failure reproduced on unchanged base.",
+        "exact_base_replay": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "log_inspected": true,
+        "body_note_published": true,
+        "body_note_verified": true
+      }
     },
     {
       "repo": "rasbt/mlxtend",
@@ -5068,7 +5264,35 @@
       },
       "ui_verified": true,
       "api_verified": true,
-      "body_verified": true
+      "body_verified": true,
+      "official_checks": [
+        {
+          "name": "formatting",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43896870690/job/133402691245"
+        },
+        {
+          "name": "build-linux",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43896870505/job/133402690566"
+        },
+        {
+          "name": "build-linux-latest-sklearn",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43896870505/job/133402689889"
+        }
+      ],
+      "official_ci_diagnosis": {
+        "functional": "Both locked and latest-scikit-learn upstream jobs succeeded.",
+        "formatting": "Fails before formatting: python-version 3.x resolves Python 3.15.2; locked SciPy 1.16.3 builds from source and cannot find OpenBLAS. Same failure reproduced on unchanged base.",
+        "exact_base_replay": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "log_inspected": true,
+        "body_note_published": true,
+        "body_note_verified": true
+      }
     },
     {
       "repo": "rasbt/mlxtend",
@@ -5159,7 +5383,35 @@
       },
       "ui_verified": true,
       "api_verified": true,
-      "body_verified": true
+      "body_verified": true,
+      "official_checks": [
+        {
+          "name": "build-linux",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43897562993/job/133405143756"
+        },
+        {
+          "name": "build-linux-latest-sklearn",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43897562993/job/133405143332"
+        },
+        {
+          "name": "formatting",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43897562542/job/133405140928"
+        }
+      ],
+      "official_ci_diagnosis": {
+        "functional": "Both locked and latest-scikit-learn upstream jobs succeeded.",
+        "formatting": "Fails before formatting: python-version 3.x resolves Python 3.15.2; locked SciPy 1.16.3 builds from source and cannot find OpenBLAS. Same failure reproduced on unchanged base.",
+        "exact_base_replay": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "log_inspected": true,
+        "body_note_published": true,
+        "body_note_verified": true
+      }
     },
     {
       "repo": "rasbt/mlxtend",
@@ -5270,7 +5522,35 @@
       },
       "ui_verified": true,
       "api_verified": true,
-      "body_verified": true
+      "body_verified": true,
+      "official_checks": [
+        {
+          "name": "formatting",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43897882973/job/133406277132"
+        },
+        {
+          "name": "build-linux-latest-sklearn",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43897882951/job/133406276969"
+        },
+        {
+          "name": "build-linux",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43897882951/job/133406276751"
+        }
+      ],
+      "official_ci_diagnosis": {
+        "functional": "Both locked and latest-scikit-learn upstream jobs succeeded.",
+        "formatting": "Fails before formatting: python-version 3.x resolves Python 3.15.2; locked SciPy 1.16.3 builds from source and cannot find OpenBLAS. Same failure reproduced on unchanged base.",
+        "exact_base_replay": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "log_inspected": true,
+        "body_note_published": true,
+        "body_note_verified": true
+      }
     },
     {
       "repo": "rasbt/mlxtend",
@@ -5359,7 +5639,35 @@
       },
       "ui_verified": true,
       "api_verified": true,
-      "body_verified": true
+      "body_verified": true,
+      "official_checks": [
+        {
+          "name": "formatting",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43897756478/job/133405840821"
+        },
+        {
+          "name": "build-linux",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43897756515/job/133405839507"
+        },
+        {
+          "name": "build-linux-latest-sklearn",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43897756515/job/133405839086"
+        }
+      ],
+      "official_ci_diagnosis": {
+        "functional": "Both locked and latest-scikit-learn upstream jobs succeeded.",
+        "formatting": "Fails before formatting: python-version 3.x resolves Python 3.15.2; locked SciPy 1.16.3 builds from source and cannot find OpenBLAS. Same failure reproduced on unchanged base.",
+        "exact_base_replay": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "log_inspected": true,
+        "body_note_published": true,
+        "body_note_verified": true
+      }
     },
     {
       "repo": "rasbt/mlxtend",
@@ -5452,7 +5760,35 @@
       },
       "ui_verified": true,
       "api_verified": true,
-      "body_verified": true
+      "body_verified": true,
+      "official_checks": [
+        {
+          "name": "build-linux",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43897923871/job/133406417602"
+        },
+        {
+          "name": "build-linux-latest-sklearn",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43897923871/job/133406416780"
+        },
+        {
+          "name": "formatting",
+          "status": "completed",
+          "conclusion": "failure",
+          "url": "https://github.com/rasbt/mlxtend/actions/runs/43897924033/job/133406416110"
+        }
+      ],
+      "official_ci_diagnosis": {
+        "functional": "Both locked and latest-scikit-learn upstream jobs succeeded.",
+        "formatting": "Fails before formatting: python-version 3.x resolves Python 3.15.2; locked SciPy 1.16.3 builds from source and cannot find OpenBLAS. Same failure reproduced on unchanged base.",
+        "exact_base_replay": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "log_inspected": true,
+        "body_note_published": true,
+        "body_note_verified": true
+      }
     }
   ],
   "remote_checkpoints": {
@@ -5470,6 +5806,6 @@
       "path": ".validation/mlxtend-submissions.json"
     }
   },
-  "ci_diagnosis_updated_at": "2026-11-16T13:15:57.465Z",
+  "ci_diagnosis_updated_at": "2026-11-16T15:43:19.030Z",
   "last_submission_check_at": "2026-11-16T15:35:30.840Z"
 }
