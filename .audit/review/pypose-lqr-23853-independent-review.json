@@ -1,0 +1,26 @@
+{
+  "reviewer": "merged_inventory independent agent",
+  "mode": "read-only source and diff review; no additional tests executed",
+  "reviewed_at": "2026-11-16T21:36:05.918Z",
+  "repository": "Afloat16/pypose",
+  "head": "23853bda897abc44180471cc050c5c9f50abd0d9",
+  "base": "298e9f0862cb228b0e8851b2616e682ccdca6a32",
+  "files": [
+    "pypose/module/lqr.py",
+    "tests/module/test_lqr_gradients.py"
+  ],
+  "blocking_findings": [],
+  "analysis": [
+    "delta_u was only a per-step assignment immediately read at the same index; it was never returned or read by later iterations. The local delta_ut preserves Kt*(xt-x_nominal)+kt and addition of the nominal control.",
+    "On the normal LQR path K, k and x_init share the dargs dtype/device through existing assertions; the removed temporary tensor was not needed for a different output cast.",
+    "The independent dense oracle correctly accumulates the horizon condensed quadratic Hessian S^T Q S and gradient S^T(Qd+p), updates affine state offsets and control maps using A/B/c, and solves all controls at once without reusing the Riccati recursion.",
+    "T=1 includes the current state/control stage and final propagated state in the returned trajectory, with no extra terminal cost, matching the production objective.",
+    "The nonzero warm-start tests compare to an oracle independent of the nominal controls, appropriately checking warm-start invariance for linear dynamics.",
+    "The 16 combinations cover two dtypes, two warm-start conditions, and four batch/horizon pairs."
+  ],
+  "limits": [
+    "The test differentiates one weighted-square output functional with respect to x_init and p. It does not verify every Jacobian entry, A/B/Q/c derivatives, derivatives with respect to nominal control, or higher-order gradients.",
+    "This review makes no speedup claim. Measured complete public API benchmarks and allocation evidence remain necessary.",
+    "No local runtime or rejected operation was invoked."
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "observed_at_utc": "2026-11-16T21:11:59.023Z",
+  "observed_at_utc": "2026-11-16T21:36:05.918Z",
   "pull_requests": [
     {
       "pr": 6802,
@@ -215,8 +215,17 @@
     {
       "pr": 6803,
       "head": "f05f4d2c74d3d891c38d05ee1d33925a18bdca8b",
-      "total_check_runs": 20,
+      "total_check_runs": 21,
       "check_runs": [
+        {
+          "id": 133623156669,
+          "name": "collector",
+          "status": "completed",
+          "conclusion": "success",
+          "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133623156669",
+          "started_at": "2026-11-16T21:23:31Z",
+          "completed_at": "2026-11-16T21:23:34Z"
+        },
         {
           "id": 133596556816,
           "name": "tests (ubuntu-latest, float32, 3.11, 2.15.0) / tests (3.11, 2.15.0)",
@@ -301,11 +310,11 @@
         {
           "id": 133596555737,
           "name": "dynamo / tests (3.11, 2.15.0)",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "success",
           "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596555737",
           "started_at": "2026-11-16T20:39:07Z",
-          "completed_at": null
+          "completed_at": "2026-11-16T21:22:30Z"
         },
         {
           "id": 133596555355,
@@ -319,11 +328,11 @@
         {
           "id": 133596555212,
           "name": "tests-mps / tests (3.13, 2.14.0)",
-          "status": "in_progress",
-          "conclusion": null,
+          "status": "completed",
+          "conclusion": "success",
           "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596555212",
           "started_at": "2026-11-16T20:39:09Z",
-          "completed_at": null
+          "completed_at": "2026-11-16T21:23:29Z"
         },
         {
           "id": 133596322365,
@@ -412,7 +421,8 @@
           "url": "https://kornia--6803.org.readthedocs.build/en/6803/",
           "updated_at": "2026-11-16T20:41:44Z"
         }
-      ]
+      ],
+      "observed_at_utc": "2026-11-16T21:36:05.918Z"
     }
   ]
 }

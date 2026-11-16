@@ -6168,146 +6168,195 @@
       "created_at": "2026-11-16T20:01:35Z",
       "last_submission_check_at": "2026-11-16T21:17:37.706Z",
       "official_checks": {
-        "total": 20,
+        "total": 21,
         "checks": [
           {
+            "id": 133623156669,
+            "name": "collector",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133623156669",
+            "started_at": "2026-11-16T21:23:31Z",
+            "completed_at": "2026-11-16T21:23:34Z"
+          },
+          {
+            "id": 133596556816,
             "name": "tests (ubuntu-latest, float32, 3.11, 2.15.0) / tests (3.11, 2.15.0)",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596556816",
+            "started_at": "2026-11-16T20:40:50Z",
             "completed_at": "2026-11-16T20:57:47Z"
           },
           {
+            "id": 133596556645,
             "name": "tests (macos-latest, float32, 3.13, 2.15.0, true) / tests (3.13, 2.15.0)",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596556645",
+            "started_at": "2026-11-16T20:40:44Z",
             "completed_at": "2026-11-16T20:58:14Z"
           },
           {
+            "id": 133596556631,
             "name": "tests (windows-latest, float64, 3.13, 2.15.0) / tests (3.13, 2.15.0)",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596556631",
+            "started_at": "2026-11-16T20:41:06Z",
             "completed_at": "2026-11-16T21:08:39Z"
           },
           {
+            "id": 133596556598,
             "name": "tests (ubuntu-latest, float32, 3.13, 2.5.1, true) / tests (3.13, 2.5.1)",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596556598",
+            "started_at": "2026-11-16T20:45:02Z",
             "completed_at": "2026-11-16T20:54:31Z"
           },
           {
+            "id": 133596556468,
             "name": "tests (ubuntu-latest, float64, 3.11, 2.15.0, true) / tests (3.11, 2.15.0)",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596556468",
+            "started_at": "2026-11-16T20:40:06Z",
             "completed_at": "2026-11-16T20:51:38Z"
           },
           {
+            "id": 133596556441,
             "name": "half-precision (float16) / tests (3.11, 2.15.0)",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596556441",
+            "started_at": "2026-11-16T20:40:50Z",
             "completed_at": "2026-11-16T21:01:35Z"
           },
           {
+            "id": 133596556427,
             "name": "tests (ubuntu-latest, float32, 3.12, 2.9.1) / tests (3.12, 2.9.1)",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596556427",
+            "started_at": "2026-11-16T20:39:43Z",
             "completed_at": "2026-11-16T20:53:23Z"
           },
           {
+            "id": 133596556414,
             "name": "tests (ubuntu-latest, float64, 3.12, 2.5.1) / tests (3.12, 2.5.1)",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596556414",
+            "started_at": "2026-11-16T20:41:30Z",
             "completed_at": "2026-11-16T20:56:35Z"
           },
           {
+            "id": 133596556089,
             "name": "half-precision (bfloat16) / tests (3.11, 2.15.0)",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596556089",
+            "started_at": "2026-11-16T20:39:08Z",
             "completed_at": "2026-11-16T21:07:17Z"
           },
           {
+            "id": 133596555737,
             "name": "dynamo / tests (3.11, 2.15.0)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596555737",
-            "completed_at": null
+            "started_at": "2026-11-16T20:39:07Z",
+            "completed_at": "2026-11-16T21:22:30Z"
           },
           {
+            "id": 133596555355,
             "name": "typecheck / typecheck",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596555355",
+            "started_at": "2026-11-16T20:39:07Z",
             "completed_at": "2026-11-16T20:39:42Z"
           },
           {
+            "id": 133596555212,
             "name": "tests-mps / tests (3.13, 2.14.0)",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596555212",
-            "completed_at": null
+            "started_at": "2026-11-16T20:39:09Z",
+            "completed_at": "2026-11-16T21:23:29Z"
           },
           {
+            "id": 133596322365,
             "name": "onnx-conformance / tests (3.11, 2.15.0)",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596322365",
+            "started_at": "2026-11-16T20:38:44Z",
             "completed_at": "2026-11-16T20:41:04Z"
           },
           {
+            "id": 133596322235,
             "name": "compile-conformance / tests (3.11, 2.15.0)",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596322235",
+            "started_at": "2026-11-16T20:38:43Z",
             "completed_at": "2026-11-16T20:41:28Z"
           },
           {
+            "id": 133596321837,
             "name": "pre-tests",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596321837",
+            "started_at": "2026-11-16T20:38:43Z",
             "completed_at": "2026-11-16T20:39:05Z"
           },
           {
+            "id": 133596189342,
             "name": "changes",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775588/job/133596189342",
+            "started_at": "2026-11-16T20:38:30Z",
             "completed_at": "2026-11-16T20:38:41Z"
           },
           {
+            "id": 133595976993,
             "name": "CodeRabbit",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/runs/133595976993",
+            "started_at": "2026-11-16T20:38:08Z",
             "completed_at": "2026-11-16T20:41:30Z"
           },
           {
+            "id": 133595834113,
             "name": "Check changelog fragments",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775410/job/133595834113",
+            "started_at": "2026-11-16T20:38:11Z",
             "completed_at": "2026-11-16T20:38:23Z"
           },
           {
+            "id": 133595833886,
             "name": "Check for dropped module-level names",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775433/job/133595833886",
+            "started_at": "2026-11-16T20:38:10Z",
             "completed_at": "2026-11-16T20:38:18Z"
           },
           {
+            "id": 133595833828,
             "name": "Check documentation links",
             "status": "completed",
             "conclusion": "success",
             "url": "https://github.com/kornia/kornia/actions/runs/43951775409/job/133595833828",
+            "started_at": "2026-11-16T20:38:10Z",
             "completed_at": "2026-11-16T20:38:17Z"
           }
         ]
@@ -6326,7 +6375,8 @@
           "updated_at": "2026-11-16T20:41:44Z"
         }
       ],
-      "official_checks_snapshot_note": "Refreshed for this exact head during recovery."
+      "official_checks_snapshot_note": "Naturally triggered official CI observed at the unchanged exact head; 21 check-runs and both status contexts passed. No rerun was requested.",
+      "official_checks_snapshot_at": "2026-11-16T21:36:05.918Z"
     }
   ],
   "remote_checkpoints": {
@@ -6769,5 +6819,6 @@
       "recovery_method": "Pure JavaScript base64 and DEFLATE decoding in functions runtime; no local execution tools or CUA used."
     },
     "environment": "Recovery used GitHub MCP and pure JavaScript only; no local execution or CUA."
-  }
+  },
+  "kornia_ci_updated_at": "2026-11-16T21:36:05.918Z"
 }
