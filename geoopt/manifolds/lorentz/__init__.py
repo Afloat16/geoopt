@@ -51,7 +51,7 @@ class Lorentz(Manifold):
         )
         ok = torch.allclose(quad_form, -self.k, atol=atol, rtol=rtol)
         if not ok:
-            reason = f"'x' minkowski quadratic form is not equal to {-self.k.item()}"
+            reason = "'x' Minkowski quadratic form does not match -k"
         else:
             reason = None
         return ok, reason
@@ -60,7 +60,7 @@ class Lorentz(Manifold):
         self, x: torch.Tensor, u: torch.Tensor, *, atol=1e-5, rtol=1e-5, dim=-1
     ) -> Tuple[bool, Optional[str]]:
         inner_ = math.inner(u, x, dim=dim)
-        ok = torch.allclose(inner_, torch.zeros(1), atol=atol, rtol=rtol)
+        ok = torch.allclose(inner_, torch.zeros_like(inner_), atol=atol, rtol=rtol)
         if not ok:
             reason = "Minkowski inner produt is not equal to zero"
         else:
