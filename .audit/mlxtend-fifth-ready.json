@@ -7,7 +7,7 @@
     "issue": 1318,
     "title": "Use independent estimator fits in paired statistical comparisons",
     "body": "### Description\n\nThe four paired estimator-comparison helpers fit the same estimator objects repeatedly. Estimators that retain fitted state, including random forests with `warm_start=True`, can therefore reuse trees trained on an earlier split. A later test fold may already have influenced those trees, changing both the comparison statistic and its p-value.\n\nThis change clones each estimator before each independent fit in `paired_ttest_resampled`, `paired_ttest_kfold_cv`, `paired_ttest_5x2cv`, and `combined_ftest_5x2cv`. Scoring uses the fitted clones, and the supplied estimators retain their original state. The sampling, scoring, and statistical formulas stay the same. All four entry points share this cause and are covered together.\n\n### Related issues or pull requests\n\nCloses #1318.\n\nRelated work: #1242 adds a separate corrected resampled t-test; it does not change these existing four helpers. #1315 isolates bootstrap models in the separate `bias_variance_decomp` path. This PR addresses the independent repeated train/test fits above. Deduplication examined upstream PR refs, all fork heads, and their reachable intermediate changes to both source files; no equivalent change to these four entry points was found.\n\n### Validation\n\n- Exact upstream base: `1aee767ef57b84a8191511a08955c583b65de382`.\n- **23 of 28 new regression cases fail on unchanged source.** All 28 pass after the change.\n- The tests compare real warm-start random forests with independently fitted models and separately computed test statistics. They cover regression and classification, pipelines, already-fitted inputs, cold-start controls, callable scoring, and unchanged caller state. A state-tracking estimator also verifies that the scorer never sees training observations retained from another fold.\n- Existing and new tests for the four helpers: **41 passed**. Complete repository suite: **768 passed, 3 skipped**.\n- Baseline and candidate ran in the same job using Python 3.11.18 and the unchanged frozen dependency lock.\n- Complete repository isort/Black, changed-file Flake8, `git diff --check`, package build, and strict Twine metadata checks passed. The repository-wide Flake8 report retains existing findings and is not claimed as a clean lint gate.\n\n[Baseline reproduction and complete validation](https://github.com/Afloat16/geoopt/actions/runs/43881707255/job/133348986775).\n\n### Pull Request Checklist\n\n- [x] Added a changelog entry.\n- [x] Added regression tests in the corresponding test directory.\n- [x] Updated the affected public docstrings.\n- [x] Ran focused and complete repository tests.\n- [x] Checked formatting and style with the scope described above.\n",
-    "status": "ready",
+    "status": "published",
     "base": "master",
     "validation": {
       "run_id": 43881707255,
@@ -30,121 +30,58 @@
       }
     },
     "maintainer_can_modify": false,
-    "compare_url": "https://github.com/rasbt/mlxtend/compare/master...Afloat16:fix/paired-fresh-estimators-20261116?expand=1&title=Use%20independent%20estimator%20fits%20in%20paired%20statistical%20comparisons&body=%23%23%23%20Description%0A%0AThe%20four%20paired%20estimator-comparison%20helpers%20fit%20the%20same%20estimator%20objects%20repeatedly.%20Estimators%20that%20retain%20fitted%20state%2C%20including%20random%20forests%20with%20%60warm_start%3DTrue%60%2C%20can%20therefore%20reuse%20trees%20trained%20on%20an%20earlier%20split.%20A%20later%20test%20fold%20may%20already%20have%20influenced%20those%20trees%2C%20changing%20both%20the%20comparison%20statistic%20and%20its%20p-value.%0A%0AThis%20change%20clones%20each%20estimator%20before%20each%20independent%20fit%20in%20%60paired_ttest_resampled%60%2C%20%60paired_ttest_kfold_cv%60%2C%20%60paired_ttest_5x2cv%60%2C%20and%20%60combined_ftest_5x2cv%60.%20Scoring%20uses%20the%20fitted%20clones%2C%20and%20the%20supplied%20estimators%20retain%20their%20original%20state.%20The%20sampling%2C%20scoring%2C%20and%20statistical%20formulas%20stay%20the%20same.%20All%20four%20entry%20points%20share%20this%20cause%20and%20are%20covered%20together.%0A%0A%23%23%23%20Related%20issues%20or%20pull%20requests%0A%0ACloses%20%231318.%0A%0ARelated%20work%3A%20%231242%20adds%20a%20separate%20corrected%20resampled%20t-test%3B%20it%20does%20not%20change%20these%20existing%20four%20helpers.%20%231315%20isolates%20bootstrap%20models%20in%20the%20separate%20%60bias_variance_decomp%60%20path.%20This%20PR%20addresses%20the%20independent%20repeated%20train%2Ftest%20fits%20above.%20Deduplication%20examined%20upstream%20PR%20refs%2C%20all%20fork%20heads%2C%20and%20their%20reachable%20intermediate%20changes%20to%20both%20source%20files%3B%20no%20equivalent%20change%20to%20these%20four%20entry%20points%20was%20found.%0A%0A%23%23%23%20Validation%0A%0A-%20Exact%20upstream%20base%3A%20%601aee767ef57b84a8191511a08955c583b65de382%60.%0A-%20**23%20of%2028%20new%20regression%20cases%20fail%20on%20unchanged%20source.**%20All%2028%20pass%20after%20the%20change.%0A-%20The%20tests%20compare%20real%20warm-start%20random%20forests%20with%20independently%20fitted%20models%20and%20separately%20computed%20test%20statistics.%20They%20cover%20regression%20and%20classification%2C%20pipelines%2C%20already-fitted%20inputs%2C%20cold-start%20controls%2C%20callable%20scoring%2C%20and%20unchanged%20caller%20state.%20A%20state-tracking%20estimator%20also%20verifies%20that%20the%20scorer%20never%20sees%20training%20observations%20retained%20from%20another%20fold.%0A-%20Existing%20and%20new%20tests%20for%20the%20four%20helpers%3A%20**41%20passed**.%20Complete%20repository%20suite%3A%20**768%20passed%2C%203%20skipped**.%0A-%20Baseline%20and%20candidate%20ran%20in%20the%20same%20job%20using%20Python%203.11.18%20and%20the%20unchanged%20frozen%20dependency%20lock.%0A-%20Complete%20repository%20isort%2FBlack%2C%20changed-file%20Flake8%2C%20%60git%20diff%20--check%60%2C%20package%20build%2C%20and%20strict%20Twine%20metadata%20checks%20passed.%20The%20repository-wide%20Flake8%20report%20retains%20existing%20findings%20and%20is%20not%20claimed%20as%20a%20clean%20lint%20gate.%0A%0A%5BBaseline%20reproduction%20and%20complete%20validation%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43881707255%2Fjob%2F133348986775).%0A%0A%23%23%23%20Pull%20Request%20Checklist%0A%0A-%20%5Bx%5D%20Added%20a%20changelog%20entry.%0A-%20%5Bx%5D%20Added%20regression%20tests%20in%20the%20corresponding%20test%20directory.%0A-%20%5Bx%5D%20Updated%20the%20affected%20public%20docstrings.%0A-%20%5Bx%5D%20Ran%20focused%20and%20complete%20repository%20tests.%0A-%20%5Bx%5D%20Checked%20formatting%20and%20style%20with%20the%20scope%20described%20above.%0A"
+    "compare_url": "https://github.com/rasbt/mlxtend/compare/master...Afloat16:fix/paired-fresh-estimators-20261116?expand=1&title=Use%20independent%20estimator%20fits%20in%20paired%20statistical%20comparisons&body=%23%23%23%20Description%0A%0AThe%20four%20paired%20estimator-comparison%20helpers%20fit%20the%20same%20estimator%20objects%20repeatedly.%20Estimators%20that%20retain%20fitted%20state%2C%20including%20random%20forests%20with%20%60warm_start%3DTrue%60%2C%20can%20therefore%20reuse%20trees%20trained%20on%20an%20earlier%20split.%20A%20later%20test%20fold%20may%20already%20have%20influenced%20those%20trees%2C%20changing%20both%20the%20comparison%20statistic%20and%20its%20p-value.%0A%0AThis%20change%20clones%20each%20estimator%20before%20each%20independent%20fit%20in%20%60paired_ttest_resampled%60%2C%20%60paired_ttest_kfold_cv%60%2C%20%60paired_ttest_5x2cv%60%2C%20and%20%60combined_ftest_5x2cv%60.%20Scoring%20uses%20the%20fitted%20clones%2C%20and%20the%20supplied%20estimators%20retain%20their%20original%20state.%20The%20sampling%2C%20scoring%2C%20and%20statistical%20formulas%20stay%20the%20same.%20All%20four%20entry%20points%20share%20this%20cause%20and%20are%20covered%20together.%0A%0A%23%23%23%20Related%20issues%20or%20pull%20requests%0A%0ACloses%20%231318.%0A%0ARelated%20work%3A%20%231242%20adds%20a%20separate%20corrected%20resampled%20t-test%3B%20it%20does%20not%20change%20these%20existing%20four%20helpers.%20%231315%20isolates%20bootstrap%20models%20in%20the%20separate%20%60bias_variance_decomp%60%20path.%20This%20PR%20addresses%20the%20independent%20repeated%20train%2Ftest%20fits%20above.%20Deduplication%20examined%20upstream%20PR%20refs%2C%20all%20fork%20heads%2C%20and%20their%20reachable%20intermediate%20changes%20to%20both%20source%20files%3B%20no%20equivalent%20change%20to%20these%20four%20entry%20points%20was%20found.%0A%0A%23%23%23%20Validation%0A%0A-%20Exact%20upstream%20base%3A%20%601aee767ef57b84a8191511a08955c583b65de382%60.%0A-%20**23%20of%2028%20new%20regression%20cases%20fail%20on%20unchanged%20source.**%20All%2028%20pass%20after%20the%20change.%0A-%20The%20tests%20compare%20real%20warm-start%20random%20forests%20with%20independently%20fitted%20models%20and%20separately%20computed%20test%20statistics.%20They%20cover%20regression%20and%20classification%2C%20pipelines%2C%20already-fitted%20inputs%2C%20cold-start%20controls%2C%20callable%20scoring%2C%20and%20unchanged%20caller%20state.%20A%20state-tracking%20estimator%20also%20verifies%20that%20the%20scorer%20never%20sees%20training%20observations%20retained%20from%20another%20fold.%0A-%20Existing%20and%20new%20tests%20for%20the%20four%20helpers%3A%20**41%20passed**.%20Complete%20repository%20suite%3A%20**768%20passed%2C%203%20skipped**.%0A-%20Baseline%20and%20candidate%20ran%20in%20the%20same%20job%20using%20Python%203.11.18%20and%20the%20unchanged%20frozen%20dependency%20lock.%0A-%20Complete%20repository%20isort%2FBlack%2C%20changed-file%20Flake8%2C%20%60git%20diff%20--check%60%2C%20package%20build%2C%20and%20strict%20Twine%20metadata%20checks%20passed.%20The%20repository-wide%20Flake8%20report%20retains%20existing%20findings%20and%20is%20not%20claimed%20as%20a%20clean%20lint%20gate.%0A%0A%5BBaseline%20reproduction%20and%20complete%20validation%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43881707255%2Fjob%2F133348986775).%0A%0A%23%23%23%20Pull%20Request%20Checklist%0A%0A-%20%5Bx%5D%20Added%20a%20changelog%20entry.%0A-%20%5Bx%5D%20Added%20regression%20tests%20in%20the%20corresponding%20test%20directory.%0A-%20%5Bx%5D%20Updated%20the%20affected%20public%20docstrings.%0A-%20%5Bx%5D%20Ran%20focused%20and%20complete%20repository%20tests.%0A-%20%5Bx%5D%20Checked%20formatting%20and%20style%20with%20the%20scope%20described%20above.%0A",
+    "number": 1322,
+    "actual_url": "https://github.com/rasbt/mlxtend/pull/1322",
+    "actual_state": "open",
+    "merged_at": null,
+    "ui_verified": true,
+    "api_verified": true,
+    "body_verified": true
   },
-  "axes_validation": {
-    "branch": "validation/mlxtend-fifth-core-20261116",
-    "head": "63dcdf337be510f9c0ac68d7883eaee3b73133af",
-    "tree": "089051e74624f98c59c6cbedf761d8f444212b56"
+  "axes": {
+    "name": "confusion-matrix-axes",
+    "branch": "fix/confusion-matrix-axes-20261116",
+    "head": "35a2bcd0bb6ee66be692e2e81369078259d32236",
+    "tree": "5e6b5dc9fa0dc8cd33ac4f0f216acc8232ee04c0",
+    "issue": 1319,
+    "title": "Keep confusion matrix labels and colorbars on the supplied axes",
+    "body": "### Description\n\n`plot_confusion_matrix(axis=target)` draws the image on the supplied axes but uses pyplot's current axes for labels and ticks. If another subplot is current, its labels change instead. Supplying only `axis` also leaves the returned figure as `None`, and `colorbar=True` raises an `AttributeError`.\n\nThis change obtains the figure from the supplied axes and assigns ticks, axis labels, and colorbars directly to that axes. An explicitly supplied figure that does not own the axes is rejected before drawing. The default and figure-only forms remain supported.\n\nThe regression file is run as a separate command in both existing functional CI jobs. The repository's `norecursedirs` excludes plotting tests from ordinary recursive collection, so adding the path alongside the root argument did not actually collect it. The coverage job appends the explicit regression run to its existing coverage data.\n\n### Related issues or pull requests\n\nCloses #1319.\n\nThe complete reachable history for the affected module was checked across upstream PR refs and fork branches, including intermediate commits: 85 commits and 36 distinct source versions. Prior work introducing the figure/axes arguments does not correct this ownership problem; no equivalent fix was found.\n\n### Validation\n\n- Exact upstream base: `1aee767ef57b84a8191511a08955c583b65de382`.\n- **12 of 15 new regressions fail on the unchanged source**; all 15 pass with the patch.\n- Cases cover multiple subplots and separate current figures, normalized and unnormalized matrices, explicit and inferred figure ownership, colorbars, tick/spine options, preserved unrelated axes, mismatched figure rejection, and existing construction forms.\n- Complete repository suite: **740 passed, 3 skipped**; the **15 plotting regressions also pass in their separate invocation**.\n- Baseline and candidate ran in the same job with Python 3.11.18 and the unchanged frozen lock.\n- Complete repository isort/Black, changed-file Flake8, `git diff --check`, package build, and strict Twine checks passed. The repository-wide Flake8 report retains its existing findings and is not claimed as a clean gate.\n\n[Reproduction and complete validation](https://github.com/Afloat16/geoopt/actions/runs/43883373059/job/133354886852).\n\n### Pull Request Checklist\n\n- [x] Added a changelog entry.\n- [x] Added regression tests in the corresponding test directory.\n- [x] Documented figure and axes ownership.\n- [x] Ran the full repository suite and the separate plotting regressions.\n- [x] Checked formatting and style with the scope described above.\n",
+    "status": "ready",
+    "base": "master",
+    "validation": {
+      "run_id": 43883373059,
+      "job_id": 133354886852,
+      "baseline_focused": {
+        "total": 15,
+        "failed": 12
+      },
+      "candidate_focused": {
+        "total": 15,
+        "failed": 0,
+        "skipped": 0,
+        "failures": {}
+      },
+      "candidate_full": {
+        "total": 743,
+        "failed": 0,
+        "skipped": 3,
+        "failures": {}
+      }
+    },
+    "maintainer_can_modify": false,
+    "compare_url": "https://github.com/rasbt/mlxtend/compare/master...Afloat16:fix/confusion-matrix-axes-20261116?expand=1&title=Keep%20confusion%20matrix%20labels%20and%20colorbars%20on%20the%20supplied%20axes&body=%23%23%23%20Description%0A%0A%60plot_confusion_matrix(axis%3Dtarget)%60%20draws%20the%20image%20on%20the%20supplied%20axes%20but%20uses%20pyplot's%20current%20axes%20for%20labels%20and%20ticks.%20If%20another%20subplot%20is%20current%2C%20its%20labels%20change%20instead.%20Supplying%20only%20%60axis%60%20also%20leaves%20the%20returned%20figure%20as%20%60None%60%2C%20and%20%60colorbar%3DTrue%60%20raises%20an%20%60AttributeError%60.%0A%0AThis%20change%20obtains%20the%20figure%20from%20the%20supplied%20axes%20and%20assigns%20ticks%2C%20axis%20labels%2C%20and%20colorbars%20directly%20to%20that%20axes.%20An%20explicitly%20supplied%20figure%20that%20does%20not%20own%20the%20axes%20is%20rejected%20before%20drawing.%20The%20default%20and%20figure-only%20forms%20remain%20supported.%0A%0AThe%20regression%20file%20is%20run%20as%20a%20separate%20command%20in%20both%20existing%20functional%20CI%20jobs.%20The%20repository's%20%60norecursedirs%60%20excludes%20plotting%20tests%20from%20ordinary%20recursive%20collection%2C%20so%20adding%20the%20path%20alongside%20the%20root%20argument%20did%20not%20actually%20collect%20it.%20The%20coverage%20job%20appends%20the%20explicit%20regression%20run%20to%20its%20existing%20coverage%20data.%0A%0A%23%23%23%20Related%20issues%20or%20pull%20requests%0A%0ACloses%20%231319.%0A%0AThe%20complete%20reachable%20history%20for%20the%20affected%20module%20was%20checked%20across%20upstream%20PR%20refs%20and%20fork%20branches%2C%20including%20intermediate%20commits%3A%2085%20commits%20and%2036%20distinct%20source%20versions.%20Prior%20work%20introducing%20the%20figure%2Faxes%20arguments%20does%20not%20correct%20this%20ownership%20problem%3B%20no%20equivalent%20fix%20was%20found.%0A%0A%23%23%23%20Validation%0A%0A-%20Exact%20upstream%20base%3A%20%601aee767ef57b84a8191511a08955c583b65de382%60.%0A-%20**12%20of%2015%20new%20regressions%20fail%20on%20the%20unchanged%20source**%3B%20all%2015%20pass%20with%20the%20patch.%0A-%20Cases%20cover%20multiple%20subplots%20and%20separate%20current%20figures%2C%20normalized%20and%20unnormalized%20matrices%2C%20explicit%20and%20inferred%20figure%20ownership%2C%20colorbars%2C%20tick%2Fspine%20options%2C%20preserved%20unrelated%20axes%2C%20mismatched%20figure%20rejection%2C%20and%20existing%20construction%20forms.%0A-%20Complete%20repository%20suite%3A%20**740%20passed%2C%203%20skipped**%3B%20the%20**15%20plotting%20regressions%20also%20pass%20in%20their%20separate%20invocation**.%0A-%20Baseline%20and%20candidate%20ran%20in%20the%20same%20job%20with%20Python%203.11.18%20and%20the%20unchanged%20frozen%20lock.%0A-%20Complete%20repository%20isort%2FBlack%2C%20changed-file%20Flake8%2C%20%60git%20diff%20--check%60%2C%20package%20build%2C%20and%20strict%20Twine%20checks%20passed.%20The%20repository-wide%20Flake8%20report%20retains%20its%20existing%20findings%20and%20is%20not%20claimed%20as%20a%20clean%20gate.%0A%0A%5BReproduction%20and%20complete%20validation%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43883373059%2Fjob%2F133354886852).%0A%0A%23%23%23%20Pull%20Request%20Checklist%0A%0A-%20%5Bx%5D%20Added%20a%20changelog%20entry.%0A-%20%5Bx%5D%20Added%20regression%20tests%20in%20the%20corresponding%20test%20directory.%0A-%20%5Bx%5D%20Documented%20figure%20and%20axes%20ownership.%0A-%20%5Bx%5D%20Ran%20the%20full%20repository%20suite%20and%20the%20separate%20plotting%20regressions.%0A-%20%5Bx%5D%20Checked%20formatting%20and%20style%20with%20the%20scope%20described%20above.%0A"
   },
   "bootstrap_issue": {
     "title": "bootstrap reports infinite or zero standard error for finite rescaled statistics",
-    "body": "#### Describe the bug\n\n`bootstrap` computes the standard deviation of the replicate statistics directly. Squaring finite deviations can overflow or underflow even when the standard error itself is representable. Consequently, changing the units of an otherwise identical sample can change a finite, nonzero standard error into infinity or zero.\n\n#### Steps/Code to Reproduce\n\n```python\nimport numpy as np\nfrom mlxtend.evaluate import bootstrap\n\nfor scale in (1.0, 1e200, 1e-200):\n    original, se, interval = bootstrap(\n        np.array([1.0, 2.0, 3.0, 5.0]) * scale,\n        np.mean, num_rounds=50, seed=7,\n    )\n    print(scale, original, se, interval)\n```\n\n#### Expected Results\n\nThe unscaled standard error is approximately 0.7793410350928481. The other two standard errors should be approximately 7.793410350928481e199 and 7.793410350928481e-201. All are finite and nonzero. The original statistic and percentile interval already remain finite in this example.\n\n#### Actual Results\n\nThe standard errors are approximately 0.7793410350928481, `inf`, and `0.0`.\n\n#### Proposed correction\n\nScale finite replicate statistics by an exact power of two before computing their standard deviation, then restore the scale afterward. Preserve the existing resampling, percentile convention, degrees of freedom, and propagation of nonfinite statistics. Regression tests should compare with a separate high-precision variance calculation and cover large, small, ordinary, and constant statistics.\n\nThe complete reachable history for `mlxtend/evaluate/bootstrap.py` contains 45 commits and 17 distinct source versions. All versions use the same direct `np.std(bootstrap_replicates, ddof=ddof)` calculation; no equivalent correction was found.\n\n#### Versions\n\nCurrent master `1aee767ef57b84a8191511a08955c583b65de382`, Linux, Python 3.12.14, NumPy 2.3.5, SciPy 1.17.0, scikit-learn 1.8.0.\n"
+    "body": "#### Describe the bug\n\n`bootstrap` computes the standard deviation of the replicate statistics directly. Squaring finite deviations can overflow or underflow even when the standard error itself is representable. Consequently, changing the units of an otherwise identical sample can change a finite, nonzero standard error into infinity or zero.\n\n#### Steps/Code to Reproduce\n\n```python\nimport numpy as np\nfrom mlxtend.evaluate import bootstrap\n\nfor scale in (1.0, 1e200, 1e-200):\n    original, se, interval = bootstrap(\n        np.array([1.0, 2.0, 3.0, 5.0]) * scale,\n        np.mean, num_rounds=50, seed=7,\n    )\n    print(scale, original, se, interval)\n```\n\n#### Expected Results\n\nThe unscaled standard error is approximately 0.7793410350928481. The other two standard errors should be approximately 7.793410350928481e199 and 7.793410350928481e-201. All are finite and nonzero. The original statistic and percentile interval already remain finite in this example.\n\n#### Actual Results\n\nThe standard errors are approximately 0.7793410350928481, `inf`, and `0.0`.\n\n#### Proposed correction\n\nScale finite replicate statistics by an exact power of two before computing their standard deviation, then restore the scale afterward. Preserve the existing resampling, percentile convention, degrees of freedom, and propagation of nonfinite statistics. Regression tests should compare with a separate high-precision variance calculation and cover large, small, ordinary, and constant statistics.\n\nThe complete reachable history for `mlxtend/evaluate/bootstrap.py` contains 45 commits and 17 distinct source versions. All versions use the same direct `np.std(bootstrap_replicates, ddof=ddof)` calculation; no equivalent correction was found.\n\n#### Versions\n\nCurrent master `1aee767ef57b84a8191511a08955c583b65de382`, Linux, Python 3.12.14, NumPy 2.3.5, SciPy 1.17.0, scikit-learn 1.8.0.\n",
+    "number": 1323,
+    "created_at": "2026-11-16T14:15:59Z",
+    "url": "https://github.com/rasbt/mlxtend/issues/1323"
   },
-  "official_format_notes": [
-    {
-      "number": 1314,
-      "head": "0fd48aba62d99ea0bf84e1523d037978b8abee62",
-      "note": "### Official formatting CI follow-up\n\nThe [official formatting job](https://github.com/rasbt/mlxtend/actions/runs/43877679562/job/133334889646) fails while installing its dependencies, before running style checks. Its `python-version: 3.x` selects Python 3.15.2; the locked SciPy 1.16.3 source build then reports `Dependency \"OpenBLAS\" not found`. The [unchanged upstream base reproduces the same installation failure](https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092). Complete repository isort/Black and changed-file Flake8 passed under the frozen Python 3.11 validation linked above. Both official functional jobs now pass: [locked dependencies](https://github.com/rasbt/mlxtend/actions/runs/43877679729/job/133334890507) and [latest scikit-learn](https://github.com/rasbt/mlxtend/actions/runs/43877679729/job/133334890169).\n",
-      "checks": [
-        {
-          "name": "build-linux",
-          "url": "https://github.com/rasbt/mlxtend/actions/runs/43877679729/job/133334890507",
-          "status": "completed",
-          "conclusion": "success"
-        },
-        {
-          "name": "build-linux-latest-sklearn",
-          "url": "https://github.com/rasbt/mlxtend/actions/runs/43877679729/job/133334890169",
-          "status": "completed",
-          "conclusion": "success"
-        },
-        {
-          "name": "formatting",
-          "url": "https://github.com/rasbt/mlxtend/actions/runs/43877679562/job/133334889646",
-          "status": "completed",
-          "conclusion": "failure"
-        }
-      ],
-      "published": false
-    },
-    {
-      "number": 1315,
-      "head": "e4bfd36113426a9459b66d976ee76dd776d557b9",
-      "note": "### Official formatting CI follow-up\n\nThe [official formatting job](https://github.com/rasbt/mlxtend/actions/runs/43881853676/job/133349505260) fails while installing its dependencies, before running style checks. Its `python-version: 3.x` selects Python 3.15.2; the locked SciPy 1.16.3 source build then reports `Dependency \"OpenBLAS\" not found`. The [unchanged upstream base reproduces the same installation failure](https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092). Complete repository isort/Black and changed-file Flake8 passed under the frozen Python 3.11 validation linked above. Both official functional jobs now pass: [locked dependencies](https://github.com/rasbt/mlxtend/actions/runs/43881853416/job/133349504829) and [latest scikit-learn](https://github.com/rasbt/mlxtend/actions/runs/43881853416/job/133349504506).\n",
-      "checks": [
-        {
-          "name": "formatting",
-          "url": "https://github.com/rasbt/mlxtend/actions/runs/43881853676/job/133349505260",
-          "status": "completed",
-          "conclusion": "failure"
-        },
-        {
-          "name": "build-linux",
-          "url": "https://github.com/rasbt/mlxtend/actions/runs/43881853416/job/133349504829",
-          "status": "completed",
-          "conclusion": "success"
-        },
-        {
-          "name": "build-linux-latest-sklearn",
-          "url": "https://github.com/rasbt/mlxtend/actions/runs/43881853416/job/133349504506",
-          "status": "completed",
-          "conclusion": "success"
-        }
-      ],
-      "published": false
-    },
-    {
-      "number": 1320,
-      "head": "b951b78ba08bb404d58390dc21e6f68fc36b4537",
-      "note": "### Official formatting CI follow-up\n\nThe [official formatting job](https://github.com/rasbt/mlxtend/actions/runs/43882055545/job/133350222357) fails while installing its dependencies, before running style checks. Its `python-version: 3.x` selects Python 3.15.2; the locked SciPy 1.16.3 source build then reports `Dependency \"OpenBLAS\" not found`. The [unchanged upstream base reproduces the same installation failure](https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092). Complete repository isort/Black and changed-file Flake8 passed under the frozen Python 3.11 validation linked above. Both official functional jobs now pass: [locked dependencies](https://github.com/rasbt/mlxtend/actions/runs/43882055441/job/133350222157) and [latest scikit-learn](https://github.com/rasbt/mlxtend/actions/runs/43882055441/job/133350222657).\n",
-      "checks": [
-        {
-          "name": "build-linux-latest-sklearn",
-          "url": "https://github.com/rasbt/mlxtend/actions/runs/43882055441/job/133350222657",
-          "status": "completed",
-          "conclusion": "success"
-        },
-        {
-          "name": "formatting",
-          "url": "https://github.com/rasbt/mlxtend/actions/runs/43882055545/job/133350222357",
-          "status": "completed",
-          "conclusion": "failure"
-        },
-        {
-          "name": "build-linux",
-          "url": "https://github.com/rasbt/mlxtend/actions/runs/43882055441/job/133350222157",
-          "status": "completed",
-          "conclusion": "success"
-        }
-      ],
-      "published": false
-    },
-    {
-      "number": 1321,
-      "head": "e1a4bca765f8aed5f24d670f1c4d44a781628b88",
-      "note": "### Official formatting CI follow-up\n\nThe [official formatting job](https://github.com/rasbt/mlxtend/actions/runs/43882130199/job/133350482439) fails while installing its dependencies, before running style checks. Its `python-version: 3.x` selects Python 3.15.2; the locked SciPy 1.16.3 source build then reports `Dependency \"OpenBLAS\" not found`. The [unchanged upstream base reproduces the same installation failure](https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092). Complete repository isort/Black and changed-file Flake8 passed under the frozen Python 3.11 validation linked above. Both official functional jobs now pass: [locked dependencies](https://github.com/rasbt/mlxtend/actions/runs/43882130013/job/133350482894) and [latest scikit-learn](https://github.com/rasbt/mlxtend/actions/runs/43882130013/job/133350482422).\n",
-      "checks": [
-        {
-          "name": "build-linux",
-          "url": "https://github.com/rasbt/mlxtend/actions/runs/43882130013/job/133350482894",
-          "status": "completed",
-          "conclusion": "success"
-        },
-        {
-          "name": "formatting",
-          "url": "https://github.com/rasbt/mlxtend/actions/runs/43882130199/job/133350482439",
-          "status": "completed",
-          "conclusion": "failure"
-        },
-        {
-          "name": "build-linux-latest-sklearn",
-          "url": "https://github.com/rasbt/mlxtend/actions/runs/43882130013/job/133350482422",
-          "status": "completed",
-          "conclusion": "success"
-        }
-      ],
-      "published": false
-    }
-  ]
+  "bootstrap_validation": {
+    "branch": "validation/mlxtend-sixth-core-20261116",
+    "head": "9a7e4ac37b1473f1c4f47896c25941c58ab21173",
+    "tree": "07cb23d931a3bec447f92167185dac8302d2f1b3"
+  }
 }
