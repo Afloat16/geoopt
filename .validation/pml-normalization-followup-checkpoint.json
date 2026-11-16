@@ -1,0 +1,28 @@
+{
+  "name": "large-vector-normalization",
+  "base": "b95a42310f50720a766b91008470b278364f705d",
+  "metadata": {
+    "name": "large-vector-normalization",
+    "base": "b95a42310f50720a766b91008470b278364f705d",
+    "title": "Preserve normalized directions and gradients for large finite embeddings",
+    "test": "tests/distances/test_large_normalization.py",
+    "adjacent": "tests/distances/test_normalization.py tests/distances/test_large_normalization.py tests/distances/test_low_precision_range.py tests/losses/test_anchor_batched_backward.py tests/losses/test_proxy_nca_loss.py tests/losses/test_tuplet_margin_loss.py",
+    "module": "numerics",
+    "select": ""
+  },
+  "previous_run": 43858549503,
+  "previous_job": 133269026413,
+  "previous_failure": "Scaling every vector changed ordinary-input rounding and failed the existing ProxyNCA and TupletMargin value/gradient contracts. Limit scaling to vectors beyond the dtype/p/dimension power-sum bound; preserve ordinary path with exact-value/gradient regressions. Existing tests and tolerances remain unchanged.",
+  "related_green": {
+    "p2s": {
+      "job": 133269026126,
+      "tree": "5e1b247f92756ea70b21a1d9871183fa9c690e17",
+      "full_passed": 1556
+    },
+    "ndcg": {
+      "job": 133269026491,
+      "tree": "31b5cd9eab919555f057089d6df236312ecafb41",
+      "full_passed": 1565
+    }
+  }
+}
