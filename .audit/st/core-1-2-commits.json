@@ -1,0 +1,16 @@
+[
+  {
+    "key": "faiss",
+    "branch": "perf/faiss-batched-reconstruction-20261116",
+    "message": "Batch FAISS uint8 candidate reconstruction before rescoring",
+    "head": "ceba445678cdbda149cac7e8090d329f017e2d34",
+    "tree": "0801930b61337fe9fb1dcd9c51e5106b7942cb4a"
+  },
+  {
+    "key": "lambda",
+    "branch": "fix/lambda-gain-numerical-range-20261116",
+    "message": "Stabilize LambdaLoss gains for finite relevance scores",
+    "head": "7bc2a876eb80b7a246fafbe7f9425691d97314cd",
+    "tree": "b3c80c3ea31f6a63beca6289d9704241a0b87980"
+  }
+]
