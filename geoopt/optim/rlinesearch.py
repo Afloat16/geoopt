@@ -241,6 +241,7 @@ class RiemannianLineSearch(OptimMixin, torch.optim.Optimizer):
         self.last_step_size = None
         self._last_step = None
         self._grads_computed = False
+        self._trial_failed = False
         self.prev_loss = None
         self.closure = None
         self._step_size_dic = dict()
@@ -253,77 +254,84 @@ class RiemannianLineSearch(OptimMixin, torch.optim.Optimizer):
 
         param_copy = [param.clone() for param in self._params]
 
-        for point in self._params:
-            state = self.state[point]
-            if "search_direction" not in state:  # this shouldn't be possible actually
-                raise ValueError("Search direction for parameter not computed.")
-            if isinstance(point, (ManifoldParameter, ManifoldTensor)):
-                manifold = point.manifold
-            else:  # Use euclidean manifold
-                manifold = Euclidean()
-
-            search_direction = state["search_direction"]
-
-            # compute retract and transport in search direction
-            if self.compute_derphi:
-                new_point, search_transported = manifold.retr_transp(
-                    point, step_size * search_direction, search_direction
-                )
-                # This should not have any effect, but it does
-                new_point = manifold.projx(new_point)
-                state["search_transported"] = manifold.proju(
-                    new_point, search_transported
-                )
-                try:
-                    state["retraction_velocity"] = manifold.retr_jvp(
-                        point, step_size * search_direction, search_direction
-                    )
-                except NotImplementedError:
-                    state["retraction_velocity"] = state["search_transported"]
-            else:
-                new_point = manifold.retr(point, step_size * search_direction)
-
-            with torch.no_grad():
-                point.copy_(new_point)
-
-        # recompute loss at new point
-        with torch.enable_grad():
-            phi = self.closure()
-        if self.param_groups[0].get("maximize", False):
-            phi = -phi
-
-        if self.compute_derphi:
-            # Store new gradients in state
+        try:
             for point in self._params:
-                grad = point.grad
-                if grad is None:
-                    continue
+                state = self.state[point]
+                if "search_direction" not in state:  # this shouldn't be possible actually
+                    raise ValueError("Search direction for parameter not computed.")
                 if isinstance(point, (ManifoldParameter, ManifoldTensor)):
                     manifold = point.manifold
                 else:  # Use euclidean manifold
                     manifold = Euclidean()
 
-                state = self.state[point]
+                search_direction = state["search_direction"]
 
-                # project gradient onto tangent space
-                if self.param_groups[0].get("maximize", False):
-                    grad = -grad
-                grad = manifold.egrad2rgrad(point, grad)
+                # compute retract and transport in search direction
+                if self.compute_derphi:
+                    new_point, search_transported = manifold.retr_transp(
+                        point, step_size * search_direction, search_direction
+                    )
+                    # This should not have any effect, but it does
+                    new_point = manifold.projx(new_point)
+                    state["search_transported"] = manifold.proju(
+                        new_point, search_transported
+                    )
+                    try:
+                        state["retraction_velocity"] = manifold.retr_jvp(
+                            point, step_size * search_direction, search_direction
+                        )
+                    except NotImplementedError:
+                        state["retraction_velocity"] = state["search_transported"]
+                else:
+                    new_point = manifold.retr(point, step_size * search_direction)
 
-                state["new_grad"] = grad
-                state["der_phi"] = torch.sum(
-                    manifold.inner(point, grad, state["retraction_velocity"])
-                ).item()
+                with torch.no_grad():
+                    point.copy_(new_point)
 
-            self._grads_computed = True
+            # recompute loss at new point
+            with torch.enable_grad():
+                phi = self.closure()
+            if self.param_groups[0].get("maximize", False):
+                phi = -phi
 
-        # roll back parameters to before step, save new point is state
-        with torch.no_grad():
-            for point, old_point in zip(self._params, param_copy):
-                state = self.state[point]
-                state["new_point"] = point.clone()
+            if self.compute_derphi:
+                # Store new gradients in state
+                for point in self._params:
+                    grad = point.grad
+                    if grad is None:
+                        continue
+                    if isinstance(point, (ManifoldParameter, ManifoldTensor)):
+                        manifold = point.manifold
+                    else:  # Use euclidean manifold
+                        manifold = Euclidean()
 
-                point.copy_(old_point)
+                    state = self.state[point]
+
+                    # project gradient onto tangent space
+                    if self.param_groups[0].get("maximize", False):
+                        grad = -grad
+                    grad = manifold.egrad2rgrad(point, grad)
+
+                    state["new_grad"] = grad
+                    state["der_phi"] = torch.sum(
+                        manifold.inner(point, grad, state["retraction_velocity"])
+                    ).item()
+
+                self._grads_computed = True
+
+            # Save trial points before restoring the original parameters.
+            with torch.no_grad():
+                for point in self._params:
+                    self.state[point]["new_point"] = point.clone()
+
+        except BaseException:
+            self._grads_computed = False
+            self._trial_failed = True
+            raise
+        finally:
+            with torch.no_grad():
+                for point, old_point in zip(self._params, param_copy):
+                    point.copy_(old_point)
 
         self._step_size_dic[step_size] = phi
         self._last_step = step_size
@@ -360,6 +368,13 @@ class RiemannianLineSearch(OptimMixin, torch.optim.Optimizer):
         Use `recompute_gradients=True` if gradients have changed between
         consecutive calls of `step`.
         """
+
+        if self._trial_failed:
+            self._trial_failed = False
+            self._grads_computed = False
+            # A partial trial may leave transported CG state at an uncommitted point.
+            for point in self._params:
+                self.state[point].pop("search_direction", None)
 
         if recompute_gradients or (not self._grads_computed):
             with torch.enable_grad():

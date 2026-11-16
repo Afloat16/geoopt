@@ -130,3 +130,82 @@ def test_failed_search_can_retry_from_the_current_point(compute_derphi):
         optimizer.step(_closure(point, optimizer, objective))
     assert torch.equal(point, original)
     _compare_step(optimizer, point, reference_optimizer, reference, objective)
+
+
+@pytest.mark.parametrize(
+    "compute_derphi,failure_stage",
+    [(False, "closure"), (True, "closure"), (False, "retraction"),
+     (True, "retraction"), (True, "gradient")],
+)
+@pytest.mark.parametrize("recover_in_search", [False, True])
+def test_exception_in_trial_restores_parameters_and_allows_retry(
+    compute_derphi, failure_stage, recover_in_search
+):
+    pending = True
+    in_trial = False
+
+    def fail_once(stage, point):
+        nonlocal pending
+        if pending and in_trial and stage == failure_stage and point.item() > 1:
+            pending = False
+            raise RuntimeError("trial evaluation failed")
+
+    class FailingEuclidean(geoopt.Euclidean):
+        def retr(self, point, tangent):
+            fail_once("retraction", point)
+            return super().retr(point, tangent)
+
+        def egrad2rgrad(self, point, gradient):
+            fail_once("gradient", point)
+            return super().egrad2rgrad(point, gradient)
+
+    manifold = FailingEuclidean()
+    points = [
+        geoopt.ManifoldParameter(torch.tensor([value], dtype=torch.float64), manifold=manifold)
+        for value in (1.0, 2.0)
+    ]
+    originals = [point.detach().clone() for point in points]
+
+    def choose_step(phi, derphi, **kwargs):
+        nonlocal in_trial
+        in_trial = True
+        try:
+            try:
+                phi(0.1)
+            except RuntimeError:
+                if not recover_in_search:
+                    raise
+                phi(0.05)
+                return 0.05
+        finally:
+            in_trial = False
+        return 0.1
+
+    optimizer = geoopt.optim.RiemannianLineSearch(
+        points, line_search_method=choose_step, compute_derphi=compute_derphi, cg_method="fr"
+    )
+
+    def closure():
+        optimizer.zero_grad()
+        fail_once("closure", points[1])
+        loss = sum(point.square().sum() for point in points)
+        loss.backward()
+        return loss.item()
+
+    if recover_in_search:
+        optimizer.step(closure)
+        for point, original in zip(points, originals):
+            torch.testing.assert_close(point, 0.9 * original)
+        assert optimizer.step_size_history == [0.05]
+    else:
+        with pytest.raises(RuntimeError, match="trial evaluation failed"):
+            optimizer.step(closure)
+        for point, original in zip(points, originals):
+            torch.testing.assert_close(point, original, rtol=0, atol=0)
+        assert optimizer.step_size_history == []
+    assert 0.1 not in optimizer._step_size_dic
+
+    optimizer.step(closure)
+    for point, original in zip(points, originals):
+        expected = (0.72 if recover_in_search else 0.8) * original
+        torch.testing.assert_close(point, expected)
