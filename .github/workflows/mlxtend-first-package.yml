@@ -1,0 +1,52 @@
+name: Verify mlxtend package artifacts and final trees
+on:
+  push:
+    branches: ['validation/mlxtend-first-package-20261116']
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - candidate: orthonormal-range
+            head: c08207fb65ef4fc83cbb1e58577483dcc7bfb9cb
+            tree: 855a5e2a2e1a9f1d383a14e7737bb7f1a71761da
+          - candidate: qr-rank-deficient
+            head: 4e20045fa3e770dc5fd32bc5ccddabd68e96b268
+            tree: fefa28cbc5ea8b3c66ccfe05b130ee3b18265325
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: Afloat16/mlxtend
+          ref: ${{ matrix.head }}
+          path: project
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b
+      - name: Verify exact fully tested files
+        run: python .validation/verify-mlxtend-package.py ${{ matrix.candidate }}
+      - name: Verify tree and install frozen dependencies
+        working-directory: project
+        run: |
+          test "$(git rev-parse HEAD^{tree})" = "${{ matrix.tree }}"
+          uv sync --frozen --group dev --python 3.11
+      - name: Check repository formatting and inspect lint
+        working-directory: project
+        run: |
+          uv run --frozen --group dev python -m isort -p mlxtend --check --diff --line-length 88 --multi-line 3 --py 39 --profile black mlxtend/*
+          uv run --frozen --group dev python -m black --check --diff mlxtend/*
+          uv run --frozen --group dev python -m flake8 ./mlxtend --config=.flake8 --count --exit-zero --statistics
+      - name: Build and check only distribution artifacts
+        working-directory: project
+        run: |
+          uv build
+          uv run --frozen --group dev python -m twine check --strict dist/*.whl dist/*.tar.gz
