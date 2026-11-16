@@ -1,7 +1,7 @@
 {
   "repository": "KevinMusgrave/pytorch-metric-learning",
   "base": "b95a42310f50720a766b91008470b278364f705d",
-  "actual_new_open": 16,
+  "actual_new_open": 19,
   "new_merged": 0,
   "last_updated": "2026-11-16",
   "submissions": [
@@ -14,7 +14,7 @@
       "head": "Afloat16:fix/ndcg-gain-range-20261116",
       "head_sha": "95175fafee503eb5fa0a5c24ff52a240608ae57a",
       "tree": "31b5cd9eab919555f057089d6df236312ecafb41",
-      "status": "ready",
+      "status": "published",
       "maintainer_can_modify": false,
       "title": "Preserve NDCG ratios across finite gain scales",
       "body": "## Problem\n\nNDCG can return NaN even when every custom gain is finite: gains [1.5, 1.3, 1.0] scaled by 1e308 overflow the discounted sums. At subnormal gain scales, accumulating before taking the ratio also loses information that remains representable in the normalized score.\n\n## Change\n\nNormalize the actual and ideal gain vectors by the same per-class scale before discounting. Choose that scale after self-exclusion and ideal top-k selection, then retain the existing zero-ideal convention and pooled/per-class aggregation.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43858549503/job/133269026491):\n\n- Unchanged production base `b95a423`: 16 regression failures and 20 passing controls.\n- All 90 focused and adjacent tests pass; 2 device-specific cases deselected. 36 new cases use a 100-digit Decimal ratio computed from the actual quantized gain inputs. They cover large, ordinary, and subnormal scales; ranking order; cutoff depth; self-exclusion; pooled and per-class registered metrics; and empty or zero-ideal controls.\n- Full CPU suite: 1,565 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `31b5cd9eab919555f057089d6df236312ecafb41`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
@@ -33,7 +33,14 @@
         "all_state_pr_count": 204,
         "source_history": "https://github.com/Afloat16/geoopt/blob/0049069244b408f200d0cbac6e1e8118ede51673/.validation/pml-final-source-history.json"
       },
-      "prefilled_url": "https://github.com/KevinMusgrave/pytorch-metric-learning/compare/master...Afloat16:fix/ndcg-gain-range-20261116?expand=1&title=Preserve%20NDCG%20ratios%20across%20finite%20gain%20scales"
+      "prefilled_url": "https://github.com/KevinMusgrave/pytorch-metric-learning/compare/master...Afloat16:fix/ndcg-gain-range-20261116?expand=1&title=Preserve%20NDCG%20ratios%20across%20finite%20gain%20scales",
+      "number": 809,
+      "actual_url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/809",
+      "actual_state": "open",
+      "merged_at": null,
+      "ui_verified": true,
+      "api_verified": true,
+      "body_verified": true
     },
     {
       "name": "p2s-center-precision",
@@ -44,7 +51,7 @@
       "head": "Afloat16:fix/p2s-center-precision-20261116",
       "head_sha": "f5ca9fdc9040c9221e834e3b2d163d45927d1cad",
       "tree": "5e1b247f92756ea70b21a1d9871183fa9c690e17",
-      "status": "ready",
+      "status": "published",
       "maintainer_can_modify": false,
       "title": "Preserve P2SGrad learning signals close to class centers",
       "body": "## Problem\n\nFor an embedding close to its target class center, low-precision cosine multiplication rounds the cosine to 1 before P2SGrad forms the squared residual. For example, [1, 0.02] against [1, 0] produces zero loss and zero training gradients in float16/bfloat16 and under CPU autocast, although the squared residual is about 4e-8 and the parameter gradient is representable.\n\n## Change\n\nKeep embedding normalization, cosine multiplication, and mean-squared residuals in the accumulation dtype, with autocast disabled for the cosine calculation. Preserve the original normalization epsilon, in-place no-grad center normalization, public scalar dtype outside autocast, and autocast's float32 MSE result.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43858549503/job/133269026126):\n\n- Unchanged production base `b95a423`: 12 regression failures and 15 passing controls.\n- All 47 focused and adjacent tests pass. 27 new cases compare values, embedding gradients, and parameter gradients against independent float64 equations across four dtypes, multiple near-center offsets, and one/two class centers. They also verify optimizer updates, autocast behavior, and the existing float16 normalization epsilon.\n- Full CPU suite: 1,556 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `5e1b247f92756ea70b21a1d9871183fa9c690e17`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
@@ -63,7 +70,14 @@
         "all_state_pr_count": 204,
         "source_history": "https://github.com/Afloat16/geoopt/blob/0049069244b408f200d0cbac6e1e8118ede51673/.validation/pml-final-source-history.json"
       },
-      "prefilled_url": "https://github.com/KevinMusgrave/pytorch-metric-learning/compare/master...Afloat16:fix/p2s-center-precision-20261116?expand=1&title=Preserve%20P2SGrad%20learning%20signals%20close%20to%20class%20centers"
+      "prefilled_url": "https://github.com/KevinMusgrave/pytorch-metric-learning/compare/master...Afloat16:fix/p2s-center-precision-20261116?expand=1&title=Preserve%20P2SGrad%20learning%20signals%20close%20to%20class%20centers",
+      "number": 810,
+      "actual_url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/810",
+      "actual_state": "open",
+      "merged_at": null,
+      "ui_verified": true,
+      "api_verified": true,
+      "body_verified": true
     },
     {
       "name": "circle-weight-precision",
@@ -74,7 +88,7 @@
       "head": "Afloat16:fix/circle-weight-precision-20261116",
       "head_sha": "e0a0f819ede53a0d045287b4763520e38b8eb539",
       "tree": "af5223cbc9265891724ed3b7d70dd4322132dea2",
-      "status": "ready",
+      "status": "published",
       "maintainer_can_modify": false,
       "title": "Keep CircleLoss adaptive-weight arithmetic finite before reduction",
       "body": "## Problem\n\nCircleLoss can overflow its detached adaptive weights before multiplying them by a zero boundary residual. With float16, margin 0.5, gamma 100000, and selected similarities 0.5, the expected finite loss is log(3), but the current path returns zero with NaN gradients. Large opposite positive/negative logit offsets can also discard log-count terms or perturb the logsumexp gradient before the two partitions are combined.\n\n## Change\n\nEvaluate the adaptive weights and logit products in the accumulation dtype. Center the selected positive and negative partitions separately, combine their detached shifts before adding the centered log-sums, and retain the original output dtype and detached-weight objective.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43859155299/job/133271104426):\n\n- Unchanged production base `b95a423`: 12 regression failures and 20 passing controls.\n- All 89 focused and adjacent tests pass. The 32 new cases verify closed-form boundary values and matrix gradients across four dtypes, margins, and gamma values; rectangular reference batches; missing-pair controls; and exactly cancelling logit offsets of magnitude 37,500,000. The latter retain log(3) and analytic gradients without loosening existing numerical tolerances.\n- Full CPU suite: 1,561 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `af5223cbc9265891724ed3b7d70dd4322132dea2`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
@@ -93,7 +107,14 @@
         "all_state_pr_count": 204,
         "source_history": "https://github.com/Afloat16/geoopt/blob/0049069244b408f200d0cbac6e1e8118ede51673/.validation/pml-final-source-history.json"
       },
-      "prefilled_url": "https://github.com/KevinMusgrave/pytorch-metric-learning/compare/master...Afloat16:fix/circle-weight-precision-20261116?expand=1&title=Keep%20CircleLoss%20adaptive-weight%20arithmetic%20finite%20before%20reduction"
+      "prefilled_url": "https://github.com/KevinMusgrave/pytorch-metric-learning/compare/master...Afloat16:fix/circle-weight-precision-20261116?expand=1&title=Keep%20CircleLoss%20adaptive-weight%20arithmetic%20finite%20before%20reduction",
+      "number": 811,
+      "actual_url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/811",
+      "actual_state": "open",
+      "merged_at": null,
+      "ui_verified": true,
+      "api_verified": true,
+      "body_verified": true
     }
   ],
   "official_ci": [
@@ -693,5 +714,5 @@
       "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/779"
     }
   ],
-  "note": "Three independent candidates are fully verified and ready; no upstream PR has been created for these candidates. Normalization final verification is running."
+  "note": "PRs #809, #810, #811 are Open and individually verified through UI and API, including exact head/body and maintainer_can_modify=false; no new merged PR. Final normalization validation still tracked separately."
 }
