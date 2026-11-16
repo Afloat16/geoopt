@@ -2,9 +2,9 @@
   "checked_at": "2026-11-16T12:54:17.779Z",
   "scope": "new contributions prepared by merged_inventory agent in current task",
   "counts": {
-    "published": 51,
+    "published": 53,
     "merged": 0,
-    "open": 51
+    "open": 53
   },
   "excluded_duplicate": {
     "repo": "geomstats/geomstats",
@@ -4398,6 +4398,212 @@
       "ui_verified": true,
       "api_verified": true,
       "body_verified": true
+    },
+    {
+      "repo": "rasbt/mlxtend",
+      "number": 1328,
+      "url": "https://github.com/rasbt/mlxtend/pull/1328",
+      "title": "Bound the memory used by MSE bias-variance decomposition",
+      "state": "open",
+      "merged_at": null,
+      "head": "0ae0b67daa1983df97f2f0519d960fd1c2795c27",
+      "head_ref": "fix/bias-variance-streaming-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T14:51:01Z",
+      "validation": {
+        "run_id": 43887747926,
+        "job_id": 133370355941,
+        "name": "bias-variance-streaming",
+        "base": "1aee767ef57b84a8191511a08955c583b65de382",
+        "issue": 1326,
+        "baseline_focused": {
+          "total": 24,
+          "failed": 3,
+          "skipped": 0,
+          "failures": {
+            "mlxtend.evaluate.tests.test_bias_variance_streaming::test_centered_accumulator_preserves_variance_at_large_offsets[1000000000000.0]": "AssertionError: \nNot equal to tolerance rtol=1e-14, atol=0\n\nMismatched elements: 1 / 1 (100%)\nMax absolute difference among violations: 2.38418579e-09\nMax relative difference among violations: 1.28874908e-08\n ACTUAL: array(0.185)\n DESIRED: array(0.185)",
+            "mlxtend.evaluate.tests.test_bias_variance_streaming::test_centered_accumulator_preserves_variance_at_large_offsets[-1000000000000.0]": "AssertionError: \nNot equal to tolerance rtol=1e-14, atol=0\n\nMismatched elements: 1 / 1 (100%)\nMax absolute difference among violations: 2.38418579e-09\nMax relative difference among violations: 1.28874908e-08\n ACTUAL: array(0.185)\n DESIRED: array(0.185)",
+            "mlxtend.evaluate.tests.test_bias_variance_streaming::test_peak_memory_does_not_scale_with_bootstrap_round_count": "AssertionError: [1927744, 16327656]\nassert 16327656 < (3 * 1927744)"
+          }
+        },
+        "baseline_full": {
+          "total": 767,
+          "failed": 3,
+          "skipped": 3,
+          "failures": {
+            "mlxtend.evaluate.tests.test_bias_variance_streaming::test_centered_accumulator_preserves_variance_at_large_offsets[1000000000000.0]": "AssertionError: \nNot equal to tolerance rtol=1e-14, atol=0\n\nMismatched elements: 1 / 1 (100%)\nMax absolute difference among violations: 2.38418579e-09\nMax relative difference among violations: 1.28874908e-08\n ACTUAL: array(0.185)\n DESIRED: array(0.185)",
+            "mlxtend.evaluate.tests.test_bias_variance_streaming::test_centered_accumulator_preserves_variance_at_large_offsets[-1000000000000.0]": "AssertionError: \nNot equal to tolerance rtol=1e-14, atol=0\n\nMismatched elements: 1 / 1 (100%)\nMax absolute difference among violations: 2.38418579e-09\nMax relative difference among violations: 1.28874908e-08\n ACTUAL: array(0.185)\n DESIRED: array(0.185)",
+            "mlxtend.evaluate.tests.test_bias_variance_streaming::test_peak_memory_does_not_scale_with_bootstrap_round_count": "AssertionError: [1927744, 16327656]\nassert 16327656 < (3 * 1927744)"
+          }
+        },
+        "candidate_focused": {
+          "total": 31,
+          "failed": 0,
+          "skipped": 1,
+          "failures": {}
+        },
+        "candidate_full": {
+          "total": 767,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        },
+        "new_full_suite_failures": []
+      },
+      "performance": {
+        "before": {
+          "kind": "memory",
+          "peak_bytes": 208007696,
+          "seconds": [
+            0.08242731600000752,
+            0.0813777019999975,
+            0.07983975200005489,
+            0.08006844099998034,
+            0.08007140800003754
+          ],
+          "median_seconds": 0.08007140800003754,
+          "result": [
+            0.16373496090507164,
+            0.14418969106477258,
+            0.019545269840299178
+          ],
+          "n_test": 200000,
+          "rounds": 64
+        },
+        "after": {
+          "kind": "memory",
+          "peak_bytes": 16007792,
+          "seconds": [
+            0.10337956000000759,
+            0.10021138399997653,
+            0.10021745599999576,
+            0.10015160299997206,
+            0.10034945099994275
+          ],
+          "median_seconds": 0.10021745599999576,
+          "result": [
+            0.16373496090507167,
+            0.14418969106477258,
+            0.019545269840299185
+          ],
+          "n_test": 200000,
+          "rounds": 64
+        }
+      },
+      "ui_verified": true,
+      "api_verified": true,
+      "body_verified": true
+    },
+    {
+      "repo": "rasbt/mlxtend",
+      "number": 1329,
+      "url": "https://github.com/rasbt/mlxtend/pull/1329",
+      "title": "Avoid repeated prefix scans in recursive H-Mine projection",
+      "state": "open",
+      "merged_at": null,
+      "head": "57cd3e713ac22215ad17ed9ee66daaf3819240e5",
+      "head_ref": "fix/hmine-incremental-projection-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T14:51:39Z",
+      "validation": {
+        "run_id": 43887747926,
+        "job_id": 133370356457,
+        "name": "hmine-incremental-projection",
+        "base": "1aee767ef57b84a8191511a08955c583b65de382",
+        "issue": 1327,
+        "baseline_focused": {
+          "total": 30,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "baseline_full": {
+          "total": 773,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        },
+        "candidate_focused": {
+          "total": 50,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "candidate_full": {
+          "total": 773,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        },
+        "new_full_suite_failures": []
+      },
+      "performance": {
+        "before": {
+          "kind": "runtime",
+          "results": [
+            {
+              "sparse": false,
+              "seconds": [
+                0.2916078880000015,
+                0.2864463149999992,
+                0.2880985239999987,
+                0.31216294100000397,
+                0.2868713530000022
+              ],
+              "median_seconds": 0.2880985239999987,
+              "itemsets": 2516,
+              "digest": "0a6f222de9e7f72f34b96db591215f33b19022a63a224951e3e9df516c1c7dcb"
+            },
+            {
+              "sparse": true,
+              "seconds": [
+                1.2791834300000033,
+                1.2802121319999955,
+                1.2891299469999993,
+                1.2753846350000018,
+                1.2819544090000008
+              ],
+              "median_seconds": 1.2802121319999955,
+              "itemsets": 2516,
+              "digest": "0a6f222de9e7f72f34b96db591215f33b19022a63a224951e3e9df516c1c7dcb"
+            }
+          ]
+        },
+        "after": {
+          "kind": "runtime",
+          "results": [
+            {
+              "sparse": false,
+              "seconds": [
+                0.2542975160000083,
+                0.25452215600000727,
+                0.25321622800001364,
+                0.27316981900000314,
+                0.2520461690000104
+              ],
+              "median_seconds": 0.2542975160000083,
+              "itemsets": 2516,
+              "digest": "0a6f222de9e7f72f34b96db591215f33b19022a63a224951e3e9df516c1c7dcb"
+            },
+            {
+              "sparse": true,
+              "seconds": [
+                0.8917716799999766,
+                0.8914748429999975,
+                0.9011638059999996,
+                0.8897805039999866,
+                0.8938639929999965
+              ],
+              "median_seconds": 0.8917716799999766,
+              "itemsets": 2516,
+              "digest": "0a6f222de9e7f72f34b96db591215f33b19022a63a224951e3e9df516c1c7dcb"
+            }
+          ]
+        }
+      },
+      "ui_verified": true,
+      "api_verified": true,
+      "body_verified": true
     }
   ],
   "remote_checkpoints": {
@@ -4416,5 +4622,5 @@
     }
   },
   "ci_diagnosis_updated_at": "2026-11-16T13:15:57.465Z",
-  "last_submission_check_at": "2026-11-16T14:36:03.037Z"
+  "last_submission_check_at": "2026-11-16T14:52:09.187Z"
 }
