@@ -1,0 +1,43 @@
+{
+  "repository": "kornia/kornia",
+  "base": "cd2349f67432f0f5b43d2388634aa231613e3cb0",
+  "actual_new_prs": 0,
+  "new_merged": 0,
+  "candidates": [
+    {
+      "repository": "Afloat16/kornia",
+      "branch": "perf/shared-patch-overlap-counts-20261116",
+      "head": "2cf647172905c7260042ed9fa160547b64e579e1",
+      "tree": "3c9b601462c26d990c46f02fe9c3a69d4e66b6a6",
+      "base": "cd2349f67432f0f5b43d2388634aa231613e3cb0",
+      "state": "candidate-branch-created-validation-in-progress",
+      "actual_pr": null,
+      "local_checks": {
+        "focused": "207 passed",
+        "full_pre_commit": "passed",
+        "typecheck": "passed"
+      }
+    },
+    {
+      "repository": "Afloat16/kornia",
+      "branch": "fix/map-recall-count-precision-20261116",
+      "head": "1f03856ec4a65a1bcaf22f3a46372c5825ebe6c6",
+      "tree": "674a2fa7d7139662dd204d73a9873154f09fc40d",
+      "base": "cd2349f67432f0f5b43d2388634aa231613e3cb0",
+      "state": "candidate-branch-created-validation-in-progress",
+      "actual_pr": null,
+      "local_checks": {
+        "baseline": "4 failed, 2 passed",
+        "focused_and_adjacent": "328 passed",
+        "full_pre_commit": "passed",
+        "typecheck": "passed"
+      }
+    }
+  ],
+  "blocked_check": {
+    "action": "write_stdin(session_id=51986) while awaiting combined contrib/augmentation compile and ONNX conformance tests",
+    "reason": "Although the local conformance tests are authorized, this execution is attempting HTTPS telemetry to mobile.events.data.microsoft.com; the request does not establish what runtime, environment, or test data may be disclosed, and the user did not specifically authorize that external telemetry destination or payload, so the sensitive-egress rule requires denial.",
+    "status": "unconfirmed; execution path not resumed or relocated"
+  },
+  "cpu_validation_scope": "Only existing eager/TorchScript unit files, analytical new tests and public API benchmarks; no export or conformance test is in this separate version-check workflow."
+}
