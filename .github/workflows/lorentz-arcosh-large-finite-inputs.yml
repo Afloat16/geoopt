@@ -1,0 +1,70 @@
+name: Validate finite Lorentz arcosh values and gradients
+on:
+  push:
+    branches: ['validation/lorentz-arcosh-large-finite-inputs-20261116']
+permissions:
+  contents: read
+jobs:
+  numerical-contracts:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: '3.8'
+            torch: '2.0.1'
+            numpy: '1.24.4'
+            scipy: '1.10.1'
+            benchmark: false
+          - python: '3.12'
+            torch: '2.6.0'
+            numpy: '2.2.6'
+            scipy: '1.15.3'
+            benchmark: true
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 3
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install pinned CPU validation dependencies
+        run: |
+          python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==${{ matrix.numpy }} scipy==${{ matrix.scipy }} pytest==8.3.5 ruff
+          python -m pip install -e . --no-deps
+      - name: Check candidate files
+        run: python -m ruff check geoopt/manifolds/lorentz/math.py tests/test_lorentz_arcosh_overflow.py
+      - name: Reproduce overflow on unchanged upstream
+        run: |
+          git fetch --depth=1 origin 4623ea1d2a9808b8e87bf10949cccb2c5ec6233c
+          git restore --source=4623ea1d2a9808b8e87bf10949cccb2c5ec6233c -- geoopt/manifolds/lorentz/math.py
+          set +e
+          python -m pytest -q tests/test_lorentz_arcosh_overflow.py --junitxml=baseline.xml
+          result=$?
+          set -e
+          test "$result" -eq 1
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          root = ET.parse("baseline.xml").getroot()
+          failures = root.findall(".//failure")
+          errors = root.findall(".//error")
+          assert len(failures) == 44, len(failures)
+          assert not errors
+          PY
+      - name: Validate exact candidate and neighboring Lorentz paths
+        run: |
+          git fetch --depth=1 origin 7f09fb9fc2e828ac5679824c8aaad75b4dd320c5
+          git restore --source=7f09fb9fc2e828ac5679824c8aaad75b4dd320c5 -- geoopt/manifolds/lorentz/math.py
+          python -m pytest -q tests/test_lorentz_arcosh_overflow.py tests/test_lorentz_math.py tests/test_lorentz_coordinates.py tests/test_lorentz_manifold_axis.py tests/test_lorentz_short_transport.py tests/test_layers_lorentz.py --junitxml=candidate.xml
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lorentz-arcosh-${{ matrix.python }}
+          path: |
+            baseline.xml
+            candidate.xml
