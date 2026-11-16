@@ -2,9 +2,9 @@
   "checked_at": "2026-11-16T12:54:17.779Z",
   "scope": "new contributions prepared by merged_inventory agent in current task",
   "counts": {
-    "published": 44,
+    "published": 46,
     "merged": 0,
-    "open": 44
+    "open": 46
   },
   "excluded_duplicate": {
     "repo": "geomstats/geomstats",
@@ -3887,7 +3887,9 @@
         "summary": "Both functional test jobs pass. The official linter fails during locked SciPy 1.16.3 installation on Python 3.15.2 because OpenBLAS is unavailable; no style check is reached. The unchanged base reproduces the same installation failure. Frozen Python 3.11 formatting, changed-file lint, full suite and package checks pass.",
         "exact_base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
         "notes_published": true
-      }
+      },
+      "complete_formatting_note_published": true,
+      "complete_formatting_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43875962981/job/133328944501"
     },
     {
       "repo": "rasbt/mlxtend",
@@ -3930,7 +3932,9 @@
         "summary": "Both functional test jobs pass. The official linter fails during locked SciPy 1.16.3 installation on Python 3.15.2 because OpenBLAS is unavailable; no style check is reached. The unchanged base reproduces the same installation failure. Frozen Python 3.11 formatting, changed-file lint, full suite and package checks pass.",
         "exact_base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
         "notes_published": true
-      }
+      },
+      "complete_formatting_note_published": true,
+      "complete_formatting_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43875962981/job/133328944501"
     },
     {
       "repo": "rasbt/mlxtend",
@@ -3983,7 +3987,9 @@
         "summary": "Both official functional jobs pass; the linter fails before style checks during locked SciPy installation under Python 3.15.2. Same installation failure reproduced on exact base; frozen Python 3.11 full/style/package validation passes.",
         "exact_base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
         "notes_published": true
-      }
+      },
+      "complete_formatting_note_published": true,
+      "complete_formatting_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43875962981/job/133328944501"
     },
     {
       "repo": "rasbt/mlxtend",
@@ -4036,7 +4042,49 @@
         "summary": "Both official functional jobs pass; the linter fails before style checks during locked SciPy installation under Python 3.15.2. Same installation failure reproduced on exact base; frozen Python 3.11 full/style/package validation passes.",
         "exact_base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
         "notes_published": true
-      }
+      },
+      "complete_formatting_note_published": true,
+      "complete_formatting_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43875962981/job/133328944501"
+    },
+    {
+      "repo": "rasbt/mlxtend",
+      "number": 1314,
+      "url": "https://github.com/rasbt/mlxtend/pull/1314",
+      "title": "Keep LDA projections real with a symmetric generalized eigensolver",
+      "state": "open",
+      "merged_at": null,
+      "head": "0fd48aba62d99ea0bf84e1523d037978b8abee62",
+      "head_ref": "fix/lda-real-generalized-eigen-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T13:38:09Z",
+      "official_checks": {
+        "total": 0,
+        "checks": [],
+        "status": "newly published; pending first check update"
+      },
+      "validation_url": "https://github.com/Afloat16/geoopt/actions/runs/43875962981/job/133328944010",
+      "api_verified": true,
+      "body_verified": true
+    },
+    {
+      "repo": "rasbt/mlxtend",
+      "number": 1315,
+      "url": "https://github.com/rasbt/mlxtend/pull/1315",
+      "title": "Fit independent cloned models for bias-variance resamples",
+      "state": "open",
+      "merged_at": null,
+      "head": "2e79a665321121520549bf412718dec2e9c1f2be",
+      "head_ref": "fix/bias-variance-fresh-models-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T13:38:43Z",
+      "official_checks": {
+        "total": 0,
+        "checks": [],
+        "status": "newly published; pending first check update"
+      },
+      "validation_url": "https://github.com/Afloat16/geoopt/actions/runs/43875962981/job/133328944380",
+      "api_verified": true,
+      "body_verified": true
     }
   ],
   "remote_checkpoints": {
@@ -4054,5 +4102,6 @@
       "path": ".validation/mlxtend-submissions.json"
     }
   },
-  "ci_diagnosis_updated_at": "2026-11-16T13:15:57.465Z"
+  "ci_diagnosis_updated_at": "2026-11-16T13:15:57.465Z",
+  "last_submission_check_at": "2026-11-16T13:40:27.101Z"
 }
