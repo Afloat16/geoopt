@@ -907,8 +907,9 @@ def _weighted_average(x, weights, reducedim: List[int], dim: int):
     if weights is None or weights.dim() == 0:
         return x.mean(dim=reducedim, keepdim=True)
     dim = dim % x.dim()
-    if weights.dim() == x.dim() - 1:
-        weights = weights.unsqueeze(dim)
+    if weights.dim() < x.dim():
+        batch_shape = x.shape[:dim] + x.shape[dim + 1 :]
+        weights = torch.broadcast_to(weights, batch_shape).unsqueeze(dim)
     weights = torch.broadcast_to(weights, x.shape)
     denom = weights.sum(dim=reducedim, keepdim=True).clamp_min(1e-15)
     return (x * weights).sum(dim=reducedim, keepdim=True) / denom

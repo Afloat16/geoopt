@@ -93,3 +93,45 @@ def test_lorentz_negative_coordinate_axis_with_two_batch_dimensions():
     torch.testing.assert_close(manifold.logmap(origin, point, dim=-2), tangent, rtol=1e-12, atol=1e-12)
     expected = torch.tensor([math.sqrt(2.0)*abs(t) for t in rapidities], dtype=torch.float64).reshape(2, 2)
     torch.testing.assert_close(manifold.norm(tangent, dim=-2), expected, rtol=1e-13, atol=1e-13)
+
+
+@pytest.mark.parametrize("count", [3, 4])
+@pytest.mark.parametrize("dim", [0, -1])
+@pytest.mark.parametrize("keepdim", [False, True])
+@pytest.mark.parametrize("layout", ["shared", "per_batch", "explicit_axis"])
+def test_lorentz_centroid_broadcast_weights(count, dim, keepdim, layout):
+    space = torch.linspace(-0.6, 0.9, 4 * count, dtype=torch.float64).reshape(2, count, 2)
+    space.requires_grad_()
+    k = torch.tensor(1.7, dtype=space.dtype, requires_grad=True)
+    time = torch.sqrt(k + space.square().sum(-1, keepdim=True))
+    points = torch.cat((time, space), dim=-1)
+    weight_shape = (count,) if layout == "shared" else (2, count)
+    weights = torch.linspace(0.2, 1.1, math.prod(weight_shape), dtype=space.dtype).reshape(
+        weight_shape
+    )
+    weights.requires_grad_()
+    supplied_weights = weights
+    if layout == "explicit_axis":
+        supplied_weights = weights.unsqueeze(-1).movedim(-1, dim)
+
+    axis = dim % points.dim()
+    sample_axis = 2 if axis < 2 else 1
+    actual = geoopt.manifolds.lorentz.math.lorentz_centroid(
+        points.movedim(-1, dim),
+        weights=supplied_weights,
+        k=k,
+        dim=dim,
+        reducedim=[sample_axis],
+        keepdim=keepdim,
+    )
+    total = (points * weights.unsqueeze(-1)).sum(1, keepdim=keepdim)
+    squared_length = total[..., :1].square() - total[..., 1:].square().sum(
+        -1, keepdim=True
+    )
+    expected = torch.sqrt(k) * total / torch.sqrt(squared_length)
+    output_axis = axis if keepdim or axis < sample_axis else axis - 1
+    expected = expected.movedim(-1, output_axis)
+    torch.testing.assert_close(actual, expected)
+    observed_grad = torch.autograd.grad(actual.sum(), (space, weights, k), retain_graph=True)
+    expected_grad = torch.autograd.grad(expected.sum(), (space, weights, k))
+    torch.testing.assert_close(observed_grad, expected_grad)
