@@ -1,0 +1,78 @@
+import json
+import os
+from pathlib import Path
+import re
+import subprocess
+import sys
+import xml.etree.ElementTree as ET
+
+payload_path, candidate_name = sys.argv[1:3]
+payload = next(x for x in json.loads(Path(payload_path).read_text()) if x["name"] == candidate_name)
+project = Path("project").resolve()
+results = project / ".validation-results"
+results.mkdir(exist_ok=True)
+os.chdir(project)
+
+def run(name, args, required=True):
+    process = subprocess.run(args, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    (results / (name + ".log")).write_text(process.stdout)
+    print(f"=== {name}: exit {process.returncode} ===", flush=True)
+    print(process.stdout[-16000:], flush=True)
+    if required and process.returncode:
+        raise RuntimeError(name + " failed")
+    return process.returncode
+
+def write_files(paths):
+    for path in paths:
+        target = project / path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(payload["files"][path])
+
+def report(name):
+    path = results / (name + ".xml")
+    root = ET.parse(path).getroot()
+    cases = root.findall(".//testcase")
+    failures = {}
+    for case in cases:
+        error = case.find("failure")
+        if error is None:
+            error = case.find("error")
+        if error is not None:
+            failures[case.get("classname", "") + "::" + case.get("name", "")] = error.get("message", "")
+    return {"total": len(cases), "failed": len(failures), "skipped": sum(x.find("skipped") is not None for x in cases), "failures": failures}
+
+uv = ["uv", "run", "--frozen", "--group", "dev", "python"]
+run("versions", uv + ["-c", "import sys,numpy,scipy,sklearn,pandas; print(sys.version); print('numpy',numpy.__version__,'scipy',scipy.__version__,'sklearn',sklearn.__version__,'pandas',pandas.__version__)"])
+write_files(payload["tests"])
+baseline_code = run("baseline-focused", uv + ["-m", "pytest", "-q", *payload["tests"], "--junitxml=" + str(results / "baseline-focused.xml")], required=False)
+baseline_focused = report("baseline-focused")
+assert baseline_code == 1 and baseline_focused["failed"] > 0, baseline_focused
+run("baseline-full", uv + ["-m", "pytest", "mlxtend", "-q", "--continue-on-collection-errors", "--junitxml=" + str(results / "baseline-full.xml")], required=False)
+baseline_full = report("baseline-full")
+write_files(payload["files"])
+changed_python = [p for p in payload["files"] if p.endswith(".py")]
+run("isort-format", uv + ["-m", "isort", "-p", "mlxtend", "--line-length", "88", "--multi-line", "3", "--profile", "black", *changed_python])
+run("black-format", uv + ["-m", "black", *changed_python])
+for path in payload["files"]:
+    payload["files"][path] = (project / path).read_text()
+(results / "formatted-payload.json").write_text(json.dumps(payload, indent=2))
+print("FORMATTED_PAYLOAD=" + json.dumps(payload), flush=True)
+run("candidate-focused", uv + ["-m", "coverage", "run", "--source=mlxtend", "--branch", "-m", "pytest", "-q", *payload["adjacent"], "--junitxml=" + str(results / "candidate-focused.xml")])
+run("coverage", uv + ["-m", "coverage", "report", "--include=" + ",".join(payload["production"])])
+run("coverage-xml", uv + ["-m", "coverage", "xml", "-o", str(results / "coverage.xml")])
+run("candidate-full", uv + ["-m", "pytest", "mlxtend", "-q", "--continue-on-collection-errors", "--junitxml=" + str(results / "candidate-full.xml")], required=False)
+candidate_full = report("candidate-full")
+introduced = set(candidate_full["failures"]) - set(baseline_full["failures"])
+assert not introduced, sorted(introduced)
+run("isort-check", uv + ["-m", "isort", "-p", "mlxtend", "--check", "--diff", "--line-length", "88", "--multi-line", "3", "--profile", "black", *changed_python])
+run("black-check", uv + ["-m", "black", "--check", "--diff", *changed_python])
+run("flake8", uv + ["-m", "flake8", "--config=.flake8", *changed_python])
+run("diff-check", ["git", "diff", "--check"])
+run("build", ["uv", "build"])
+run("twine", uv + ["-m", "twine", "check", "--strict", *map(str, Path("dist").glob("*"))])
+summary = {"name": payload["name"], "base": payload["base"], "issue": payload["issue"],
+           "baseline_focused": baseline_focused, "baseline_full": baseline_full,
+           "candidate_focused": report("candidate-focused"), "candidate_full": candidate_full,
+           "new_full_suite_failures": sorted(introduced)}
+(results / "summary.json").write_text(json.dumps(summary, indent=2))
+print("VALIDATION_RESULT=" + json.dumps(summary), flush=True)
