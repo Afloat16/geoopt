@@ -1,0 +1,13 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "fix/contrastive-square-precision-20261116",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "tree": "70b9446a2901fcc580326aba761c0b6947e8fa81",
+  "head": "0fb4f68bc64dc4d5ea9d8f67b4c7c5cf65fa8ca8",
+  "local_tests": {
+    "baseline_failed": 11,
+    "baseline_passed": 39,
+    "candidate_passed": 58
+  },
+  "dedup": "46 reachable ContrastiveLoss blobs across 3 aliases plus all OnlineContrastiveLoss aliases/intermediates. No prior float32 distance-square accumulation; #4020 hard-pair inclusion and #4078 batch-triplet distances are independent."
+}

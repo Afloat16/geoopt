@@ -1,0 +1,13 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "fix/distill-teacher-probability-precision-20261116",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "tree": "870fa087c00ffcdf9a488cfbd9b11247aa3a930b",
+  "head": "dcf89983f45b9b39e80101f133fa3f6691539264",
+  "local_tests": {
+    "baseline_failed": 26,
+    "baseline_passed": 35,
+    "candidate_passed": 122
+  },
+  "dedup": "23 reachable dense-loss blobs across 3 aliases and 23 MVE blobs; every prior variant scales targets in their input dtype. #4288 excluded-log-target handling and #4083 optional normalization are different changes. SparseDistillKLDivLoss inherits the dense implementation."
+}

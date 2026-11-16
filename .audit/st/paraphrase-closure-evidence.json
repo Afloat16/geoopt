@@ -1,0 +1,38 @@
+{
+  "run": 43917708355,
+  "head": "d7e657cbd8df4a0d21fbd19e7b2bc533da98ac23",
+  "jobs": [
+    {
+      "id": 133476248735,
+      "lines": [
+        "2026-11-16T17:23:52.8698260Z 11 passed in 0.08s",
+        "2026-11-16T17:23:57.8709549Z {\"revision\": \"before\", \"nodes\": 128, \"graph\": \"complete\", \"median_seconds\": 0.02602192400001968, \"duplicate_pairs\": 8128, \"closure_sha256\": \"52f67c3cc4570b63b109c77316780955909d4127ce4c54fd0711cacb24cc05d4\"}",
+        "2026-11-16T17:24:04.7368090Z {\"revision\": \"before\", \"nodes\": 384, \"graph\": \"complete\", \"median_seconds\": 1.653850081999991, \"duplicate_pairs\": 73536, \"closure_sha256\": \"dc167c3e77d08bb31868a6134cea8872ea2f89067d86b8eb32c02ccb7cebde13\"}",
+        "2026-11-16T17:24:05.2212386Z {\"revision\": \"before\", \"nodes\": 384, \"graph\": \"chain\", \"median_seconds\": 0.08053417299998955, \"duplicate_pairs\": 73536, \"closure_sha256\": \"dc167c3e77d08bb31868a6134cea8872ea2f89067d86b8eb32c02ccb7cebde13\"}",
+        "2026-11-16T17:24:14.5543439Z 25 passed in 3.01s",
+        "2026-11-16T17:24:20.3449220Z {\"revision\": \"after\", \"nodes\": 128, \"graph\": \"complete\", \"median_seconds\": 0.009052904000014905, \"duplicate_pairs\": 8128, \"closure_sha256\": \"52f67c3cc4570b63b109c77316780955909d4127ce4c54fd0711cacb24cc05d4\", \"speed_ratio\": 2.874428360223066}",
+        "2026-11-16T17:24:20.7981345Z {\"revision\": \"after\", \"nodes\": 384, \"graph\": \"complete\", \"median_seconds\": 0.08167772800001671, \"duplicate_pairs\": 73536, \"closure_sha256\": \"dc167c3e77d08bb31868a6134cea8872ea2f89067d86b8eb32c02ccb7cebde13\", \"speed_ratio\": 20.248482940167637}",
+        "2026-11-16T17:24:21.2759760Z {\"revision\": \"after\", \"nodes\": 384, \"graph\": \"chain\", \"median_seconds\": 0.08060602999998423, \"duplicate_pairs\": 73536, \"closure_sha256\": \"dc167c3e77d08bb31868a6134cea8872ea2f89067d86b8eb32c02ccb7cebde13\", \"speed_ratio\": 0.999108540639023}",
+        "2026-11-16T17:24:32.5787038Z ruff check...............................................................Passed",
+        "2026-11-16T17:24:32.8514937Z ruff format..............................................................Passed",
+        "2026-11-16T17:24:34.4838597Z typos....................................................................Passed"
+      ]
+    },
+    {
+      "id": 133476249136,
+      "lines": [
+        "2026-11-16T17:23:33.4119669Z 11 passed in 0.05s",
+        "2026-11-16T17:23:36.8000200Z {\"revision\": \"before\", \"nodes\": 128, \"graph\": \"complete\", \"median_seconds\": 0.01197623000000192, \"duplicate_pairs\": 8128, \"closure_sha256\": \"52f67c3cc4570b63b109c77316780955909d4127ce4c54fd0711cacb24cc05d4\"}",
+        "2026-11-16T17:23:39.3850651Z {\"revision\": \"before\", \"nodes\": 384, \"graph\": \"complete\", \"median_seconds\": 0.6233347780000003, \"duplicate_pairs\": 73536, \"closure_sha256\": \"dc167c3e77d08bb31868a6134cea8872ea2f89067d86b8eb32c02ccb7cebde13\"}",
+        "2026-11-16T17:23:39.6856415Z {\"revision\": \"before\", \"nodes\": 384, \"graph\": \"chain\", \"median_seconds\": 0.053415122999993514, \"duplicate_pairs\": 73536, \"closure_sha256\": \"dc167c3e77d08bb31868a6134cea8872ea2f89067d86b8eb32c02ccb7cebde13\"}",
+        "2026-11-16T17:23:47.6350644Z 25 passed in 3.06s",
+        "2026-11-16T17:23:51.7788026Z {\"revision\": \"after\", \"nodes\": 128, \"graph\": \"complete\", \"median_seconds\": 0.004831816999995908, \"duplicate_pairs\": 8128, \"closure_sha256\": \"52f67c3cc4570b63b109c77316780955909d4127ce4c54fd0711cacb24cc05d4\", \"speed_ratio\": 2.4786182920445996}",
+        "2026-11-16T17:23:52.0450460Z {\"revision\": \"after\", \"nodes\": 384, \"graph\": \"complete\", \"median_seconds\": 0.04738906400000076, \"duplicate_pairs\": 73536, \"closure_sha256\": \"dc167c3e77d08bb31868a6134cea8872ea2f89067d86b8eb32c02ccb7cebde13\", \"speed_ratio\": 13.153557495881124}",
+        "2026-11-16T17:23:52.3379652Z {\"revision\": \"after\", \"nodes\": 384, \"graph\": \"chain\", \"median_seconds\": 0.04752765399999248, \"duplicate_pairs\": 73536, \"closure_sha256\": \"dc167c3e77d08bb31868a6134cea8872ea2f89067d86b8eb32c02ccb7cebde13\", \"speed_ratio\": 1.1238745973029085}",
+        "2026-11-16T17:24:01.4568779Z ruff check...............................................................Passed",
+        "2026-11-16T17:24:01.6151773Z ruff format..............................................................Passed",
+        "2026-11-16T17:24:02.5776405Z typos....................................................................Passed"
+      ]
+    }
+  ]
+}
