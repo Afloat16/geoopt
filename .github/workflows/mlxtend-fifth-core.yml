@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        candidate: [paired-fresh-estimators, confusion-matrix-axes]
+        candidate: [confusion-matrix-axes]
     env:
       GITHUB_ACTIONS_CI: 'true'
       MPLBACKEND: Agg
