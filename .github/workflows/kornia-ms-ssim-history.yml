@@ -1,0 +1,35 @@
+name: Kornia MS-SSIM read-only history audit
+on:
+  push:
+    branches: [validation/kornia-ms-ssim-history-20261116]
+permissions:
+  contents: read
+jobs:
+  history:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: validation
+          persist-credentials: false
+      - uses: actions/checkout@v7
+        with:
+          repository: kornia/kornia
+          ref: b1624c022ceb93373cb073a50bd1da2511108c5e
+          path: kornia
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Fetch public upstream PR and user-fork history
+        working-directory: kornia
+        run: |
+          git fetch --no-tags origin '+refs/pull/*/head:refs/remotes/upstream-pr/*'
+          git fetch --no-tags https://github.com/Afloat16/kornia.git '+refs/heads/*:refs/remotes/user-fork/*'
+      - name: Audit every reachable intermediate source version
+        working-directory: kornia
+        run: python3 ../validation/.validation/kornia-ms-ssim-history.py
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: kornia-ms-ssim-history
+          path: kornia-history-results/
