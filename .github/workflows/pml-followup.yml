@@ -1,0 +1,33 @@
+name: Capture PML follow-up task base and design context
+on:
+  push:
+    branches: ['validation/pml-core-followup-20261116']
+permissions:
+  contents: read
+jobs:
+  context:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
+        with:
+          repository: KevinMusgrave/pytorch-metric-learning
+          ref: b95a42310f50720a766b91008470b278364f705d
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Install exact repository policy release
+        run: ./code-polishyw setup
+      - name: Read required locked workflow
+        run: ./code-polishyw docs read agent-workflows
+      - name: Capture clean task base and component design context
+        run: |
+          ./code-polishyw task-start --module numerics --module evaluation --module sampling --module distributed --format json > task-context.json
+          cat task-context.json
+      - name: Retrieve context for the existing applicability record
+        run: ./code-polishyw design-context --files .code-polishy.json docs/security/dependency-assessments.md
+      - name: Verify source and policy remain unchanged
+        run: git diff --exit-code
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pml-followup-task-context
+          path: task-context.json
