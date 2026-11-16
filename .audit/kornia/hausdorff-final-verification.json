@@ -1,0 +1,585 @@
+{
+  "repository": "kornia/kornia",
+  "candidate": "c64d52b69702607cd56e914bf1dc931a92ccd8f0",
+  "base": "5cc9c44eddd8dc6a061151d245925f072d673321",
+  "remote_tested_head": "ec3b52d4c10f1439e3b72436896fd3ac2bfbac6b",
+  "comment_only_followup": {
+    "production_ast_identical": true,
+    "test_blob_unchanged": true,
+    "purpose": "Document measured half-precision cost beside the dtype branch as required by AGENTS.md."
+  },
+  "validation_repository": "Afloat16/geoopt",
+  "validation_head": "fde8738d86ae62d25087bef0c028dcbee0241afe",
+  "run": 43972241619,
+  "jobs": [
+    133667109338,
+    133667109825
+  ],
+  "job_conclusions": [
+    "success",
+    "success"
+  ],
+  "eager_suites_per_version": {
+    "float32_float64": {
+      "passed": 118,
+      "deselected": 6
+    },
+    "float16_bfloat16": {
+      "passed": 116,
+      "deselected": 8
+    }
+  },
+  "precommit": "passed on tested head remotely and final comment-only head locally with Ruff 0.17.5",
+  "typecheck": "passed on tested head remotely and final comment-only head locally using the locked Pixi ty 0.0.9 executable",
+  "independent_review": {
+    "reviewer": "parent Codex agent",
+    "scope": "Mathematical accumulation, dtype promotion, both override contracts, alpha gradients",
+    "blocking_findings": []
+  },
+  "summaries": [
+    {
+      "base": "5cc9c44eddd8dc6a061151d245925f072d673321",
+      "candidate": "ec3b52d4c10f1439e3b72436896fd3ac2bfbac6b",
+      "torch": "2.5.1+cpu",
+      "baseline_failed": 10,
+      "baseline_passed": 42,
+      "contract_rows": 288,
+      "all_dtype_shape_error_and_hook_contracts_preserved": true,
+      "full_precision_and_custom_override_rows_bit_exact": true,
+      "half_numeric_rows_changed": 4,
+      "cost": [
+        {
+          "case": "2d-default-k10",
+          "dtype": "torch.float16",
+          "shape": [
+            2,
+            2,
+            64,
+            64
+          ],
+          "mode": "forward",
+          "base_medians_us": [
+            689.7104000017862,
+            697.442199998477
+          ],
+          "candidate_medians_us": [
+            745.5494499993165,
+            759.9061000007623
+          ],
+          "candidate_over_base": 1.085284740842351
+        },
+        {
+          "case": "2d-default-k10",
+          "dtype": "torch.float16",
+          "shape": [
+            2,
+            2,
+            64,
+            64
+          ],
+          "mode": "forward_backward",
+          "base_medians_us": [
+            832.4574999960532,
+            831.7979999930003
+          ],
+          "candidate_medians_us": [
+            921.4109999930997,
+            903.4854999896424
+          ],
+          "candidate_over_base": 1.0965242416171948
+        },
+        {
+          "case": "2d-default-k10",
+          "dtype": "torch.bfloat16",
+          "shape": [
+            2,
+            2,
+            64,
+            64
+          ],
+          "mode": "forward",
+          "base_medians_us": [
+            739.3560999986448,
+            755.2116500008309
+          ],
+          "candidate_medians_us": [
+            785.2111999994804,
+            783.4322999997312
+          ],
+          "candidate_over_base": 1.0495633269216211
+        },
+        {
+          "case": "2d-default-k10",
+          "dtype": "torch.bfloat16",
+          "shape": [
+            2,
+            2,
+            64,
+            64
+          ],
+          "mode": "forward_backward",
+          "base_medians_us": [
+            884.710999997651,
+            901.6969999890989
+          ],
+          "candidate_medians_us": [
+            950.1490000047852,
+            947.1559999951751
+          ],
+          "candidate_over_base": 1.06207820386722
+        },
+        {
+          "case": "2d-default-k10",
+          "dtype": "torch.float32",
+          "shape": [
+            2,
+            2,
+            64,
+            64
+          ],
+          "mode": "forward",
+          "base_medians_us": [
+            638.7732999996842,
+            641.4037999974198
+          ],
+          "candidate_medians_us": [
+            630.6916999989198,
+            637.1681000018725
+          ],
+          "candidate_over_base": 0.9903784406108034
+        },
+        {
+          "case": "2d-default-k10",
+          "dtype": "torch.float32",
+          "shape": [
+            2,
+            2,
+            64,
+            64
+          ],
+          "mode": "forward_backward",
+          "base_medians_us": [
+            775.8569999936071,
+            788.1582999999637
+          ],
+          "candidate_medians_us": [
+            781.7860000045584,
+            784.1105000068183
+          ],
+          "candidate_over_base": 1.0012028015440857
+        },
+        {
+          "case": "3d-default-k10",
+          "dtype": "torch.float16",
+          "shape": [
+            1,
+            2,
+            24,
+            24,
+            24
+          ],
+          "mode": "forward",
+          "base_medians_us": [
+            1343.7820000206102,
+            1361.58200001546
+          ],
+          "candidate_medians_us": [
+            1438.7839999869811,
+            1411.8455000016183
+          ],
+          "candidate_over_base": 1.0536953622324363
+        },
+        {
+          "case": "3d-default-k10",
+          "dtype": "torch.float16",
+          "shape": [
+            1,
+            2,
+            24,
+            24,
+            24
+          ],
+          "mode": "forward_backward",
+          "base_medians_us": [
+            1505.9450000194374,
+            1520.461000012574
+          ],
+          "candidate_medians_us": [
+            1600.7730000069387,
+            1604.3649999915033
+          ],
+          "candidate_over_base": 1.0590575091261847
+        },
+        {
+          "case": "3d-default-k10",
+          "dtype": "torch.bfloat16",
+          "shape": [
+            1,
+            2,
+            24,
+            24,
+            24
+          ],
+          "mode": "forward",
+          "base_medians_us": [
+            1448.2980000138923,
+            1465.208500007975
+          ],
+          "candidate_medians_us": [
+            1490.7620000030875,
+            1492.2849999834398
+          ],
+          "candidate_over_base": 1.0238683181122603
+        },
+        {
+          "case": "3d-default-k10",
+          "dtype": "torch.bfloat16",
+          "shape": [
+            1,
+            2,
+            24,
+            24,
+            24
+          ],
+          "mode": "forward_backward",
+          "base_medians_us": [
+            1616.1109999899281,
+            1630.948000013177
+          ],
+          "candidate_medians_us": [
+            1686.5815000102202,
+            1702.901499996301
+          ],
+          "candidate_over_base": 1.0438624613852967
+        },
+        {
+          "case": "3d-default-k10",
+          "dtype": "torch.float32",
+          "shape": [
+            1,
+            2,
+            24,
+            24,
+            24
+          ],
+          "mode": "forward",
+          "base_medians_us": [
+            1138.89799999356,
+            1124.6340000070632
+          ],
+          "candidate_medians_us": [
+            1125.5179999807297,
+            1141.7670000071212
+          ],
+          "candidate_over_base": 1.0016580282440128
+        },
+        {
+          "case": "3d-default-k10",
+          "dtype": "torch.float32",
+          "shape": [
+            1,
+            2,
+            24,
+            24,
+            24
+          ],
+          "mode": "forward_backward",
+          "base_medians_us": [
+            1357.807499999808,
+            1307.0090000155687
+          ],
+          "candidate_medians_us": [
+            1293.2704999997213,
+            1320.8580000139136
+          ],
+          "candidate_over_base": 0.9809788028551124
+        }
+      ],
+      "scope": "eager CPU only; no compile, JIT, export, ONNX, CUDA or MPS executed"
+    },
+    {
+      "base": "5cc9c44eddd8dc6a061151d245925f072d673321",
+      "candidate": "ec3b52d4c10f1439e3b72436896fd3ac2bfbac6b",
+      "torch": "2.15.0+cpu",
+      "baseline_failed": 10,
+      "baseline_passed": 42,
+      "contract_rows": 288,
+      "all_dtype_shape_error_and_hook_contracts_preserved": true,
+      "full_precision_and_custom_override_rows_bit_exact": true,
+      "half_numeric_rows_changed": 4,
+      "cost": [
+        {
+          "case": "2d-default-k10",
+          "dtype": "torch.float16",
+          "shape": [
+            2,
+            2,
+            64,
+            64
+          ],
+          "mode": "forward",
+          "base_medians_us": [
+            621.1620999977185,
+            624.6899999950983
+          ],
+          "candidate_medians_us": [
+            662.0140999984869,
+            665.3413999970326
+          ],
+          "candidate_over_base": 1.0654198038460365
+        },
+        {
+          "case": "2d-default-k10",
+          "dtype": "torch.float16",
+          "shape": [
+            2,
+            2,
+            64,
+            64
+          ],
+          "mode": "forward_backward",
+          "base_medians_us": [
+            738.406000004943,
+            737.2190999944905
+          ],
+          "candidate_medians_us": [
+            791.1292000017056,
+            792.1371000009004
+          ],
+          "candidate_over_base": 1.0729461704081977
+        },
+        {
+          "case": "2d-default-k10",
+          "dtype": "torch.bfloat16",
+          "shape": [
+            2,
+            2,
+            64,
+            64
+          ],
+          "mode": "forward",
+          "base_medians_us": [
+            667.5723000000744,
+            671.8874000000596
+          ],
+          "candidate_medians_us": [
+            698.0109999972228,
+            704.4795500007694
+          ],
+          "candidate_over_base": 1.0470569215317578
+        },
+        {
+          "case": "2d-default-k10",
+          "dtype": "torch.bfloat16",
+          "shape": [
+            2,
+            2,
+            64,
+            64
+          ],
+          "mode": "forward_backward",
+          "base_medians_us": [
+            787.9037999941829,
+            793.1607000045915
+          ],
+          "candidate_medians_us": [
+            835.6384500018521,
+            841.8823000056364
+          ],
+          "candidate_over_base": 1.06100715689258
+        },
+        {
+          "case": "2d-default-k10",
+          "dtype": "torch.float32",
+          "shape": [
+            2,
+            2,
+            64,
+            64
+          ],
+          "mode": "forward",
+          "base_medians_us": [
+            573.3536999969145,
+            582.3111000040626
+          ],
+          "candidate_medians_us": [
+            566.1397999972451,
+            567.1953999978996
+          ],
+          "candidate_over_base": 0.9806781343467295
+        },
+        {
+          "case": "2d-default-k10",
+          "dtype": "torch.float32",
+          "shape": [
+            2,
+            2,
+            64,
+            64
+          ],
+          "mode": "forward_backward",
+          "base_medians_us": [
+            691.066949997321,
+            686.7279000061899
+          ],
+          "candidate_medians_us": [
+            688.8577000040641,
+            687.5510499980918
+          ],
+          "candidate_over_base": 0.9989939721422596
+        },
+        {
+          "case": "3d-default-k10",
+          "dtype": "torch.float16",
+          "shape": [
+            1,
+            2,
+            24,
+            24,
+            24
+          ],
+          "mode": "forward",
+          "base_medians_us": [
+            1188.930149993439,
+            1191.218300004948
+          ],
+          "candidate_medians_us": [
+            1244.760000002998,
+            1246.1938999990705
+          ],
+          "candidate_over_base": 1.046554008008936
+        },
+        {
+          "case": "3d-default-k10",
+          "dtype": "torch.float16",
+          "shape": [
+            1,
+            2,
+            24,
+            24,
+            24
+          ],
+          "mode": "forward_backward",
+          "base_medians_us": [
+            1319.4076500042231,
+            1322.181300002967
+          ],
+          "candidate_medians_us": [
+            1399.8412999967513,
+            1420.08939999414
+          ],
+          "candidate_over_base": 1.0675130587532236
+        },
+        {
+          "case": "3d-default-k10",
+          "dtype": "torch.bfloat16",
+          "shape": [
+            1,
+            2,
+            24,
+            24,
+            24
+          ],
+          "mode": "forward",
+          "base_medians_us": [
+            1282.4819000059051,
+            1288.9960999928007
+          ],
+          "candidate_medians_us": [
+            1324.66380000551,
+            1334.4474999939848
+          ],
+          "candidate_over_base": 1.0340789615936177
+        },
+        {
+          "case": "3d-default-k10",
+          "dtype": "torch.bfloat16",
+          "shape": [
+            1,
+            2,
+            24,
+            24,
+            24
+          ],
+          "mode": "forward_backward",
+          "base_medians_us": [
+            1430.4118499978815,
+            1428.4849500029395
+          ],
+          "candidate_medians_us": [
+            1494.318000027306,
+            1502.3596999981237
+          ],
+          "candidate_over_base": 1.048193729841724
+        },
+        {
+          "case": "3d-default-k10",
+          "dtype": "torch.float32",
+          "shape": [
+            1,
+            2,
+            24,
+            24,
+            24
+          ],
+          "mode": "forward",
+          "base_medians_us": [
+            1038.7667000031795,
+            1026.623100000279
+          ],
+          "candidate_medians_us": [
+            1017.4059500002385,
+            1026.982799999132
+          ],
+          "candidate_over_base": 0.9898319193771302
+        },
+        {
+          "case": "3d-default-k10",
+          "dtype": "torch.float32",
+          "shape": [
+            1,
+            2,
+            24,
+            24,
+            24
+          ],
+          "mode": "forward_backward",
+          "base_medians_us": [
+            1170.8567999903607,
+            1166.849000003367
+          ],
+          "candidate_medians_us": [
+            1155.037400008041,
+            1163.0004000039662
+          ],
+          "candidate_over_base": 0.9915866230978366
+        }
+      ],
+      "scope": "eager CPU only; no compile, JIT, export, ONNX, CUDA or MPS executed"
+    }
+  ],
+  "missing_required_gates": [
+    "torch.compile promised-package and importer conformance",
+    "ONNX promised-package and importer conformance"
+  ],
+  "additional_unverified": [
+    "TorchScript",
+    "CUDA",
+    "MPS"
+  ],
+  "scope": "eager CPU only",
+  "proof_limit": "Synthetic probability/mask examples, not a real-data prevalence or training-outcome claim.",
+  "creation": "Not attempted: earlier Kornia create_pull_request purpose-tool attempt returned 403; same permissions not retried.",
+  "status": "prepared_intended_draft",
+  "do_not_count_as_ready_or_merged": true,
+  "cost_ranges": {
+    "half_cost_ratio": [
+      1.0238683181122603,
+      1.0965242416171948
+    ],
+    "float32_cost_ratio": [
+      0.9806781343467295,
+      1.0016580282440128
+    ]
+  }
+}
