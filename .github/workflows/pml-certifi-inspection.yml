@@ -1,0 +1,27 @@
+name: Inspect exact certificate caller reachability
+on:
+  push:
+    branches: ['validation/pml-certificate-reassessment-20261116']
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: KevinMusgrave/pytorch-metric-learning
+          ref: b95a42310f50720a766b91008470b278364f705d
+          path: policy-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          path: validation-source
+          persist-credentials: false
+      - name: Read exact dependency source without installing or executing it
+        run: python3 validation-source/.validation/pml-certifi-inspect.py
+      - name: Read scope context before any assessment edits
+        working-directory: policy-source
+        run: |
+          ./code-polishyw setup
+          ./code-polishyw task-start --files .code-polishy.json docs/security/dependency-assessments.md --situation dependencies --format json
