@@ -37,9 +37,11 @@ try:
     client.create_collection(collection, vectors_config={}, sparse_vectors_config={'text': models.SparseVectorParams()})
     generator = np.random.default_rng(73)
     points = []
+    corpus_array = np.zeros((1000, 256), dtype=np.float32)
     for index in range(1000):
         indices = generator.choice(256, size=8, replace=False)
         values = generator.uniform(0.1, 1.0, size=8).astype(np.float32)
+        corpus_array[index, indices] = values
         points.append(models.PointStruct(id=index, vector={'text': models.SparseVector(indices=indices.tolist(), values=values.tolist())}))
     client.upsert(collection, points, wait=True)
     query_array = np.zeros((256, 256), dtype=np.float32)
@@ -56,16 +58,36 @@ try:
             elapsed = time.perf_counter() - start
             if repeat:
                 timings.append(elapsed)
+        # Independent float64 dot products establish the expected ranking and score.
+        # Each sparse document has at most eight nonzero products, so gamma_16
+        # bounds their float32 multiply-and-accumulate relative error.
+        oracle = query_array[:count].astype(np.float64) @ corpus_array.astype(np.float64).T
+        expected_ids = np.argsort(-oracle, axis=1)[:, :5]
+        actual_ids = np.asarray([[hit['corpus_id'] for hit in row] for row in hits])
+        actual_scores = np.asarray([[hit['score'] for hit in row] for row in hits])
+        oracle_scores = np.take_along_axis(oracle, expected_ids, axis=1)
+        np.testing.assert_array_equal(actual_ids, expected_ids)
+        epsilon = np.finfo(np.float32).eps
+        gamma_16 = 16 * epsilon / (1 - 16 * epsilon)
+        np.testing.assert_allclose(actual_scores, oracle_scores, rtol=gamma_16, atol=0)
+        oracle_max_relative_error = float(np.max(np.abs(actual_scores / oracle_scores - 1)))
         digest = hashlib.sha256(json.dumps(hits, sort_keys=True).encode()).hexdigest()
         result = dict(revision=revision, backend='http-server' if url else 'in-memory', queries=count,
                       corpus=1000, vocabulary=256, top_k=5, median_seconds=statistics.median(timings),
-                      single_calls=client.single_calls, batch_calls=client.batch_calls, results_sha256=digest)
+                      single_calls=client.single_calls, batch_calls=client.batch_calls, results_sha256=digest, oracle_max_relative_error=oracle_max_relative_error)
         if reference:
             expected = reference[len(results)]
-            assert expected['results_sha256'] == digest
+            previous_ids = np.asarray([[hit['corpus_id'] for hit in row] for row in expected['hits']])
+            previous_scores = np.asarray([[hit['score'] for hit in row] for row in expected['hits']])
+            np.testing.assert_array_equal(actual_ids, previous_ids)
+            result['exact_digest_match'] = expected['results_sha256'] == digest
+            result['changed_scores'] = int(np.sum(actual_scores != previous_scores))
+            result['max_score_difference'] = float(np.max(np.abs(actual_scores - previous_scores)))
+            result['max_relative_score_difference'] = float(np.max(np.abs((actual_scores - previous_scores) / oracle_scores)))
             result['speed_ratio'] = expected['median_seconds'] / result['median_seconds']
-        results.append(result)
         print(json.dumps(result), flush=True)
+        result['hits'] = hits
+        results.append(result)
 finally:
     client.delete_collection(collection)
     client.close()
