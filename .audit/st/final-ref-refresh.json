@@ -1,0 +1,150 @@
+{
+  "initial": 1517,
+  "current": 1535,
+  "changed": [
+    {
+      "ref": "refs/remotes/fork/fix/contrastive-square-precision-20261116",
+      "before": null,
+      "after": "0fb4f68bc64dc4d5ea9d8f67b4c7c5cf65fa8ca8"
+    },
+    {
+      "ref": "refs/remotes/fork/fix/contrastive-tension-dot-precision-20261116",
+      "before": null,
+      "after": "0beec3daeabb3f1428cf830768926fef11b3470c"
+    },
+    {
+      "ref": "refs/remotes/fork/fix/csr-expanded-latent-capacity-20261116",
+      "before": null,
+      "after": "3d53efaffdf3e101536af36c0b331f3f5ca17621"
+    },
+    {
+      "ref": "refs/remotes/fork/fix/csr-normalization-inverse-20261116",
+      "before": null,
+      "after": "d6d7b7b50a34378cad386378ec63a3b5720e2bff"
+    },
+    {
+      "ref": "refs/remotes/fork/fix/distill-teacher-probability-precision-20261116",
+      "before": null,
+      "after": "dcf89983f45b9b39e80101f133fa3f6691539264"
+    },
+    {
+      "ref": "refs/remotes/fork/fix/lambda-gain-numerical-range-20261116",
+      "before": null,
+      "after": "7bc2a876eb80b7a246fafbe7f9425691d97314cd"
+    },
+    {
+      "ref": "refs/remotes/fork/fix/margin-distillation-target-precision-20261116",
+      "before": null,
+      "after": "60e76226e91d8a2648d8c1e9ccefa649288a7fb2"
+    },
+    {
+      "ref": "refs/remotes/fork/fix/multi-vector-mixed-dtypes-20261116",
+      "before": null,
+      "after": "a08bf4d023f8b9b2de154a45c8dd36234044fd78"
+    },
+    {
+      "ref": "refs/remotes/fork/perf/adr-target-rank-search-20261116",
+      "before": null,
+      "after": "02fe393c18a24d617819a97d3e22d3a1a8d91726"
+    },
+    {
+      "ref": "refs/remotes/fork/perf/faiss-batched-reconstruction-20261116",
+      "before": null,
+      "after": "ceba445678cdbda149cac7e8090d329f017e2d34"
+    },
+    {
+      "ref": "refs/remotes/fork/perf/gist-cosine-matrix-20261116",
+      "before": null,
+      "after": "bb300ecbd87fa6a8a449118fb45cadac2ce4a6eb"
+    },
+    {
+      "ref": "refs/remotes/fork/perf/ir-dcg-vectorization-20261116",
+      "before": null,
+      "after": "5551601f25d80340bf9505d225270593013f16d9"
+    },
+    {
+      "ref": "refs/remotes/fork/perf/paraphrase-closure-queue-20261116",
+      "before": null,
+      "after": "6c3835e07bd2f030b014b6b77c851d9560ac0612"
+    },
+    {
+      "ref": "refs/remotes/fork/perf/rrf-relevance-membership-20261116",
+      "before": null,
+      "after": "e3e41bae376a29b27a9da7c111dfa841e8d43837"
+    },
+    {
+      "ref": "refs/remotes/fork/perf/sparse-static-boolean-mask-20261116",
+      "before": null,
+      "after": "b7f9b47c9c0edb6d50a9b4c134ee9a235d95c077"
+    },
+    {
+      "ref": "refs/remotes/fork/perf/splade-max-inference-20261116",
+      "before": null,
+      "after": "c8af6717da005b8b2b578a0ef72b65bc000db349"
+    },
+    {
+      "ref": "refs/remotes/fork/perf/weighted-layer-memory-20261116",
+      "before": null,
+      "after": "e2f543a617bb8caa362f56448e5f170749989c9a"
+    },
+    {
+      "ref": "refs/remotes/fork/perf/word-embedding-text-buffer-20261116",
+      "before": null,
+      "after": "dec6a099db9c4b22aff6264161ab200a1c8121ec"
+    },
+    {
+      "ref": "refs/remotes/upstream-pr/4178",
+      "before": "e9a5d00d5ceea9ce5179ffdf30606cab27c6e780",
+      "after": "f46f8772c7d96d4f192529433e662548d23c5963",
+      "files": [
+        ".github/workflows/tests.yml",
+        "pyproject.toml",
+        "sentence_transformers/base/model.py",
+        "sentence_transformers/cross_encoder/evaluation/deprecated.py",
+        "sentence_transformers/cross_encoder/fit_mixin.py",
+        "sentence_transformers/cross_encoder/model.py",
+        "sentence_transformers/multi_vector_encoder/evaluation/information_retrieval.py",
+        "sentence_transformers/multi_vector_encoder/evaluation/nano_beir.py",
+        "sentence_transformers/multi_vector_encoder/losses/matryoshka.py",
+        "sentence_transformers/multi_vector_encoder/losses/token_pooling.py",
+        "sentence_transformers/multi_vector_encoder/model.py",
+        "sentence_transformers/sentence_transformer/datasets/__init__.py",
+        "sentence_transformers/sentence_transformer/deprecated_model_card_templates.py",
+        "sentence_transformers/sentence_transformer/evaluation/binary_classification.py",
+        "sentence_transformers/sentence_transformer/evaluation/embedding_similarity.py",
+        "sentence_transformers/sentence_transformer/evaluation/information_retrieval.py",
+        "sentence_transformers/sentence_transformer/evaluation/label_accuracy.py",
+        "sentence_transformers/sentence_transformer/evaluation/nano_beir.py",
+        "sentence_transformers/sentence_transformer/evaluation/reranking.py",
+        "sentence_transformers/sentence_transformer/evaluation/triplet.py",
+        "sentence_transformers/sentence_transformer/fit_mixin.py",
+        "sentence_transformers/sentence_transformer/losses/adaptive_layer.py",
+        "sentence_transformers/sentence_transformer/losses/matryoshka.py",
+        "sentence_transformers/sentence_transformer/modules/tokenizer/__init__.py",
+        "sentence_transformers/sentence_transformer/readers/__init__.py",
+        "sentence_transformers/sparse_encoder/evaluation/sparse_binary_classification.py",
+        "sentence_transformers/sparse_encoder/evaluation/sparse_embedding_similarity.py",
+        "sentence_transformers/sparse_encoder/evaluation/sparse_information_retrieval.py",
+        "sentence_transformers/sparse_encoder/evaluation/sparse_nano_beir.py",
+        "sentence_transformers/sparse_encoder/evaluation/sparse_triplet.py",
+        "sentence_transformers/sparse_encoder/model.py",
+        "sentence_transformers/util/retrieval.py",
+        "sentence_transformers/util/similarity.py",
+        "tests/base/evaluation/test_misc.py",
+        "tests/base/test_model.py",
+        "tests/cross_encoder/test_model.py",
+        "tests/multi_vector_encoder/evaluation/test_information_retrieval.py",
+        "tests/multi_vector_encoder/losses/test_token_pooling.py",
+        "tests/sentence_transformer/evaluation/test_information_retrieval_evaluator.py",
+        "tests/sentence_transformer/evaluation/test_nanobeir_evaluator.py",
+        "tests/sentence_transformer/evaluation/test_reranking_evaluator.py",
+        "tests/sentence_transformer/losses/test_adaptive_layer.py",
+        "tests/sentence_transformer/losses/test_matryoshka.py",
+        "tests/sentence_transformer/test_model.py",
+        "tests/sentence_transformer/test_multi_process.py",
+        "tests/util/test_retrieval.py",
+        "tests/util/test_similarity.py"
+      ]
+    }
+  ]
+}

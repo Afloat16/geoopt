@@ -1,0 +1,131 @@
+{
+  "repository": "huggingface/sentence-transformers",
+  "prepared": 20,
+  "actual_created_prs": 0,
+  "actual_new_merges": 0,
+  "all_records": ".audit/st/all-prepared-submissions.json.gz.b64",
+  "encoding": "base64 of gzip-compressed UTF-8 JSON",
+  "all_records_sha256": "b59f6052f757f511ec5a066cce1e926b096db274bdc97761dc7dcaa0d05c8c35",
+  "entries": [
+    {
+      "key": "faiss",
+      "title": "Batch FAISS uint8 candidate reconstruction before rescoring",
+      "head": "ceba445678cdbda149cac7e8090d329f017e2d34",
+      "branch": "perf/faiss-batched-reconstruction-20261116"
+    },
+    {
+      "key": "lambda",
+      "title": "Stabilize LambdaLoss gains across finite relevance ranges",
+      "head": "7bc2a876eb80b7a246fafbe7f9425691d97314cd",
+      "branch": "fix/lambda-gain-numerical-range-20261116"
+    },
+    {
+      "key": "mixed-mve-dtypes",
+      "title": "Support mixed tensor and NumPy dtypes in multi-vector scoring",
+      "head": "a08bf4d023f8b9b2de154a45c8dd36234044fd78",
+      "branch": "fix/multi-vector-mixed-dtypes-20261116"
+    },
+    {
+      "key": "splade-max-inference",
+      "title": "Reduce SPLADE max-pooling inference work before logarithms",
+      "head": "c8af6717da005b8b2b578a0ef72b65bc000db349",
+      "branch": "perf/splade-max-inference-20261116"
+    },
+    {
+      "key": "gist-cosine-matrix",
+      "title": "Avoid broadcasted GIST cosine matrices during training",
+      "head": "bb300ecbd87fa6a8a449118fb45cadac2ce4a6eb",
+      "branch": "perf/gist-cosine-matrix-20261116"
+    },
+    {
+      "key": "weighted-layer-memory",
+      "title": "Avoid copying unused hidden layers in WeightedLayerPooling",
+      "head": "e2f543a617bb8caa362f56448e5f170749989c9a",
+      "branch": "perf/weighted-layer-memory-20261116"
+    },
+    {
+      "key": "csr-expanded-capacity",
+      "title": "Keep CSR expanded reconstruction within the latent width",
+      "head": "3d53efaffdf3e101536af36c0b331f3f5ca17621",
+      "branch": "fix/csr-expanded-latent-capacity-20261116"
+    },
+    {
+      "key": "contrastive-tension-stable-dot",
+      "title": "Prevent low-precision dot-product overflow in ContrastiveTensionLoss",
+      "head": "0beec3daeabb3f1428cf830768926fef11b3470c",
+      "branch": "fix/contrastive-tension-dot-precision-20261116"
+    },
+    {
+      "key": "word-embedding-text-buffer",
+      "title": "Reduce transient memory when loading text word embeddings",
+      "head": "dec6a099db9c4b22aff6264161ab200a1c8121ec",
+      "branch": "perf/word-embedding-text-buffer-20261116"
+    },
+    {
+      "key": "rrf-relevance-membership",
+      "title": "Reuse positive-document membership during reciprocal rank fusion evaluation",
+      "head": "e3e41bae376a29b27a9da7c111dfa841e8d43837",
+      "branch": "perf/rrf-relevance-membership-20261116"
+    },
+    {
+      "key": "paraphrase-closure",
+      "title": "Avoid repeated queue entries in paraphrase transitive closure",
+      "head": "6c3835e07bd2f030b014b6b77c851d9560ac0612",
+      "branch": "perf/paraphrase-closure-queue-20261116"
+    },
+    {
+      "key": "distill-teacher",
+      "title": "Fix low-precision teacher probability computation in distillation",
+      "head": "dcf89983f45b9b39e80101f133fa3f6691539264",
+      "branch": "fix/distill-teacher-probability-precision-20261116"
+    },
+    {
+      "key": "contrastive-square",
+      "title": "Prevent half-precision distance-square overflow in contrastive losses",
+      "head": "0fb4f68bc64dc4d5ea9d8f67b4c7c5cf65fa8ca8",
+      "branch": "fix/contrastive-square-precision-20261116"
+    },
+    {
+      "key": "ir-dcg",
+      "title": "Vectorize DCG calculation in retrieval evaluation",
+      "head": "5551601f25d80340bf9505d225270593013f16d9",
+      "branch": "perf/ir-dcg-vectorization-20261116"
+    },
+    {
+      "key": "sparse-static-mask",
+      "title": "Reduce sparse static token-presence storage eightfold",
+      "head": "b7f9b47c9c0edb6d50a9b4c134ee9a235d95c077",
+      "branch": "perf/sparse-static-boolean-mask-20261116"
+    },
+    {
+      "key": "margin-target",
+      "title": "Stabilize raw-score subtraction and target dtypes in MarginMSE",
+      "head": "60e76226e91d8a2648d8c1e9ccefa649288a7fb2",
+      "branch": "fix/margin-distillation-target-precision-20261116"
+    },
+    {
+      "key": "adr-ranks",
+      "title": "Compute tie-aware ADR target ranks without quadratic comparison tensors",
+      "head": "02fe393c18a24d617819a97d3e22d3a1a8d91726",
+      "branch": "perf/adr-target-rank-search-20261116"
+    },
+    {
+      "key": "csr-inverse",
+      "title": "Invert CSR normalization with its stabilized scale",
+      "head": "d6d7b7b50a34378cad386378ec63a3b5720e2bff",
+      "branch": "fix/csr-normalization-inverse-20261116"
+    },
+    {
+      "key": "numpy-strides",
+      "title": "Support reversed NumPy embedding views in scoring and retrieval",
+      "head": "8453b7d3bcd77718d8f8d54fbd884ed599676b73",
+      "branch": "feat/numpy-negative-stride-inputs-20261116"
+    },
+    {
+      "key": "qdrant-batch",
+      "title": "Batch sparse Qdrant queries to reduce HTTP round trips",
+      "head": "aae6927d9b99bc52c1f9f42f650c42d9ddcc49d0",
+      "branch": "perf/qdrant-batched-sparse-queries-20261116"
+    }
+  ]
+}

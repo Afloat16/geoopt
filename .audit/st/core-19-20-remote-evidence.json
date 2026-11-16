@@ -1,0 +1,218 @@
+{
+  "run": 43929490264,
+  "jobs": [
+    {
+      "id": 133517783572,
+      "torch": "2.14.1",
+      "conclusion": "success",
+      "benchmarks": [
+        {
+          "revision": "before",
+          "backend": "http-server",
+          "queries": 32,
+          "corpus": 1000,
+          "vocabulary": 256,
+          "top_k": 5,
+          "median_seconds": 0.05572834099999113,
+          "single_calls": 32,
+          "batch_calls": 0,
+          "results_sha256": "d2e19f7dd7a45e47f1957027bc2631f16df3ed012976ed2c40cabef6ba12797a",
+          "oracle_max_relative_error": 1.2187500653126904e-07
+        },
+        {
+          "revision": "before",
+          "backend": "http-server",
+          "queries": 256,
+          "corpus": 1000,
+          "vocabulary": 256,
+          "top_k": 5,
+          "median_seconds": 0.44403146999999876,
+          "single_calls": 256,
+          "batch_calls": 0,
+          "results_sha256": "e928e03d9537a3c747a7679651625da8e2b6dd53a009f469562de4825e4b80e7",
+          "oracle_max_relative_error": 1.332196983838685e-07
+        },
+        {
+          "revision": "after",
+          "backend": "http-server",
+          "queries": 32,
+          "corpus": 1000,
+          "vocabulary": 256,
+          "top_k": 5,
+          "median_seconds": 0.006367724000028829,
+          "single_calls": 0,
+          "batch_calls": 1,
+          "results_sha256": "eb110ae6a9f46f0036bee0e9003d03ec702a433269c86e81cf0af79e3c95bae8",
+          "oracle_max_relative_error": 1.2187500653126904e-07,
+          "exact_digest_match": false,
+          "changed_scores": 10,
+          "max_score_difference": 2.0000000011677344e-07,
+          "max_relative_score_difference": 1.7367717797554262e-07,
+          "speed_ratio": 8.751689143521112
+        },
+        {
+          "revision": "after",
+          "backend": "http-server",
+          "queries": 256,
+          "corpus": 1000,
+          "vocabulary": 256,
+          "top_k": 5,
+          "median_seconds": 0.04600757999997995,
+          "single_calls": 0,
+          "batch_calls": 4,
+          "results_sha256": "6b84186b82d202b11ffce8821eb3c1568f874b24510106c148a31b327af3e8b1",
+          "oracle_max_relative_error": 1.332196983838685e-07,
+          "exact_digest_match": false,
+          "changed_scores": 102,
+          "max_score_difference": 2.0000000011677344e-07,
+          "max_relative_score_difference": 1.992984355741126e-07,
+          "speed_ratio": 9.651267682416512
+        }
+      ]
+    },
+    {
+      "id": 133517783980,
+      "torch": "2.6.0",
+      "conclusion": "success",
+      "benchmarks": [
+        {
+          "revision": "before",
+          "backend": "http-server",
+          "queries": 32,
+          "corpus": 1000,
+          "vocabulary": 256,
+          "top_k": 5,
+          "median_seconds": 0.04084790399997473,
+          "single_calls": 32,
+          "batch_calls": 0,
+          "results_sha256": "6c0fafc67a5e6199719071773c9790b8f7d4c2d993c6cb46a8206bfa93d23a92",
+          "oracle_max_relative_error": 1.2187500653126904e-07
+        },
+        {
+          "revision": "before",
+          "backend": "http-server",
+          "queries": 256,
+          "corpus": 1000,
+          "vocabulary": 256,
+          "top_k": 5,
+          "median_seconds": 0.3219724059999862,
+          "single_calls": 256,
+          "batch_calls": 0,
+          "results_sha256": "1ade39349accbf48a74aee6a84a6bee5c15ba045b7cfe07d6659f87955038a2e",
+          "oracle_max_relative_error": 1.332196983838685e-07
+        },
+        {
+          "revision": "after",
+          "backend": "http-server",
+          "queries": 32,
+          "corpus": 1000,
+          "vocabulary": 256,
+          "top_k": 5,
+          "median_seconds": 0.0056661209999901985,
+          "single_calls": 0,
+          "batch_calls": 1,
+          "results_sha256": "a4a609a43f916037ffab3a900d44e54159a14b9de64c6edc156a8b622fb0814a",
+          "oracle_max_relative_error": 1.2187500653126904e-07,
+          "exact_digest_match": false,
+          "changed_scores": 9,
+          "max_score_difference": 1.9999999989472883e-07,
+          "max_relative_score_difference": 1.7367717797554262e-07,
+          "speed_ratio": 7.209147845597613
+        },
+        {
+          "revision": "after",
+          "backend": "http-server",
+          "queries": 256,
+          "corpus": 1000,
+          "vocabulary": 256,
+          "top_k": 5,
+          "median_seconds": 0.027674253999975917,
+          "single_calls": 0,
+          "batch_calls": 4,
+          "results_sha256": "ca545f5bc33b391aa3e6ecc0735e16a8de1f17789b631d273ebebc85e54de1e9",
+          "oracle_max_relative_error": 1.332196983838685e-07,
+          "exact_digest_match": false,
+          "changed_scores": 98,
+          "max_score_difference": 2.9999999995311555e-07,
+          "max_relative_score_difference": 1.7367717797554262e-07,
+          "speed_ratio": 11.634366223576123
+        }
+      ]
+    }
+  ],
+  "in_memory_control": {
+    "run": 43930174569,
+    "job": 133520165250,
+    "benchmarks": [
+      {
+        "revision": "before",
+        "backend": "in-memory",
+        "queries": 32,
+        "corpus": 1000,
+        "vocabulary": 256,
+        "top_k": 5,
+        "median_seconds": 0.15168505900000184,
+        "single_calls": 32,
+        "batch_calls": 0,
+        "results_sha256": "d14e8de8cb7ad8d0f7614cfe65cdf9f8c96a906ce02ed23693af1f15d50327c1",
+        "oracle_max_relative_error": 5.599466579297996e-08
+      },
+      {
+        "revision": "before",
+        "backend": "in-memory",
+        "queries": 256,
+        "corpus": 1000,
+        "vocabulary": 256,
+        "top_k": 5,
+        "median_seconds": 1.225299855000003,
+        "single_calls": 256,
+        "batch_calls": 0,
+        "results_sha256": "483123027fbb485ae209ca3d959add36fc3ba36fdc472e87b8f88e212a56c1bd",
+        "oracle_max_relative_error": 5.855665619058925e-08
+      },
+      {
+        "revision": "after",
+        "backend": "in-memory",
+        "queries": 32,
+        "corpus": 1000,
+        "vocabulary": 256,
+        "top_k": 5,
+        "median_seconds": 0.15520977100000266,
+        "single_calls": 0,
+        "batch_calls": 1,
+        "results_sha256": "d14e8de8cb7ad8d0f7614cfe65cdf9f8c96a906ce02ed23693af1f15d50327c1",
+        "oracle_max_relative_error": 5.599466579297996e-08,
+        "exact_digest_match": true,
+        "changed_scores": 0,
+        "max_score_difference": 0.0,
+        "max_relative_score_difference": 0.0,
+        "speed_ratio": 0.9772906565270253
+      },
+      {
+        "revision": "after",
+        "backend": "in-memory",
+        "queries": 256,
+        "corpus": 1000,
+        "vocabulary": 256,
+        "top_k": 5,
+        "median_seconds": 1.244301157999999,
+        "single_calls": 0,
+        "batch_calls": 4,
+        "results_sha256": "483123027fbb485ae209ca3d959add36fc3ba36fdc472e87b8f88e212a56c1bd",
+        "oracle_max_relative_error": 5.855665619058925e-08,
+        "exact_digest_match": true,
+        "changed_scores": 0,
+        "max_score_difference": 0.0,
+        "max_relative_score_difference": 0.0,
+        "speed_ratio": 0.9847293375258628
+      }
+    ]
+  },
+  "numpy": {
+    "run": 43928364207,
+    "jobs": [
+      133513802911,
+      133513802961
+    ]
+  }
+}
