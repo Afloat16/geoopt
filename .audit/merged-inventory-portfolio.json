@@ -2,9 +2,9 @@
   "checked_at": "2026-11-16T12:54:17.779Z",
   "scope": "new contributions prepared by merged_inventory agent in current task",
   "counts": {
-    "published": 48,
+    "published": 50,
     "merged": 0,
-    "open": 48
+    "open": 50
   },
   "excluded_duplicate": {
     "repo": "geomstats/geomstats",
@@ -4087,8 +4087,9 @@
       "api_verified": true,
       "body_verified": true,
       "official_ci_diagnosis": {
-        "summary": "Both functional jobs pass. Formatting fails before checking style while installing locked SciPy 1.16.3 on Python 3.15.2: OpenBLAS dependency not found. Same failure reproduced on exact base; independent frozen Python 3.11 complete formatting/lint/build/tests pass.",
-        "exact_base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "formatting": "Dependency installation selects Python 3.15.2 and locked SciPy 1.16.3 source build fails for missing OpenBLAS before style checks; exact base replay has same failure.",
+        "base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "functional_builds": "Both locked and latest sklearn succeeded",
         "notes_published": false
       }
     },
@@ -4104,7 +4105,6 @@
       "maintainer_can_modify": false,
       "created_at": "2026-11-16T13:38:43Z",
       "official_checks": {
-        "number": 1315,
         "total": 3,
         "checks": [
           {
@@ -4116,17 +4116,17 @@
           },
           {
             "name": "build-linux",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "url": "https://github.com/rasbt/mlxtend/actions/runs/43881853416/job/133349504829",
-            "completed_at": null
+            "completed_at": "2026-11-16T14:07:31Z"
           },
           {
             "name": "build-linux-latest-sklearn",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "url": "https://github.com/rasbt/mlxtend/actions/runs/43881853416/job/133349504506",
-            "completed_at": null
+            "completed_at": "2026-11-16T14:06:42Z"
           }
         ]
       },
@@ -4152,6 +4152,12 @@
         "ui_verified": true,
         "actual_state": "open",
         "merged_at": null
+      },
+      "official_ci_diagnosis": {
+        "formatting": "Dependency installation selects Python 3.15.2 and locked SciPy 1.16.3 source build fails for missing OpenBLAS before style checks; exact base replay has same failure.",
+        "base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "functional_builds": "Both locked and latest sklearn succeeded",
+        "notes_published": false
       }
     },
     {
@@ -4166,29 +4172,28 @@
       "maintainer_can_modify": false,
       "created_at": "2026-11-16T14:04:51Z",
       "official_checks": {
-        "number": 1320,
         "total": 3,
         "checks": [
           {
             "name": "build-linux-latest-sklearn",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "url": "https://github.com/rasbt/mlxtend/actions/runs/43882055441/job/133350222657",
-            "completed_at": null
+            "completed_at": "2026-11-16T14:06:59Z"
           },
           {
             "name": "formatting",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "failure",
             "url": "https://github.com/rasbt/mlxtend/actions/runs/43882055545/job/133350222357",
-            "completed_at": null
+            "completed_at": "2026-11-16T14:07:18Z"
           },
           {
             "name": "build-linux",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "url": "https://github.com/rasbt/mlxtend/actions/runs/43882055441/job/133350222157",
-            "completed_at": null
+            "completed_at": "2026-11-16T14:08:16Z"
           }
         ]
       },
@@ -4214,7 +4219,13 @@
           "failures": {}
         }
       },
-      "submission_verified": true
+      "submission_verified": true,
+      "official_ci_diagnosis": {
+        "formatting": "Dependency installation selects Python 3.15.2 and locked SciPy 1.16.3 source build fails for missing OpenBLAS before style checks; exact base replay has same failure.",
+        "base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "functional_builds": "Both locked and latest sklearn succeeded",
+        "notes_published": false
+      }
     },
     {
       "repo": "rasbt/mlxtend",
@@ -4228,29 +4239,28 @@
       "maintainer_can_modify": false,
       "created_at": "2026-11-16T14:05:18Z",
       "official_checks": {
-        "number": 1321,
         "total": 3,
         "checks": [
           {
             "name": "build-linux",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "url": "https://github.com/rasbt/mlxtend/actions/runs/43882130013/job/133350482894",
-            "completed_at": null
+            "completed_at": "2026-11-16T14:09:17Z"
           },
           {
             "name": "formatting",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "failure",
             "url": "https://github.com/rasbt/mlxtend/actions/runs/43882130199/job/133350482439",
-            "completed_at": null
+            "completed_at": "2026-11-16T14:08:07Z"
           },
           {
             "name": "build-linux-latest-sklearn",
-            "status": "in_progress",
-            "conclusion": null,
+            "status": "completed",
+            "conclusion": "success",
             "url": "https://github.com/rasbt/mlxtend/actions/runs/43882130013/job/133350482422",
-            "completed_at": null
+            "completed_at": "2026-11-16T14:08:26Z"
           }
         ]
       },
@@ -4276,7 +4286,83 @@
           "failures": {}
         }
       },
-      "submission_verified": true
+      "submission_verified": true,
+      "official_ci_diagnosis": {
+        "formatting": "Dependency installation selects Python 3.15.2 and locked SciPy 1.16.3 source build fails for missing OpenBLAS before style checks; exact base replay has same failure.",
+        "base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
+        "functional_builds": "Both locked and latest sklearn succeeded",
+        "notes_published": false
+      }
+    },
+    {
+      "repo": "rasbt/mlxtend",
+      "number": 1322,
+      "url": "https://github.com/rasbt/mlxtend/pull/1322",
+      "title": "Use independent estimator fits in paired statistical comparisons",
+      "state": "open",
+      "merged_at": null,
+      "head": "6e9f018b0c619999a3822856ce655ca701d47411",
+      "head_ref": "fix/paired-fresh-estimators-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T14:15:09Z",
+      "validation": {
+        "run_id": 43881707255,
+        "job_id": 133348986775,
+        "baseline_focused": {
+          "total": 28,
+          "failed": 23
+        },
+        "candidate_focused": {
+          "total": 41,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "candidate_full": {
+          "total": 771,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        }
+      },
+      "ui_verified": true,
+      "api_verified": true,
+      "body_verified": true
+    },
+    {
+      "repo": "rasbt/mlxtend",
+      "number": 1324,
+      "url": "https://github.com/rasbt/mlxtend/pull/1324",
+      "title": "Keep confusion matrix labels and colorbars on the supplied axes",
+      "state": "open",
+      "merged_at": null,
+      "head": "35a2bcd0bb6ee66be692e2e81369078259d32236",
+      "head_ref": "fix/confusion-matrix-axes-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T14:20:12Z",
+      "validation": {
+        "run_id": 43883373059,
+        "job_id": 133354886852,
+        "baseline_focused": {
+          "total": 15,
+          "failed": 12
+        },
+        "candidate_focused": {
+          "total": 15,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "candidate_full": {
+          "total": 743,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        }
+      },
+      "ui_verified": true,
+      "api_verified": true,
+      "body_verified": true
     }
   ],
   "remote_checkpoints": {
@@ -4295,5 +4381,5 @@
     }
   },
   "ci_diagnosis_updated_at": "2026-11-16T13:15:57.465Z",
-  "last_submission_check_at": "2026-11-16T14:06:41.895Z"
+  "last_submission_check_at": "2026-11-16T14:20:42.516Z"
 }
