@@ -1,0 +1,84 @@
+name: Validate MarginMSE on PyTorch 2.14 with its observed baseline
+'on':
+  push:
+    branches:
+    - validation/st-margin-214-followup-20261116
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - torch: 2.14.1
+          candidate: margin-target
+          head: 60e76226e91d8a2648d8c1e9ccefa649288a7fb2
+          source: sentence_transformers/sentence_transformer/losses/margin_mse.py sentence_transformers/multi_vector_encoder/losses/margin_mse.py
+            sentence_transformers/cross_encoder/losses/margin_mse.py
+          test: tests/sentence_transformer/losses/test_margin_target_precision.py
+          adjacent: tests/multi_vector_encoder/losses/test_misc.py tests/cross_encoder/losses/test_misc.py
+          failed: 4
+          passed: 61
+          benchmark: ''
+    defaults:
+      run:
+        working-directory: project
+    env:
+      OMP_NUM_THREADS: 1
+      OPENBLAS_NUM_THREADS: 1
+      PYTHONPATH: .
+      ST_BASE: 9ac7fdb4edce2f1dbc171b036ecbb60383653e74
+      ST_CANDIDATE: ${{ matrix.head }}
+      ST_SOURCE: ${{ matrix.source }}
+      ST_TEST: ${{ matrix.test }}
+      ST_FAILED: ${{ matrix.failed }}
+      ST_PASSED: ${{ matrix.passed }}
+      ST_ADJACENT: ${{ matrix.adjacent }}
+      ST_BENCHMARK: ${{ matrix.benchmark }}
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        path: harness
+        persist-credentials: false
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        repository: Afloat16/sentence-transformers
+        ref: ${{ matrix.head }}
+        path: project
+        fetch-depth: 2
+        persist-credentials: false
+    - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+      with:
+        python-version: '3.12'
+    - name: Install CPU dependencies
+      run: 'python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+
+        python -m pip install numpy==2.3.5 scipy==1.17.0 scikit-learn==1.8.0 transformers==5.23.0 huggingface-hub==2.4.0 datasets==5.2.0
+        accelerate==1.15.0 pytest==9.2.0 pytest-env pytest-subtests pre-commit socksio pillow
+
+        python -m pip install -e . --no-deps
+
+        '
+    - name: Verify exact-base behavior
+      run: "python - <<'PYTEST'\nimport os, subprocess, sys\nfrom pathlib import Path\nassert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()\
+        \ == os.environ['ST_CANDIDATE']\nfor path in os.environ['ST_SOURCE'].split():\n    Path(path).write_bytes(subprocess.check_output(['git','show',os.environ['ST_BASE']+':'+path]))\n\
+        result = subprocess.run([sys.executable,'-m','pytest',os.environ['ST_TEST'],'-q','--tb=short'], text=True, stdout=subprocess.PIPE,\
+        \ stderr=subprocess.STDOUT)\nprint(result.stdout)\nfailed = int(os.environ['ST_FAILED'])\nassert result.returncode == (1 if\
+        \ failed else 0)\nassert (str(failed)+' failed, ' if failed else '')+os.environ['ST_PASSED']+' passed' in result.stdout\nPYTEST\n"
+    - name: Verify candidate and adjacent tests
+      run: 'git restore --source="$ST_CANDIDATE" -- $ST_SOURCE
+
+        python -m pytest "$ST_TEST" $ST_ADJACENT -q --tb=short
+
+        '
+    - name: Check repository style
+      run: 'pre-commit run --all-files
+
+        git diff --exit-code
+
+        git diff --check
+
+        '

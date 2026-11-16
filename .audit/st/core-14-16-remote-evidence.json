@@ -1,0 +1,928 @@
+{
+  "run_id": 43921700020,
+  "url": "https://github.com/Afloat16/geoopt/actions/runs/43921700020",
+  "jobs": [
+    {
+      "job_id": 133490382780,
+      "url": "https://github.com/Afloat16/geoopt/actions/runs/43921700020/job/133490382780",
+      "summary": [
+        "2026-11-16T17:46:36.0852185Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0859720Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0867759Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0875168Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0883313Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0890833Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0898342Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0905081Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0910667Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0915719Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0920572Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0925526Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0930078Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0935043Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0939748Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0944458Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0946030Z E   assert 112 == 14",
+        "2026-11-16T17:46:36.0946350Z E    +  where 112 = <built-in method nbytes of torch.storage.UntypedStorage object at 0x790ba95abf10>()",
+        "2026-11-16T17:46:36.0947435Z E    +    where <built-in method nbytes of torch.storage.UntypedStorage object at 0x790ba95abf10> =  0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 1\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 1\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n ...0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n[torch.storage.UntypedStorage(device=cpu) of size 112].nbytes",
+        "2026-11-16T17:46:36.0948927Z E    +      where  0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 1\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 1\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n ...0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n[torch.storage.UntypedStorage(device=cpu) of size 112] = <built-in method untyped_storage of Tensor object at 0x790ba931f7a0>()",
+        "2026-11-16T17:46:36.0949932Z E    +        where <built-in method untyped_storage of Tensor object at 0x790ba931f7a0> = tensor([[0, 0, 1, 1, 0, 0, 0],\\n        [0, 0, 0, 0, 1, 0, 0]]).untyped_storage",
+        "2026-11-16T17:46:36.0951478Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[False-mask_dtype1-dtype0] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0952590Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[False-mask_dtype1-dtype1] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0953666Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[False-mask_dtype1-dtype2] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0954732Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[False-mask_dtype1-dtype3] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0955796Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[False-mask_dtype2-dtype0] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0956864Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[False-mask_dtype2-dtype1] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0957928Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[False-mask_dtype2-dtype2] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0958989Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[False-mask_dtype2-dtype3] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0960192Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[True-mask_dtype1-dtype0] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0961598Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[True-mask_dtype1-dtype1] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0962899Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[True-mask_dtype1-dtype2] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0964126Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[True-mask_dtype1-dtype3] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0965434Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[True-mask_dtype2-dtype0] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0966679Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[True-mask_dtype2-dtype1] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0967847Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[True-mask_dtype2-dtype2] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0969040Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[True-mask_dtype2-dtype3] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:36.0970206Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_trainable_presence_mask_uses_one_byte_per_entry - assert 112 == 14",
+        "2026-11-16T17:46:36.0984264Z 17 failed, 9 passed in 0.46s",
+        "2026-11-16T17:46:53.8067748Z 31 passed in 4.79s",
+        "2026-11-16T17:47:11.3562622Z ruff check...............................................................Passed",
+        "2026-11-16T17:47:11.5610782Z ruff format..............................................................Passed",
+        "2026-11-16T17:47:12.7757719Z typos....................................................................Passed"
+      ],
+      "benchmark": [
+        {
+          "revision": "before",
+          "batch": 128,
+          "vocabulary": 32768,
+          "median_seconds": 0.04696148699997593,
+          "saved_forward_storage_bytes": 33554432,
+          "output_sha256": "9ccb4253c5f16ee20e578e84508192be39bee2714d267d9c44c848d82dd8e00d",
+          "gradient_sha256": "e20204da979a35fc4f9f8cac24c07ed7c012cf152e8bfb79ab27b0ba0d9b9bee"
+        },
+        {
+          "revision": "before",
+          "batch": 512,
+          "vocabulary": 32768,
+          "median_seconds": 0.35945880700001,
+          "saved_forward_storage_bytes": 134217728,
+          "output_sha256": "938f6d3a051a88111c4e8c100bcbe3d1ae68c67c58b49668cdd844e10b6ab2aa",
+          "gradient_sha256": "f500045d4c0e5ef397c7b8207e4798891577bad0c09026b57729fa2415c4fda1"
+        },
+        {
+          "revision": "after",
+          "batch": 128,
+          "vocabulary": 32768,
+          "median_seconds": 0.04500683399999161,
+          "saved_forward_storage_bytes": 4194304,
+          "output_sha256": "9ccb4253c5f16ee20e578e84508192be39bee2714d267d9c44c848d82dd8e00d",
+          "gradient_sha256": "e20204da979a35fc4f9f8cac24c07ed7c012cf152e8bfb79ab27b0ba0d9b9bee",
+          "speed_ratio": 1.043430137742741
+        },
+        {
+          "revision": "after",
+          "batch": 512,
+          "vocabulary": 32768,
+          "median_seconds": 0.3070573620000232,
+          "saved_forward_storage_bytes": 16777216,
+          "output_sha256": "938f6d3a051a88111c4e8c100bcbe3d1ae68c67c58b49668cdd844e10b6ab2aa",
+          "gradient_sha256": "f500045d4c0e5ef397c7b8207e4798891577bad0c09026b57729fa2415c4fda1",
+          "speed_ratio": 1.1706568592222284
+        }
+      ]
+    },
+    {
+      "job_id": 133490383304,
+      "url": "https://github.com/Afloat16/geoopt/actions/runs/43921700020/job/133490383304",
+      "summary": [
+        "2026-11-16T17:46:37.2210056Z E   assert tensor(False)",
+        "2026-11-16T17:46:37.2210734Z E    +  where tensor(False) = <built-in method isfinite of type object at 0x752a9dde1300>(tensor(inf, grad_fn=<MseLossBackward0>))",
+        "2026-11-16T17:46:37.2211756Z E    +    where <built-in method isfinite of type object at 0x752a9dde1300> = torch.isfinite",
+        "2026-11-16T17:46:37.2214949Z E   assert tensor(False)",
+        "2026-11-16T17:46:37.2215624Z E    +  where tensor(False) = <built-in method isfinite of type object at 0x752a9dde1300>(tensor(inf, grad_fn=<MseLossBackward0>))",
+        "2026-11-16T17:46:37.2216547Z E    +    where <built-in method isfinite of type object at 0x752a9dde1300> = torch.isfinite",
+        "2026-11-16T17:46:37.2219504Z E   assert tensor(False)",
+        "2026-11-16T17:46:37.2220136Z E    +  where tensor(False) = <built-in method isfinite of type object at 0x752a9dde1300>(tensor(inf, grad_fn=<MseLossBackward0>))",
+        "2026-11-16T17:46:37.2221024Z E    +    where <built-in method isfinite of type object at 0x752a9dde1300> = torch.isfinite",
+        "2026-11-16T17:46:37.2223700Z E   assert tensor(False)",
+        "2026-11-16T17:46:37.2224291Z E    +  where tensor(False) = <built-in method isfinite of type object at 0x752a9dde1300>(tensor(inf, grad_fn=<MseLossBackward0>))",
+        "2026-11-16T17:46:37.2225111Z E    +    where <built-in method isfinite of type object at 0x752a9dde1300> = torch.isfinite",
+        "2026-11-16T17:46:37.2226745Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[40000.0-True-dtype0-dense] - assert tensor(False)",
+        "2026-11-16T17:46:37.2229965Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[40000.0-True-dtype0-sparse] - assert tensor(False)",
+        "2026-11-16T17:46:37.2233463Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[40000.0-True-dtype0-multi_vector] - assert tensor(False)",
+        "2026-11-16T17:46:37.2236748Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[40000.0-True-dtype0-cross_encoder] - assert tensor(False)",
+        "2026-11-16T17:46:37.2239421Z 4 failed, 61 passed in 0.20s"
+      ],
+      "benchmark": []
+    },
+    {
+      "job_id": 133490383370,
+      "url": "https://github.com/Afloat16/geoopt/actions/runs/43921700020/job/133490383370",
+      "summary": [
+        "2026-11-16T17:46:38.7378680Z 85 passed in 0.14s",
+        "2026-11-16T17:46:59.8557037Z 103 passed, 2 skipped, 1 warning in 8.42s",
+        "2026-11-16T17:47:16.2054417Z ruff check...............................................................Passed",
+        "2026-11-16T17:47:16.4132581Z ruff format..............................................................Passed",
+        "2026-11-16T17:47:17.6445659Z typos....................................................................Passed"
+      ],
+      "benchmark": [
+        {
+          "revision": "before",
+          "queries": 200,
+          "documents_per_query": 100,
+          "cutoffs": [
+            1,
+            3,
+            5,
+            10,
+            20,
+            50,
+            100
+          ],
+          "median_seconds": 0.06623803699999087,
+          "metrics": {
+            "accuracy@k": {
+              "1": 0.235,
+              "3": 0.53,
+              "5": 0.7,
+              "10": 0.925,
+              "20": 0.995,
+              "50": 1,
+              "100": 1
+            },
+            "precision@k": {
+              "1": 0.235,
+              "3": 0.22833333333333336,
+              "5": 0.21900000000000003,
+              "10": 0.215,
+              "20": 0.204,
+              "50": 0.1996,
+              "100": 0.2
+            },
+            "recall@k": {
+              "1": 0.01175,
+              "3": 0.034249999999999996,
+              "5": 0.05475000000000001,
+              "10": 0.1075,
+              "20": 0.204,
+              "50": 0.499,
+              "100": 1
+            },
+            "ndcg@k": {
+              "1": 0.235,
+              "3": 0.22815672356136538,
+              "5": 0.22210756126145131,
+              "10": 0.2181889322333697,
+              "20": 0.2095764132514169,
+              "50": 0.3733943431185315,
+              "100": 0.6021942974245641
+            },
+            "mrr@k": {
+              "1": 0.235,
+              "3": 0.3566666666666667,
+              "5": 0.3956666666666668,
+              "10": 0.4259761904761906,
+              "20": 0.43148707052751184,
+              "50": 0.4316954038608452,
+              "100": 0.4316954038608452
+            },
+            "map@k": {
+              "1": 0.235,
+              "3": 0.1627777777777778,
+              "5": 0.13151666666666667,
+              "10": 0.09828234126984127,
+              "20": 0.07368371563292228,
+              "50": 0.13786629855485735,
+              "100": 0.23951198956350872
+            }
+          }
+        },
+        {
+          "revision": "before",
+          "queries": 200,
+          "documents_per_query": 1000,
+          "cutoffs": [
+            1,
+            3,
+            5,
+            10,
+            20,
+            50,
+            100,
+            500,
+            1000
+          ],
+          "median_seconds": 0.46027045400001043,
+          "metrics": {
+            "accuracy@k": {
+              "1": 0.015,
+              "3": 0.035,
+              "5": 0.075,
+              "10": 0.175,
+              "20": 0.32,
+              "50": 0.63,
+              "100": 0.85,
+              "500": 1,
+              "1000": 1
+            },
+            "precision@k": {
+              "1": 0.015,
+              "3": 0.011666666666666665,
+              "5": 0.015,
+              "10": 0.019,
+              "20": 0.019250000000000003,
+              "50": 0.019799999999999998,
+              "100": 0.0183,
+              "500": 0.01931,
+              "1000": 0.019999999999999997
+            },
+            "recall@k": {
+              "1": 0.0007500000000000001,
+              "3": 0.0017500000000000003,
+              "5": 0.00375,
+              "10": 0.0095,
+              "20": 0.019250000000000003,
+              "50": 0.049499999999999995,
+              "100": 0.0915,
+              "500": 0.48275000000000007,
+              "1000": 1
+            },
+            "ndcg@k": {
+              "1": 0.015,
+              "3": 0.012653606369886217,
+              "5": 0.014913515195362633,
+              "10": 0.017643154466981167,
+              "20": 0.01831945611488359,
+              "50": 0.03501177896977512,
+              "100": 0.054196542202622794,
+              "500": 0.19243741564292877,
+              "1000": 0.34680509031498
+            },
+            "mrr@k": {
+              "1": 0.015,
+              "3": 0.024166666666666666,
+              "5": 0.033916666666666664,
+              "10": 0.04662301587301587,
+              "20": 0.0564692768316994,
+              "50": 0.06593119392375715,
+              "100": 0.06910901197582907,
+              "500": 0.0702700134969609,
+              "1000": 0.0702700134969609
+            },
+            "map@k": {
+              "1": 0.015,
+              "3": 0.008055555555555555,
+              "5": 0.006783333333333335,
+              "10": 0.004995634920634921,
+              "20": 0.0033352852503104047,
+              "50": 0.004802985648644373,
+              "100": 0.006091891614169153,
+              "500": 0.014872101875195354,
+              "1000": 0.025267051812812663
+            }
+          }
+        },
+        {
+          "revision": "after",
+          "queries": 200,
+          "documents_per_query": 100,
+          "cutoffs": [
+            1,
+            3,
+            5,
+            10,
+            20,
+            50,
+            100
+          ],
+          "median_seconds": 0.026746099999996886,
+          "metrics": {
+            "accuracy@k": {
+              "1": 0.235,
+              "3": 0.53,
+              "5": 0.7,
+              "10": 0.925,
+              "20": 0.995,
+              "50": 1,
+              "100": 1
+            },
+            "precision@k": {
+              "1": 0.235,
+              "3": 0.22833333333333336,
+              "5": 0.21900000000000003,
+              "10": 0.215,
+              "20": 0.204,
+              "50": 0.1996,
+              "100": 0.2
+            },
+            "recall@k": {
+              "1": 0.01175,
+              "3": 0.034249999999999996,
+              "5": 0.05475000000000001,
+              "10": 0.1075,
+              "20": 0.204,
+              "50": 0.499,
+              "100": 1
+            },
+            "ndcg@k": {
+              "1": 0.235,
+              "3": 0.22815672356136538,
+              "5": 0.22210756126145131,
+              "10": 0.21818893223336971,
+              "20": 0.20957641325141682,
+              "50": 0.37339434311853137,
+              "100": 0.6021942974245641
+            },
+            "mrr@k": {
+              "1": 0.235,
+              "3": 0.3566666666666667,
+              "5": 0.3956666666666668,
+              "10": 0.4259761904761906,
+              "20": 0.43148707052751184,
+              "50": 0.4316954038608452,
+              "100": 0.4316954038608452
+            },
+            "map@k": {
+              "1": 0.235,
+              "3": 0.1627777777777778,
+              "5": 0.13151666666666667,
+              "10": 0.09828234126984127,
+              "20": 0.07368371563292228,
+              "50": 0.13786629855485735,
+              "100": 0.23951198956350872
+            }
+          },
+          "speed_ratio": 2.4765493660757487
+        },
+        {
+          "revision": "after",
+          "queries": 200,
+          "documents_per_query": 1000,
+          "cutoffs": [
+            1,
+            3,
+            5,
+            10,
+            20,
+            50,
+            100,
+            500,
+            1000
+          ],
+          "median_seconds": 0.12689425399999266,
+          "metrics": {
+            "accuracy@k": {
+              "1": 0.015,
+              "3": 0.035,
+              "5": 0.075,
+              "10": 0.175,
+              "20": 0.32,
+              "50": 0.63,
+              "100": 0.85,
+              "500": 1,
+              "1000": 1
+            },
+            "precision@k": {
+              "1": 0.015,
+              "3": 0.011666666666666665,
+              "5": 0.015,
+              "10": 0.019,
+              "20": 0.019250000000000003,
+              "50": 0.019799999999999998,
+              "100": 0.0183,
+              "500": 0.01931,
+              "1000": 0.019999999999999997
+            },
+            "recall@k": {
+              "1": 0.0007500000000000001,
+              "3": 0.0017500000000000003,
+              "5": 0.00375,
+              "10": 0.0095,
+              "20": 0.019250000000000003,
+              "50": 0.049499999999999995,
+              "100": 0.0915,
+              "500": 0.48275000000000007,
+              "1000": 1
+            },
+            "ndcg@k": {
+              "1": 0.015,
+              "3": 0.012653606369886217,
+              "5": 0.014913515195362633,
+              "10": 0.01764315446698117,
+              "20": 0.018319456114883587,
+              "50": 0.035011778969775115,
+              "100": 0.054196542202622794,
+              "500": 0.19243741564292877,
+              "1000": 0.34680509031498
+            },
+            "mrr@k": {
+              "1": 0.015,
+              "3": 0.024166666666666666,
+              "5": 0.033916666666666664,
+              "10": 0.04662301587301587,
+              "20": 0.0564692768316994,
+              "50": 0.06593119392375715,
+              "100": 0.06910901197582907,
+              "500": 0.0702700134969609,
+              "1000": 0.0702700134969609
+            },
+            "map@k": {
+              "1": 0.015,
+              "3": 0.008055555555555555,
+              "5": 0.006783333333333335,
+              "10": 0.004995634920634921,
+              "20": 0.0033352852503104047,
+              "50": 0.004802985648644373,
+              "100": 0.006091891614169153,
+              "500": 0.014872101875195354,
+              "1000": 0.025267051812812663
+            }
+          },
+          "speed_ratio": 3.6271969730011344
+        }
+      ]
+    },
+    {
+      "job_id": 133490383390,
+      "url": "https://github.com/Afloat16/geoopt/actions/runs/43921700020/job/133490383390",
+      "summary": [
+        "2026-11-16T17:46:31.5220867Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5226628Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5232009Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5237513Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5242885Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5248232Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5253933Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5259701Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5266093Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5271434Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5277117Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5282323Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5287819Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5293425Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5298984Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5304508Z E   RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5306311Z E   assert 112 == 14",
+        "2026-11-16T17:46:31.5306699Z E    +  where 112 = <built-in method nbytes of torch.storage.UntypedStorage object at 0x7effe492d130>()",
+        "2026-11-16T17:46:31.5307705Z E    +    where <built-in method nbytes of torch.storage.UntypedStorage object at 0x7effe492d130> =  0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 1\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 1\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n ...0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n[torch.storage.UntypedStorage(device=cpu) of size 112].nbytes",
+        "2026-11-16T17:46:31.5309067Z E    +      where  0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 1\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 1\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n ...0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n 0\\n[torch.storage.UntypedStorage(device=cpu) of size 112] = <built-in method untyped_storage of Tensor object at 0x7effe49126c0>()",
+        "2026-11-16T17:46:31.5310076Z E    +        where <built-in method untyped_storage of Tensor object at 0x7effe49126c0> = tensor([[0, 0, 1, 1, 0, 0, 0],\\n        [0, 0, 0, 0, 1, 0, 0]]).untyped_storage",
+        "2026-11-16T17:46:31.5311516Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[False-mask_dtype1-dtype0] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5312617Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[False-mask_dtype1-dtype1] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5313831Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[False-mask_dtype1-dtype2] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5314944Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[False-mask_dtype1-dtype3] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5316074Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[False-mask_dtype2-dtype0] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5317182Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[False-mask_dtype2-dtype1] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5318251Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[False-mask_dtype2-dtype2] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5319317Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[False-mask_dtype2-dtype3] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5320437Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[True-mask_dtype1-dtype0] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5321506Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[True-mask_dtype1-dtype1] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5322702Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[True-mask_dtype1-dtype2] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5323917Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[True-mask_dtype1-dtype3] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5325062Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[True-mask_dtype2-dtype0] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5326138Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[True-mask_dtype2-dtype1] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5327205Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[True-mask_dtype2-dtype2] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5328258Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_sparse_static_presence_matches_dense_reference[True-mask_dtype2-dtype3] - RuntimeError: scatter(): Expected self.dtype to be equal to src.dtype",
+        "2026-11-16T17:46:31.5329159Z FAILED tests/sparse_encoder/modules/test_sparse_static_mask_storage.py::test_trainable_presence_mask_uses_one_byte_per_entry - assert 112 == 14",
+        "2026-11-16T17:46:31.5333622Z 17 failed, 9 passed in 0.52s",
+        "2026-11-16T17:46:45.1990524Z 31 passed in 3.49s",
+        "2026-11-16T17:47:01.0047992Z ruff check...............................................................Passed",
+        "2026-11-16T17:47:01.1766990Z ruff format..............................................................Passed",
+        "2026-11-16T17:47:02.2387739Z typos....................................................................Passed"
+      ],
+      "benchmark": [
+        {
+          "revision": "before",
+          "batch": 128,
+          "vocabulary": 32768,
+          "median_seconds": 0.03830195400000491,
+          "saved_forward_storage_bytes": 33554432,
+          "output_sha256": "9ccb4253c5f16ee20e578e84508192be39bee2714d267d9c44c848d82dd8e00d",
+          "gradient_sha256": "e20204da979a35fc4f9f8cac24c07ed7c012cf152e8bfb79ab27b0ba0d9b9bee"
+        },
+        {
+          "revision": "before",
+          "batch": 512,
+          "vocabulary": 32768,
+          "median_seconds": 0.2907617900000048,
+          "saved_forward_storage_bytes": 134217728,
+          "output_sha256": "938f6d3a051a88111c4e8c100bcbe3d1ae68c67c58b49668cdd844e10b6ab2aa",
+          "gradient_sha256": "f500045d4c0e5ef397c7b8207e4798891577bad0c09026b57729fa2415c4fda1"
+        },
+        {
+          "revision": "after",
+          "batch": 128,
+          "vocabulary": 32768,
+          "median_seconds": 0.03542969100000448,
+          "saved_forward_storage_bytes": 4194304,
+          "output_sha256": "9ccb4253c5f16ee20e578e84508192be39bee2714d267d9c44c848d82dd8e00d",
+          "gradient_sha256": "e20204da979a35fc4f9f8cac24c07ed7c012cf152e8bfb79ab27b0ba0d9b9bee",
+          "speed_ratio": 1.0810693776584184
+        },
+        {
+          "revision": "after",
+          "batch": 512,
+          "vocabulary": 32768,
+          "median_seconds": 0.25261444800000277,
+          "saved_forward_storage_bytes": 16777216,
+          "output_sha256": "938f6d3a051a88111c4e8c100bcbe3d1ae68c67c58b49668cdd844e10b6ab2aa",
+          "gradient_sha256": "f500045d4c0e5ef397c7b8207e4798891577bad0c09026b57729fa2415c4fda1",
+          "speed_ratio": 1.1510101354139555
+        }
+      ]
+    },
+    {
+      "job_id": 133490383483,
+      "url": "https://github.com/Afloat16/geoopt/actions/runs/43921700020/job/133490383483",
+      "summary": [
+        "2026-11-16T17:46:44.5212168Z E   RuntimeError: Found dtype Half but expected Float",
+        "2026-11-16T17:46:44.5216815Z E   RuntimeError: Found dtype Half but expected Float",
+        "2026-11-16T17:46:44.5221012Z E   RuntimeError: Found dtype BFloat16 but expected Float",
+        "2026-11-16T17:46:44.5225294Z E   RuntimeError: Found dtype BFloat16 but expected Float",
+        "2026-11-16T17:46:44.5229627Z E   RuntimeError: Found dtype Float but expected Double",
+        "2026-11-16T17:46:44.5233915Z E   RuntimeError: Found dtype Half but expected Float",
+        "2026-11-16T17:46:44.5244408Z E   RuntimeError: Found dtype Half but expected Float",
+        "2026-11-16T17:46:44.5249033Z E   RuntimeError: Found dtype BFloat16 but expected Float",
+        "2026-11-16T17:46:44.5254529Z E   RuntimeError: Found dtype BFloat16 but expected Float",
+        "2026-11-16T17:46:44.5259595Z E   RuntimeError: Found dtype Float but expected Double",
+        "2026-11-16T17:46:44.5263789Z E   RuntimeError: Found dtype Half but expected Float",
+        "2026-11-16T17:46:44.5268077Z E   RuntimeError: Found dtype Half but expected Float",
+        "2026-11-16T17:46:44.5272639Z E   RuntimeError: Found dtype BFloat16 but expected Float",
+        "2026-11-16T17:46:44.5277117Z E   RuntimeError: Found dtype BFloat16 but expected Float",
+        "2026-11-16T17:46:44.5281404Z E   RuntimeError: Found dtype Float but expected Double",
+        "2026-11-16T17:46:44.5282933Z E   assert tensor(False)",
+        "2026-11-16T17:46:44.5283331Z E    +  where tensor(False) = <built-in method isfinite of type object at 0x75bd0fd3ecc0>(tensor(inf, grad_fn=<MseLossBackward0>))",
+        "2026-11-16T17:46:44.5283858Z E    +    where <built-in method isfinite of type object at 0x75bd0fd3ecc0> = torch.isfinite",
+        "2026-11-16T17:46:44.5285666Z E   assert tensor(False)",
+        "2026-11-16T17:46:44.5286045Z E    +  where tensor(False) = <built-in method isfinite of type object at 0x75bd0fd3ecc0>(tensor(inf, grad_fn=<MseLossBackward0>))",
+        "2026-11-16T17:46:44.5286695Z E    +    where <built-in method isfinite of type object at 0x75bd0fd3ecc0> = torch.isfinite",
+        "2026-11-16T17:46:44.5288339Z E   assert tensor(False)",
+        "2026-11-16T17:46:44.5288716Z E    +  where tensor(False) = <built-in method isfinite of type object at 0x75bd0fd3ecc0>(tensor(inf, grad_fn=<MseLossBackward0>))",
+        "2026-11-16T17:46:44.5289324Z E    +    where <built-in method isfinite of type object at 0x75bd0fd3ecc0> = torch.isfinite",
+        "2026-11-16T17:46:44.5290934Z E   assert tensor(False)",
+        "2026-11-16T17:46:44.5291309Z E    +  where tensor(False) = <built-in method isfinite of type object at 0x75bd0fd3ecc0>(tensor(inf, grad_fn=<MseLossBackward0>))",
+        "2026-11-16T17:46:44.5291804Z E    +    where <built-in method isfinite of type object at 0x75bd0fd3ecc0> = torch.isfinite",
+        "2026-11-16T17:46:44.5296179Z E   RuntimeError: Found dtype BFloat16 but expected Float",
+        "2026-11-16T17:46:44.5300315Z E   RuntimeError: Found dtype BFloat16 but expected Float",
+        "2026-11-16T17:46:44.5304730Z E   RuntimeError: Found dtype Float but expected Double",
+        "2026-11-16T17:46:44.5309105Z E   RuntimeError: Found dtype Half but expected Float",
+        "2026-11-16T17:46:44.5310148Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[1.0-False-dtype0-dense] - RuntimeError: Found dtype Half but expected Float",
+        "2026-11-16T17:46:44.5311181Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[1.0-False-dtype0-sparse] - RuntimeError: Found dtype Half but expected Float",
+        "2026-11-16T17:46:44.5312223Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[1.0-False-dtype1-dense] - RuntimeError: Found dtype BFloat16 but expected Float",
+        "2026-11-16T17:46:44.5313433Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[1.0-False-dtype1-sparse] - RuntimeError: Found dtype BFloat16 but expected Float",
+        "2026-11-16T17:46:44.5314588Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[1.0-False-dtype3-cross_encoder] - RuntimeError: Found dtype Float but expected Double",
+        "2026-11-16T17:46:44.5316153Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[1.0-True-dtype0-dense] - RuntimeError: Found dtype Half but expected Float",
+        "2026-11-16T17:46:44.5317271Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[1.0-True-dtype0-sparse] - RuntimeError: Found dtype Half but expected Float",
+        "2026-11-16T17:46:44.5318368Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[1.0-True-dtype1-dense] - RuntimeError: Found dtype BFloat16 but expected Float",
+        "2026-11-16T17:46:44.5319617Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[1.0-True-dtype1-sparse] - RuntimeError: Found dtype BFloat16 but expected Float",
+        "2026-11-16T17:46:44.5320872Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[1.0-True-dtype3-cross_encoder] - RuntimeError: Found dtype Float but expected Double",
+        "2026-11-16T17:46:44.5322072Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[40000.0-False-dtype0-dense] - RuntimeError: Found dtype Half but expected Float",
+        "2026-11-16T17:46:44.5323203Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[40000.0-False-dtype0-sparse] - RuntimeError: Found dtype Half but expected Float",
+        "2026-11-16T17:46:44.5324540Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[40000.0-False-dtype1-dense] - RuntimeError: Found dtype BFloat16 but expected Float",
+        "2026-11-16T17:46:44.5334767Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[40000.0-False-dtype1-sparse] - RuntimeError: Found dtype BFloat16 but expected Float",
+        "2026-11-16T17:46:44.5336182Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[40000.0-False-dtype3-cross_encoder] - RuntimeError: Found dtype Float but expected Double",
+        "2026-11-16T17:46:44.5337217Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[40000.0-True-dtype0-dense] - assert tensor(False)",
+        "2026-11-16T17:46:44.5339246Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[40000.0-True-dtype0-sparse] - assert tensor(False)",
+        "2026-11-16T17:46:44.5341181Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[40000.0-True-dtype0-multi_vector] - assert tensor(False)",
+        "2026-11-16T17:46:44.5343186Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[40000.0-True-dtype0-cross_encoder] - assert tensor(False)",
+        "2026-11-16T17:46:44.5345373Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[40000.0-True-dtype1-dense] - RuntimeError: Found dtype BFloat16 but expected Float",
+        "2026-11-16T17:46:44.5346473Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[40000.0-True-dtype1-sparse] - RuntimeError: Found dtype BFloat16 but expected Float",
+        "2026-11-16T17:46:44.5347551Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_margin_targets_are_converted_before_subtraction[40000.0-True-dtype3-cross_encoder] - RuntimeError: Found dtype Float but expected Double",
+        "2026-11-16T17:46:44.5348535Z FAILED tests/sentence_transformer/losses/test_margin_target_precision.py::test_fp16_teacher_margins_train_an_offline_encoder - RuntimeError: Found dtype Half but expected Float",
+        "2026-11-16T17:46:44.5349255Z 23 failed, 42 passed in 0.92s",
+        "2026-11-16T17:46:55.3030202Z 225 passed, 6 skipped in 6.09s",
+        "2026-11-16T17:47:07.1414277Z ruff check...............................................................Passed",
+        "2026-11-16T17:47:07.3482917Z ruff format..............................................................Passed",
+        "2026-11-16T17:47:08.7811271Z typos....................................................................Passed"
+      ],
+      "benchmark": []
+    },
+    {
+      "job_id": 133490384311,
+      "url": "https://github.com/Afloat16/geoopt/actions/runs/43921700020/job/133490384311",
+      "summary": [
+        "2026-11-16T17:46:38.7981667Z 85 passed in 0.14s",
+        "2026-11-16T17:46:59.3802032Z 103 passed, 2 skipped, 1 warning in 7.42s",
+        "2026-11-16T17:47:15.5722727Z ruff check...............................................................Passed",
+        "2026-11-16T17:47:15.7941914Z ruff format..............................................................Passed",
+        "2026-11-16T17:47:17.0130104Z typos....................................................................Passed"
+      ],
+      "benchmark": [
+        {
+          "revision": "before",
+          "queries": 200,
+          "documents_per_query": 100,
+          "cutoffs": [
+            1,
+            3,
+            5,
+            10,
+            20,
+            50,
+            100
+          ],
+          "median_seconds": 0.06594355200000734,
+          "metrics": {
+            "accuracy@k": {
+              "1": 0.235,
+              "3": 0.53,
+              "5": 0.7,
+              "10": 0.925,
+              "20": 0.995,
+              "50": 1,
+              "100": 1
+            },
+            "precision@k": {
+              "1": 0.235,
+              "3": 0.22833333333333336,
+              "5": 0.21900000000000003,
+              "10": 0.215,
+              "20": 0.204,
+              "50": 0.1996,
+              "100": 0.2
+            },
+            "recall@k": {
+              "1": 0.01175,
+              "3": 0.034249999999999996,
+              "5": 0.05475000000000001,
+              "10": 0.1075,
+              "20": 0.204,
+              "50": 0.499,
+              "100": 1
+            },
+            "ndcg@k": {
+              "1": 0.235,
+              "3": 0.22815672356136538,
+              "5": 0.22210756126145131,
+              "10": 0.2181889322333697,
+              "20": 0.2095764132514169,
+              "50": 0.3733943431185315,
+              "100": 0.6021942974245641
+            },
+            "mrr@k": {
+              "1": 0.235,
+              "3": 0.3566666666666667,
+              "5": 0.3956666666666668,
+              "10": 0.4259761904761906,
+              "20": 0.43148707052751184,
+              "50": 0.4316954038608452,
+              "100": 0.4316954038608452
+            },
+            "map@k": {
+              "1": 0.235,
+              "3": 0.1627777777777778,
+              "5": 0.13151666666666667,
+              "10": 0.09828234126984127,
+              "20": 0.07368371563292228,
+              "50": 0.13786629855485735,
+              "100": 0.23951198956350872
+            }
+          }
+        },
+        {
+          "revision": "before",
+          "queries": 200,
+          "documents_per_query": 1000,
+          "cutoffs": [
+            1,
+            3,
+            5,
+            10,
+            20,
+            50,
+            100,
+            500,
+            1000
+          ],
+          "median_seconds": 0.4620780879999984,
+          "metrics": {
+            "accuracy@k": {
+              "1": 0.015,
+              "3": 0.035,
+              "5": 0.075,
+              "10": 0.175,
+              "20": 0.32,
+              "50": 0.63,
+              "100": 0.85,
+              "500": 1,
+              "1000": 1
+            },
+            "precision@k": {
+              "1": 0.015,
+              "3": 0.011666666666666665,
+              "5": 0.015,
+              "10": 0.019,
+              "20": 0.019250000000000003,
+              "50": 0.019799999999999998,
+              "100": 0.0183,
+              "500": 0.01931,
+              "1000": 0.019999999999999997
+            },
+            "recall@k": {
+              "1": 0.0007500000000000001,
+              "3": 0.0017500000000000003,
+              "5": 0.00375,
+              "10": 0.0095,
+              "20": 0.019250000000000003,
+              "50": 0.049499999999999995,
+              "100": 0.0915,
+              "500": 0.48275000000000007,
+              "1000": 1
+            },
+            "ndcg@k": {
+              "1": 0.015,
+              "3": 0.012653606369886217,
+              "5": 0.014913515195362633,
+              "10": 0.017643154466981167,
+              "20": 0.01831945611488359,
+              "50": 0.03501177896977512,
+              "100": 0.054196542202622794,
+              "500": 0.19243741564292877,
+              "1000": 0.34680509031498
+            },
+            "mrr@k": {
+              "1": 0.015,
+              "3": 0.024166666666666666,
+              "5": 0.033916666666666664,
+              "10": 0.04662301587301587,
+              "20": 0.0564692768316994,
+              "50": 0.06593119392375715,
+              "100": 0.06910901197582907,
+              "500": 0.0702700134969609,
+              "1000": 0.0702700134969609
+            },
+            "map@k": {
+              "1": 0.015,
+              "3": 0.008055555555555555,
+              "5": 0.006783333333333335,
+              "10": 0.004995634920634921,
+              "20": 0.0033352852503104047,
+              "50": 0.004802985648644373,
+              "100": 0.006091891614169153,
+              "500": 0.014872101875195354,
+              "1000": 0.025267051812812663
+            }
+          }
+        },
+        {
+          "revision": "after",
+          "queries": 200,
+          "documents_per_query": 100,
+          "cutoffs": [
+            1,
+            3,
+            5,
+            10,
+            20,
+            50,
+            100
+          ],
+          "median_seconds": 0.027254910999999993,
+          "metrics": {
+            "accuracy@k": {
+              "1": 0.235,
+              "3": 0.53,
+              "5": 0.7,
+              "10": 0.925,
+              "20": 0.995,
+              "50": 1,
+              "100": 1
+            },
+            "precision@k": {
+              "1": 0.235,
+              "3": 0.22833333333333336,
+              "5": 0.21900000000000003,
+              "10": 0.215,
+              "20": 0.204,
+              "50": 0.1996,
+              "100": 0.2
+            },
+            "recall@k": {
+              "1": 0.01175,
+              "3": 0.034249999999999996,
+              "5": 0.05475000000000001,
+              "10": 0.1075,
+              "20": 0.204,
+              "50": 0.499,
+              "100": 1
+            },
+            "ndcg@k": {
+              "1": 0.235,
+              "3": 0.22815672356136538,
+              "5": 0.22210756126145131,
+              "10": 0.21818893223336971,
+              "20": 0.20957641325141682,
+              "50": 0.37339434311853137,
+              "100": 0.6021942974245641
+            },
+            "mrr@k": {
+              "1": 0.235,
+              "3": 0.3566666666666667,
+              "5": 0.3956666666666668,
+              "10": 0.4259761904761906,
+              "20": 0.43148707052751184,
+              "50": 0.4316954038608452,
+              "100": 0.4316954038608452
+            },
+            "map@k": {
+              "1": 0.235,
+              "3": 0.1627777777777778,
+              "5": 0.13151666666666667,
+              "10": 0.09828234126984127,
+              "20": 0.07368371563292228,
+              "50": 0.13786629855485735,
+              "100": 0.23951198956350872
+            }
+          },
+          "speed_ratio": 2.419510817702078
+        },
+        {
+          "revision": "after",
+          "queries": 200,
+          "documents_per_query": 1000,
+          "cutoffs": [
+            1,
+            3,
+            5,
+            10,
+            20,
+            50,
+            100,
+            500,
+            1000
+          ],
+          "median_seconds": 0.12588251700000797,
+          "metrics": {
+            "accuracy@k": {
+              "1": 0.015,
+              "3": 0.035,
+              "5": 0.075,
+              "10": 0.175,
+              "20": 0.32,
+              "50": 0.63,
+              "100": 0.85,
+              "500": 1,
+              "1000": 1
+            },
+            "precision@k": {
+              "1": 0.015,
+              "3": 0.011666666666666665,
+              "5": 0.015,
+              "10": 0.019,
+              "20": 0.019250000000000003,
+              "50": 0.019799999999999998,
+              "100": 0.0183,
+              "500": 0.01931,
+              "1000": 0.019999999999999997
+            },
+            "recall@k": {
+              "1": 0.0007500000000000001,
+              "3": 0.0017500000000000003,
+              "5": 0.00375,
+              "10": 0.0095,
+              "20": 0.019250000000000003,
+              "50": 0.049499999999999995,
+              "100": 0.0915,
+              "500": 0.48275000000000007,
+              "1000": 1
+            },
+            "ndcg@k": {
+              "1": 0.015,
+              "3": 0.012653606369886217,
+              "5": 0.014913515195362633,
+              "10": 0.01764315446698117,
+              "20": 0.018319456114883587,
+              "50": 0.035011778969775115,
+              "100": 0.054196542202622794,
+              "500": 0.19243741564292877,
+              "1000": 0.34680509031498
+            },
+            "mrr@k": {
+              "1": 0.015,
+              "3": 0.024166666666666666,
+              "5": 0.033916666666666664,
+              "10": 0.04662301587301587,
+              "20": 0.0564692768316994,
+              "50": 0.06593119392375715,
+              "100": 0.06910901197582907,
+              "500": 0.0702700134969609,
+              "1000": 0.0702700134969609
+            },
+            "map@k": {
+              "1": 0.015,
+              "3": 0.008055555555555555,
+              "5": 0.006783333333333335,
+              "10": 0.004995634920634921,
+              "20": 0.0033352852503104047,
+              "50": 0.004802985648644373,
+              "100": 0.006091891614169153,
+              "500": 0.014872101875195354,
+              "1000": 0.025267051812812663
+            }
+          },
+          "speed_ratio": 3.670708999248634
+        }
+      ]
+    }
+  ]
+}

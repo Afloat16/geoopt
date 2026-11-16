@@ -75,5 +75,10 @@
     "evidence": [
       "https://github.com/huggingface/sentence-transformers/pull/4220"
     ]
+  },
+  {
+    "candidate": "Materialize PhraseTokenizer vocabulary iterators",
+    "reason": "Already implemented in reachable historical source variant c8da21b4; exclude regardless of PR title.",
+    "evidence": "audit/st/phrase-tokenizer-prefix-history-variants.json"
   }
 ]
