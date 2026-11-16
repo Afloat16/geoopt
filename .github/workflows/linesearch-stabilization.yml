@@ -1,0 +1,64 @@
+name: Validate line-search stabilization
+on:
+  push:
+    branches: ['validation/linesearch-committed-step-stabilization-20261116']
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: '3.8'
+            torch: '2.0.1'
+            numpy: '1.24.4'
+            scipy: '1.10.1'
+          - python: '3.12'
+            torch: '2.6.0'
+            numpy: '2.2.6'
+            scipy: '1.15.3'
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install pinned CPU dependencies
+        run: |
+          python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==${{ matrix.numpy }} scipy==${{ matrix.scipy }} pytest==8.3.5 ruff
+          python -m pip install -e . --no-deps
+      - name: Lint changed files
+        run: python -m ruff check geoopt/optim/rlinesearch.py tests/test_rlinesearch_stabilization.py
+      - name: Reproduce invalid stabilization on unchanged upstream
+        run: |
+          git fetch --depth=1 origin 4623ea1d2a9808b8e87bf10949cccb2c5ec6233c
+          git restore --source=4623ea1d2a9808b8e87bf10949cccb2c5ec6233c -- geoopt/optim/rlinesearch.py
+          set +e
+          python -m pytest -q tests/test_rlinesearch_stabilization.py --junitxml=baseline.xml
+          result=$?
+          set -e
+          test "$result" -eq 1
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          root = ET.parse("baseline.xml").getroot()
+          assert len(root.findall(".//failure")) == 28, len(root.findall(".//failure"))
+          assert not root.findall(".//error")
+          PY
+      - name: Verify exact candidate and all line-search regressions
+        run: |
+          git fetch --depth=1 origin a195aee07d4030ead58da6d54b9fb275bcaed6c6
+          git restore --source=a195aee07d4030ead58da6d54b9fb275bcaed6c6 -- geoopt/optim/rlinesearch.py
+          python -m pytest -q tests/test_rlinesearch_stabilization.py tests/test_rlinesearch.py tests/test_rlinesearch_unused.py tests/test_rlinesearch_trial_cache.py tests/test_rlinesearch_retraction_derivative.py --junitxml=candidate.xml
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: linesearch-stabilization-${{ matrix.python }}
+          path: |
+            baseline.xml
+            candidate.xml
