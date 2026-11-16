@@ -1,0 +1,147 @@
+{
+  "base": "1aee767ef57b84a8191511a08955c583b65de382",
+  "unshallow": true,
+  "reachable_fork_refs": 125,
+  "all_path_commits": [
+    "a08bba3825b275cc1e0d84e95f57087c88626b5d",
+    "00039441e569753ed772a18fe5973bf606406ad6",
+    "4e20045fa3e770dc5fd32bc5ccddabd68e96b268",
+    "c08207fb65ef4fc83cbb1e58577483dcc7bfb9cb",
+    "53eda349003f9d7d94767b3b339dde4f63c729ed",
+    "4f6d2da99a0bfa6ff70fc18320f8c03c1bbc6b0e",
+    "e6304e468872652771e55115d34347b29dba141d",
+    "16594be3721ecbb01d15ea0e98aab53b496ae120",
+    "15bc472f56d5260f2e7010b5a26fc1df4ad21ca7",
+    "243f619bf8497cef2932958a133815edee844442",
+    "94ac8e4c0e2da3d4a549766834516323020dc8d6",
+    "9024aef4fd6cedaac4ff7c1389d9e937694d183c"
+  ],
+  "excluded_current_contribution_commits": [
+    "00039441e569753ed772a18fe5973bf606406ad6",
+    "4e20045fa3e770dc5fd32bc5ccddabd68e96b268",
+    "a08bba3825b275cc1e0d84e95f57087c88626b5d",
+    "c08207fb65ef4fc83cbb1e58577483dcc7bfb9cb"
+  ],
+  "paths": {
+    "mlxtend/math/linalg.py": [
+      {
+        "blob": "36063e123ad1be665fce898382391aaab9128df6",
+        "commits": [
+          "53eda349003f9d7d94767b3b339dde4f63c729ed",
+          "4f6d2da99a0bfa6ff70fc18320f8c03c1bbc6b0e",
+          "e6304e468872652771e55115d34347b29dba141d",
+          "15bc472f56d5260f2e7010b5a26fc1df4ad21ca7",
+          "243f619bf8497cef2932958a133815edee844442",
+          "94ac8e4c0e2da3d4a549766834516323020dc8d6",
+          "9024aef4fd6cedaac4ff7c1389d9e937694d183c"
+        ],
+        "diff_from_base": ""
+      }
+    ],
+    "mlxtend/regressor/linear_regression.py": [
+      {
+        "blob": "8f3fa15149ce573d3d0b008a0cc41e125c3b2435",
+        "commits": [
+          "53eda349003f9d7d94767b3b339dde4f63c729ed",
+          "4f6d2da99a0bfa6ff70fc18320f8c03c1bbc6b0e",
+          "e6304e468872652771e55115d34347b29dba141d",
+          "15bc472f56d5260f2e7010b5a26fc1df4ad21ca7",
+          "243f619bf8497cef2932958a133815edee844442",
+          "94ac8e4c0e2da3d4a549766834516323020dc8d6",
+          "9024aef4fd6cedaac4ff7c1389d9e937694d183c"
+        ],
+        "diff_from_base": ""
+      }
+    ],
+    "mlxtend/frequent_patterns/apriori.py": [
+      {
+        "blob": "376f518e7bd282a05f4b7c542a03f5ca14db75f6",
+        "commits": [
+          "53eda349003f9d7d94767b3b339dde4f63c729ed",
+          "4f6d2da99a0bfa6ff70fc18320f8c03c1bbc6b0e",
+          "e6304e468872652771e55115d34347b29dba141d",
+          "15bc472f56d5260f2e7010b5a26fc1df4ad21ca7",
+          "243f619bf8497cef2932958a133815edee844442",
+          "94ac8e4c0e2da3d4a549766834516323020dc8d6",
+          "9024aef4fd6cedaac4ff7c1389d9e937694d183c"
+        ],
+        "diff_from_base": ""
+      }
+    ],
+    "mlxtend/preprocessing/scaling.py": [
+      {
+        "blob": "3ee266bf9b53c56dc8f5f226fc37a376297769c0",
+        "commits": [
+          "53eda349003f9d7d94767b3b339dde4f63c729ed",
+          "4f6d2da99a0bfa6ff70fc18320f8c03c1bbc6b0e",
+          "e6304e468872652771e55115d34347b29dba141d",
+          "15bc472f56d5260f2e7010b5a26fc1df4ad21ca7",
+          "243f619bf8497cef2932958a133815edee844442"
+        ],
+        "diff_from_base": ""
+      },
+      {
+        "blob": "bab5018acb697a931a7419fc30e7f0852fdfe72a",
+        "commits": [
+          "94ac8e4c0e2da3d4a549766834516323020dc8d6"
+        ],
+        "diff_from_base": "--- base/mlxtend/preprocessing/scaling.py\n+++ bab5018acb697a931a7419fc30e7f0852fdfe72a/mlxtend/preprocessing/scaling.py\n@@ -98,9 +98,9 @@\n \n     Notes\n     ----------\n-    If all values in a given column are the same, these values are all\n-    set to `0.0`. The standard deviation in the `parameters` dictionary\n-    is consequently set to `1.0` to avoid dividing by zero.\n+    When fitting parameters, constant columns are mapped to `0.0` and their\n+    standard deviations are set to `1.0` to avoid dividing by zero. Supplied\n+    `params` are used unchanged, even when the current batch is constant.\n \n     Returns\n     ----------\n@@ -137,19 +137,20 @@\n             \"avgs\": ary_newt[:, columns].mean(axis=0),\n             \"stds\": ary_newt[:, columns].std(axis=0, ddof=ddof),\n         }\n-    are_constant = np.all(ary_newt[:, columns] == ary_newt[0, columns], axis=0)\n+    if params is None:\n+        are_constant = np.all(ary_newt[:, columns] == ary_newt[0, columns], axis=0)\n \n-    # For constant columns the standard deviation is 0 (or NaN with some ddof\n-    # values), so dividing by it would propagate NaNs / Infs. Forcing std to\n-    # 1.0 means the subtraction (col - mean) below collapses the column to\n-    # exactly 0.0, matching the contract documented in the \"Notes\" section\n-    # (\"If all values in a given column are the same, these values are all\n-    # set to 0.0\"). The previous version also pre-zeroed the column before\n-    # the divide, but that turned (0 - mean) / 1 into -mean instead of 0\n-    # -- see issue #1058.\n-    for c, b in zip(columns, are_constant):\n-        if b:\n-            parameters[\"stds\"][c] = 1.0\n+        # For constant columns the standard deviation is 0 (or NaN with some ddof\n+        # values), so dividing by it would propagate NaNs / Infs. Forcing std to\n+        # 1.0 means the subtraction (col - mean) below collapses the column to\n+        # exactly 0.0, matching the contract documented in the \"Notes\" section\n+        # (\"If all values in a given column are the same, these values are all\n+        # set to 0.0\"). The previous version also pre-zeroed the column before\n+        # the divide, but that turned (0 - mean) / 1 into -mean instead of 0\n+        # -- see issue #1058.\n+        for c, b in zip(columns, are_constant):\n+            if b:\n+                parameters[\"stds\"][c] = 1.0\n \n     ary_newt[:, columns] = (ary_newt[:, columns] - parameters[\"avgs\"]) / parameters[\n         \"stds\"\n"
+      },
+      {
+        "blob": "a2604046c821af6a081df953d250a33d0d8f1eeb",
+        "commits": [
+          "9024aef4fd6cedaac4ff7c1389d9e937694d183c"
+        ],
+        "diff_from_base": "--- base/mlxtend/preprocessing/scaling.py\n+++ a2604046c821af6a081df953d250a33d0d8f1eeb/mlxtend/preprocessing/scaling.py\n@@ -65,7 +65,7 @@\n     denominator = np.where(denominator == 0, 1, denominator)\n     ary_newt[:, columns] = numerator / denominator\n \n-    if not min_val == 0 and not max_val == 1:\n+    if min_val != 0 or max_val != 1:\n         ary_newt[:, columns] = ary_newt[:, columns] * (max_val - min_val) + min_val\n \n     return ary_newt[:, columns]\n"
+      }
+    ],
+    "mlxtend/feature_extraction/linear_discriminant_analysis.py": [
+      {
+        "blob": "f3d74ea74b061e9013658a80b4e1bedf6c7b1f58",
+        "commits": [
+          "53eda349003f9d7d94767b3b339dde4f63c729ed"
+        ],
+        "diff_from_base": "--- base/mlxtend/feature_extraction/linear_discriminant_analysis.py\n+++ f3d74ea74b061e9013658a80b4e1bedf6c7b1f58/mlxtend/feature_extraction/linear_discriminant_analysis.py\n@@ -135,7 +135,7 @@\n         overall_mean = np.mean(X, axis=0)\n         S_B = np.zeros((X.shape[1], X.shape[1]))\n         for i, mean_vec in enumerate(mean_vectors):\n-            n = X[y == i + 1, :].shape[0]\n+            n = X[y == i, :].shape[0]\n             mean_vec = mean_vec.reshape(X.shape[1], 1)\n             overall_mean = overall_mean.reshape(X.shape[1], 1)\n             S_B += n * (mean_vec - overall_mean).dot((mean_vec - overall_mean).T)\n"
+      },
+      {
+        "blob": "dd62a5a59a48273caf9137e48dd92b658e449a8a",
+        "commits": [
+          "4f6d2da99a0bfa6ff70fc18320f8c03c1bbc6b0e",
+          "e6304e468872652771e55115d34347b29dba141d",
+          "15bc472f56d5260f2e7010b5a26fc1df4ad21ca7"
+        ],
+        "diff_from_base": "--- base/mlxtend/feature_extraction/linear_discriminant_analysis.py\n+++ dd62a5a59a48273caf9137e48dd92b658e449a8a/mlxtend/feature_extraction/linear_discriminant_analysis.py\n@@ -24,7 +24,8 @@\n     Attributes\n     ----------\n     w_ : array-like, shape=[n_features, n_discriminants]\n-        Projection matrix\n+        Projection matrix, using each class's own sample count to weight\n+        its contribution to the between-class scatter.\n     e_vals_ : array-like, shape=[n_features]\n         Eigenvalues in sorted order.\n     e_vecs_ : array-like, shape=[n_features]\n@@ -135,7 +136,7 @@\n         overall_mean = np.mean(X, axis=0)\n         S_B = np.zeros((X.shape[1], X.shape[1]))\n         for i, mean_vec in enumerate(mean_vectors):\n-            n = X[y == i + 1, :].shape[0]\n+            n = X[y == i, :].shape[0]\n             mean_vec = mean_vec.reshape(X.shape[1], 1)\n             overall_mean = overall_mean.reshape(X.shape[1], 1)\n             S_B += n * (mean_vec - overall_mean).dot((mean_vec - overall_mean).T)\n"
+      },
+      {
+        "blob": "8faef6cdacf2413096c01d64e4456a78e1ff6d18",
+        "commits": [
+          "243f619bf8497cef2932958a133815edee844442",
+          "94ac8e4c0e2da3d4a549766834516323020dc8d6",
+          "9024aef4fd6cedaac4ff7c1389d9e937694d183c"
+        ],
+        "diff_from_base": ""
+      }
+    ],
+    "mlxtend/evaluate/bias_variance_decomp.py": [
+      {
+        "blob": "97dc405a081bfb8873f00adf7dd1a76bc0712dd5",
+        "commits": [
+          "53eda349003f9d7d94767b3b339dde4f63c729ed",
+          "4f6d2da99a0bfa6ff70fc18320f8c03c1bbc6b0e",
+          "e6304e468872652771e55115d34347b29dba141d",
+          "15bc472f56d5260f2e7010b5a26fc1df4ad21ca7",
+          "94ac8e4c0e2da3d4a549766834516323020dc8d6",
+          "9024aef4fd6cedaac4ff7c1389d9e937694d183c"
+        ],
+        "diff_from_base": ""
+      },
+      {
+        "blob": "73cf265a2219f4bba34a11c7495d9d41e1b6698f",
+        "commits": [
+          "243f619bf8497cef2932958a133815edee844442"
+        ],
+        "diff_from_base": "--- base/mlxtend/evaluate/bias_variance_decomp.py\n+++ 73cf265a2219f4bba34a11c7495d9d41e1b6698f/mlxtend/evaluate/bias_variance_decomp.py\n@@ -6,6 +6,7 @@\n #\n # License: BSD 3 clause\n import numpy as np\n+from sklearn.utils.validation import _check_method_params\n \n \n def _draw_bootstrap_sample(rng, X, y):\n@@ -13,7 +14,7 @@\n     bootstrap_indices = rng.choice(\n         sample_indices, size=sample_indices.shape[0], replace=True\n     )\n-    return X[bootstrap_indices], y[bootstrap_indices]\n+    return X[bootstrap_indices], y[bootstrap_indices], bootstrap_indices\n \n \n def bias_variance_decomp(\n@@ -63,7 +64,10 @@\n \n     fit_params : additional parameters\n         Additional parameters to be passed to the .fit() function of the\n-        estimator when it is fit to the bootstrap samples.\n+        estimator when it is fit to the bootstrap samples. Array-like values\n+        with one entry per training sample, such as ``sample_weight``, are\n+        resampled along with X_train and y_train. Other values are passed\n+        through unchanged.\n \n     Returns\n     ----------\n@@ -110,7 +114,8 @@\n     all_pred = np.zeros((num_rounds, y_test.shape[0]), dtype=dtype)\n \n     for i in range(num_rounds):\n-        X_boot, y_boot = _draw_bootstrap_sample(rng, X_train, y_train)\n+        X_boot, y_boot, indices = _draw_bootstrap_sample(rng, X_train, y_train)\n+        fit_params_boot = _check_method_params(X_train, fit_params, indices=indices)\n \n         # Keras support\n         if estimator.__class__.__name__ in [\"Sequential\", \"Functional\"]:\n@@ -131,10 +136,10 @@\n                         ]\n                     )\n \n-            estimator.fit(X_boot, y_boot, **fit_params)\n+            estimator.fit(X_boot, y_boot, **fit_params_boot)\n             pred = estimator.predict(X_test).reshape(1, -1)\n         else:\n-            pred = estimator.fit(X_boot, y_boot, **fit_params).predict(X_test)\n+            pred = estimator.fit(X_boot, y_boot, **fit_params_boot).predict(X_test)\n         all_pred[i] = pred\n \n     if loss == \"0-1_loss\":\n"
+      }
+    ]
+  }
+}

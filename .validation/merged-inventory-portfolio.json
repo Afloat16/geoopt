@@ -1,10 +1,10 @@
 {
-  "checked_at": "2026-11-16T12:32:20.744Z",
+  "checked_at": "2026-11-16T12:54:17.779Z",
   "scope": "new contributions prepared by merged_inventory agent in current task",
   "counts": {
-    "published": 42,
+    "published": 44,
     "merged": 0,
-    "open": 42
+    "open": 44
   },
   "excluded_duplicate": {
     "repo": "geomstats/geomstats",
@@ -3924,6 +3924,60 @@
         "summary": "Both functional test jobs pass. The official linter fails during locked SciPy 1.16.3 installation on Python 3.15.2 because OpenBLAS is unavailable; no style check is reached. The unchanged base reproduces the same installation failure. Frozen Python 3.11 formatting, changed-file lint, full suite and package checks pass.",
         "exact_base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
         "notes_published": false
+      }
+    },
+    {
+      "repo": "rasbt/mlxtend",
+      "number": 1310,
+      "url": "https://github.com/rasbt/mlxtend/pull/1310",
+      "title": "Keep low-memory Apriori support counting sparse",
+      "state": "open",
+      "merged_at": null,
+      "head": "00039441e569753ed772a18fe5973bf606406ad6",
+      "head_ref": "fix/apriori-sparse-low-memory-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T12:50:44Z",
+      "official_checks": {
+        "total": 0,
+        "checks": [],
+        "note": "New upstream jobs started; completion not yet checked."
+      },
+      "validation": {
+        "run": "https://github.com/Afloat16/geoopt/actions/runs/43867750166",
+        "full_pass": 761,
+        "skipped": 3,
+        "baseline_regression_failures": 20
+      },
+      "historical_dedupe": {
+        "fork_refs": 125,
+        "all_reachable_intermediate_commits_checked": true
+      }
+    },
+    {
+      "repo": "rasbt/mlxtend",
+      "number": 1311,
+      "url": "https://github.com/rasbt/mlxtend/pull/1311",
+      "title": "Preserve finite results when min-max scaling ranges overflow",
+      "state": "open",
+      "merged_at": null,
+      "head": "a08bba3825b275cc1e0d84e95f57087c88626b5d",
+      "head_ref": "fix/minmax-finite-range-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T12:53:00Z",
+      "official_checks": {
+        "total": 0,
+        "checks": [],
+        "note": "New upstream jobs started; completion not yet checked."
+      },
+      "validation": {
+        "run": "https://github.com/Afloat16/geoopt/actions/runs/43867750166",
+        "full_pass": 778,
+        "skipped": 3,
+        "baseline_regression_failures": 27
+      },
+      "historical_dedupe": {
+        "fork_refs": 125,
+        "all_reachable_intermediate_commits_checked": true
       }
     }
   ],
