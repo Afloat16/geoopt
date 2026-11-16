@@ -1,0 +1,45 @@
+{
+  "base": "1aee767ef57b84a8191511a08955c583b65de382",
+  "history": {
+    "all_state_prs": 685,
+    "fork_branches": 121,
+    "paths_unchanged_in_all_forks": [
+      "mlxtend/math/linalg.py",
+      "mlxtend/regressor/linear_regression.py"
+    ],
+    "related_prs": [
+      382,
+      575,
+      1227,
+      1290
+    ]
+  },
+  "baseline": [
+    {
+      "chunk_id": "606b41",
+      "wall_time_seconds": 0.964813475,
+      "exit_code": 0,
+      "original_token_count": 232,
+      "output": "{\"orthonormalization\": [{\"scale\": 1e+200, \"eps\": 1e-13, \"result\": [[0.0, -0.0], [0.0, 0.0]], \"gram\": [[0.0, 0.0], [0.0, 0.0]], \"warnings\": [\"overflow encountered in dot\"]}, {\"scale\": 1e+308, \"eps\": 1e-13, \"result\": [[0.0, -0.0], [0.0, 0.0]], \"gram\": [[0.0, 0.0], [0.0, 0.0]], \"warnings\": [\"overflow encountered in dot\"]}, {\"scale\": 1e-200, \"eps\": 0.0, \"result\": [[0.0, 0.0], [0.0, 0.0]], \"gram\": [[0.0, 0.0], [0.0, 0.0]], \"warnings\": []}, {\"scale\": 1.0, \"eps\": 1e-13, \"result\": [[0.6, -0.8], [0.8, 0.6]], \"gram\": [[1.0, 2.6645352591003756e-17], [2.6645352591003756e-17, 1.0]], \"warnings\": []}]}\n{\"shape\": [2, 3], \"error\": \"LinAlgError: Last 2 dimensions of the array must be square\"}\n{\"shape\": [3, 2], \"coefficients\": [1.0000000000000004, 5.609700738322976, -3.609700738322976], \"prediction\": [1.0000000000000004, 3.0000000000000004, 5.0], \"reference\": [0.9999999999999994, 1.0000000000000002, 1.0000000000000002]}\nnumpy 2.3.5\n"
+    },
+    {
+      "chunk_id": "15f1bb",
+      "wall_time_seconds": 1.840018944,
+      "exit_code": 0,
+      "original_token_count": 105,
+      "output": "{\"method\": \"qr\", \"error\": \"LinAlgError: Last 2 dimensions of the array must be square\"}\n{\"method\": \"svd\", \"prediction\": [1.0000000000000002, 2.0], \"beta\": [0.11764705882352947, -0.17647058823529405, 0.29411764705882354, 0.5294117647058824]}\n{\"platform\": \"Linux-6.18.57-x86_64-with-glibc2.41\", \"python\": \"3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]\", \"numpy\": \"2.3.5\", \"scipy\": \"1.17.0\", \"sklearn\": \"1.8.0\"}\n"
+    }
+  ],
+  "drafts": [
+    {
+      "name": "orthonormal-range",
+      "title": "vectorspace_orthonormalization loses finite basis vectors at large and small scales",
+      "body": "#### Describe the bug\n\n`vectorspace_orthonormalization` computes an unscaled Euclidean norm. Squaring finite large entries overflows, so division by the resulting infinite norm replaces a nonzero basis vector with zeros. Small nonzero vectors are also lost to norm underflow when `eps=0`.\n\nThis changes the returned vector space even for already orthogonal columns.\n\n#### Steps/Code to Reproduce\n\n```python\nimport numpy as np\nfrom mlxtend.math import vectorspace_orthonormalization\n\nbasis = np.array([[0.6, -0.8], [0.8, 0.6]])\nfor scale, eps in [(1.0, 1e-13), (1e200, 1e-13), (1e308, 1e-13),\n                   (1e-200, 0.0)]:\n    result = vectorspace_orthonormalization(basis * scale, eps=eps)\n    print(scale, result, result.T @ result, sep=\"\\n\")\n```\n\n#### Expected Results\n\nAll four cases should retain the two unit, orthogonal columns, with `result.T @ result` equal to the identity to floating-point precision. The input entries are finite.\n\n#### Actual Results\n\nThe unit-scale control returns the expected basis. Both large-scale examples return all zeros with an overflow warning. The small-scale example also returns all zeros, despite the explicit zero threshold.\n\n#### Proposed correction\n\nScale a column before projection and norm evaluation when its magnitude requires it, and apply the existing absolute `eps` threshold in the corresponding scale. Preserve zero columns and dependent-column behavior, with tests for ordinary, large, small, mixed-scale and threshold-boundary inputs.\n\nThe rounding issue in #1226 / #1227 concerns the final integer conversion in `vectorspace_dimensionality`; it does not correct this loss of the basis vectors themselves.\n\n#### Versions\n\nCurrent master `1aee767ef57b84a8191511a08955c583b65de382`; Linux x86-64, Python 3.12.14, NumPy 2.3.5, SciPy 1.17.0, scikit-learn 1.8.0.\n"
+    },
+    {
+      "name": "qr-rank-deficient",
+      "title": "LinearRegression(method='qr') fails on underdetermined least-squares problems",
+      "body": "#### Describe the bug\n\nThe QR solver explicitly inverts the reduced `R` matrix. For a design matrix with more columns (including the intercept) than observations, `R` is rectangular and fitting raises `LinAlgError`, although the least-squares problem has a finite solution and the existing SVD solver fits it.\n\nFor rank-deficient square/tall designs, explicitly inverting a numerically singular `R` can also return arbitrary large coefficients instead of a minimum-norm least-squares solution.\n\n#### Steps/Code to Reproduce\n\n```python\nimport numpy as np\nfrom mlxtend.regressor import LinearRegression\n\nX = np.array([[1., 0., 2.], [0., 1., 3.]])\ny = np.array([1., 2.])\nfor method in (\"svd\", \"qr\"):\n    model = LinearRegression(method=method).fit(X, y)\n    print(method, model.predict(X))\n```\n\n#### Expected Results\n\nBoth solvers should fit this valid least-squares problem and predict `[1., 2.]`. For nonunique solutions, the minimum-norm coefficient vector (including the intercept) is well-defined.\n\n#### Actual Results\n\n`svd` predicts `[1., 2.]`; `qr` raises:\n\n```text\nnumpy.linalg.LinAlgError: Last 2 dimensions of the array must be square\n```\n\n#### Proposed correction\n\nUse a rank-revealing QR least-squares solve instead of explicitly inverting `R`. SciPy is already a dependency and its `lstsq(..., lapack_driver=\"gelsy\")` handles these rectangular and rank-deficient systems. Keep the fitted attribute shapes and the other solver paths unchanged, document the minimum-norm convention, and compare against an independent SVD reference in regression tests.\n\nThe QR/SVD alternatives were introduced by #575. The recent Adaline change #1290 addresses a different estimator and does not change this QR path.\n\n#### Versions\n\nCurrent master `1aee767ef57b84a8191511a08955c583b65de382`; Linux x86-64, Python 3.12.14, NumPy 2.3.5, SciPy 1.17.0, scikit-learn 1.8.0.\n"
+    }
+  ]
+}
