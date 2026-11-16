@@ -1,0 +1,38 @@
+name: Validate minimum supported Torch and Python
+on:
+  push:
+    branches: ['validation/geoopt-minimum-supported-20261116']
+permissions:
+  contents: read
+jobs:
+  minimum-supported:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: validation-source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: Afloat16/geoopt
+          ref: 4623ea1d2a9808b8e87bf10949cccb2c5ec6233c
+          path: source
+          persist-credentials: false
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+      - name: Install the supported CPU test environment
+        working-directory: source
+        run: |
+          python -m pip install torch==2.0.1 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==1.24.4 scipy==1.10.1 pytest==8.3.5
+          python -m pip install --no-deps -e .
+      - name: Check every independent upstream submission
+        working-directory: source
+        run: python ../validation-source/validation/check_minimum_supported.py
