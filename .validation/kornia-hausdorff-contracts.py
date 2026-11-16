@@ -75,7 +75,7 @@ for ndim, cls in [(2, kornia.losses.HausdorffERLoss), (3, kornia.losses.Hausdorf
                 row = {"ndim": ndim, "subclass": kind, "input_dtype": str(dtype), "reduction": reduction, "calls": op.seen, "output_dtype": str(value.dtype), "output_shape": list(value.shape), "output_mean": value.double().mean().item(), "gradient_dtype": str(grad.dtype), "gradient_finite": bool(torch.isfinite(grad).all())}
                 rows.append(row)
                 print("CONTRACT_RESULT " + json.dumps(row), flush=True)
-out = root.parent / "kornia-hausdorff-contract-results"
+out = Path(os.environ["CONTRACT_OUTPUT"]) if "CONTRACT_OUTPUT" in os.environ else root.parent / "kornia-hausdorff-contract-results"
 out.mkdir(exist_ok=True)
 (out / "contracts.json").write_text(json.dumps({"provenance": provenance, "rows": rows}, indent=2) + "\n")
 print("CONTRACT_COMPLETE " + str(len(rows)), flush=True)

@@ -1,0 +1,6964 @@
+[
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "float",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "float",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "int",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "int",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "numpy64",
+    "k": 0,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "numpy64",
+    "k": 3,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "scalar_f16",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "scalar_f16",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "scalar_f32",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "scalar_f32",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "scalar_f64",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "scalar_f64",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "batch_f16",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "batch_f16",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "batch_bf16",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "batch_bf16",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "batch_f32",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "batch_f32",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "batch_f64",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "batch_f64",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "float",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "float",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 14
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "int",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "int",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 14
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "numpy64",
+    "k": 0,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "numpy64",
+    "k": 3,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "scalar_f16",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "scalar_f16",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 14,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 12.671875,
+        "absmax": 12.671875,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "scalar_f32",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "scalar_f32",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 14,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 12.660099029541016,
+        "absmax": 12.660099029541016,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "scalar_f64",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "scalar_f64",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 14,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 12.660099320252769,
+        "absmax": 12.660099320252769,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "batch_f16",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "batch_f16",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 7.9166259765625,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 6.6923828125,
+        "absmax": 6.3359375,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "batch_bf16",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "batch_bf16",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 7.9169921875,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 6.66796875,
+        "absmax": 6.3125,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "batch_f32",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "batch_f32",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 7.9166669845581055,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 6.6864383816719055,
+        "absmax": 6.330049514770508,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "batch_f64",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "batch_f64",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 7.916666666666666,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 6.6864385033777225,
+        "absmax": 6.3300496601263845,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "float",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "float",
+    "k": 3,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.127685546875,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "int",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "int",
+    "k": 3,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.127685546875,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "numpy64",
+    "k": 0,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "numpy64",
+    "k": 3,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "scalar_f16",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "scalar_f16",
+    "k": 3,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.127685546875,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float16",
+        "sum": 8.703125,
+        "absmax": 8.703125,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "scalar_f32",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "scalar_f32",
+    "k": 3,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.127685546875,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float32",
+        "sum": 8.703818321228027,
+        "absmax": 8.703818321228027,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "scalar_f64",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "scalar_f64",
+    "k": 3,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.127685546875,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float64",
+        "sum": 8.703818282673778,
+        "absmax": 8.703818282673778,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "batch_f16",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "batch_f16",
+    "k": 3,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 5.44140625,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.127685546875,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float16",
+        "sum": 4.5965576171875,
+        "absmax": 4.3515625,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "batch_bf16",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "batch_bf16",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 5.44293212890625,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.127685546875,
+        "finite": true
+      },
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 4.5888671875,
+        "absmax": 4.34375,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "batch_f32",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "batch_f32",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 5.4427080154418945,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.127685546875,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float32",
+        "sum": 4.596926510334015,
+        "absmax": 4.351909160614014,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "batch_f64",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "batch_f64",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 5.442708333333334,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.127685546875,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float64",
+        "sum": 4.596926471072184,
+        "absmax": 4.351909141336889,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "float",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "float",
+    "k": 3,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.126953125,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "int",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "int",
+    "k": 3,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.126953125,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "numpy64",
+    "k": 0,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "numpy64",
+    "k": 3,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "scalar_f16",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "scalar_f16",
+    "k": 3,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.126953125,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float16",
+        "sum": 8.703125,
+        "absmax": 8.703125,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "scalar_f32",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "scalar_f32",
+    "k": 3,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.126953125,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float32",
+        "sum": 8.703818321228027,
+        "absmax": 8.703818321228027,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "scalar_f64",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "scalar_f64",
+    "k": 3,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.126953125,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float64",
+        "sum": 8.703818282673778,
+        "absmax": 8.703818282673778,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "batch_f16",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "batch_f16",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 5.442680358886719,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.126953125,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float16",
+        "sum": 4.5965576171875,
+        "absmax": 4.3515625,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "batch_bf16",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "batch_bf16",
+    "k": 3,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 5.4375,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.126953125,
+        "finite": true
+      },
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 4.5888671875,
+        "absmax": 4.34375,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "batch_f32",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "batch_f32",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 5.4427080154418945,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.126953125,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float32",
+        "sum": 4.596926510334015,
+        "absmax": 4.351909160614014,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "batch_f64",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "batch_f64",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 5.442708333333334,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.126953125,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float64",
+        "sum": 4.596926471072184,
+        "absmax": 4.351909141336889,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "float",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "float",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.1276041567325592,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "int",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "int",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.1276041567325592,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "numpy64",
+    "k": 0,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "numpy64",
+    "k": 3,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "scalar_f16",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "scalar_f16",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.1276041567325592,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float16",
+        "sum": 8.703125,
+        "absmax": 8.703125,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "scalar_f32",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "scalar_f32",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.1276041567325592,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float32",
+        "sum": 8.703818321228027,
+        "absmax": 8.703818321228027,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "scalar_f64",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "scalar_f64",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.1276041567325592,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float64",
+        "sum": 8.703818282673778,
+        "absmax": 8.703818282673778,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "batch_f16",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "batch_f16",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 5.442680358886719,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.1276041567325592,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float16",
+        "sum": 4.5965576171875,
+        "absmax": 4.3515625,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "batch_bf16",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "batch_bf16",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 5.44293212890625,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.1276041567325592,
+        "finite": true
+      },
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 4.5888671875,
+        "absmax": 4.34375,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "batch_f32",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "batch_f32",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 5.4427080154418945,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.1276041567325592,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float32",
+        "sum": 4.596926510334015,
+        "absmax": 4.351909160614014,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "batch_f64",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "batch_f64",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 5.442708333333334,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.1276041567325592,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float64",
+        "sum": 4.596926471072184,
+        "absmax": 4.351909141336889,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "float",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "float",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0.12760416666666669,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "int",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "int",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0.12760416666666669,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "numpy64",
+    "k": 0,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "numpy64",
+    "k": 3,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "scalar_f16",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "scalar_f16",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0.12760416666666669,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float16",
+        "sum": 8.703125,
+        "absmax": 8.703125,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "scalar_f32",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "scalar_f32",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0.12760416666666669,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float32",
+        "sum": 8.703818321228027,
+        "absmax": 8.703818321228027,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "scalar_f64",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "scalar_f64",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0.12760416666666669,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float64",
+        "sum": 8.703818282673778,
+        "absmax": 8.703818282673778,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "batch_f16",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "batch_f16",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 5.442680358886719,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0.12760416666666669,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float16",
+        "sum": 4.5965576171875,
+        "absmax": 4.3515625,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "batch_bf16",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "batch_bf16",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 5.44293212890625,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0.12760416666666669,
+        "finite": true
+      },
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 4.5888671875,
+        "absmax": 4.34375,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "batch_f32",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "batch_f32",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 5.442708336748183,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0.12760416666666669,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float32",
+        "sum": 4.596926510334015,
+        "absmax": 4.351909160614014,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "batch_f64",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 2,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "batch_f64",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8
+    ],
+    "value": 5.442708333333334,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 1.1102230246251565e-16,
+        "absmax": 0.12760416666666669,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float64",
+        "sum": 4.596926471072184,
+        "absmax": 4.351909141336889,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 2,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float16",
+    "reduction": "none",
+    "calls": [
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float16",
+    "output_shape": [
+      2,
+      2,
+      1,
+      8,
+      8
+    ],
+    "output_mean": 9.625,
+    "gradient_dtype": "torch.float16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float16",
+    "reduction": "mean",
+    "calls": [
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float16",
+    "output_shape": [],
+    "output_mean": 9.625,
+    "gradient_dtype": "torch.float16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float16",
+    "reduction": "sum",
+    "calls": [
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float16",
+    "output_shape": [],
+    "output_mean": 2464,
+    "gradient_dtype": "torch.float16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "passthrough",
+    "input_dtype": "torch.bfloat16",
+    "reduction": "none",
+    "calls": [
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.bfloat16",
+    "output_shape": [
+      2,
+      2,
+      1,
+      8,
+      8
+    ],
+    "output_mean": 9.625,
+    "gradient_dtype": "torch.bfloat16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "passthrough",
+    "input_dtype": "torch.bfloat16",
+    "reduction": "mean",
+    "calls": [
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "output_mean": 9.625,
+    "gradient_dtype": "torch.bfloat16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "passthrough",
+    "input_dtype": "torch.bfloat16",
+    "reduction": "sum",
+    "calls": [
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "output_mean": 2464,
+    "gradient_dtype": "torch.bfloat16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float32",
+    "reduction": "none",
+    "calls": [
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float32",
+    "output_shape": [
+      2,
+      2,
+      1,
+      8,
+      8
+    ],
+    "output_mean": 9.625,
+    "gradient_dtype": "torch.float32",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float32",
+    "reduction": "mean",
+    "calls": [
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float32",
+    "output_shape": [],
+    "output_mean": 9.625,
+    "gradient_dtype": "torch.float32",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float32",
+    "reduction": "sum",
+    "calls": [
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float32",
+    "output_shape": [],
+    "output_mean": 2464,
+    "gradient_dtype": "torch.float32",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float64",
+    "reduction": "none",
+    "calls": [
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [
+      2,
+      2,
+      1,
+      8,
+      8
+    ],
+    "output_mean": 9.625,
+    "gradient_dtype": "torch.float64",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float64",
+    "reduction": "mean",
+    "calls": [
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 9.625,
+    "gradient_dtype": "torch.float64",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float64",
+    "reduction": "sum",
+    "calls": [
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 2464,
+    "gradient_dtype": "torch.float64",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float16",
+    "reduction": "none",
+    "calls": [
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [
+      2,
+      2,
+      1,
+      8,
+      8
+    ],
+    "output_mean": 0.765625,
+    "gradient_dtype": "torch.float16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float16",
+    "reduction": "mean",
+    "calls": [
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 0.765625,
+    "gradient_dtype": "torch.float16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float16",
+    "reduction": "sum",
+    "calls": [
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 196,
+    "gradient_dtype": "torch.float16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.bfloat16",
+    "reduction": "none",
+    "calls": [
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [
+      2,
+      2,
+      1,
+      8,
+      8
+    ],
+    "output_mean": 0.765625,
+    "gradient_dtype": "torch.bfloat16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.bfloat16",
+    "reduction": "mean",
+    "calls": [
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 0.765625,
+    "gradient_dtype": "torch.bfloat16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.bfloat16",
+    "reduction": "sum",
+    "calls": [
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 196,
+    "gradient_dtype": "torch.bfloat16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float32",
+    "reduction": "none",
+    "calls": [
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [
+      2,
+      2,
+      1,
+      8,
+      8
+    ],
+    "output_mean": 0.765625,
+    "gradient_dtype": "torch.float32",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float32",
+    "reduction": "mean",
+    "calls": [
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 0.765625,
+    "gradient_dtype": "torch.float32",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float32",
+    "reduction": "sum",
+    "calls": [
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 196,
+    "gradient_dtype": "torch.float32",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float64",
+    "reduction": "none",
+    "calls": [
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [
+      2,
+      2,
+      1,
+      8,
+      8
+    ],
+    "output_mean": 0.765625,
+    "gradient_dtype": "torch.float64",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float64",
+    "reduction": "mean",
+    "calls": [
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 0.765625,
+    "gradient_dtype": "torch.float64",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 2,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float64",
+    "reduction": "sum",
+    "calls": [
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 196,
+    "gradient_dtype": "torch.float64",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "float",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "float",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "int",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "int",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "numpy64",
+    "k": 0,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "numpy64",
+    "k": 3,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "scalar_f16",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "scalar_f16",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "scalar_f32",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "scalar_f32",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "scalar_f64",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "scalar_f64",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "batch_f16",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "batch_f16",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "batch_bf16",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "batch_bf16",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "batch_f32",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "batch_f32",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "batch_f64",
+    "k": 0,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bool",
+    "alpha_kind": "batch_f64",
+    "k": 3,
+    "error": {
+      "type": "RuntimeError",
+      "message": "Subtraction, the `-` operator, with a bool tensor is not supported. If you are trying to invert a mask, use the `~` or `logical_not()` operator instead."
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "float",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "float",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 14
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "int",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "int",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 14
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "numpy64",
+    "k": 0,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "numpy64",
+    "k": 3,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "scalar_f16",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "scalar_f16",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 14,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 12.671875,
+        "absmax": 12.671875,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "scalar_f32",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "scalar_f32",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 14,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 12.660099029541016,
+        "absmax": 12.660099029541016,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "scalar_f64",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "scalar_f64",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 14,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 12.660099320252769,
+        "absmax": 12.660099320252769,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "batch_f16",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "batch_f16",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 7.9166259765625,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 6.6923828125,
+        "absmax": 6.3359375,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "batch_bf16",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "batch_bf16",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 7.9169921875,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 6.66796875,
+        "absmax": 6.3125,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "batch_f32",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "batch_f32",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 7.916667461395264,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 6.6864383816719055,
+        "absmax": 6.330049514770508,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "batch_f64",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.int64",
+    "alpha_kind": "batch_f64",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 7.916666666666667,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 6.6864385033777225,
+        "absmax": 6.3300496601263845,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "float",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "float",
+    "k": 3,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.015960693359375,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "int",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "int",
+    "k": 3,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.015960693359375,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "numpy64",
+    "k": 0,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "numpy64",
+    "k": 3,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "scalar_f16",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "scalar_f16",
+    "k": 3,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.015960693359375,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float16",
+        "sum": 8.703125,
+        "absmax": 8.703125,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "scalar_f32",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "scalar_f32",
+    "k": 3,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.015960693359375,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float32",
+        "sum": 8.703818321228027,
+        "absmax": 8.703818321228027,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "scalar_f64",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "scalar_f64",
+    "k": 3,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.015960693359375,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float64",
+        "sum": 8.703818282673778,
+        "absmax": 8.703818282673778,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "batch_f16",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "batch_f16",
+    "k": 3,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 5.44140625,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.015960693359375,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float16",
+        "sum": 4.5965576171875,
+        "absmax": 4.3515625,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "batch_bf16",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "batch_bf16",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 5.44293212890625,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.015960693359375,
+        "finite": true
+      },
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 4.5888671875,
+        "absmax": 4.34375,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "batch_f32",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "batch_f32",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 5.4427080154418945,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.015960693359375,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float32",
+        "sum": 4.596926510334015,
+        "absmax": 4.351909160614014,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "batch_f64",
+    "k": 0,
+    "output_dtype": "torch.float16",
+    "direct_dtype": "torch.float16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float16",
+    "alpha_kind": "batch_f64",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 5.442708333333333,
+    "gradients": [
+      {
+        "dtype": "torch.float16",
+        "sum": 0,
+        "absmax": 0.015960693359375,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float64",
+        "sum": 4.596926471072184,
+        "absmax": 4.351909141336889,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "float",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "float",
+    "k": 3,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.015869140625,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "int",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "int",
+    "k": 3,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.015869140625,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "numpy64",
+    "k": 0,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "numpy64",
+    "k": 3,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "scalar_f16",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "scalar_f16",
+    "k": 3,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.015869140625,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float16",
+        "sum": 8.703125,
+        "absmax": 8.703125,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "scalar_f32",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "scalar_f32",
+    "k": 3,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.015869140625,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float32",
+        "sum": 8.703818321228027,
+        "absmax": 8.703818321228027,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "scalar_f64",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "scalar_f64",
+    "k": 3,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.015869140625,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float64",
+        "sum": 8.703818282673778,
+        "absmax": 8.703818282673778,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "batch_f16",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "batch_f16",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 5.442680358886719,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.015869140625,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float16",
+        "sum": 4.5965576171875,
+        "absmax": 4.3515625,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "batch_bf16",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "batch_bf16",
+    "k": 3,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 5.4375,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.015869140625,
+        "finite": true
+      },
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 4.5888671875,
+        "absmax": 4.34375,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "batch_f32",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "batch_f32",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 5.4427080154418945,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.015869140625,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float32",
+        "sum": 4.596926510334015,
+        "absmax": 4.351909160614014,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "batch_f64",
+    "k": 0,
+    "output_dtype": "torch.bfloat16",
+    "direct_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.bfloat16",
+    "alpha_kind": "batch_f64",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 5.442708333333333,
+    "gradients": [
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 0,
+        "absmax": 0.015869140625,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float64",
+        "sum": 4.596926471072184,
+        "absmax": 4.351909141336889,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "float",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "float",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.0159505195915699,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "int",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "int",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.0159505195915699,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "numpy64",
+    "k": 0,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "numpy64",
+    "k": 3,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "scalar_f16",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "scalar_f16",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.0159505195915699,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float16",
+        "sum": 8.703125,
+        "absmax": 8.703125,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "scalar_f32",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "scalar_f32",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.0159505195915699,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float32",
+        "sum": 8.703818321228027,
+        "absmax": 8.703818321228027,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "scalar_f64",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "scalar_f64",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.0159505195915699,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float64",
+        "sum": 8.703818282673778,
+        "absmax": 8.703818282673778,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "batch_f16",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "batch_f16",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 5.442680358886719,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.0159505195915699,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float16",
+        "sum": 4.5965576171875,
+        "absmax": 4.3515625,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "batch_bf16",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "batch_bf16",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 5.44293212890625,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.0159505195915699,
+        "finite": true
+      },
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 4.5888671875,
+        "absmax": 4.34375,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "batch_f32",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "batch_f32",
+    "k": 3,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 5.4427080154418945,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.0159505195915699,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float32",
+        "sum": 4.596926510334015,
+        "absmax": 4.351909160614014,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "batch_f64",
+    "k": 0,
+    "output_dtype": "torch.float32",
+    "direct_dtype": "torch.float32",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float32",
+    "alpha_kind": "batch_f64",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 5.442708333333333,
+    "gradients": [
+      {
+        "dtype": "torch.float32",
+        "sum": 0,
+        "absmax": 0.0159505195915699,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float64",
+        "sum": 4.596926471072184,
+        "absmax": 4.351909141336889,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "float",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "float",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0.015950520833333336,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "int",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "int",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0.015950520833333336,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "numpy64",
+    "k": 0,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "numpy64",
+    "k": 3,
+    "error": {
+      "type": "TypeError",
+      "message": "'numpy.bool' object cannot be interpreted as an integer"
+    }
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "scalar_f16",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "scalar_f16",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0.015950520833333336,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float16",
+        "sum": 8.703125,
+        "absmax": 8.703125,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "scalar_f32",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "scalar_f32",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0.015950520833333336,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float32",
+        "sum": 8.703818321228027,
+        "absmax": 8.703818321228027,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "scalar_f64",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "scalar_f64",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 9.625,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0.015950520833333336,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float64",
+        "sum": 8.703818282673778,
+        "absmax": 8.703818282673778,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "batch_f16",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "batch_f16",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 5.442680358886719,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0.015950520833333336,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float16",
+        "sum": 4.5965576171875,
+        "absmax": 4.3515625,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "batch_bf16",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "batch_bf16",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 5.44293212890625,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0.015950520833333336,
+        "finite": true
+      },
+      {
+        "dtype": "torch.bfloat16",
+        "sum": 4.5888671875,
+        "absmax": 4.34375,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "batch_f32",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "batch_f32",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 5.442708336748183,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0.015950520833333336,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float32",
+        "sum": 4.596926510334015,
+        "absmax": 4.351909160614014,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "batch_f64",
+    "k": 0,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 0,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0,
+        "finite": true
+      },
+      null
+    ]
+  },
+  {
+    "ndim": 3,
+    "input_dtype": "torch.float64",
+    "alpha_kind": "batch_f64",
+    "k": 3,
+    "output_dtype": "torch.float64",
+    "direct_dtype": "torch.float64",
+    "output_shape": [],
+    "direct_shape": [
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "value": 5.442708333333333,
+    "gradients": [
+      {
+        "dtype": "torch.float64",
+        "sum": 0,
+        "absmax": 0.015950520833333336,
+        "finite": true
+      },
+      {
+        "dtype": "torch.float64",
+        "sum": 4.596926471072184,
+        "absmax": 4.351909141336889,
+        "finite": true
+      }
+    ]
+  },
+  {
+    "ndim": 3,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float16",
+    "reduction": "none",
+    "calls": [
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float16",
+    "output_shape": [
+      2,
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "output_mean": 9.625,
+    "gradient_dtype": "torch.float16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float16",
+    "reduction": "mean",
+    "calls": [
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float16",
+    "output_shape": [],
+    "output_mean": 9.625,
+    "gradient_dtype": "torch.float16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float16",
+    "reduction": "sum",
+    "calls": [
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float16",
+    "output_shape": [],
+    "output_mean": 19712,
+    "gradient_dtype": "torch.float16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "passthrough",
+    "input_dtype": "torch.bfloat16",
+    "reduction": "none",
+    "calls": [
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.bfloat16",
+    "output_shape": [
+      2,
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "output_mean": 9.625,
+    "gradient_dtype": "torch.bfloat16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "passthrough",
+    "input_dtype": "torch.bfloat16",
+    "reduction": "mean",
+    "calls": [
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "output_mean": 9.625,
+    "gradient_dtype": "torch.bfloat16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "passthrough",
+    "input_dtype": "torch.bfloat16",
+    "reduction": "sum",
+    "calls": [
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.bfloat16",
+    "output_shape": [],
+    "output_mean": 19712,
+    "gradient_dtype": "torch.bfloat16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float32",
+    "reduction": "none",
+    "calls": [
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float32",
+    "output_shape": [
+      2,
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "output_mean": 9.625,
+    "gradient_dtype": "torch.float32",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float32",
+    "reduction": "mean",
+    "calls": [
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float32",
+    "output_shape": [],
+    "output_mean": 9.625,
+    "gradient_dtype": "torch.float32",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float32",
+    "reduction": "sum",
+    "calls": [
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float32",
+    "output_shape": [],
+    "output_mean": 19712,
+    "gradient_dtype": "torch.float32",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float64",
+    "reduction": "none",
+    "calls": [
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [
+      2,
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "output_mean": 9.625,
+    "gradient_dtype": "torch.float64",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float64",
+    "reduction": "mean",
+    "calls": [
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 9.625,
+    "gradient_dtype": "torch.float64",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "passthrough",
+    "input_dtype": "torch.float64",
+    "reduction": "sum",
+    "calls": [
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 19712,
+    "gradient_dtype": "torch.float64",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float16",
+    "reduction": "none",
+    "calls": [
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [
+      2,
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "output_mean": 0.765625,
+    "gradient_dtype": "torch.float16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float16",
+    "reduction": "mean",
+    "calls": [
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 0.765625,
+    "gradient_dtype": "torch.float16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float16",
+    "reduction": "sum",
+    "calls": [
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 1568,
+    "gradient_dtype": "torch.float16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.bfloat16",
+    "reduction": "none",
+    "calls": [
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [
+      2,
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "output_mean": 0.765625,
+    "gradient_dtype": "torch.bfloat16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.bfloat16",
+    "reduction": "mean",
+    "calls": [
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 0.765625,
+    "gradient_dtype": "torch.bfloat16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.bfloat16",
+    "reduction": "sum",
+    "calls": [
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.bfloat16",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 1568,
+    "gradient_dtype": "torch.bfloat16",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float32",
+    "reduction": "none",
+    "calls": [
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [
+      2,
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "output_mean": 0.765625,
+    "gradient_dtype": "torch.float32",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float32",
+    "reduction": "mean",
+    "calls": [
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 0.765625,
+    "gradient_dtype": "torch.float32",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float32",
+    "reduction": "sum",
+    "calls": [
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float32",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 1568,
+    "gradient_dtype": "torch.float32",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float64",
+    "reduction": "none",
+    "calls": [
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [
+      2,
+      2,
+      1,
+      8,
+      8,
+      8
+    ],
+    "output_mean": 0.765625,
+    "gradient_dtype": "torch.float64",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float64",
+    "reduction": "mean",
+    "calls": [
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 0.765625,
+    "gradient_dtype": "torch.float64",
+    "gradient_finite": true
+  },
+  {
+    "ndim": 3,
+    "subclass": "custom_float64",
+    "input_dtype": "torch.float64",
+    "reduction": "sum",
+    "calls": [
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ],
+      [
+        "torch.float64",
+        "torch.int64",
+        [
+          2,
+          1,
+          8,
+          8,
+          8
+        ]
+      ]
+    ],
+    "output_dtype": "torch.float64",
+    "output_shape": [],
+    "output_mean": 1568,
+    "gradient_dtype": "torch.float64",
+    "gradient_finite": true
+  }
+]

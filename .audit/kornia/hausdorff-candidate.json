@@ -1,0 +1,22 @@
+{
+  "status": "validation_pending",
+  "head": "ec3b52d4c10f1439e3b72436896fd3ac2bfbac6b",
+  "base": "5cc9c44eddd8dc6a061151d245925f072d673321",
+  "local_tests": {
+    "regression_base": "10 failed / 42 passed",
+    "regression_candidate": "52 passed",
+    "standard_eager": "118 passed / 6 deselected",
+    "half_eager": "116 passed / 8 deselected",
+    "precommit": "all passed, Ruff 0.17.5",
+    "ty": "passed"
+  },
+  "independent_review": "root reviewed exact production and test blobs; no substantive correctness findings; eager scope only",
+  "unverified": [
+    "torch.compile",
+    "TorchScript",
+    "ONNX",
+    "CUDA",
+    "MPS"
+  ],
+  "upstream_creation": "Not attempted; existing repository integration permission denial respected"
+}
