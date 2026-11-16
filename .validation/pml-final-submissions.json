@@ -64,6 +64,36 @@
         "source_history": "https://github.com/Afloat16/geoopt/blob/0049069244b408f200d0cbac6e1e8118ede51673/.validation/pml-final-source-history.json"
       },
       "prefilled_url": "https://github.com/KevinMusgrave/pytorch-metric-learning/compare/master...Afloat16:fix/p2s-center-precision-20261116?expand=1&title=Preserve%20P2SGrad%20learning%20signals%20close%20to%20class%20centers"
+    },
+    {
+      "name": "circle-weight-precision",
+      "repository": "KevinMusgrave/pytorch-metric-learning",
+      "base": "master",
+      "base_sha": "b95a42310f50720a766b91008470b278364f705d",
+      "branch": "fix/circle-weight-precision-20261116",
+      "head": "Afloat16:fix/circle-weight-precision-20261116",
+      "head_sha": "e0a0f819ede53a0d045287b4763520e38b8eb539",
+      "tree": "af5223cbc9265891724ed3b7d70dd4322132dea2",
+      "status": "ready",
+      "maintainer_can_modify": false,
+      "title": "Keep CircleLoss adaptive-weight arithmetic finite before reduction",
+      "body": "## Problem\n\nCircleLoss can overflow its detached adaptive weights before multiplying them by a zero boundary residual. With float16, margin 0.5, gamma 100000, and selected similarities 0.5, the expected finite loss is log(3), but the current path returns zero with NaN gradients. Large opposite positive/negative logit offsets can also discard log-count terms or perturb the logsumexp gradient before the two partitions are combined.\n\n## Change\n\nEvaluate the adaptive weights and logit products in the accumulation dtype. Center the selected positive and negative partitions separately, combine their detached shifts before adding the centered log-sums, and retain the original output dtype and detached-weight objective.\n\n## Validation\n\n[Exact-base and independent-candidate validation](https://github.com/Afloat16/geoopt/actions/runs/43859155299/job/133271104426):\n\n- Unchanged production base `b95a423`: 12 regression failures and 20 passing controls.\n- All 89 focused and adjacent tests pass. The 32 new cases verify closed-form boundary values and matrix gradients across four dtypes, margins, and gamma values; rectangular reference batches; missing-pair controls; and exactly cancelling logit offsets of magnitude 37,500,000. The latter retain log(3) and analytic gradients without loosening existing numerical tolerances.\n- Full CPU suite: 1,561 passed; 10 device-specific tests deselected.\n- Required Code Polishy pre-commit checks, task verification from the retained clean base, frozen dependency review, and supply-chain checks passed.\n- Ruff formatting/lint, full ty checks, and strict MkDocs build passed.\n\nLinux, Python 3.12.13, PyTorch 2.14.0, with the unchanged frozen dependency lock. CUDA and MPS execution were not performed. The PR tree exactly matches the fully validated tree `af5223cbc9265891724ed3b7d70dd4322132dea2`.\n\nThe policy files retain the narrowly scoped certificate-trust applicability reassessment required for the locked development environment through November 19; dependency versions are unchanged.\n",
+      "validation": {
+        "run": 43859155299,
+        "job": 133271104426,
+        "baseline_failures": 12,
+        "baseline_controls": 20,
+        "adjacent_passed": 89,
+        "full_cpu_passed": 1561,
+        "device_deselected": 10,
+        "all_required_gates_passed": true
+      },
+      "dedup": {
+        "old_full_source_branches": 37,
+        "all_state_pr_count": 204,
+        "source_history": "https://github.com/Afloat16/geoopt/blob/0049069244b408f200d0cbac6e1e8118ede51673/.validation/pml-final-source-history.json"
+      },
+      "prefilled_url": "https://github.com/KevinMusgrave/pytorch-metric-learning/compare/master...Afloat16:fix/circle-weight-precision-20261116?expand=1&title=Keep%20CircleLoss%20adaptive-weight%20arithmetic%20finite%20before%20reduction"
     }
   ],
   "official_ci": [
@@ -663,5 +693,5 @@
       "url": "https://github.com/KevinMusgrave/pytorch-metric-learning/pull/779"
     }
   ],
-  "note": "No upstream PR for these two ready candidates has been created yet; 16 earlier PRs #793-#808 are Open and all seven official checks passed. Circle and large-vector normalization still require final verification."
+  "note": "Three independent candidates are fully verified and ready; no upstream PR has been created for these candidates. Normalization final verification is running."
 }
