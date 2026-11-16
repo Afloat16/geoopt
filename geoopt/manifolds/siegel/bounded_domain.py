@@ -138,7 +138,7 @@ class BoundedDomain(SiegelManifold):
 
         .. math::
 
-            g_{Z}(U, V) = \operatorname{Tr}[(Id - \overline{Z}Z)^{-1} U (Id - Z\overline{Z})^{-1} \overline{V}]
+            g_{Z}(U, V) = \operatorname{Re}\operatorname{Tr}[(Id - \overline{Z}Z)^{-1} U (Id - Z\overline{Z})^{-1} \overline{V}]
 
         Parameters
         ----------
@@ -165,7 +165,7 @@ class BoundedDomain(SiegelManifold):
         inv_id_minus_z_conjz = sm.inverse(identity - (z @ conj_z))
 
         res = inv_id_minus_conjz_z @ u @ inv_id_minus_z_conjz @ v.conj()
-        return lalg.trace(res, keepdim=keepdim)
+        return lalg.trace(res, keepdim=keepdim).real
 
     def _check_point_on_manifold(self, x: torch.Tensor, *, atol=1e-4, rtol=1e-5):
         if not self._check_matrices_are_symmetric(x, atol=atol, rtol=rtol):

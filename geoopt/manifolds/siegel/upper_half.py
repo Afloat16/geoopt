@@ -103,7 +103,7 @@ class UpperHalf(SiegelManifold):
 
         .. math::
 
-            g_{Z}(U, V) = \operatorname{Tr}[ Y^{-1} U Y^{-1} \overline{V} ]
+            g_{Z}(U, V) = \operatorname{Re}\operatorname{Tr}[ Y^{-1} U Y^{-1} \overline{V} ]
 
         Parameters
         ----------
@@ -126,7 +126,7 @@ class UpperHalf(SiegelManifold):
         inv_y = sm.inverse(z.imag).type_as(z)
 
         res = inv_y @ u @ inv_y @ v.conj()
-        return lalg.trace(res, keepdim=keepdim)
+        return lalg.trace(res, keepdim=keepdim).real
 
     def _check_point_on_manifold(self, z: torch.Tensor, *, atol=1e-5, rtol=1e-5):
         if not self._check_matrices_are_symmetric(z, atol=atol, rtol=rtol):
