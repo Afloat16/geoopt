@@ -1,0 +1,64 @@
+name: Validate scaled initialization autograd
+on:
+  push:
+    branches: ['validation/scaled-initialization-preserve-autograd-20261116']
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: '3.8'
+            torch: '2.0.1'
+            numpy: '1.24.4'
+            scipy: '1.10.1'
+          - python: '3.12'
+            torch: '2.6.0'
+            numpy: '2.2.6'
+            scipy: '1.15.3'
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install pinned CPU dependencies
+        run: |
+          python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==${{ matrix.numpy }} scipy==${{ matrix.scipy }} pytest==8.3.5 ruff
+          python -m pip install -e . --no-deps
+      - name: Lint changed files
+        run: python -m ruff check geoopt/manifolds/scaled.py tests/test_scaling_initialization_autograd.py
+      - name: Reproduce caller autograd mutation on unchanged upstream
+        run: |
+          git fetch --depth=1 origin 4623ea1d2a9808b8e87bf10949cccb2c5ec6233c
+          git restore --source=4623ea1d2a9808b8e87bf10949cccb2c5ec6233c -- geoopt/manifolds/scaled.py
+          set +e
+          python -m pytest -q tests/test_scaling_initialization_autograd.py --junitxml=baseline.xml
+          result=$?
+          set -e
+          test "$result" -eq 1
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          root = ET.parse("baseline.xml").getroot()
+          assert len(root.findall(".//failure")) == 10, len(root.findall(".//failure"))
+          assert not root.findall(".//error")
+          PY
+      - name: Verify exact candidate and scaled geometry
+        run: |
+          git fetch --depth=1 origin fd3e256743cc73b9ca094e87312e4e3475f8c447
+          git restore --source=fd3e256743cc73b9ca094e87312e4e3475f8c447 -- geoopt/manifolds/scaled.py
+          python -m pytest -q tests/test_scaling_initialization_autograd.py tests/test_scaling.py tests/test_manifold_basic.py tests/test_rlinesearch_retraction_derivative.py --junitxml=candidate.xml
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: scaled-init-${{ matrix.python }}
+          path: |
+            baseline.xml
+            candidate.xml
