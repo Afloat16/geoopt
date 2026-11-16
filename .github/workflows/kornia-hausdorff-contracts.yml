@@ -1,0 +1,46 @@
+name: Kornia Hausdorff original dtype and extension contracts
+on:
+  push:
+    branches: [validation/kornia-hausdorff-contracts-20261116]
+permissions:
+  contents: read
+jobs:
+  cpu:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        torch: ['2.5.1', '2.15.0']
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: validation
+          persist-credentials: false
+      - uses: actions/checkout@v7
+        with:
+          repository: kornia/kornia
+          ref: b1624c022ceb93373cb073a50bd1da2511108c5e
+          path: kornia
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: prefix-dev/setup-pixi@v0.11.3
+        with:
+          pixi-version: v0.84.2
+          working-directory: kornia
+          environments: py312
+          locked: true
+          cache: true
+      - name: Install locked packages and CPU Torch
+        working-directory: kornia
+        env:
+          TORCH_VERSION: ${{ matrix.torch }}
+        run: pixi run -e py312 python ../validation/.validation/kornia-install-locked-cpu.py
+      - name: Record original public dtype and subclass contracts
+        working-directory: kornia
+        run: pixi run -e py312 uv run --no-sync python - < ../validation/.validation/kornia-hausdorff-contracts.py
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: kornia-hausdorff-contracts-${{ matrix.torch }}
+          path: kornia-hausdorff-contract-results/
