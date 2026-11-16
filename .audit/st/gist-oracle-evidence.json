@@ -1,0 +1,212 @@
+{
+  "run": 43912070038,
+  "url": "https://github.com/Afloat16/geoopt/actions/runs/43912070038",
+  "jobs": {
+    "jobs": [
+      {
+        "id": 133456314463,
+        "name": "verify (2.14.1)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 43912070038,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Install CPU dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Verify and benchmark unchanged baseline",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Verify numerical error, regressions and benchmark candidate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Check repository style",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      },
+      {
+        "id": 133456315013,
+        "name": "verify (2.6.0)",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 43912070038,
+        "logs_url": null,
+        "steps": [
+          {
+            "name": "Set up job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 1
+          },
+          {
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 2
+          },
+          {
+            "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 3
+          },
+          {
+            "name": "Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 4
+          },
+          {
+            "name": "Install CPU dependencies",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 5
+          },
+          {
+            "name": "Verify and benchmark unchanged baseline",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 6
+          },
+          {
+            "name": "Verify numerical error, regressions and benchmark candidate",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 7
+          },
+          {
+            "name": "Check repository style",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 8
+          },
+          {
+            "name": "Post Run actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 14
+          },
+          {
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 15
+          },
+          {
+            "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 16
+          },
+          {
+            "name": "Complete job",
+            "status": "completed",
+            "conclusion": "success",
+            "number": 17
+          }
+        ]
+      }
+    ]
+  },
+  "extracts": [
+    {
+      "job": 133456314463,
+      "text": [
+        "2026-11-16T16:52:28.8909826Z 88 passed in 6.06s",
+        "2026-11-16T16:52:34.6566370Z {\"revision\": \"before\", \"loss\": \"GISTEmbedLoss\", \"batch\": 64, \"dim\": 384, \"median_seconds\": 0.06664315599999782, \"unique_saved_tensor_storage_bytes\": 101565956}",
+        "2026-11-16T16:52:52.8433475Z {\"revision\": \"before\", \"loss\": \"GISTEmbedLoss\", \"batch\": 128, \"dim\": 768, \"median_seconds\": 1.8247837399999867, \"unique_saved_tensor_storage_bytes\": 808913924}",
+        "2026-11-16T16:52:56.3610117Z {\"revision\": \"before\", \"loss\": \"CachedGISTEmbedLoss\", \"batch\": 128, \"dim\": 384, \"median_seconds\": 0.3308287890000088, \"unique_saved_tensor_storage_bytes\": 203296784}",
+        "2026-11-16T16:53:01.3936487Z {\"input\": 0, \"reference_gradient_norm\": 9808713.507551624, \"reference_max_component\": 6143894.741212147, \"native_float32\": {\"max_absolute_error\": 0.25250100065022707, \"norm_relative_error\": 5.4355871441904264e-08}, \"candidate_float32\": {\"max_absolute_error\": 0.30336950439959764, \"norm_relative_error\": 5.069629209280625e-08}, \"native_vs_candidate_max_absolute\": 0.25}",
+        "2026-11-16T16:53:01.3937899Z {\"input\": 1, \"reference_gradient_norm\": 8504192.746112712, \"reference_max_component\": 4317403.44220683, \"native_float32\": {\"max_absolute_error\": 0.44220682978630066, \"norm_relative_error\": 9.703799287256695e-08}, \"candidate_float32\": {\"max_absolute_error\": 0.23405453469604254, \"norm_relative_error\": 5.902149518104039e-08}, \"native_vs_candidate_max_absolute\": 0.5}",
+        "2026-11-16T16:53:09.9355609Z 88 passed in 2.62s",
+        "2026-11-16T16:53:14.8573253Z {\"revision\": \"after\", \"loss\": \"GISTEmbedLoss\", \"batch\": 64, \"dim\": 384, \"median_seconds\": 0.001472855000031359, \"unique_saved_tensor_storage_bytes\": 1959428}",
+        "2026-11-16T16:53:14.9382407Z {\"revision\": \"after\", \"loss\": \"GISTEmbedLoss\", \"batch\": 128, \"dim\": 768, \"median_seconds\": 0.007854765000047337, \"unique_saved_tensor_storage_bytes\": 7818244}",
+        "2026-11-16T16:53:15.0093139Z {\"revision\": \"after\", \"loss\": \"CachedGISTEmbedLoss\", \"batch\": 128, \"dim\": 384, \"median_seconds\": 0.006686140000056184, \"unique_saved_tensor_storage_bytes\": 4874256}",
+        "2026-11-16T16:53:15.0156157Z [{\"loss\": \"GISTEmbedLoss\", \"batch\": 64, \"speed_ratio\": 45.24760142619532, \"saved_storage_ratio\": 51.83449251516259}, {\"loss\": \"GISTEmbedLoss\", \"batch\": 128, \"speed_ratio\": 232.31551039260748, \"saved_storage_ratio\": 103.46491155814527}, {\"loss\": \"CachedGISTEmbedLoss\", \"batch\": 128, \"speed_ratio\": 49.47978788916008, \"saved_storage_ratio\": 41.70826973388349}]",
+        "2026-11-16T16:53:25.2843317Z ruff check...............................................................Passed",
+        "2026-11-16T16:53:25.4508921Z ruff format..............................................................Passed",
+        "2026-11-16T16:53:26.4806348Z typos....................................................................Passed"
+      ]
+    },
+    {
+      "job": 133456315013,
+      "text": [
+        "2026-11-16T16:52:31.1028216Z 88 passed in 5.77s",
+        "2026-11-16T16:52:36.1339921Z {\"revision\": \"before\", \"loss\": \"GISTEmbedLoss\", \"batch\": 64, \"dim\": 384, \"median_seconds\": 0.09576401199990414, \"unique_saved_tensor_storage_bytes\": 101565956}",
+        "2026-11-16T16:52:53.1281109Z {\"revision\": \"before\", \"loss\": \"GISTEmbedLoss\", \"batch\": 128, \"dim\": 768, \"median_seconds\": 1.7031039139999393, \"unique_saved_tensor_storage_bytes\": 808913924}",
+        "2026-11-16T16:52:57.8904959Z {\"revision\": \"before\", \"loss\": \"CachedGISTEmbedLoss\", \"batch\": 128, \"dim\": 384, \"median_seconds\": 0.4429806460000236, \"unique_saved_tensor_storage_bytes\": 203296784}",
+        "2026-11-16T16:53:02.0030102Z {\"input\": 0, \"reference_gradient_norm\": 9808713.507551624, \"reference_max_component\": 6143894.741212147, \"native_float32\": {\"max_absolute_error\": 0.25250100065022707, \"norm_relative_error\": 5.4355871441904264e-08}, \"candidate_float32\": {\"max_absolute_error\": 0.8033695043995976, \"norm_relative_error\": 9.164768499671635e-08}, \"native_vs_candidate_max_absolute\": 0.75}",
+        "2026-11-16T16:53:02.0032826Z {\"input\": 1, \"reference_gradient_norm\": 8504192.746112712, \"reference_max_component\": 4317403.44220683, \"native_float32\": {\"max_absolute_error\": 0.44220682978630066, \"norm_relative_error\": 9.703799287256695e-08}, \"candidate_float32\": {\"max_absolute_error\": 0.07589379395358264, \"norm_relative_error\": 2.6673541938257794e-08}, \"native_vs_candidate_max_absolute\": 0.5}",
+        "2026-11-16T16:53:09.6502944Z 88 passed in 3.09s",
+        "2026-11-16T16:53:13.7085373Z {\"revision\": \"after\", \"loss\": \"GISTEmbedLoss\", \"batch\": 64, \"dim\": 384, \"median_seconds\": 0.002026684000043133, \"unique_saved_tensor_storage_bytes\": 1959428}",
+        "2026-11-16T16:53:13.7842257Z {\"revision\": \"after\", \"loss\": \"GISTEmbedLoss\", \"batch\": 128, \"dim\": 768, \"median_seconds\": 0.0073025519999418975, \"unique_saved_tensor_storage_bytes\": 7818244}",
+        "2026-11-16T16:53:13.8791494Z {\"revision\": \"after\", \"loss\": \"CachedGISTEmbedLoss\", \"batch\": 128, \"dim\": 384, \"median_seconds\": 0.009091962000070453, \"unique_saved_tensor_storage_bytes\": 4874256}",
+        "2026-11-16T16:53:13.8875607Z [{\"loss\": \"GISTEmbedLoss\", \"batch\": 64, \"speed_ratio\": 47.25157547889362, \"saved_storage_ratio\": 51.83449251516259}, {\"loss\": \"GISTEmbedLoss\", \"batch\": 128, \"speed_ratio\": 233.2203747420751, \"saved_storage_ratio\": 103.46491155814527}, {\"loss\": \"CachedGISTEmbedLoss\", \"batch\": 128, \"speed_ratio\": 48.722228051172124, \"saved_storage_ratio\": 41.70826973388349}]",
+        "2026-11-16T16:53:26.3866267Z ruff check...............................................................Passed",
+        "2026-11-16T16:53:26.5615974Z ruff format..............................................................Passed",
+        "2026-11-16T16:53:27.6248188Z typos....................................................................Passed"
+      ]
+    }
+  ]
+}

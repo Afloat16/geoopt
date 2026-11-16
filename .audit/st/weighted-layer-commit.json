@@ -1,0 +1,14 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "perf/weighted-layer-memory-20261116",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "tree": "6281c3c29602dfdbaf6820c1124fa3496c70ecb1",
+  "head": "e2f543a617bb8caa362f56448e5f170749989c9a",
+  "local_tests": {
+    "baseline_failed": 1,
+    "baseline_passed": 27,
+    "candidate_passed": 275,
+    "candidate_skipped": 156
+  },
+  "dedup": "20 reachable source blobs, 4 historical path aliases, 6 forward variants; no prior slice-before-stack path. Related #4303 custom-weight registration is independent."
+}

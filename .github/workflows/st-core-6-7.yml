@@ -1,0 +1,132 @@
+name: Validate selected-layer storage and CSR expanded budget
+'on':
+  push:
+    branches:
+    - validation/st-core-6-7-20261116
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - torch: 2.6.0
+          candidate: weighted
+          head: e2f543a617bb8caa362f56448e5f170749989c9a
+          source: sentence_transformers/sentence_transformer/modules/weighted_layer_pooling.py
+          test: tests/sentence_transformer/modules/test_weighted_layer_pooling.py
+          failed: 1
+          passed: 27
+          adjacent: tests/sentence_transformer/modules/test_pooling.py
+        - torch: 2.6.0
+          candidate: csr
+          head: 3d53efaffdf3e101536af36c0b331f3f5ca17621
+          source: sentence_transformers/sparse_encoder/modules/sparse_auto_encoder.py
+          test: tests/sparse_encoder/modules/test_csr_expanded_capacity.py
+          failed: 50
+          passed: 34
+          adjacent: tests/sparse_encoder/modules/test_csr.py tests/sparse_encoder/losses/test_csr.py
+        - torch: 2.14.1
+          candidate: weighted
+          head: e2f543a617bb8caa362f56448e5f170749989c9a
+          source: sentence_transformers/sentence_transformer/modules/weighted_layer_pooling.py
+          test: tests/sentence_transformer/modules/test_weighted_layer_pooling.py
+          failed: 1
+          passed: 27
+          adjacent: tests/sentence_transformer/modules/test_pooling.py
+        - torch: 2.14.1
+          candidate: csr
+          head: 3d53efaffdf3e101536af36c0b331f3f5ca17621
+          source: sentence_transformers/sparse_encoder/modules/sparse_auto_encoder.py
+          test: tests/sparse_encoder/modules/test_csr_expanded_capacity.py
+          failed: 50
+          passed: 34
+          adjacent: tests/sparse_encoder/modules/test_csr.py tests/sparse_encoder/losses/test_csr.py
+    defaults:
+      run:
+        working-directory: project
+    env:
+      OMP_NUM_THREADS: 1
+      OPENBLAS_NUM_THREADS: 1
+      PYTHONPATH: .
+      ST_BASE: 9ac7fdb4edce2f1dbc171b036ecbb60383653e74
+      ST_CANDIDATE: ${{ matrix.head }}
+      ST_SOURCE: ${{ matrix.source }}
+      ST_TEST: ${{ matrix.test }}
+      ST_FAILED: ${{ matrix.failed }}
+      ST_PASSED: ${{ matrix.passed }}
+      ST_ADJACENT: ${{ matrix.adjacent }}
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        path: harness
+        persist-credentials: false
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        repository: Afloat16/sentence-transformers
+        ref: ${{ matrix.head }}
+        path: project
+        fetch-depth: 2
+        persist-credentials: false
+    - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+      with:
+        python-version: '3.12'
+    - name: Install CPU dependencies
+      run: 'python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+
+        python -m pip install numpy==2.3.5 scipy==1.17.0 scikit-learn==1.8.0 transformers==5.23.0 huggingface-hub==2.4.0 datasets==5.2.0
+        accelerate==1.15.0 pytest==9.2.0 pytest-env pytest-subtests pre-commit socksio pillow
+
+        python -m pip install -e . --no-deps
+
+        '
+    - name: Reproduce exact-base regression
+      run: 'test "$(git rev-parse HEAD)" = "$ST_CANDIDATE"
+
+        git show "$ST_BASE:$ST_SOURCE" > "$ST_SOURCE"
+
+        python - <<''PYTEST''
+
+        import os, subprocess, sys
+
+        result = subprocess.run([sys.executable, ''-m'', ''pytest'', os.environ[''ST_TEST''], ''-q'', ''--tb=short''], text=True, stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT)
+
+        print(result.stdout)
+
+        assert result.returncode == 1, result.returncode
+
+        expected = os.environ[''ST_FAILED''] + '' failed, '' + os.environ[''ST_PASSED''] + '' passed''
+
+        assert expected in result.stdout, expected
+
+        PYTEST
+
+        '
+    - name: Benchmark unchanged pooling
+      if: matrix.candidate == 'weighted'
+      run: 'python ../harness/.validation/st-weighted-layer-benchmark.py before
+
+        '
+    - name: Verify candidate and adjacent tests
+      run: 'git restore --source="$ST_CANDIDATE" -- "$ST_SOURCE"
+
+        python -m pytest "$ST_TEST" $ST_ADJACENT -q --tb=short
+
+        '
+    - name: Benchmark candidate and compare values and gradients
+      if: matrix.candidate == 'weighted'
+      run: 'python ../harness/.validation/st-weighted-layer-benchmark.py after before
+
+        '
+    - name: Check repository style
+      run: 'pre-commit run --all-files
+
+        git diff --exit-code
+
+        git diff --check
+
+        '

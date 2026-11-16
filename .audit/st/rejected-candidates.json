@@ -14,5 +14,13 @@
   {
     "key": "sparse-explicit-zero-count",
     "reason": "Identical existing upstream PR #4069; excluded before modifications."
+  },
+  {
+    "candidate": "TSDAE untied tokenizer vocabularies",
+    "reason": "Existing upstream PR #4346 covers the same defect; no new patch."
+  },
+  {
+    "candidate": "TSDAE left-padding and shared EOS/PAD reconstruction",
+    "reason": "Existing upstream PR #4136 covers the same root cause; no new patch."
   }
 ]

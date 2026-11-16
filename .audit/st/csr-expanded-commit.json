@@ -1,0 +1,14 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "fix/csr-expanded-latent-capacity-20261116",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "tree": "f9c473260f2a9e9a637f0207c5a9807ab8db6974",
+  "head": "3d53efaffdf3e101536af36c0b331f3f5ca17621",
+  "local_tests": {
+    "baseline_failed": 50,
+    "baseline_passed": 34,
+    "candidate_passed": 110,
+    "candidate_skipped": 8
+  },
+  "dedup": "43 reachable source blobs, 4 historical aliases including CSRSparsity.py, 23 extracted forward/top_k variants plus old TopKActivation.py helpers; unbounded 4k throughout. Existing #4111 dead-mask state and #4017 disabled auxiliary latents are independent."
+}
