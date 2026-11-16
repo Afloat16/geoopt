@@ -32,8 +32,8 @@ jobs:
           python validation/benchmark_siegel_inner_solves.py baseline.json
       - name: Verify and measure the exact candidate
         run: |
-          git fetch --depth=1 origin f742b71c22b2d4b1f8ae93d83d6ee138fc69de8e
-          git restore --source=f742b71c22b2d4b1f8ae93d83d6ee138fc69de8e -- geoopt/manifolds/siegel/upper_half.py geoopt/manifolds/siegel/bounded_domain.py
+          git fetch --depth=1 origin d1ea20de7503e688f3b37b32b92845a9c101a221
+          git restore --source=d1ea20de7503e688f3b37b32b92845a9c101a221 -- geoopt/manifolds/siegel/upper_half.py geoopt/manifolds/siegel/bounded_domain.py
           python -m pytest -q tests/test_siegel_inner_solves.py tests/test_manifold_basic.py --junitxml=candidate.xml
           python validation/benchmark_siegel_inner_solves.py candidate.json
           git diff --exit-code
