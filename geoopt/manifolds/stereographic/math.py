@@ -2001,8 +2001,6 @@ def _weighted_midpoint(
     if reducedim is None:
         reducedim = list_range(xs.dim())
         reducedim.pop(dim)
-    else:
-        reducedim = sorted(canonical_dims(reducedim, xs.dim()))
     gamma = _lambda_x(xs, k=k, dim=dim, keepdim=True)
     if weights is None:
         weights = torch.tensor(1.0, dtype=xs.dtype, device=xs.device)
@@ -2038,5 +2036,5 @@ def _weighted_midpoint(
             alpha = weights.sum(reducedim, keepdim=True)
         a_mean = _mobius_scalar_mul(alpha, a_mean, k=k, dim=dim)
     if not keepdim:
-        a_mean = drop_dims(a_mean, reducedim)
+        a_mean = drop_dims(a_mean, sorted(canonical_dims(reducedim, xs.dim())))
     return a_mean
