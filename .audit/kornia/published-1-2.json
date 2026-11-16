@@ -17,7 +17,7 @@
     "ui_verified": true,
     "authored_body_exact": true,
     "automated_suffix": "\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai -->\n\n<!-- coderabbit-ai-generated:v1 -->\n\n## Summary by CodeRabbit\n\n* **Performance**\n  * Patch recombination now avoids redundant overlap calculations across batches and channels, reducing reconstruction time and temporary memory use.\n* **Bug Fixes**\n  * Overlapping patches continue to be averaged correctly when recombined across multiple batches and channels.\n\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->",
-    "body": "## What does this pull request do?\n\n`combine_tensor_patches` currently unfolds and folds a full batch/channel-sized tensor of ones to count spatial overlap. Those counts depend only on image size, window, stride, and padding. This change constructs one `(1, 1, H, W)` count map and broadcasts the divisor across the reconstructed batch and channels.\n\nThe padding, folding, low-precision working dtype, complex handling, and final output conversion stay on their existing paths. A regression uses different overlapping patch values in two images and three channels, with independently calculated overlap averages and weighted input gradients.\n\n## Related issue or discussion\n\nThis improves the existing fold-based reconstruction from #1603. It preserves the reconstruction/dtype behavior covered by #5960 and the empty-batch handling from #5674. Those changes did not share the overlap-count map. The current and former source paths, intermediate fork commits, and all-state upstream PR history were checked for an existing implementation.\n\n## What did you check?\n\nLocal Pixi full pre-commit and type checks passed. The two affected patch test files pass all **207 tests** on the unchanged base and this candidate under both CPU Torch **2.5.1** and **2.15.0**.\n\n[Independent CPU validation](https://github.com/Afloat16/geoopt/actions/runs/43940474557) compares exact base `cd2349f6` with candidate `2cf64717` on the same Ubuntu 24.04/Python 3.12 runner. It uses the shared benchmark helpers, warm-up, blocked-autorange medians, one CPU thread, and verifies the imported worktree. Output and input-gradient SHA-256 values match the base on all five benchmark workloads. The [validation script](https://github.com/Afloat16/geoopt/blob/947b2b5a71343c148e4673ea21b0e79e79881967/.validation/kornia-validate-cpu-candidates.py) and its benchmark inputs are retained outside the library diff.\n\n| CPU workload (B\u00d7C\u00d7H\u00d7W; window/stride) | Torch 2.5.1 forward speedup | Torch 2.15.0 base \u2192 candidate | Torch 2.15.0 speedup |\n| --- | ---: | ---: | ---: |\n| 1\u00d73\u00d7512\u00d7512; 32/16 | 1.54\u00d7 | 36.48 \u2192 26.77 ms | 1.36\u00d7 |\n| 8\u00d73\u00d7256\u00d7256; 32/16 | 3.13\u00d7 | 45.91 \u2192 20.21 ms | 2.27\u00d7 |\n| 2\u00d732\u00d7128\u00d7128; 16/8 | 1.30\u00d7 | 35.41 \u2192 24.27 ms | 1.46\u00d7 |\n| 4\u00d764\u00d7128\u00d7128; 16/8 | 1.44\u00d7 | 214.76 \u2192 125.94 ms | 1.71\u00d7 |\n\nForward-plus-backward speedups for those cases range from **1.12\u00d7 to 2.12\u00d7** across the two versions. On Torch 2.15.0, summed positive profiler CPU allocations per forward fall by **37\u201356%**; the RGB batch goes from **109.9 to 50.8 MiB**. This is allocated-byte accounting, not peak process memory.\n\nThe single-image, single-channel control should not benefit: its count map already has the target shape. An initial shared-host forward/backward measurement was **0.85\u00d7**. Three interleaved base/candidate pairs on each independent runner were essentially flat: median ratios **0.997\u20131.001\u00d7**. These CPU measurements do not establish CUDA/MPS performance.\n\nThe selected CPU tests and measurements are independent validation, not Kornia's official CI. The requested `augmentation` compile/ONNX conformance completion remains **unverified**: automatic approval review blocked continuation of the local combined invocation after attempted telemetry to `mobile.events.data.microsoft.com`. It was not retried or moved. CUDA and MPS are also unverified.\n\nThe changelog fragment uses a temporary name until a PR number is assigned; it will be renamed before merge.\n\n## Which part was done by a human, if any?\n\nAfloat16 set the contribution scope and required new, non-duplicate changes with practical benefit. OpenAI Codex (GPT-6 Astra Pro) performed the technical investigation, implementation, and validation reported above.\n\nPosted on behalf of @Afloat16 by OpenAI Codex (GPT-6 Astra Pro).\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai -->\n\n<!-- coderabbit-ai-generated:v1 -->\n\n## Summary by CodeRabbit\n\n* **Performance**\n  * Patch recombination now avoids redundant overlap calculations across batches and channels, reducing reconstruction time and temporary memory use.\n* **Bug Fixes**\n  * Overlapping patches continue to be averaged correctly when recombined across multiple batches and channels.\n\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->",
+    "body": "## What does this pull request do?\n\n`combine_tensor_patches` currently unfolds and folds a full batch/channel-sized tensor of ones to count spatial overlap. Those counts depend only on image size, window, stride, and padding. This change constructs one `(1, 1, H, W)` count map and broadcasts the divisor across the reconstructed batch and channels.\n\nThe padding, folding, low-precision working dtype, complex handling, and final output conversion stay on their existing paths. A regression uses different overlapping patch values in two images and three channels, with independently calculated overlap averages and weighted input gradients.\n\n## Related issue or discussion\n\nThis improves the existing fold-based reconstruction from #1603. It preserves the reconstruction/dtype behavior covered by #5960 and the empty-batch handling from #5674. Those changes did not share the overlap-count map. The current and former source paths, intermediate fork commits, and all-state upstream PR history were checked for an existing implementation.\n\n## What did you check?\n\nLocal Pixi full pre-commit and type checks passed. The two affected patch test files pass all **207 tests** on the unchanged base and this candidate under both CPU Torch **2.5.1** and **2.15.0**.\n\n[Independent CPU validation](https://github.com/Afloat16/geoopt/actions/runs/43940474557) compares exact base `cd2349f6` with candidate `2cf64717` on the same Ubuntu 24.04/Python 3.12 runner. It uses the shared benchmark helpers, warm-up, blocked-autorange medians, one CPU thread, and verifies the imported worktree. Output and input-gradient SHA-256 values match the base on all five benchmark workloads. The [validation script](https://github.com/Afloat16/geoopt/blob/947b2b5a71343c148e4673ea21b0e79e79881967/.validation/kornia-validate-cpu-candidates.py) and its benchmark inputs are retained outside the library diff.\n\n| CPU workload (B\u00d7C\u00d7H\u00d7W; window/stride) | Torch 2.5.1 forward speedup | Torch 2.15.0 base \u2192 candidate | Torch 2.15.0 speedup |\n| --- | ---: | ---: | ---: |\n| 1\u00d73\u00d7512\u00d7512; 32/16 | 1.54\u00d7 | 36.48 \u2192 26.77 ms | 1.36\u00d7 |\n| 8\u00d73\u00d7256\u00d7256; 32/16 | 3.13\u00d7 | 45.91 \u2192 20.21 ms | 2.27\u00d7 |\n| 2\u00d732\u00d7128\u00d7128; 16/8 | 1.30\u00d7 | 35.41 \u2192 24.27 ms | 1.46\u00d7 |\n| 4\u00d764\u00d7128\u00d7128; 16/8 | 1.44\u00d7 | 214.76 \u2192 125.94 ms | 1.71\u00d7 |\n\nForward-plus-backward speedups for those cases range from **1.12\u00d7 to 2.12\u00d7** across the two versions. On Torch 2.15.0, summed positive profiler CPU allocations per forward fall by **37\u201356%**; the RGB batch goes from **109.9 to 50.8 MiB**. This is allocated-byte accounting, not peak process memory.\n\nThe single-image, single-channel control should not benefit: its count map already has the target shape. An initial shared-host forward/backward measurement was **0.85\u00d7**. Three interleaved base/candidate pairs on each independent runner were essentially flat: median ratios **0.997\u20131.001\u00d7**. These CPU measurements do not establish CUDA/MPS performance.\n\nThe selected CPU tests and measurements above are independent validation. The earlier local combined compile/ONNX invocation was blocked by automatic approval review after attempted runtime telemetry; that operation was not retried or moved.\n\nAfter publication, Kornia's automatically triggered official checks on head `fcf7941c` completed the selected `augmentation` conformance suites: [compile: **45 passed**](https://github.com/kornia/kornia/actions/runs/43945723456/job/133575138116) and [ONNX: **83 passed**](https://github.com/kornia/kornia/actions/runs/43945723456/job/133575138105). These results were confirmed in the job logs. They do not establish CUDA/MPS performance.\n\nThe changelog fragment is `changelog.d/6802.fixed.md`.\n\n## Which part was done by a human, if any?\n\nAfloat16 set the contribution scope and required new, non-duplicate changes with practical benefit. OpenAI Codex (GPT-6 Astra Pro) performed the technical investigation, implementation, and validation reported above.\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai -->\n<!-- coderabbit-ai-generated:v1 -->\n\n## Summary by CodeRabbit\n\n* **Performance**\n  * Patch recombination now reduces temporary allocations and reconstruction time for overlapping patches while preserving averaged output.\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->\n\nPosted on behalf of @Afloat16 by OpenAI Codex (GPT-6 Astra Pro).",
     "files": [
       {
         "filename": "changelog.d/6802.fixed.md",
@@ -46,11 +46,26 @@
       "https://github.com/Afloat16/geoopt/actions/runs/43940474557/job/133556338623"
     ],
     "unverified": [
-      "full promised-package compile/ONNX conformance",
-      "CUDA",
-      "MPS"
+      "CUDA execution/performance",
+      "MPS execution/performance"
     ],
-    "body_changelog_sentence_update_pending": true
+    "body_changelog_sentence_update_pending": false,
+    "body_ui_api_verified_at": "2026-11-16T20:20:34.778493+00:00",
+    "official_conformance": {
+      "pr": 6802,
+      "head": "fcf7941c6efde888b612dbfdc8fc2b00790cfb93",
+      "selection": "augmentation",
+      "compile": {
+        "passed": 45,
+        "job": 133575138116,
+        "url": "https://github.com/kornia/kornia/actions/runs/43945723456/job/133575138116"
+      },
+      "onnx": {
+        "passed": 83,
+        "job": 133575138105,
+        "url": "https://github.com/kornia/kornia/actions/runs/43945723456/job/133575138105"
+      }
+    }
   },
   {
     "repo": "kornia/kornia",
@@ -60,7 +75,7 @@
     "state": "open",
     "draft": false,
     "merged_at": null,
-    "head": "1673f23d41918d14425c23f6d52642285a9f18c4",
+    "head": "706284ca7f6dca296602c00e210f18f22302a1e3",
     "head_ref": "fix/map-recall-count-precision-20261116",
     "base_sha": "b1624c022ceb93373cb073a50bd1da2511108c5e",
     "maintainer_can_modify": false,
@@ -70,7 +85,7 @@
     "ui_verified": true,
     "authored_body_exact": true,
     "automated_suffix": "",
-    "body": "## What does this pull request do?\n\nKeep detection counts, cumulative precision/recall, and the 11 VOC2007 precision samples in at least float32. The returned AP tensor and per-class values retain their existing output-dtype convention.\n\nWith bfloat16 boxes, **512 correct detections of 513 objects currently score AP = 1**, because the recall calculation rounds upward to the final threshold. The independent expected result is **10/11**, rounded only at output to **0.91015625**. The same discrete-threshold error occurs just below 0.5, and with float16 at 4096/4097. These examples use exactly representable coordinates in **[0, 124]**, spread across images with at most 128 boxes each; they do not rely on coordinate or IoU overflow.\n\nThe regression covers both threshold boundaries in float16/bfloat16 and float32/float64 controls. All detections are true positives, so attainable recall thresholds have precision 1: ten reached thresholds give 10/11, and five give 5/11. Matching and score ordering are unchanged. The docstring and breaking-change fragment describe the corrected low-precision scores.\n\n## Related issue or discussion\n\n#5101 corrected the construction of exact-tenth thresholds for float64; this fixes the separately rounded recall being compared with them. #5392 addressed geometric area overflow in IoU, and #5556 established input/output dtype promotion. Neither fixes these count/ratio decisions. Prior image-index caching work also leaves their dtype unchanged. The full upstream PR history and all reachable old fork versions were checked.\n\n## What did you check?\n\nLocal Pixi full pre-commit and type checks passed. On exact base `cd2349f6`, the six new analytic regressions produce **4 failures and 2 passing controls**. On candidate `1f03856e`, the affected mAP and adjacent IoU files pass:\n\n| Independent CPU environment | Result |\n| --- | --- |\n| Torch 2.5.1, Python 3.12, Ubuntu 24.04 | **327 passed, 1 skipped** |\n| Torch 2.15.0, Python 3.12, Ubuntu 24.04 | **328 passed** |\n\nThe sole 2.5.1 skip is the unchanged `mean_iou` fullgraph bincount test requiring Torch \u22652.14. The selected files include eager, TorchScript, and native Dynamo `CompileCounter` capture tests. [Independent run and logs](https://github.com/Afloat16/geoopt/actions/runs/43940474557); [exact-base/candidate validation script](https://github.com/Afloat16/geoopt/blob/947b2b5a71343c148e4673ea21b0e79e79881967/.validation/kornia-validate-cpu-candidates.py). Each probe verifies its imported worktree.\n\nThis is a correctness change with a small measured cost, not a speedup claim. Four one-thread workloads (ordinary/near-full recall, float32/bfloat16) were **3.3\u20133.8% slower** in the Torch 2.5.1 run and within approximately **0.4%** in the Torch 2.15.0 run. The float32 controls showed comparable variation; these measurements do not isolate the cause. The near-full bfloat16 benchmark changes AP from **1 to 0.91015625** as required by the oracle. The source documents why wider statistics are necessary despite the retained low-precision output.\n\nThese checks are independent CPU validation, not Kornia's official CI. Full promised-package compile/ONNX conformance for the selector's `losses,metrics` scope is **unverified**, as are CUDA and MPS. An earlier local combined conformance attempt encountered an automatic approval block on attempted runtime telemetry; that operation was not retried or moved. No ONNX/ORT conformance result is claimed here.\n\nThe changelog fragment uses a temporary name until a PR number is assigned; it will be renamed before merge.\n\n## Which part was done by a human, if any?\n\nAfloat16 set the contribution scope and required new, non-duplicate changes with practical benefit. OpenAI Codex (GPT-6 Astra Pro) performed the technical investigation, implementation, and validation reported above.\n\nPosted on behalf of @Afloat16 by OpenAI Codex (GPT-6 Astra Pro).",
+    "body": "## What does this pull request do?\n\nKeep detection counts, cumulative precision/recall, and the 11 VOC2007 precision samples in at least float32. The returned AP tensor and per-class values retain their existing output-dtype convention.\n\nWith bfloat16 boxes, **512 correct detections of 513 objects currently score AP = 1**, because the recall calculation rounds upward to the final threshold. The independent expected result is **10/11**, rounded only at output to **0.91015625**. The same discrete-threshold error occurs just below 0.5, and with float16 at 4096/4097. These examples use exactly representable coordinates in **[0, 124]**, spread across images with at most 128 boxes each; they do not rely on coordinate or IoU overflow.\n\nThe regression covers both threshold boundaries in float16/bfloat16 and float32/float64 controls. All detections are true positives, so attainable recall thresholds have precision 1: ten reached thresholds give 10/11, and five give 5/11. Matching and score ordering are unchanged. The docstring and breaking-change fragment describe the corrected low-precision scores.\n\n## Related issue or discussion\n\n#5101 corrected the construction of exact-tenth thresholds for float64; this fixes the separately rounded recall being compared with them. #5392 addressed geometric area overflow in IoU, and #5556 established input/output dtype promotion. Neither fixes these count/ratio decisions. Prior image-index caching work also leaves their dtype unchanged. The full upstream PR history and all reachable old fork versions were checked.\n\n## What did you check?\n\nLocal Pixi full pre-commit and type checks passed. On exact base `cd2349f6`, the six new analytic regressions produce **4 failures and 2 passing controls**. On candidate `1f03856e`, the affected mAP and adjacent IoU files pass:\n\n| Independent CPU environment | Result |\n| --- | --- |\n| Torch 2.5.1, Python 3.12, Ubuntu 24.04 | **327 passed, 1 skipped** |\n| Torch 2.15.0, Python 3.12, Ubuntu 24.04 | **328 passed** |\n\nThe sole 2.5.1 skip is the unchanged `mean_iou` fullgraph bincount test requiring Torch \u22652.14. The selected files include eager, TorchScript, and native Dynamo `CompileCounter` capture tests. [Independent run and logs](https://github.com/Afloat16/geoopt/actions/runs/43940474557); [exact-base/candidate validation script](https://github.com/Afloat16/geoopt/blob/947b2b5a71343c148e4673ea21b0e79e79881967/.validation/kornia-validate-cpu-candidates.py). Each probe verifies its imported worktree.\n\nThis is a correctness change with a small measured cost, not a speedup claim. Four one-thread workloads (ordinary/near-full recall, float32/bfloat16) were **3.3\u20133.8% slower** in the Torch 2.5.1 run and within approximately **0.4%** in the Torch 2.15.0 run. The float32 controls showed comparable variation; these measurements do not isolate the cause. The near-full bfloat16 benchmark changes AP from **1 to 0.91015625** as required by the oracle. The source documents why wider statistics are necessary despite the retained low-precision output.\n\nThe selected CPU checks above are independent validation. The earlier local combined compile/ONNX invocation was blocked by automatic approval review after attempted runtime telemetry; that operation was not retried or moved.\n\nAfter publication, Kornia's automatically triggered official checks on head `1673f23d` completed the selected `losses,metrics` conformance suites: [compile: **100 passed**](https://github.com/kornia/kornia/actions/runs/43945727480/job/133575113384) and [ONNX: **195 passed**](https://github.com/kornia/kornia/actions/runs/43945727480/job/133575113298). These results were confirmed in the job logs. No CUDA/MPS validation is claimed here.\n\nThe changelog fragment is `changelog.d/6803.breaking.md`.\n\n## Which part was done by a human, if any?\n\nAfloat16 set the contribution scope and required new, non-duplicate changes with practical benefit. OpenAI Codex (GPT-6 Astra Pro) performed the technical investigation, implementation, and validation reported above.\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai -->\n\n<!-- coderabbit-ai-generated:v1 -->\n\n## Summary by CodeRabbit\n\n* **Bug Fixes**\n  * Mean average precision now uses at least float32 precision for detection counts, precision, and recall calculations. This prevents float16 and bfloat16 rounding from incorrectly granting AP credit at recall thresholds.\n  * Returned class AP and mAP values retain the promoted dtype of the input boxes.\n\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->\n\nPosted on behalf of @Afloat16 by OpenAI Codex (GPT-6 Astra Pro).",
     "files": [
       {
         "filename": "changelog.d/6803.breaking.md",
@@ -92,17 +107,48 @@
       }
     ],
     "tested_head": "1f03856ec4a65a1bcaf22f3a46372c5825ebe6c6",
-    "post_validation_change": "Only changelog filename changed to the assigned PR number.",
+    "post_validation_change": "Changelog renamed and unsupported MPS float64 test case excluded; product source unchanged; CPU six analytical regressions and full pre-commit rerun passed.",
     "independent_validation_urls": [
       "https://github.com/Afloat16/geoopt/actions/runs/43940474557",
       "https://github.com/Afloat16/geoopt/actions/runs/43940474557/job/133556338330",
       "https://github.com/Afloat16/geoopt/actions/runs/43940474557/job/133556338623"
     ],
     "unverified": [
-      "full promised-package compile/ONNX conformance",
-      "CUDA",
-      "MPS"
+      "CUDA execution/performance",
+      "MPS execution/performance"
     ],
-    "body_changelog_sentence_update_pending": true
+    "body_changelog_sentence_update_pending": false,
+    "body_ui_api_verified_at": "2026-11-16T20:20:34.778493+00:00",
+    "official_conformance": {
+      "pr": 6803,
+      "head": "1673f23d41918d14425c23f6d52642285a9f18c4",
+      "selection": "losses,metrics",
+      "compile": {
+        "passed": 100,
+        "job": 133575113384,
+        "url": "https://github.com/kornia/kornia/actions/runs/43945727480/job/133575113384"
+      },
+      "onnx": {
+        "passed": 195,
+        "job": 133575113298,
+        "url": "https://github.com/kornia/kornia/actions/runs/43945727480/job/133575113298"
+      }
+    },
+    "review_followup": {
+      "pr": 6803,
+      "url": "https://github.com/kornia/kornia/pull/6803",
+      "old_head": "1673f23d41918d14425c23f6d52642285a9f18c4",
+      "head": "706284ca7f6dca296602c00e210f18f22302a1e3",
+      "tree": "31494e5f2f369cea03cee88bf1cb6165d662d1be",
+      "review_comment": 4590970294,
+      "change": "Only applies_to marker excludes unsupported MPS float64 test parameter; source unchanged.",
+      "cpu_result": "6 passed in 10.27s",
+      "mps_collection_before": 6,
+      "mps_collection_after": 5,
+      "mps_deselected": 1,
+      "actual_mps_execution": false,
+      "precommit": "all passed",
+      "diff_check": true
+    }
   }
 ]

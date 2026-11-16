@@ -1,0 +1,9 @@
+[
+  {
+    "pr": 6803,
+    "thread_comment_id": 4590970294,
+    "comment": "Addressed in 706284ca7f6dca296602c00e210f18f22302a1e3 using the existing `applies_to` marker. The float64 control remains selected on CPU/CUDA and is excluded from MPS before tensor construction. MPS collection changes from 6 cases to 5 selected / 1 deselected; the six CPU analytic regressions still pass, and full pre-commit passes. Local MPS execution is unavailable; the official MPS check will validate the supported cases.\n\nPosted on behalf of @Afloat16 by OpenAI Codex (GPT-6 Astra Pro).",
+    "status": "prepared",
+    "connector_result": "403 Resource not accessible by integration"
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-11-16T20:09:22.380Z",
+  "items": [
+    {
+      "pr": 6802,
+      "head": "fcf7941c6efde888b612dbfdc8fc2b00790cfb93",
+      "selection": "augmentation",
+      "compile": {
+        "passed": 45,
+        "job": 133575138116,
+        "url": "https://github.com/kornia/kornia/actions/runs/43945723456/job/133575138116"
+      },
+      "onnx": {
+        "passed": 83,
+        "job": 133575138105,
+        "url": "https://github.com/kornia/kornia/actions/runs/43945723456/job/133575138105"
+      }
+    },
+    {
+      "pr": 6803,
+      "head": "1673f23d41918d14425c23f6d52642285a9f18c4",
+      "selection": "losses,metrics",
+      "compile": {
+        "passed": 100,
+        "job": 133575113384,
+        "url": "https://github.com/kornia/kornia/actions/runs/43945727480/job/133575113384"
+      },
+      "onnx": {
+        "passed": 195,
+        "job": 133575113298,
+        "url": "https://github.com/kornia/kornia/actions/runs/43945727480/job/133575113298"
+      }
+    }
+  ],
+  "scope": "Read-only inspection of automatically triggered official upstream PR checks; no rejected local operation was rerun or relocated."
+}
