@@ -49,7 +49,7 @@ write_files(payload["tests"])
 baseline_code = run("baseline-focused", uv + ["-m", "pytest", "-q", *payload["tests"], "--junitxml=" + str(results / "baseline-focused.xml")], required=False)
 baseline_focused = report("baseline-focused")
 assert baseline_code == 1 and baseline_focused["failed"] > 0, baseline_focused
-run("baseline-full", uv + ["-m", "pytest", "mlxtend", "-q", "--continue-on-collection-errors", "--junitxml=" + str(results / "baseline-full.xml")], required=False)
+run("baseline-full", uv + ["-m", "pytest", "mlxtend", *payload.get("full_extra", []), "-q", "--continue-on-collection-errors", "--junitxml=" + str(results / "baseline-full.xml")], required=False)
 baseline_full = report("baseline-full")
 write_files(payload["files"])
 changed_python = [p for p in payload["files"] if p.endswith(".py")]
@@ -64,7 +64,7 @@ if payload.get("benchmark"):
 run("candidate-focused", uv + ["-m", "coverage", "run", "--source=mlxtend", "--branch", "-m", "pytest", "-q", *payload["adjacent"], "--junitxml=" + str(results / "candidate-focused.xml")])
 run("coverage", uv + ["-m", "coverage", "report", "--include=" + ",".join(payload["production"])])
 run("coverage-xml", uv + ["-m", "coverage", "xml", "-o", str(results / "coverage.xml")])
-run("candidate-full", uv + ["-m", "pytest", "mlxtend", "-q", "--continue-on-collection-errors", "--junitxml=" + str(results / "candidate-full.xml")], required=False)
+run("candidate-full", uv + ["-m", "pytest", "mlxtend", *payload.get("full_extra", []), "-q", "--continue-on-collection-errors", "--junitxml=" + str(results / "candidate-full.xml")], required=False)
 candidate_full = report("candidate-full")
 introduced = set(candidate_full["failures"]) - set(baseline_full["failures"])
 assert not introduced, sorted(introduced)
