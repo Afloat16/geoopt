@@ -1,0 +1,16 @@
+{
+  "name": "bias-variance-fresh-models",
+  "branch": "fix/bias-variance-fresh-models-20261116",
+  "head": "e4bfd36113426a9459b66d976ee76dd776d557b9",
+  "tree": "406173596e0e6cf86d122abcb3f6cfaa671d6bfd",
+  "title": "Fit independent cloned models for bias-variance resamples",
+  "issue": 1313,
+  "prior_head": "2e79a665321121520549bf412718dec2e9c1f2be",
+  "pr": 1315,
+  "run_id": 43880647190,
+  "jobs": {
+    "locked": 133345290120,
+    "latest": 133345290250
+  },
+  "note": "### scikit-learn 1.9.1 CI follow-up\n\nThe first latest-scikit-learn run exposed a mismatch in the new test oracle: the production call passed an all-ones `sample_weight` array, while the independent reference fit omitted it. scikit-learn 1.9.1 uses a different forest bootstrap path when sample weights are supplied, so those are not interchangeable random draws. Commit `e4bfd36113426a9459b66d976ee76dd776d557b9` passes identical fit parameters to both fits; the production patch and assertion tolerances are unchanged.\n\nThe corrected tests were replayed with both frozen scikit-learn 1.8.0 and 1.9.1: each exact-base run has 13 regression failures, and each patched run has 38 focused passes/2 skips plus 759 full-suite passes/3 skips. Complete repository isort/Black, changed-file Flake8, build, and strict Twine checks also pass in both environments. [Locked-version evidence](https://github.com/Afloat16/geoopt/actions/runs/43880647190/job/133345290120) · [1.9.1 evidence](https://github.com/Afloat16/geoopt/actions/runs/43880647190/job/133345290250).\n"
+}
