@@ -119,7 +119,7 @@ def main():
         VonMisesFisher(Hypersphere(3), kappa=1.0).sample(1)
     else:
         from geomstats.numerics.ivp import ScipySolveIVP
-        ScipySolveIVP().integrate_t(lambda time, state: state, gs.array([1.0]), gs.array([0.0, 1.0]))
+        ScipySolveIVP().integrate_t(lambda state, time: state, gs.array([1.0]), gs.array([0.0, 1.0]))
     sys.setprofile(None)
     assert touched, "Trace predicate did not observe its positive control"
     touched.clear()

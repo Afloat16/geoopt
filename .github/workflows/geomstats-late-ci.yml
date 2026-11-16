@@ -12,10 +12,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - kind: curves
-            pr: 2242
-            sha: 97e2c8f1437c5c78c3192e135d4b89ef6dc565e0
-            source: geomstats/geometry/hypersphere.py
           - kind: plt_tangent
             pr: 2244
             sha: bc4d7d953aa37836b26a06f2aef16bbe1474f7b6
