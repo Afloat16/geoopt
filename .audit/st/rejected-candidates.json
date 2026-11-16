@@ -1,0 +1,18 @@
+[
+  {
+    "key": "translation-blockwise",
+    "reason": "Identical existing upstream PR #4312; full intermediate source variants include blockwise implementation; excluded before modifications."
+  },
+  {
+    "key": "sparse-normalization-zero-rows",
+    "reason": "Own existing upstream PR #4322; excluded before modifications."
+  },
+  {
+    "key": "csr-dead-latent-stats",
+    "reason": "Identical existing upstream PR #4111; excluded before modifications."
+  },
+  {
+    "key": "sparse-explicit-zero-count",
+    "reason": "Identical existing upstream PR #4069; excluded before modifications."
+  }
+]

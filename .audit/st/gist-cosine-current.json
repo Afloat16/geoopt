@@ -1,0 +1,10 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "perf/gist-cosine-matrix-20261116",
+  "head": "bb300ecbd87fa6a8a449118fb45cadac2ce4a6eb",
+  "tree": "423d907f67c58afd6df032e4e184855ff8bcf9fb",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "source_unchanged_from": "40e003bbf17af8a792399a28a7f0aade4da32ec7",
+  "local_pass": 88,
+  "reason": "Added independent native float64 gradient oracle; native and candidate float32 roundoff compared normwise to avoid componentwise cancellation sensitivity."
+}
