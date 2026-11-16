@@ -2,9 +2,9 @@
   "checked_at": "2026-11-16T12:54:17.779Z",
   "scope": "new contributions prepared by merged_inventory agent in current task",
   "counts": {
-    "published": 56,
+    "published": 60,
     "merged": 0,
-    "open": 56
+    "open": 60
   },
   "excluded_duplicate": {
     "repo": "geomstats/geomstats",
@@ -5069,6 +5069,390 @@
       "ui_verified": true,
       "api_verified": true,
       "body_verified": true
+    },
+    {
+      "repo": "rasbt/mlxtend",
+      "number": 1340,
+      "url": "https://github.com/rasbt/mlxtend/pull/1340",
+      "title": "Accelerate dense transaction decoding with NumPy nonzero indices",
+      "state": "open",
+      "merged_at": null,
+      "head": "e5e4aca23c123b8100f88a580f970e0dcc5cd4de",
+      "head_ref": "fix/transaction-inverse-nonzero-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T15:33:04Z",
+      "validation": {
+        "run_id": 43895793702,
+        "job_id": 133398866537,
+        "name": "transaction-inverse-nonzero",
+        "base": "1aee767ef57b84a8191511a08955c583b65de382",
+        "issue": 1334,
+        "baseline_focused": {
+          "total": 43,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "baseline_full": {
+          "total": 786,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        },
+        "candidate_focused": {
+          "total": 51,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "candidate_full": {
+          "total": 786,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        },
+        "new_full_suite_failures": []
+      },
+      "performance": {
+        "before": {
+          "kind": "runtime",
+          "results": [
+            {
+              "shape": [
+                1000,
+                10000
+              ],
+              "items": 49956,
+              "seconds": [
+                0.2785763529999983,
+                0.2764792969999945,
+                0.27821267000000205,
+                0.2786445050000026,
+                0.2758718780000038
+              ],
+              "median_seconds": 0.27821267000000205,
+              "digest": "4a3acb27eb981f4c872ee49b218ce23340633b299e6106a8fc53bfb8279dd06a"
+            }
+          ]
+        },
+        "after": {
+          "kind": "runtime",
+          "results": [
+            {
+              "shape": [
+                1000,
+                10000
+              ],
+              "items": 49956,
+              "seconds": [
+                0.008499115999995865,
+                0.007293490000009228,
+                0.007166681999990487,
+                0.006880451000000676,
+                0.00685117800000512
+              ],
+              "median_seconds": 0.007166681999990487,
+              "digest": "4a3acb27eb981f4c872ee49b218ce23340633b299e6106a8fc53bfb8279dd06a"
+            }
+          ]
+        }
+      },
+      "ui_verified": true,
+      "api_verified": true,
+      "body_verified": true
+    },
+    {
+      "repo": "rasbt/mlxtend",
+      "number": 1341,
+      "url": "https://github.com/rasbt/mlxtend/pull/1341",
+      "title": "Batch hard-vote aggregation without per-row Python callbacks",
+      "state": "open",
+      "merged_at": null,
+      "head": "6670bb68e6bc232b653b2600a1d9f6f23d2a3441",
+      "head_ref": "fix/ensemble-batched-hard-votes-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T15:33:40Z",
+      "validation": {
+        "run_id": 43895793702,
+        "job_id": 133398866476,
+        "name": "ensemble-batched-hard-votes",
+        "base": "1aee767ef57b84a8191511a08955c583b65de382",
+        "issue": 1335,
+        "baseline_focused": {
+          "total": 30,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "baseline_full": {
+          "total": 773,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        },
+        "candidate_focused": {
+          "total": 46,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "candidate_full": {
+          "total": 773,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        },
+        "new_full_suite_failures": []
+      },
+      "performance": {
+        "before": {
+          "kind": "runtime",
+          "results": [
+            {
+              "weighted": false,
+              "rows": 100000,
+              "seconds": [
+                0.1760347600000003,
+                0.17594827899999999,
+                0.17333439299999753,
+                0.17497164899999973,
+                0.18045049200000207
+              ],
+              "median_seconds": 0.17594827899999999,
+              "digest": "8568d6b117678d53edec66018e6d52abe48837f64aebd6aee0153ddf2001ea51"
+            },
+            {
+              "weighted": true,
+              "rows": 100000,
+              "seconds": [
+                0.2245757899999994,
+                0.20063430499999768,
+                0.1996134670000025,
+                0.20321971999999988,
+                0.20129482099999763
+              ],
+              "median_seconds": 0.20129482099999763,
+              "digest": "8568d6b117678d53edec66018e6d52abe48837f64aebd6aee0153ddf2001ea51"
+            }
+          ]
+        },
+        "after": {
+          "kind": "runtime",
+          "results": [
+            {
+              "weighted": false,
+              "rows": 100000,
+              "seconds": [
+                0.005299100000001999,
+                0.004125340000001643,
+                0.0024949419999984457,
+                0.002483264000005647,
+                0.0024894839999944907
+              ],
+              "median_seconds": 0.0024949419999984457,
+              "digest": "8568d6b117678d53edec66018e6d52abe48837f64aebd6aee0153ddf2001ea51"
+            },
+            {
+              "weighted": true,
+              "rows": 100000,
+              "seconds": [
+                0.0031045909999960486,
+                0.002999773000013306,
+                0.003008625999996184,
+                0.0030046800000036455,
+                0.0031052810000034015
+              ],
+              "median_seconds": 0.003008625999996184,
+              "digest": "8568d6b117678d53edec66018e6d52abe48837f64aebd6aee0153ddf2001ea51"
+            }
+          ]
+        }
+      },
+      "ui_verified": true,
+      "api_verified": true,
+      "body_verified": true
+    },
+    {
+      "repo": "rasbt/mlxtend",
+      "number": 1342,
+      "url": "https://github.com/rasbt/mlxtend/pull/1342",
+      "title": "Bound RBF kernel PCA projection memory with reusable query blocks",
+      "state": "open",
+      "merged_at": null,
+      "head": "7f9ffa81f67ad66d85d2dcac64535574abfef8b8",
+      "head_ref": "fix/rbf-transform-blocks-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T15:34:09Z",
+      "validation": {
+        "run_id": 43895793702,
+        "job_id": 133398866000,
+        "name": "rbf-transform-blocks",
+        "base": "1aee767ef57b84a8191511a08955c583b65de382",
+        "issue": 1336,
+        "baseline_focused": {
+          "total": 33,
+          "failed": 1,
+          "skipped": 0,
+          "failures": {
+            "mlxtend.feature_extraction.tests.test_rbf_kernel_pca_blocks::test_transform_peak_memory_is_bounded_for_large_query_batches": "AssertionError: 73728512\nassert 73728512 < ((8 * 1024) * 1024)"
+          }
+        },
+        "baseline_full": {
+          "total": 776,
+          "failed": 1,
+          "skipped": 3,
+          "failures": {
+            "mlxtend.feature_extraction.tests.test_rbf_kernel_pca_blocks::test_transform_peak_memory_is_bounded_for_large_query_batches": "AssertionError: 73728512\nassert 73728512 < ((8 * 1024) * 1024)"
+          }
+        },
+        "candidate_focused": {
+          "total": 41,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "candidate_full": {
+          "total": 776,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        },
+        "new_full_suite_failures": []
+      },
+      "performance": {
+        "before": {
+          "kind": "memory",
+          "peak_bytes": 73728512,
+          "seconds": [
+            0.10416225200000895,
+            0.1002746499999887,
+            0.09895894799998928,
+            0.09905976999999666,
+            0.09881634899997493
+          ],
+          "median_seconds": 0.09905976999999666,
+          "shape": [
+            12000,
+            3
+          ],
+          "compared_values": 36000,
+          "max_absolute_difference": 0
+        },
+        "after": {
+          "kind": "memory",
+          "peak_bytes": 4546320,
+          "seconds": [
+            0.009978567000018757,
+            0.010587998000005427,
+            0.009257118000022047,
+            0.009246165999996947,
+            0.009232380000014473
+          ],
+          "median_seconds": 0.009257118000022047,
+          "shape": [
+            12000,
+            3
+          ],
+          "compared_values": 36000,
+          "max_absolute_difference": 0
+        }
+      },
+      "ui_verified": true,
+      "api_verified": true,
+      "body_verified": true
+    },
+    {
+      "repo": "rasbt/mlxtend",
+      "number": 1343,
+      "url": "https://github.com/rasbt/mlxtend/pull/1343",
+      "title": "Keep paired t and F statistics stable across finite score scales",
+      "state": "open",
+      "merged_at": null,
+      "head": "19186875fe917edc0521b743ce81d044aab51a81",
+      "head_ref": "fix/paired-statistic-scale-20261116",
+      "maintainer_can_modify": false,
+      "created_at": "2026-11-16T15:35:02Z",
+      "validation": {
+        "run_id": 43895793702,
+        "job_id": 133398866222,
+        "name": "paired-statistic-scale",
+        "base": "1aee767ef57b84a8191511a08955c583b65de382",
+        "issue": 1337,
+        "baseline_focused": {
+          "total": 78,
+          "failed": 22,
+          "skipped": 0,
+          "failures": {
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[1e-200-paired_ttest_resampled-options0-resampled]": "AssertionError: assert np.False_\n +  where np.False_ = <built-in method all of numpy.ndarray object at 0x7b8093621650>()\n +    where <built-in method all of numpy.ndarray object at 0x7b8093621650> = array([False,  True]).all\n +      where array([False,  True]) = <ufunc 'isfinite'>((inf, 0.0))\n +        where <ufunc 'isfinite'> = np.isfinite",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[1e-200-paired_ttest_kfold_cv-options1-kfold]": "AssertionError: assert np.False_\n +  where np.False_ = <built-in method all of numpy.ndarray object at 0x7b8093621c50>()\n +    where <built-in method all of numpy.ndarray object at 0x7b8093621c50> = array([False,  True]).all\n +      where array([False,  True]) = <ufunc 'isfinite'>((inf, 0.0))\n +        where <ufunc 'isfinite'> = np.isfinite",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[1e-200-paired_ttest_5x2cv-options2-5x2-t]": "AssertionError: assert np.False_\n +  where np.False_ = <built-in method all of numpy.ndarray object at 0x7b8093622df0>()\n +    where <built-in method all of numpy.ndarray object at 0x7b8093622df0> = array([False,  True]).all\n +      where array([False,  True]) = <ufunc 'isfinite'>((inf, 0.0))\n +        where <ufunc 'isfinite'> = np.isfinite",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[1e-200-combined_ftest_5x2cv-options3-5x2-f]": "ZeroDivisionError: float division by zero",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[1e+200-paired_ttest_resampled-options0-resampled]": "AssertionError: \nNot equal to tolerance rtol=2e-12, atol=2e-14\n\nMismatched elements: 2 / 2 (100%)\nMismatch at indices:\n [0]: 0.0 (ACTUAL), 2.2858054463636304 (DESIRED)\n [1]: 1.0 (ACTUAL), 0.05615363803573798 (DESIRED)\nMax absolute difference among violations: 2.28580545\nMax relative difference among violations: 16.80828518\n ACTUAL: array([0., 1.])\n DESIRED: array([2.285805, 0.056154])",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[1e+200-paired_ttest_kfold_cv-options1-kfold]": "AssertionError: \nNot equal to tolerance rtol=2e-12, atol=2e-14\n\nMismatched elements: 2 / 2 (100%)\nMismatch at indices:\n [0]: 0.0 (ACTUAL), 2.0475683121398895 (DESIRED)\n [1]: 1.0 (ACTUAL), 0.1099936269723162 (DESIRED)\nMax absolute difference among violations: 2.04756831\nMax relative difference among violations: 8.09143582\n ACTUAL: array([0., 1.])\n DESIRED: array([2.047568, 0.109994])",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[1e+200-paired_ttest_5x2cv-options2-5x2-t]": "OverflowError: (34, 'Numerical result out of range')",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[1e+200-combined_ftest_5x2cv-options3-5x2-f]": "OverflowError: (34, 'Numerical result out of range')",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[-1e-200-paired_ttest_resampled-options0-resampled]": "AssertionError: assert np.False_\n +  where np.False_ = <built-in method all of numpy.ndarray object at 0x7b80934d8870>()\n +    where <built-in method all of numpy.ndarray object at 0x7b80934d8870> = array([False,  True]).all\n +      where array([False,  True]) = <ufunc 'isfinite'>((-inf, 0.0))\n +        where <ufunc 'isfinite'> = np.isfinite",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[-1e-200-paired_ttest_kfold_cv-options1-kfold]": "AssertionError: assert np.False_\n +  where np.False_ = <built-in method all of numpy.ndarray object at 0x7b80934d8150>()\n +    where <built-in method all of numpy.ndarray object at 0x7b80934d8150> = array([False,  True]).all\n +      where array([False,  True]) = <ufunc 'isfinite'>((-inf, 0.0))\n +        where <ufunc 'isfinite'> = np.isfinite",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[-1e-200-paired_ttest_5x2cv-options2-5x2-t]": "AssertionError: assert np.False_\n +  where np.False_ = <built-in method all of numpy.ndarray object at 0x7b80934d9410>()\n +    where <built-in method all of numpy.ndarray object at 0x7b80934d9410> = array([False,  True]).all\n +      where array([False,  True]) = <ufunc 'isfinite'>((-inf, 0.0))\n +        where <ufunc 'isfinite'> = np.isfinite",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[-1e-200-combined_ftest_5x2cv-options3-5x2-f]": "ZeroDivisionError: float division by zero",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[-1e+200-paired_ttest_resampled-options0-resampled]": "AssertionError: \nNot equal to tolerance rtol=2e-12, atol=2e-14\n\nMismatched elements: 2 / 2 (100%)\nMismatch at indices:\n [0]: -0.0 (ACTUAL), -2.2858054463636304 (DESIRED)\n [1]: 1.0 (ACTUAL), 0.05615363803573798 (DESIRED)\nMax absolute difference among violations: 2.28580545\nMax relative difference among violations: 16.80828518\n ACTUAL: array([-0.,  1.])\n DESIRED: array([-2.285805,  0.056154])",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[-1e+200-paired_ttest_kfold_cv-options1-kfold]": "AssertionError: \nNot equal to tolerance rtol=2e-12, atol=2e-14\n\nMismatched elements: 2 / 2 (100%)\nMismatch at indices:\n [0]: -0.0 (ACTUAL), -2.0475683121398895 (DESIRED)\n [1]: 1.0 (ACTUAL), 0.1099936269723162 (DESIRED)\nMax absolute difference among violations: 2.04756831\nMax relative difference among violations: 8.09143582\n ACTUAL: array([-0.,  1.])\n DESIRED: array([-2.047568,  0.109994])",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[-1e+200-paired_ttest_5x2cv-options2-5x2-t]": "OverflowError: (34, 'Numerical result out of range')",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[-1e+200-combined_ftest_5x2cv-options3-5x2-f]": "OverflowError: (34, 'Numerical result out of range')",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_zero_variance_and_identical_scores_keep_expected_degeneracy[False-1.0-combined_ftest_5x2cv-options3-5x2-f]": "ZeroDivisionError: float division by zero",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_zero_variance_and_identical_scores_keep_expected_degeneracy[False-1e+200-combined_ftest_5x2cv-options3-5x2-f]": "OverflowError: (34, 'Numerical result out of range')",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_zero_variance_and_identical_scores_keep_expected_degeneracy[False-1e-200-combined_ftest_5x2cv-options3-5x2-f]": "ZeroDivisionError: float division by zero",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_zero_variance_and_identical_scores_keep_expected_degeneracy[True-1.0-combined_ftest_5x2cv-options3-5x2-f]": "ZeroDivisionError: float division by zero",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_zero_variance_and_identical_scores_keep_expected_degeneracy[True-1e+200-combined_ftest_5x2cv-options3-5x2-f]": "ZeroDivisionError: float division by zero",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_zero_variance_and_identical_scores_keep_expected_degeneracy[True-1e-200-combined_ftest_5x2cv-options3-5x2-f]": "ZeroDivisionError: float division by zero"
+          }
+        },
+        "baseline_full": {
+          "total": 821,
+          "failed": 22,
+          "skipped": 3,
+          "failures": {
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[1e-200-paired_ttest_resampled-options0-resampled]": "AssertionError: assert np.False_\n +  where np.False_ = <built-in method all of numpy.ndarray object at 0x7e73724e6490>()\n +    where <built-in method all of numpy.ndarray object at 0x7e73724e6490> = array([False,  True]).all\n +      where array([False,  True]) = <ufunc 'isfinite'>((inf, 0.0))\n +        where <ufunc 'isfinite'> = np.isfinite",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[1e-200-paired_ttest_kfold_cv-options1-kfold]": "AssertionError: assert np.False_\n +  where np.False_ = <built-in method all of numpy.ndarray object at 0x7e7372410450>()\n +    where <built-in method all of numpy.ndarray object at 0x7e7372410450> = array([False,  True]).all\n +      where array([False,  True]) = <ufunc 'isfinite'>((inf, 0.0))\n +        where <ufunc 'isfinite'> = np.isfinite",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[1e-200-paired_ttest_5x2cv-options2-5x2-t]": "AssertionError: assert np.False_\n +  where np.False_ = <built-in method all of numpy.ndarray object at 0x7e73723c12f0>()\n +    where <built-in method all of numpy.ndarray object at 0x7e73723c12f0> = array([False,  True]).all\n +      where array([False,  True]) = <ufunc 'isfinite'>((inf, 0.0))\n +        where <ufunc 'isfinite'> = np.isfinite",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[1e-200-combined_ftest_5x2cv-options3-5x2-f]": "ZeroDivisionError: float division by zero",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[1e+200-paired_ttest_resampled-options0-resampled]": "AssertionError: \nNot equal to tolerance rtol=2e-12, atol=2e-14\n\nMismatched elements: 2 / 2 (100%)\nMismatch at indices:\n [0]: 0.0 (ACTUAL), 2.2858054463636304 (DESIRED)\n [1]: 1.0 (ACTUAL), 0.05615363803573798 (DESIRED)\nMax absolute difference among violations: 2.28580545\nMax relative difference among violations: 16.80828518\n ACTUAL: array([0., 1.])\n DESIRED: array([2.285805, 0.056154])",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[1e+200-paired_ttest_kfold_cv-options1-kfold]": "AssertionError: \nNot equal to tolerance rtol=2e-12, atol=2e-14\n\nMismatched elements: 2 / 2 (100%)\nMismatch at indices:\n [0]: 0.0 (ACTUAL), 2.0475683121398895 (DESIRED)\n [1]: 1.0 (ACTUAL), 0.1099936269723162 (DESIRED)\nMax absolute difference among violations: 2.04756831\nMax relative difference among violations: 8.09143582\n ACTUAL: array([0., 1.])\n DESIRED: array([2.047568, 0.109994])",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[1e+200-paired_ttest_5x2cv-options2-5x2-t]": "OverflowError: (34, 'Numerical result out of range')",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[1e+200-combined_ftest_5x2cv-options3-5x2-f]": "OverflowError: (34, 'Numerical result out of range')",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[-1e-200-paired_ttest_resampled-options0-resampled]": "AssertionError: assert np.False_\n +  where np.False_ = <built-in method all of numpy.ndarray object at 0x7e737e1e2010>()\n +    where <built-in method all of numpy.ndarray object at 0x7e737e1e2010> = array([False,  True]).all\n +      where array([False,  True]) = <ufunc 'isfinite'>((-inf, 0.0))\n +        where <ufunc 'isfinite'> = np.isfinite",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[-1e-200-paired_ttest_kfold_cv-options1-kfold]": "AssertionError: assert np.False_\n +  where np.False_ = <built-in method all of numpy.ndarray object at 0x7e737e2bce10>()\n +    where <built-in method all of numpy.ndarray object at 0x7e737e2bce10> = array([False,  True]).all\n +      where array([False,  True]) = <ufunc 'isfinite'>((-inf, 0.0))\n +        where <ufunc 'isfinite'> = np.isfinite",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[-1e-200-paired_ttest_5x2cv-options2-5x2-t]": "AssertionError: assert np.False_\n +  where np.False_ = <built-in method all of numpy.ndarray object at 0x7e737babd530>()\n +    where <built-in method all of numpy.ndarray object at 0x7e737babd530> = array([False,  True]).all\n +      where array([False,  True]) = <ufunc 'isfinite'>((-inf, 0.0))\n +        where <ufunc 'isfinite'> = np.isfinite",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[-1e-200-combined_ftest_5x2cv-options3-5x2-f]": "ZeroDivisionError: float division by zero",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[-1e+200-paired_ttest_resampled-options0-resampled]": "AssertionError: \nNot equal to tolerance rtol=2e-12, atol=2e-14\n\nMismatched elements: 2 / 2 (100%)\nMismatch at indices:\n [0]: -0.0 (ACTUAL), -2.2858054463636304 (DESIRED)\n [1]: 1.0 (ACTUAL), 0.05615363803573798 (DESIRED)\nMax absolute difference among violations: 2.28580545\nMax relative difference among violations: 16.80828518\n ACTUAL: array([-0.,  1.])\n DESIRED: array([-2.285805,  0.056154])",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[-1e+200-paired_ttest_kfold_cv-options1-kfold]": "AssertionError: \nNot equal to tolerance rtol=2e-12, atol=2e-14\n\nMismatched elements: 2 / 2 (100%)\nMismatch at indices:\n [0]: -0.0 (ACTUAL), -2.0475683121398895 (DESIRED)\n [1]: 1.0 (ACTUAL), 0.1099936269723162 (DESIRED)\nMax absolute difference among violations: 2.04756831\nMax relative difference among violations: 8.09143582\n ACTUAL: array([-0.,  1.])\n DESIRED: array([-2.047568,  0.109994])",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[-1e+200-paired_ttest_5x2cv-options2-5x2-t]": "OverflowError: (34, 'Numerical result out of range')",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_statistic_and_pvalue_match_decimal_oracle_across_score_units[-1e+200-combined_ftest_5x2cv-options3-5x2-f]": "OverflowError: (34, 'Numerical result out of range')",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_zero_variance_and_identical_scores_keep_expected_degeneracy[False-1.0-combined_ftest_5x2cv-options3-5x2-f]": "ZeroDivisionError: float division by zero",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_zero_variance_and_identical_scores_keep_expected_degeneracy[False-1e+200-combined_ftest_5x2cv-options3-5x2-f]": "OverflowError: (34, 'Numerical result out of range')",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_zero_variance_and_identical_scores_keep_expected_degeneracy[False-1e-200-combined_ftest_5x2cv-options3-5x2-f]": "ZeroDivisionError: float division by zero",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_zero_variance_and_identical_scores_keep_expected_degeneracy[True-1.0-combined_ftest_5x2cv-options3-5x2-f]": "ZeroDivisionError: float division by zero",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_zero_variance_and_identical_scores_keep_expected_degeneracy[True-1e+200-combined_ftest_5x2cv-options3-5x2-f]": "ZeroDivisionError: float division by zero",
+            "mlxtend.evaluate.tests.test_paired_statistic_scale::test_zero_variance_and_identical_scores_keep_expected_degeneracy[True-1e-200-combined_ftest_5x2cv-options3-5x2-f]": "ZeroDivisionError: float division by zero"
+          }
+        },
+        "candidate_focused": {
+          "total": 96,
+          "failed": 0,
+          "skipped": 0,
+          "failures": {}
+        },
+        "candidate_full": {
+          "total": 821,
+          "failed": 0,
+          "skipped": 3,
+          "failures": {}
+        },
+        "new_full_suite_failures": []
+      },
+      "ui_verified": true,
+      "api_verified": true,
+      "body_verified": true
     }
   ],
   "remote_checkpoints": {
@@ -5087,5 +5471,5 @@
     }
   },
   "ci_diagnosis_updated_at": "2026-11-16T13:15:57.465Z",
-  "last_submission_check_at": "2026-11-16T15:29:28.255Z"
+  "last_submission_check_at": "2026-11-16T15:35:30.840Z"
 }
