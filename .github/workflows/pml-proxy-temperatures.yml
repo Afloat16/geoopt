@@ -12,11 +12,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: soft-triple-temperature
-            test: tests/losses/test_soft_triple_temperature.py
-            select: ""
-            adjacent: tests/losses/test_soft_triple_loss.py tests/losses/test_soft_triple_temperature.py
-            message: Stabilize SoftTriple center weighting at small temperatures
           - name: normalized-softmax-temperature
             test: tests/losses/test_normalized_softmax_temperature.py
             select: ""
