@@ -132,7 +132,12 @@ class GyroLorentzBatchNorm(torch.nn.Module):
                 f"got {input.size(-1)}"
             )
 
-        if self.training or not self.track_running_stats:
+        if input.numel() == 0:
+            mean = self.manifold.origin(
+                self.num_features + 1, dtype=input.dtype, device=input.device
+            )
+            var = input.new_ones(())
+        elif self.training or not self.track_running_stats:
             mean, var = self._compute_batch_stats(input)
             if self.training and self.track_running_stats:
                 self._update_running_stats(mean, var)

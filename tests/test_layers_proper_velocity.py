@@ -245,3 +245,43 @@ def test_gyro_pv_bn_validates_arguments_and_repr():
     with pytest.raises(ValueError, match="num_features"):
         geoopt.layers.GyroProperVelocityBatchNorm(0)
     assert "num_features=3" in repr(geoopt.layers.GyroProperVelocityBatchNorm(3))
+
+
+@pytest.mark.parametrize(
+    "layer_cls,width",
+    [
+        (geoopt.layers.GyroProperVelocityBatchNorm, 3),
+        (geoopt.layers.GyroLorentzBatchNorm, 4),
+    ],
+)
+@pytest.mark.parametrize("batch_shape", [(0,), (2, 0)])
+@pytest.mark.parametrize("training", [False, True])
+@pytest.mark.parametrize("track_running_stats", [False, True])
+def test_gyro_batch_norm_empty_batch(
+    layer_cls, width, batch_shape, training, track_running_stats
+):
+    torch.manual_seed(0)
+    layer = layer_cls(3, track_running_stats=track_running_stats).to(DTYPE)
+    valid_input = layer.manifold.random_normal(5, width).detach()
+    layer(valid_input)
+    layer.eval()
+    expected = layer(valid_input).detach()
+    running_state = {name: value.clone() for name, value in layer.named_buffers()}
+    layer.train(training)
+    input = torch.empty(*batch_shape, width, dtype=DTYPE, requires_grad=True)
+
+    output = layer(input)
+
+    assert output.shape == input.shape
+    assert output.dtype == input.dtype
+    assert output.device == input.device
+    output.sum().backward()
+    torch.testing.assert_close(input.grad, torch.zeros_like(input))
+    for parameter in layer.parameters():
+        if parameter.requires_grad:
+            assert parameter.grad is not None
+            torch.testing.assert_close(parameter.grad, torch.zeros_like(parameter))
+    for name, value in layer.named_buffers():
+        torch.testing.assert_close(value, running_state[name], atol=0, rtol=0)
+    layer.eval()
+    torch.testing.assert_close(layer(valid_input), expected)
