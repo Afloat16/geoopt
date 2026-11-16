@@ -1,0 +1,32 @@
+name: Read manifold task context
+on:
+  push:
+    branches: ['validation/pml-manifold-task-context-20261116']
+permissions:
+  contents: read
+jobs:
+  task-context:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: KevinMusgrave/pytorch-metric-learning
+          ref: b95a42310f50720a766b91008470b278364f705d
+          fetch-depth: 0
+          path: policy-source
+          persist-credentials: false
+      - name: Install the exact repository-pinned policy tool
+        working-directory: policy-source
+        run: ./code-polishyw setup
+      - name: Start the scoped task before source edits
+        working-directory: policy-source
+        run: |
+          ./code-polishyw task-start --files src/pytorch_metric_learning/losses/manifold_loss.py tests/losses/test_manifold_precision.py docs/losses/manifold_loss.md docs/design/numerics.md docs/release-notes/index.md --format json | tee ../pml-task-context.json
+      - name: Review dependencies before installation
+        working-directory: policy-source
+        run: ./code-polishyw dependency-review --base origin/master
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pml-manifold-task-context
+          path: pml-task-context.json
