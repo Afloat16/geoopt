@@ -1,0 +1,320 @@
+[
+  {
+    "name": "multiplexer-vectorized-draws",
+    "prefix": "ninth",
+    "run": 43891867287,
+    "job": 133384927985,
+    "title": "Vectorize multiplexer bit draws while preserving seeded datasets",
+    "issue": 1331,
+    "body": "### Description\n\n`make_multiplexer_dataset` makes one Python-level RNG call for every bit of every proposed example. At eight address bits this is 264 scalar draws per candidate sample, including candidates rejected to meet the requested class balance.\n\nThe generator now draws each candidate sample's bits in one NumPy call. It retains the exact random stream, accepted samples, class balancing, positive/negative ordering, and final shuffle.\n\n### Related issues or pull requests\n\nCloses #1331.\n\nComplete reachable history was inspected across upstream PR refs and fork branches, including intermediate commits: 56 commits and 21 distinct source versions. None used an equivalent vectorized draw. Historical path/rename records were also checked.\n\n### Measurements\n\nFor eight address bits, 2,000 samples, a positive ratio of 0.3, shuffle enabled, and seed 7, median complete generation time over five runs in the same job changed from **0.76748 s to 0.01964 s (39.1x faster)**. Base and patch returned exactly the same (2000, 264) features, 600 positive labels, and complete output SHA-256 digest. This measurement describes the specified workload.\n\n### Validation\n\n- Exact upstream base: `1aee767ef57b84a8191511a08955c583b65de382`.\n- **25 new tests pass on both base and patch**, as expected for a performance change.\n- Twenty-four complete seeded dataset digests cover several address widths, seeds, shuffle modes, class-ratio endpoints, and rounding cases. Separate assertions check the selected-register label relationship, item/label dtypes, output ordering, and preservation of the global RNG state.\n- New and existing multiplexer tests: **31 passed**. Complete repository suite: **765 passed, 3 skipped**.\n- Baseline and patch ran in the same Python 3.11.18 job with the unchanged frozen lock.\n- Complete repository isort/Black, changed-file Flake8, `git diff --check`, package build, and strict Twine checks passed. The repository-wide Flake8 report retains existing findings and is not presented as a clean lint gate.\n\n[Baseline, complete validation, and benchmark evidence](https://github.com/Afloat16/geoopt/actions/runs/43891867287/job/133384927985).\n\n### Pull Request Checklist\n\n- [x] Added a changelog entry.\n- [x] Added regression fixtures and tests in the corresponding test directory.\n- [x] Preserved the public interface and seeded behavior.\n- [x] Ran focused and full repository tests.\n- [x] Checked formatting and style with the scope described above.\n",
+    "branch": "fix/multiplexer-vectorized-draws-20261116",
+    "head": "02b5f317a75afb268cdb41e7cc8c7bc797f2eefe",
+    "tree": "0f4f50fcfc178d72c0ca6de2a3d0cbe517796449",
+    "status": "ready",
+    "base": "master",
+    "maintainer_can_modify": false,
+    "validation": {
+      "run_id": 43891867287,
+      "job_id": 133384927985,
+      "name": "multiplexer-vectorized-draws",
+      "base": "1aee767ef57b84a8191511a08955c583b65de382",
+      "issue": 1331,
+      "baseline_focused": {
+        "total": 25,
+        "failed": 0,
+        "skipped": 0,
+        "failures": {}
+      },
+      "baseline_full": {
+        "total": 768,
+        "failed": 0,
+        "skipped": 3,
+        "failures": {}
+      },
+      "candidate_focused": {
+        "total": 31,
+        "failed": 0,
+        "skipped": 0,
+        "failures": {}
+      },
+      "candidate_full": {
+        "total": 768,
+        "failed": 0,
+        "skipped": 3,
+        "failures": {}
+      },
+      "new_full_suite_failures": []
+    },
+    "performance": {
+      "before": {
+        "kind": "runtime",
+        "results": [
+          {
+            "shape": [
+              2000,
+              264
+            ],
+            "positive": 600,
+            "seconds": [
+              0.7697777110000743,
+              0.7674788340000305,
+              0.7714931100000513,
+              0.7638793859999851,
+              0.7617425550000689
+            ],
+            "median_seconds": 0.7674788340000305,
+            "digest": "cd5bc4f738b4df8a9b23c2fb8fb700115c5a074beaf18990b5b928c32b68ffb8"
+          }
+        ]
+      },
+      "after": {
+        "kind": "runtime",
+        "results": [
+          {
+            "shape": [
+              2000,
+              264
+            ],
+            "positive": 600,
+            "seconds": [
+              0.026002543000004152,
+              0.020355521999931625,
+              0.019644864999918354,
+              0.01934931800008144,
+              0.018580126999950153
+            ],
+            "median_seconds": 0.019644864999918354,
+            "digest": "cd5bc4f738b4df8a9b23c2fb8fb700115c5a074beaf18990b5b928c32b68ffb8"
+          }
+        ]
+      }
+    },
+    "compare_url": "https://github.com/rasbt/mlxtend/compare/master...Afloat16:fix/multiplexer-vectorized-draws-20261116?expand=1&title=Vectorize%20multiplexer%20bit%20draws%20while%20preserving%20seeded%20datasets&body=%23%23%23%20Description%0A%0A%60make_multiplexer_dataset%60%20makes%20one%20Python-level%20RNG%20call%20for%20every%20bit%20of%20every%20proposed%20example.%20At%20eight%20address%20bits%20this%20is%20264%20scalar%20draws%20per%20candidate%20sample%2C%20including%20candidates%20rejected%20to%20meet%20the%20requested%20class%20balance.%0A%0AThe%20generator%20now%20draws%20each%20candidate%20sample's%20bits%20in%20one%20NumPy%20call.%20It%20retains%20the%20exact%20random%20stream%2C%20accepted%20samples%2C%20class%20balancing%2C%20positive%2Fnegative%20ordering%2C%20and%20final%20shuffle.%0A%0A%23%23%23%20Related%20issues%20or%20pull%20requests%0A%0ACloses%20%231331.%0A%0AComplete%20reachable%20history%20was%20inspected%20across%20upstream%20PR%20refs%20and%20fork%20branches%2C%20including%20intermediate%20commits%3A%2056%20commits%20and%2021%20distinct%20source%20versions.%20None%20used%20an%20equivalent%20vectorized%20draw.%20Historical%20path%2Frename%20records%20were%20also%20checked.%0A%0A%23%23%23%20Measurements%0A%0AFor%20eight%20address%20bits%2C%202%2C000%20samples%2C%20a%20positive%20ratio%20of%200.3%2C%20shuffle%20enabled%2C%20and%20seed%207%2C%20median%20complete%20generation%20time%20over%20five%20runs%20in%20the%20same%20job%20changed%20from%20**0.76748%20s%20to%200.01964%20s%20(39.1x%20faster)**.%20Base%20and%20patch%20returned%20exactly%20the%20same%20(2000%2C%20264)%20features%2C%20600%20positive%20labels%2C%20and%20complete%20output%20SHA-256%20digest.%20This%20measurement%20describes%20the%20specified%20workload.%0A%0A%23%23%23%20Validation%0A%0A-%20Exact%20upstream%20base%3A%20%601aee767ef57b84a8191511a08955c583b65de382%60.%0A-%20**25%20new%20tests%20pass%20on%20both%20base%20and%20patch**%2C%20as%20expected%20for%20a%20performance%20change.%0A-%20Twenty-four%20complete%20seeded%20dataset%20digests%20cover%20several%20address%20widths%2C%20seeds%2C%20shuffle%20modes%2C%20class-ratio%20endpoints%2C%20and%20rounding%20cases.%20Separate%20assertions%20check%20the%20selected-register%20label%20relationship%2C%20item%2Flabel%20dtypes%2C%20output%20ordering%2C%20and%20preservation%20of%20the%20global%20RNG%20state.%0A-%20New%20and%20existing%20multiplexer%20tests%3A%20**31%20passed**.%20Complete%20repository%20suite%3A%20**765%20passed%2C%203%20skipped**.%0A-%20Baseline%20and%20patch%20ran%20in%20the%20same%20Python%203.11.18%20job%20with%20the%20unchanged%20frozen%20lock.%0A-%20Complete%20repository%20isort%2FBlack%2C%20changed-file%20Flake8%2C%20%60git%20diff%20--check%60%2C%20package%20build%2C%20and%20strict%20Twine%20checks%20passed.%20The%20repository-wide%20Flake8%20report%20retains%20existing%20findings%20and%20is%20not%20presented%20as%20a%20clean%20lint%20gate.%0A%0A%5BBaseline%2C%20complete%20validation%2C%20and%20benchmark%20evidence%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43891867287%2Fjob%2F133384927985).%0A%0A%23%23%23%20Pull%20Request%20Checklist%0A%0A-%20%5Bx%5D%20Added%20a%20changelog%20entry.%0A-%20%5Bx%5D%20Added%20regression%20fixtures%20and%20tests%20in%20the%20corresponding%20test%20directory.%0A-%20%5Bx%5D%20Preserved%20the%20public%20interface%20and%20seeded%20behavior.%0A-%20%5Bx%5D%20Ran%20focused%20and%20full%20repository%20tests.%0A-%20%5Bx%5D%20Checked%20formatting%20and%20style%20with%20the%20scope%20described%20above.%0A"
+  },
+  {
+    "name": "numeric-dataset-loading",
+    "prefix": "tenth",
+    "run": 43893510097,
+    "job": 133390720852,
+    "title": "Reduce numeric dataset loading cost while retaining parser compatibility",
+    "issue": 1332,
+    "body": "### Description\n\nThe bundled numeric MNIST, Iris, Boston Housing, and Three Blobs loaders use the general missing-value parser even though their current CSV files are fully numeric. Its temporary Python structures substantially increase MNIST loading time and memory.\n\nA shared internal reader now takes NumPy's numeric-parser fast path and falls back to the original general parser on conversion errors. Missing and nonnumeric fields therefore retain their existing NaN behavior. Values, dtypes, row/column conventions, Iris corrections, independent arrays on repeated calls, and empty-file errors are covered explicitly. Auto MPG keeps its existing mixed-data loader; Wine already uses the numeric parser.\n\n### Related issues or pull requests\n\nCloses #1332.\n\nFull reachable source histories were checked across upstream PR refs and fork branches, including intermediate revisions and the historical `data/_mnist.py` implementation. No equivalent numeric-parser optimization of these loaders was found.\n\n### Measurements\n\nThe exact base and patch were measured in the same Python 3.11.18 job using the unchanged frozen lock. Median times over five untraced runs were:\n\n| Dataset | Base | Patch |\n| --- | ---: | ---: |\n| MNIST | 1.20454 s | 0.15887 s |\n| Iris UCI | 0.525 ms | 0.195 ms |\n| Iris corrected | 0.470 ms | 0.170 ms |\n| Boston Housing | 2.948 ms | 1.454 ms |\n| Three Blobs | 0.514 ms | 0.256 ms |\n\nMNIST is **7.6x faster** in this benchmark. In separate allocation measurements, its peak drops from **228,558,237 to 35,068,071 bytes (84.7%)**. Each dataset's complete feature/label output digest is identical on base and patch. Timings describe this workload; the fallback deliberately retains the original parser's behavior and cost.\n\n### Validation\n\n- Exact upstream base: `1aee767ef57b84a8191511a08955c583b65de382`.\n- **1 of 41 new cases fails on unchanged source**: the MNIST peak-allocation bound. All 41 pass after the change.\n- Tests compare every bundled value with the original parser and cover blank fields, nonnumeric fields, NaN/infinite numeric fields, empty files, dtypes, Iris versions, and independence between calls.\n- Relevant data tests: **56 passed**. Complete repository suite: **781 passed, 3 skipped**.\n- Complete repository isort/Black, changed-file Flake8, `git diff --check`, package build, and strict Twine checks passed. The repository-wide Flake8 report retains existing findings and is not presented as a clean lint gate.\n\n[Baseline, complete validation, and benchmark evidence](https://github.com/Afloat16/geoopt/actions/runs/43893510097/job/133390720852).\n\n### Pull Request Checklist\n\n- [x] Added a changelog entry.\n- [x] Added value, compatibility, and memory-regression tests.\n- [x] Preserved the public loader interfaces.\n- [x] Ran focused and full repository tests.\n- [x] Checked formatting and style with the scope described above.\n",
+    "branch": "fix/numeric-dataset-loading-20261116",
+    "head": "b29a63b6f63b7122e5d1002e78a2d6e97f29ff24",
+    "tree": "721578209832c2f799cb713d0164de2a4c1ea25f",
+    "status": "ready",
+    "base": "master",
+    "maintainer_can_modify": false,
+    "validation": {
+      "run_id": 43893510097,
+      "job_id": 133390720852,
+      "name": "numeric-dataset-loading",
+      "base": "1aee767ef57b84a8191511a08955c583b65de382",
+      "issue": 1332,
+      "baseline_focused": {
+        "total": 41,
+        "failed": 1,
+        "skipped": 0,
+        "failures": {
+          "mlxtend.data.tests.test_numeric_dataset_loading::test_mnist_peak_allocation_stays_close_to_numeric_output_size": "AssertionError: 228558397\nassert 228558397 < (3 * (31360000 + 40000))\n +  where 31360000 = array([[0., 0., 0., ..., 0., 0., 0.],\\n       [0., 0., 0., ..., 0., 0., 0.],\\n       [0., 0., 0., ..., 0., 0., 0.],\\n    ..., 0., ..., 0., 0., 0.],\\n       [0., 0., 0., ..., 0., 0., 0.],\\n       [0., 0., 0., ..., 0., 0., 0.]], shape=(5000, 784)).nbytes\n +  and   40000 = array([0, 0, 0, ..., 9, 9, 9], shape=(5000,)).nbytes"
+        }
+      },
+      "baseline_full": {
+        "total": 784,
+        "failed": 1,
+        "skipped": 3,
+        "failures": {
+          "mlxtend.data.tests.test_numeric_dataset_loading::test_mnist_peak_allocation_stays_close_to_numeric_output_size": "AssertionError: 228558181\nassert 228558181 < (3 * (31360000 + 40000))\n +  where 31360000 = array([[0., 0., 0., ..., 0., 0., 0.],\\n       [0., 0., 0., ..., 0., 0., 0.],\\n       [0., 0., 0., ..., 0., 0., 0.],\\n    ..., 0., ..., 0., 0., 0.],\\n       [0., 0., 0., ..., 0., 0., 0.],\\n       [0., 0., 0., ..., 0., 0., 0.]], shape=(5000, 784)).nbytes\n +  and   40000 = array([0, 0, 0, ..., 9, 9, 9], shape=(5000,)).nbytes"
+        }
+      },
+      "candidate_focused": {
+        "total": 56,
+        "failed": 0,
+        "skipped": 0,
+        "failures": {}
+      },
+      "candidate_full": {
+        "total": 784,
+        "failed": 0,
+        "skipped": 3,
+        "failures": {}
+      },
+      "new_full_suite_failures": []
+    },
+    "performance": {
+      "before": {
+        "kind": "runtime",
+        "results": [
+          {
+            "dataset": "MNIST",
+            "shape": [
+              5000,
+              784
+            ],
+            "seconds": [
+              1.2045394099999953,
+              1.1837866259999998,
+              1.1789234860000022,
+              1.2457560309999849,
+              1.2076894509999931
+            ],
+            "median_seconds": 1.2045394099999953,
+            "digest": "6089a7e5ad43045e16fe0c759fc1c4d5eaba8a5c830f47d4e883123d9e14acea"
+          },
+          {
+            "dataset": "Iris UCI",
+            "shape": [
+              150,
+              4
+            ],
+            "seconds": [
+              0.006677581999980475,
+              0.0005253300000163108,
+              0.0004982389999952375,
+              0.0005253500000037548,
+              0.0004606589999980315
+            ],
+            "median_seconds": 0.0005253300000163108,
+            "digest": "3f0309f781377c5ca5daac0d08ebea531a39243dbd178524b6fe23eda6cc7bf0"
+          },
+          {
+            "dataset": "Iris corrected",
+            "shape": [
+              150,
+              4
+            ],
+            "seconds": [
+              0.00048385199997369455,
+              0.00045800399999507135,
+              0.00046995700000707075,
+              0.00044598200000223187,
+              0.0004763680000223758
+            ],
+            "median_seconds": 0.00046995700000707075,
+            "digest": "ce8e0dc69b2268a57fa68e916dc3195aaa54425570934bc8e493210d9738a15e"
+          },
+          {
+            "dataset": "Boston Housing",
+            "shape": [
+              506,
+              13
+            ],
+            "seconds": [
+              0.003084331999986034,
+              0.002948057999986986,
+              0.002932528999991746,
+              0.002927249000009624,
+              0.0029541789999996126
+            ],
+            "median_seconds": 0.002948057999986986,
+            "digest": "34858561400899d4268328e758e61789217329e917c83afc1ae498f6b721fa26"
+          },
+          {
+            "dataset": "Three Blobs",
+            "shape": [
+              150,
+              2
+            ],
+            "seconds": [
+              0.0005482120000124269,
+              0.0005279750000113381,
+              0.0004972669999858681,
+              0.0005137679999904776,
+              0.0004921480000064093
+            ],
+            "median_seconds": 0.0005137679999904776,
+            "digest": "ba8b80d4568a4d4cff06d5f3ea64e37c9586f409895faf678ca5e70a8491541a"
+          }
+        ],
+        "peak_bytes": 228558237
+      },
+      "after": {
+        "kind": "runtime",
+        "results": [
+          {
+            "dataset": "MNIST",
+            "shape": [
+              5000,
+              784
+            ],
+            "seconds": [
+              0.15694238999998333,
+              0.15893282199999703,
+              0.15886585699996658,
+              0.1828704220000077,
+              0.15596826400002328
+            ],
+            "median_seconds": 0.15886585699996658,
+            "digest": "6089a7e5ad43045e16fe0c759fc1c4d5eaba8a5c830f47d4e883123d9e14acea"
+          },
+          {
+            "dataset": "Iris UCI",
+            "shape": [
+              150,
+              4
+            ],
+            "seconds": [
+              0.0003045579999820802,
+              0.0001954550000391464,
+              0.00020705700001144578,
+              0.00017491599999175378,
+              0.0001666619999696195
+            ],
+            "median_seconds": 0.0001954550000391464,
+            "digest": "3f0309f781377c5ca5daac0d08ebea531a39243dbd178524b6fe23eda6cc7bf0"
+          },
+          {
+            "dataset": "Iris corrected",
+            "shape": [
+              150,
+              4
+            ],
+            "seconds": [
+              0.00020360999997137696,
+              0.00017256199998882948,
+              0.00017046799996478512,
+              0.00016515800001570824,
+              0.00016200200002458587
+            ],
+            "median_seconds": 0.00017046799996478512,
+            "digest": "ce8e0dc69b2268a57fa68e916dc3195aaa54425570934bc8e493210d9738a15e"
+          },
+          {
+            "dataset": "Boston Housing",
+            "shape": [
+              506,
+              13
+            ],
+            "seconds": [
+              0.0015014289999726316,
+              0.001454110999986824,
+              0.0014505160000339856,
+              0.0014418789999695036,
+              0.001493856000024607
+            ],
+            "median_seconds": 0.001454110999986824,
+            "digest": "34858561400899d4268328e758e61789217329e917c83afc1ae498f6b721fa26"
+          },
+          {
+            "dataset": "Three Blobs",
+            "shape": [
+              150,
+              2
+            ],
+            "seconds": [
+              0.0002879870000356277,
+              0.00025550599997359313,
+              0.0002628700000286699,
+              0.0002439550000303825,
+              0.00023667099998192498
+            ],
+            "median_seconds": 0.00025550599997359313,
+            "digest": "ba8b80d4568a4d4cff06d5f3ea64e37c9586f409895faf678ca5e70a8491541a"
+          }
+        ],
+        "peak_bytes": 35068071
+      }
+    },
+    "compare_url": "https://github.com/rasbt/mlxtend/compare/master...Afloat16:fix/numeric-dataset-loading-20261116?expand=1&title=Reduce%20numeric%20dataset%20loading%20cost%20while%20retaining%20parser%20compatibility&body=%23%23%23%20Description%0A%0AThe%20bundled%20numeric%20MNIST%2C%20Iris%2C%20Boston%20Housing%2C%20and%20Three%20Blobs%20loaders%20use%20the%20general%20missing-value%20parser%20even%20though%20their%20current%20CSV%20files%20are%20fully%20numeric.%20Its%20temporary%20Python%20structures%20substantially%20increase%20MNIST%20loading%20time%20and%20memory.%0A%0AA%20shared%20internal%20reader%20now%20takes%20NumPy's%20numeric-parser%20fast%20path%20and%20falls%20back%20to%20the%20original%20general%20parser%20on%20conversion%20errors.%20Missing%20and%20nonnumeric%20fields%20therefore%20retain%20their%20existing%20NaN%20behavior.%20Values%2C%20dtypes%2C%20row%2Fcolumn%20conventions%2C%20Iris%20corrections%2C%20independent%20arrays%20on%20repeated%20calls%2C%20and%20empty-file%20errors%20are%20covered%20explicitly.%20Auto%20MPG%20keeps%20its%20existing%20mixed-data%20loader%3B%20Wine%20already%20uses%20the%20numeric%20parser.%0A%0A%23%23%23%20Related%20issues%20or%20pull%20requests%0A%0ACloses%20%231332.%0A%0AFull%20reachable%20source%20histories%20were%20checked%20across%20upstream%20PR%20refs%20and%20fork%20branches%2C%20including%20intermediate%20revisions%20and%20the%20historical%20%60data%2F_mnist.py%60%20implementation.%20No%20equivalent%20numeric-parser%20optimization%20of%20these%20loaders%20was%20found.%0A%0A%23%23%23%20Measurements%0A%0AThe%20exact%20base%20and%20patch%20were%20measured%20in%20the%20same%20Python%203.11.18%20job%20using%20the%20unchanged%20frozen%20lock.%20Median%20times%20over%20five%20untraced%20runs%20were%3A%0A%0A%7C%20Dataset%20%7C%20Base%20%7C%20Patch%20%7C%0A%7C%20---%20%7C%20---%3A%20%7C%20---%3A%20%7C%0A%7C%20MNIST%20%7C%201.20454%20s%20%7C%200.15887%20s%20%7C%0A%7C%20Iris%20UCI%20%7C%200.525%20ms%20%7C%200.195%20ms%20%7C%0A%7C%20Iris%20corrected%20%7C%200.470%20ms%20%7C%200.170%20ms%20%7C%0A%7C%20Boston%20Housing%20%7C%202.948%20ms%20%7C%201.454%20ms%20%7C%0A%7C%20Three%20Blobs%20%7C%200.514%20ms%20%7C%200.256%20ms%20%7C%0A%0AMNIST%20is%20**7.6x%20faster**%20in%20this%20benchmark.%20In%20separate%20allocation%20measurements%2C%20its%20peak%20drops%20from%20**228%2C558%2C237%20to%2035%2C068%2C071%20bytes%20(84.7%25)**.%20Each%20dataset's%20complete%20feature%2Flabel%20output%20digest%20is%20identical%20on%20base%20and%20patch.%20Timings%20describe%20this%20workload%3B%20the%20fallback%20deliberately%20retains%20the%20original%20parser's%20behavior%20and%20cost.%0A%0A%23%23%23%20Validation%0A%0A-%20Exact%20upstream%20base%3A%20%601aee767ef57b84a8191511a08955c583b65de382%60.%0A-%20**1%20of%2041%20new%20cases%20fails%20on%20unchanged%20source**%3A%20the%20MNIST%20peak-allocation%20bound.%20All%2041%20pass%20after%20the%20change.%0A-%20Tests%20compare%20every%20bundled%20value%20with%20the%20original%20parser%20and%20cover%20blank%20fields%2C%20nonnumeric%20fields%2C%20NaN%2Finfinite%20numeric%20fields%2C%20empty%20files%2C%20dtypes%2C%20Iris%20versions%2C%20and%20independence%20between%20calls.%0A-%20Relevant%20data%20tests%3A%20**56%20passed**.%20Complete%20repository%20suite%3A%20**781%20passed%2C%203%20skipped**.%0A-%20Complete%20repository%20isort%2FBlack%2C%20changed-file%20Flake8%2C%20%60git%20diff%20--check%60%2C%20package%20build%2C%20and%20strict%20Twine%20checks%20passed.%20The%20repository-wide%20Flake8%20report%20retains%20existing%20findings%20and%20is%20not%20presented%20as%20a%20clean%20lint%20gate.%0A%0A%5BBaseline%2C%20complete%20validation%2C%20and%20benchmark%20evidence%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43893510097%2Fjob%2F133390720852).%0A%0A%23%23%23%20Pull%20Request%20Checklist%0A%0A-%20%5Bx%5D%20Added%20a%20changelog%20entry.%0A-%20%5Bx%5D%20Added%20value%2C%20compatibility%2C%20and%20memory-regression%20tests.%0A-%20%5Bx%5D%20Preserved%20the%20public%20loader%20interfaces.%0A-%20%5Bx%5D%20Ran%20focused%20and%20full%20repository%20tests.%0A-%20%5Bx%5D%20Checked%20formatting%20and%20style%20with%20the%20scope%20described%20above.%0A"
+  }
+]
