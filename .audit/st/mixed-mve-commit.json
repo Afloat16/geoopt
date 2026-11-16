@@ -1,0 +1,29 @@
+{
+  "key": "mixed-mve-dtypes",
+  "repository": "huggingface/sentence-transformers",
+  "branch": "fix/multi-vector-mixed-dtypes-20261116",
+  "head": "a08bf4d023f8b9b2de154a45c8dd36234044fd78",
+  "tree": "087485548b83f68bd7009b6901842ff8fb653f74",
+  "base_sha": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "status": "validating",
+  "maintainer_can_modify": false,
+  "dedup": {
+    "upstream_prs": 1479,
+    "upstream_git_pr_refs": 1484,
+    "prior_fork_heads": 33,
+    "maxsim_blobs": 349,
+    "maxsim_variants": 48,
+    "xtr_blobs": 21,
+    "xtr_variants": 28,
+    "prior_paths_and_reverted_commits": true,
+    "parse_failure": "One legacy util.py syntax-error blob was inspected and contains no MaxSim function."
+  },
+  "baseline": {
+    "failed": 36,
+    "passed": 4
+  },
+  "local_adjacent": {
+    "passed": 245,
+    "skipped": 7
+  }
+}
