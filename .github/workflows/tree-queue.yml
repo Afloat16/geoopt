@@ -1,0 +1,72 @@
+name: Validate linear synthetic-tree queue
+on:
+  push:
+    branches: ['validation/stereographic-tree-linear-queue-20261116']
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: '3.8'
+            torch: '2.0.1'
+            numpy: '1.24.4'
+            scipy: '1.10.1'
+            benchmark: false
+          - python: '3.12'
+            torch: '2.6.0'
+            numpy: '2.2.6'
+            scipy: '1.15.3'
+            benchmark: true
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install pinned CPU dependencies
+        run: |
+          python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==${{ matrix.numpy }} scipy==${{ matrix.scipy }} pytest==8.3.5 ruff
+          python -m pip install -e . --no-deps
+      - name: Lint changed files
+        run: python -m ruff check geoopt/datasets/stereographic.py
+      - name: Verify and benchmark original upstream
+        run: |
+          git fetch --depth=1 origin 4623ea1d2a9808b8e87bf10949cccb2c5ec6233c
+          git restore --source=4623ea1d2a9808b8e87bf10949cccb2c5ec6233c -- geoopt/datasets/stereographic.py
+          python -m pytest -q tests/test_data.py --junitxml=baseline.xml
+          if [ "${{ matrix.benchmark }}" = "true" ]; then python validation/benchmark_tree_queue.py baseline.json; fi
+      - name: Verify and benchmark exact candidate
+        run: |
+          git fetch --depth=1 origin 169899d014727842cceee661f3ba89e72ad78290
+          git restore --source=169899d014727842cceee661f3ba89e72ad78290 -- geoopt/datasets/stereographic.py
+          python -m pytest -q tests/test_data.py --junitxml=candidate.xml
+          if [ "${{ matrix.benchmark }}" = "true" ]; then python validation/benchmark_tree_queue.py candidate.json; fi
+          git diff --exit-code
+      - name: Compare complete datasets, ordering, RNG state, and timings
+        if: matrix.benchmark
+        run: |
+          python - <<'PY'
+          import json
+          baseline = json.load(open("baseline.json"))["results"]
+          candidate = json.load(open("candidate.json"))["results"]
+          for before, after in zip(baseline, candidate):
+              assert before["children"] == after["children"] and before["depth"] == after["depth"]
+              assert before["sha256"] == after["sha256"]
+              print(json.dumps({"nodes": before["nodes"], "children": before["children"], "before_seconds": before["median_seconds"], "after_seconds": after["median_seconds"], "speedup": before["median_seconds"] / after["median_seconds"], "sha256": before["sha256"]}))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tree-queue-${{ matrix.python }}
+          path: |
+            baseline.xml
+            candidate.xml
+            baseline.json
+            candidate.json
