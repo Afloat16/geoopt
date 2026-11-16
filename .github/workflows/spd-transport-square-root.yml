@@ -40,8 +40,10 @@ jobs:
           for before, after in zip(baseline, candidate):
               keys = ("backward", "batch", "size")
               assert tuple(before[key] for key in keys) == tuple(after[key] for key in keys)
-              assert before["eigh_calls"] == 3, before
+              assert before["eigh_calls"] == 2, before
+              assert before["matrix_exp_calls"] > 0, before
               assert after["eigh_calls"] == 2, after
+              assert after["matrix_exp_calls"] == 0, after
               print(json.dumps({"case": {key: before[key] for key in keys}, "before_ms": before["median_ms"], "after_ms": after["median_ms"], "speedup": before["median_ms"] / after["median_ms"]}))
           PY
       - uses: actions/upload-artifact@v4

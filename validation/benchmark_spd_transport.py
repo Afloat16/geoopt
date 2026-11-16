@@ -43,6 +43,9 @@ for batch, size in [(16, 32), (4, 128), (1, 256)]:
             "eigh_calls": sum(
                 event.name == "aten::linalg_eigh" for event in prof.events()
             ),
+            "matrix_exp_calls": sum(
+                event.name == "aten::linalg_matrix_exp" for event in prof.events()
+            ),
         }
         results.append(record)
         print(json.dumps(record), flush=True)
