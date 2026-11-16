@@ -1,0 +1,30 @@
+{
+  "base": "b1624c022ceb93373cb073a50bd1da2511108c5e",
+  "scope": "All fetched public upstream branches/tags/PR heads and all Afloat16 fork branch heads; every reachable intermediate source object, rename closure, and historical MS_SSIMLoss definitions.",
+  "ref_count": 4617,
+  "upstream_pr_refs": 4427,
+  "fork_refs": 80,
+  "aliases": [
+    "kornia/losses/ms_ssim.py",
+    "kornia/losses/ms_ssim_l1.py",
+    "kornia/losses/ssim.py",
+    "kornia/losses/ssim3d.py",
+    "kornia/nn/losses/ssim.py",
+    "test/losses/test_ssim.py",
+    "tests/losses/test_ssim.py",
+    "torchgeometry/losses/ssim.py"
+  ],
+  "source_blob_count": 207,
+  "target_source_blob_count": 59,
+  "variant_count": 32,
+  "parse_failure_count": 2,
+  "prior_idea": "https://github.com/kornia/kornia/issues/1850#issuecomment-1553684760",
+  "classification": "Evidence inventory only: inspect variants before asserting novelty. No product source was changed or imported.",
+  "report_sha256": "a7d7b4204eb74bfe78e45e9743d0702db9403d8f7140701f1893acfcfffa10f6",
+  "report_bytes": 867564,
+  "base64_chunks": 24,
+  "decoded_crc32": "e36a499a",
+  "run_id": 43960253802,
+  "job_id": 133625418621,
+  "conclusion": "All 59 target source blobs, including the original MS_SSIM_L1Loss class, still construct full 2-D outer-product masks and apply six dense convolutions. No duplicate separable implementation was found. The two parse failures are commit-message text mistakenly stored in historical test files, not loss implementations; their full content is retained."
+}
