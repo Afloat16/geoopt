@@ -114,7 +114,7 @@ class UpperHalf(SiegelManifold):
         v : torch.Tensor
              tangent vector at point :math:`z`
         keepdim : bool
-            keep the last dim?
+            keep both matrix dimensions?
 
         Returns
         -------
@@ -126,7 +126,10 @@ class UpperHalf(SiegelManifold):
         inv_y = sm.inverse(z.imag).type_as(z)
 
         res = inv_y @ u @ inv_y @ v.conj()
-        return lalg.trace(res, keepdim=keepdim).real
+        inner = lalg.trace(res, keepdim=keepdim).real
+        if keepdim:
+            inner = inner.unsqueeze(-1)
+        return inner
 
     def _check_point_on_manifold(self, z: torch.Tensor, *, atol=1e-5, rtol=1e-5):
         if not self._check_matrices_are_symmetric(z, atol=atol, rtol=rtol):

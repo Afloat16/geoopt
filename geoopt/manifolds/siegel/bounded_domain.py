@@ -149,7 +149,7 @@ class BoundedDomain(SiegelManifold):
         v : torch.Tensor
              tangent vector at point :math:`z`
         keepdim : bool
-            keep the last dim?
+            keep both matrix dimensions?
 
         Returns
         -------
@@ -165,7 +165,10 @@ class BoundedDomain(SiegelManifold):
         inv_id_minus_z_conjz = sm.inverse(identity - (z @ conj_z))
 
         res = inv_id_minus_conjz_z @ u @ inv_id_minus_z_conjz @ v.conj()
-        return lalg.trace(res, keepdim=keepdim).real
+        inner = lalg.trace(res, keepdim=keepdim).real
+        if keepdim:
+            inner = inner.unsqueeze(-1)
+        return inner
 
     def _check_point_on_manifold(self, x: torch.Tensor, *, atol=1e-4, rtol=1e-5):
         if not self._check_matrices_are_symmetric(x, atol=atol, rtol=rtol):
