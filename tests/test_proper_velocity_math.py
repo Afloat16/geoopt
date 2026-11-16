@@ -217,6 +217,43 @@ def test_frechet_statistics_without_reduction(k):
     np.testing.assert_allclose(pvmath.frechet_mean(y, k=k, reducedim=[]), y)
 
 
+@pytest.mark.parametrize("keepdim", [False, True])
+@pytest.mark.parametrize(
+    "shape,mean_shape,dim,reducedim,expand_mean",
+    [
+        ((2, 3, 4), (4,), 2, [1], False),
+        ((2, 3, 4), (3, 4), 2, [1], False),
+        ((2, 3, 4), (2, 4), 2, [1], True),
+        ((2, 4, 3), (4, 1), 1, [2], False),
+    ],
+)
+def test_frechet_variance_broadcast_mean(
+    keepdim, shape, mean_shape, dim, reducedim, expand_mean
+):
+    x = torch.randn(shape, requires_grad=True)
+    mean = torch.randn(mean_shape, requires_grad=True)
+    k = torch.tensor(0.7)
+    reference_mean = mean.unsqueeze(1) if expand_mean else mean
+    reference_mean = torch.broadcast_to(reference_mean, x.shape)
+    x_time = torch.sqrt(k + x.square().sum(dim=dim, keepdim=True))
+    mean_time = torch.sqrt(k + reference_mean.square().sum(dim=dim, keepdim=True))
+    cosh_distance = (
+        x_time * mean_time - (x * reference_mean).sum(dim=dim, keepdim=True)
+    ) / k
+    expected = k * torch.acosh(cosh_distance.squeeze(dim)).square().mean(1, keepdim=keepdim)
+
+    actual = pvmath.frechet_variance(
+        x, mean, k=k, reducedim=reducedim, dim=dim, keepdim=keepdim
+    )
+
+    assert actual.shape == expected.shape
+    torch.testing.assert_close(actual, expected, atol=1e-10, rtol=1e-10)
+    actual_grad = torch.autograd.grad(actual.sum(), (x, mean))
+    expected_grad = torch.autograd.grad(expected.sum(), (x, mean))
+    for actual_value, expected_value in zip(actual_grad, expected_grad):
+        torch.testing.assert_close(actual_value, expected_value, atol=1e-9, rtol=1e-9)
+
+
 def test_frechet_variance_homogeneity(k):
     # (1/N) sum d^2(t ⊗ x_i, 0) = t^2 (1/N) sum d^2(x_i, 0)
     x = torch.randn(32, 4)

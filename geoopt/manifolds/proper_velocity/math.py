@@ -737,6 +737,8 @@ def frechet_variance(x, mean, *, k, reducedim: Optional[List[int]] = None, dim=-
         points on the PV manifold
     mean : tensor
         Fréchet mean, either broadcastable to ``x`` or computed with ``keepdim=False``
+        A shape compatible with the non-reduced dimensions is interpreted as
+        a mean computed with ``keepdim=False``; other shapes use normal broadcasting.
     k : tensor
         manifold negative curvature
     reducedim : List[int]
@@ -754,10 +756,14 @@ def frechet_variance(x, mean, *, k, reducedim: Optional[List[int]] = None, dim=-
     """
     reducedim = _default_reducedim(x, reducedim, dim)
     dim = dim % x.dim()
-    if mean.dim() < x.dim():
-        # mean was computed with keepdim=False
+    mean_shape = [x.shape[d] for d in range(x.dim()) if d not in reducedim]
+    if mean.dim() == len(mean_shape) and all(
+        actual == 1 or actual == expected for actual, expected in zip(mean.shape, mean_shape)
+    ):
+        # Restore dimensions removed by frechet_mean(..., keepdim=False).
         for d in reducedim:
             mean = mean.unsqueeze(d)
+    mean = torch.broadcast_to(mean, x.shape)
     d2 = _dist(mean, x, k, keepdim=False, dim=dim) ** 2
     reducedim = _reducedim_without_manifold(reducedim, x.dim(), dim)
     if len(reducedim) > 0:
