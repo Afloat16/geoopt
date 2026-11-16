@@ -110,7 +110,8 @@ class SiegelManifold(Manifold, ABC):
         return lalg.sym(x)
 
     def proju(self, x: torch.Tensor, u: torch.Tensor) -> torch.Tensor:
-        return self.egrad2rgrad(x, u)
+        target_shape = torch.broadcast_shapes(x.shape, u.shape)
+        return lalg.sym(u).expand(target_shape)
 
     def transp(self, x: torch.Tensor, y: torch.Tensor, v: torch.Tensor) -> torch.Tensor:
         return v

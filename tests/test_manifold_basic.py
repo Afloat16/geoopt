@@ -320,10 +320,7 @@ def upper_half_case():
     ev = geoopt.linalg.batch_linalg.sym(ev)
 
     # v is the result of projecting ev at x
-    real_ev, imag_ev = ev.real, ev.imag
-    real_v = x.imag @ real_ev @ x.imag
-    imag_v = x.imag @ imag_ev @ x.imag
-    v = torch.complex(real_v, imag_v)
+    v = ev
 
     manifold = geoopt.UpperHalf()
     x = geoopt.ManifoldTensor(x, manifold=manifold)
@@ -348,9 +345,7 @@ def bounded_domain_case():
     ev = geoopt.linalg.batch_linalg.sym(ev)
 
     # v is the result of projecting ev at x
-    identity = geoopt.manifolds.siegel.csym_math.identity_like(x)
-    a = identity - (x.conj() @ x)
-    v = geoopt.linalg.batch_linalg.sym(a @ ev @ a)
+    v = ev
 
     manifold = geoopt.BoundedDomain()
     x = geoopt.ManifoldTensor(x, manifold=manifold)
