@@ -115,18 +115,21 @@ class BoundedDomain(SiegelManifold):
         """
         z = super().projx(z)
 
-        evalues, s = sm.takagi_eig(z)
+        evalues = sm.takagi_eigvals(z)
         eps = sm.EPS[evalues.dtype]
+        needs_projection = torch.any(evalues >= 1 - eps, dim=-1)
+        if not needs_projection.any():
+            return z
+
+        evalues, s = sm.takagi_eig(z[needs_projection])
         evalues_tilde = torch.clamp(evalues, max=1 - eps)
 
         diag_tilde = torch.diag_embed(evalues_tilde).type_as(z)
         z_tilde = s.conj() @ diag_tilde @ s.conj().transpose(-1, -2)
 
-        # we do this so no operation is applied on the points that already belong to the space.
-        # This prevents modifying values due to numerical instabilities
-        batch_wise_mask = torch.all(evalues < 1 - eps, dim=-1, keepdim=True)
-        already_in_space_mask = batch_wise_mask.unsqueeze(-1).expand_as(z)
-        return torch.where(already_in_space_mask, z, z_tilde)
+        result = z.clone()
+        result[needs_projection] = z_tilde
+        return result
 
     def inner(
         self, z: torch.Tensor, u: torch.Tensor, v=None, *, keepdim=False

@@ -265,13 +265,13 @@ def positive_conjugate_projection(y: torch.Tensor) -> torch.Tensor:
     y : torch.Tensor
          symmetric matrices
     """
-    evalues, s = eigh(y)
+    needs_projection = torch.any(eigvalsh(y) <= EPS[y.dtype], dim=-1)
+    if not needs_projection.any():
+        return y
+
+    evalues, s = eigh(y[needs_projection])
     evalues = torch.clamp(evalues, min=EPS[y.dtype])
-    y_tilde = s @ torch.diag_embed(evalues) @ s.transpose(-1, -2)
-
-    # we do this so no operation is applied on the matrices that are already positive definite
-    # This prevents modifying values due to numerical instabilities/floating point ops
-    batch_wise_mask = torch.all(evalues > EPS[y.dtype], dim=-1, keepdim=True)
-    mask = batch_wise_mask.unsqueeze(-1).expand_as(y)
-
-    return torch.where(mask, y, y_tilde)
+    projected = s @ torch.diag_embed(evalues) @ s.transpose(-1, -2)
+    result = y.clone()
+    result[needs_projection] = projected
+    return result
