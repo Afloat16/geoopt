@@ -1,0 +1,210 @@
+{
+  "run": 43925134003,
+  "conclusion": "success",
+  "jobs": [
+    {
+      "id": 133502462506,
+      "key": "adr-ranks",
+      "torch": "2.6.0",
+      "conclusion": "success",
+      "url": "https://github.com/Afloat16/geoopt/actions/runs/43925134003/job/133502462506",
+      "summaries": [
+        "2026-11-16T18:06:14.0414072Z \u001b[36;1massert (str(failed)+' failed, ' if failed else '')+os.environ['ST_PASSED']+' passed' in result.stdout\u001b[0m",
+        "2026-11-16T18:06:20.0220666Z 121 passed in 0.29s",
+        "2026-11-16T18:06:36.1396655Z 233 passed, 6 skipped in 5.22s"
+      ],
+      "benchmarks": [
+        {
+          "revision": "before",
+          "lengths": [
+            128,
+            64,
+            127,
+            32
+          ],
+          "median_seconds": 0.0007367249999958858,
+          "loss": 306.0240783691406,
+          "gradient_sha256": "d480e399b687d316437d933c72bcc2dc6fd269fcd8f8f7238a9c35cac20411ec"
+        },
+        {
+          "revision": "before",
+          "lengths": [
+            512,
+            256,
+            511,
+            128
+          ],
+          "median_seconds": 0.01015363199999797,
+          "loss": 3402.655029296875,
+          "gradient_sha256": "ca08b0f2d830b7a43d9d2c976fd446fbff9458ef933299d62f0cd7bf9fa7a6ee"
+        },
+        {
+          "revision": "before",
+          "lengths": [
+            2048,
+            1024,
+            2047,
+            512
+          ],
+          "median_seconds": 0.3844255740000051,
+          "loss": 40673.76953125,
+          "gradient_sha256": "cd422cf0a83f16435a4eec0785ba9a3f9d0ed6a55c4ba7d0b20f77231ce97264"
+        },
+        {
+          "revision": "after",
+          "lengths": [
+            128,
+            64,
+            127,
+            32
+          ],
+          "median_seconds": 0.0006832109999947988,
+          "loss": 306.0240783691406,
+          "gradient_sha256": "d480e399b687d316437d933c72bcc2dc6fd269fcd8f8f7238a9c35cac20411ec",
+          "speed_ratio": 1.0783271932118985
+        },
+        {
+          "revision": "after",
+          "lengths": [
+            512,
+            256,
+            511,
+            128
+          ],
+          "median_seconds": 0.007978350999991335,
+          "loss": 3402.655029296875,
+          "gradient_sha256": "ca08b0f2d830b7a43d9d2c976fd446fbff9458ef933299d62f0cd7bf9fa7a6ee",
+          "speed_ratio": 1.2726479444197174
+        },
+        {
+          "revision": "after",
+          "lengths": [
+            2048,
+            1024,
+            2047,
+            512
+          ],
+          "median_seconds": 0.22829149699998652,
+          "loss": 40673.76953125,
+          "gradient_sha256": "cd422cf0a83f16435a4eec0785ba9a3f9d0ed6a55c4ba7d0b20f77231ce97264",
+          "speed_ratio": 1.6839241892571575
+        }
+      ]
+    },
+    {
+      "id": 133502462253,
+      "key": "adr-ranks",
+      "torch": "2.14.1",
+      "conclusion": "success",
+      "url": "https://github.com/Afloat16/geoopt/actions/runs/43925134003/job/133502462253",
+      "summaries": [
+        "2026-11-16T18:06:31.8886391Z \u001b[36;1massert (str(failed)+' failed, ' if failed else '')+os.environ['ST_PASSED']+' passed' in result.stdout\u001b[0m",
+        "2026-11-16T18:06:39.4334218Z 121 passed in 0.33s",
+        "2026-11-16T18:06:58.0644294Z 233 passed, 6 skipped in 5.85s"
+      ],
+      "benchmarks": [
+        {
+          "revision": "before",
+          "lengths": [
+            128,
+            64,
+            127,
+            32
+          ],
+          "median_seconds": 0.0006902679999996053,
+          "loss": 306.0240783691406,
+          "gradient_sha256": "d480e399b687d316437d933c72bcc2dc6fd269fcd8f8f7238a9c35cac20411ec"
+        },
+        {
+          "revision": "before",
+          "lengths": [
+            512,
+            256,
+            511,
+            128
+          ],
+          "median_seconds": 0.009835733000016944,
+          "loss": 3402.655029296875,
+          "gradient_sha256": "ca08b0f2d830b7a43d9d2c976fd446fbff9458ef933299d62f0cd7bf9fa7a6ee"
+        },
+        {
+          "revision": "before",
+          "lengths": [
+            2048,
+            1024,
+            2047,
+            512
+          ],
+          "median_seconds": 0.39768596199999706,
+          "loss": 40673.76953125,
+          "gradient_sha256": "cd422cf0a83f16435a4eec0785ba9a3f9d0ed6a55c4ba7d0b20f77231ce97264"
+        },
+        {
+          "revision": "after",
+          "lengths": [
+            128,
+            64,
+            127,
+            32
+          ],
+          "median_seconds": 0.0006380290000151945,
+          "loss": 306.0240783691406,
+          "gradient_sha256": "d480e399b687d316437d933c72bcc2dc6fd269fcd8f8f7238a9c35cac20411ec",
+          "speed_ratio": 1.081875588700775
+        },
+        {
+          "revision": "after",
+          "lengths": [
+            512,
+            256,
+            511,
+            128
+          ],
+          "median_seconds": 0.009683410000008053,
+          "loss": 3402.655029296875,
+          "gradient_sha256": "ca08b0f2d830b7a43d9d2c976fd446fbff9458ef933299d62f0cd7bf9fa7a6ee",
+          "speed_ratio": 1.015730305750636
+        },
+        {
+          "revision": "after",
+          "lengths": [
+            2048,
+            1024,
+            2047,
+            512
+          ],
+          "median_seconds": 0.23989278100000888,
+          "loss": 40673.76953125,
+          "gradient_sha256": "cd422cf0a83f16435a4eec0785ba9a3f9d0ed6a55c4ba7d0b20f77231ce97264",
+          "speed_ratio": 1.6577654414702139
+        }
+      ]
+    },
+    {
+      "id": 133502461854,
+      "key": "csr-inverse",
+      "torch": "2.6.0",
+      "conclusion": "success",
+      "url": "https://github.com/Afloat16/geoopt/actions/runs/43925134003/job/133502461854",
+      "summaries": [
+        "2026-11-16T18:06:29.3330732Z \u001b[36;1massert (str(failed)+' failed, ' if failed else '')+os.environ['ST_PASSED']+' passed' in result.stdout\u001b[0m",
+        "2026-11-16T18:06:36.3987763Z 30 failed, 8 passed in 0.16s",
+        "2026-11-16T18:06:43.2859198Z 64 passed, 8 skipped in 3.09s"
+      ],
+      "benchmarks": []
+    },
+    {
+      "id": 133502462257,
+      "key": "csr-inverse",
+      "torch": "2.14.1",
+      "conclusion": "success",
+      "url": "https://github.com/Afloat16/geoopt/actions/runs/43925134003/job/133502462257",
+      "summaries": [
+        "2026-11-16T18:06:32.0811149Z \u001b[36;1massert (str(failed)+' failed, ' if failed else '')+os.environ['ST_PASSED']+' passed' in result.stdout\u001b[0m",
+        "2026-11-16T18:06:40.0273306Z 30 failed, 8 passed in 0.24s",
+        "2026-11-16T18:06:48.0793605Z 64 passed, 8 skipped in 2.14s"
+      ],
+      "benchmarks": []
+    }
+  ]
+}

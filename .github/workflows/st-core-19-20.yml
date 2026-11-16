@@ -1,0 +1,131 @@
+name: Validate real Qdrant batches and reversed NumPy inputs
+'on':
+  push:
+    branches:
+    - validation/st-core-19-20-20261116
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        - torch: 2.6.0
+          candidate: qdrant-batch
+          head: aae6927d9b99bc52c1f9f42f650c42d9ddcc49d0
+          source: sentence_transformers/sparse_encoder/search_engines.py
+          test: tests/sparse_encoder/test_qdrant_query_batch.py
+          adjacent: tests/sparse_encoder/test_search_engines.py
+          failed: 20
+          passed: 9
+          benchmark: st-qdrant-batch-benchmark
+        - torch: 2.6.0
+          candidate: numpy-strides
+          head: 8453b7d3bcd77718d8f8d54fbd884ed599676b73
+          source: sentence_transformers/util/tensor.py
+          test: tests/util/test_numpy_negative_strides.py
+          adjacent: tests/util/test_tensor.py tests/util/test_similarity.py tests/util/test_retrieval.py
+          failed: 33
+          passed: 1
+          benchmark: ''
+        - torch: 2.14.1
+          candidate: qdrant-batch
+          head: aae6927d9b99bc52c1f9f42f650c42d9ddcc49d0
+          source: sentence_transformers/sparse_encoder/search_engines.py
+          test: tests/sparse_encoder/test_qdrant_query_batch.py
+          adjacent: tests/sparse_encoder/test_search_engines.py
+          failed: 20
+          passed: 9
+          benchmark: st-qdrant-batch-benchmark
+        - torch: 2.14.1
+          candidate: numpy-strides
+          head: 8453b7d3bcd77718d8f8d54fbd884ed599676b73
+          source: sentence_transformers/util/tensor.py
+          test: tests/util/test_numpy_negative_strides.py
+          adjacent: tests/util/test_tensor.py tests/util/test_similarity.py tests/util/test_retrieval.py
+          failed: 33
+          passed: 1
+          benchmark: ''
+    defaults:
+      run:
+        working-directory: project
+    env:
+      OMP_NUM_THREADS: 1
+      OPENBLAS_NUM_THREADS: 1
+      PYTHONPATH: .
+      ST_BASE: 9ac7fdb4edce2f1dbc171b036ecbb60383653e74
+      ST_CANDIDATE: ${{ matrix.head }}
+      ST_SOURCE: ${{ matrix.source }}
+      ST_TEST: ${{ matrix.test }}
+      ST_FAILED: ${{ matrix.failed }}
+      ST_PASSED: ${{ matrix.passed }}
+      ST_ADJACENT: ${{ matrix.adjacent }}
+      ST_BENCHMARK: ${{ matrix.benchmark }}
+      ST_QDRANT_URL: http://localhost:6333
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        path: harness
+        persist-credentials: false
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        repository: Afloat16/sentence-transformers
+        ref: ${{ matrix.head }}
+        path: project
+        fetch-depth: 2
+        persist-credentials: false
+    - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+      with:
+        python-version: '3.12'
+    - name: Install CPU dependencies
+      run: 'python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+
+        python -m pip install numpy==2.3.5 scipy==1.17.0 scikit-learn==1.8.0 transformers==5.23.0 huggingface-hub==2.4.0 datasets==5.2.0
+        accelerate==1.15.0 pytest==9.2.0 pytest-env pytest-subtests pre-commit socksio pillow
+
+        python -m pip install -e . --no-deps
+
+
+        python -m pip install qdrant-client==1.20.0
+
+        '
+    - name: Check real Qdrant server
+      if: matrix.candidate == 'qdrant-batch'
+      run: "python - <<'PY'\nimport os, time\nfrom qdrant_client import QdrantClient\nwith QdrantClient(url=os.environ['ST_QDRANT_URL'])\
+        \ as client:\n    for attempt in range(30):\n        try:\n            print(client.info())\n            print(client.get_collections())\n\
+        \            break\n        except Exception:\n            if attempt == 29:\n                raise\n            time.sleep(1)\n\
+        PY\n"
+    - name: Verify exact-base behavior
+      run: "python - <<'PYTEST'\nimport os, subprocess, sys\nfrom pathlib import Path\nassert subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()\
+        \ == os.environ['ST_CANDIDATE']\nfor path in os.environ['ST_SOURCE'].split():\n    Path(path).write_bytes(subprocess.check_output(['git','show',os.environ['ST_BASE']+':'+path]))\n\
+        result = subprocess.run([sys.executable,'-m','pytest',os.environ['ST_TEST'],'-q','--tb=short'], text=True, stdout=subprocess.PIPE,\
+        \ stderr=subprocess.STDOUT)\nprint(result.stdout)\nfailed = int(os.environ['ST_FAILED'])\nassert result.returncode == (1 if\
+        \ failed else 0)\nassert (str(failed)+' failed, ' if failed else '')+os.environ['ST_PASSED']+' passed' in result.stdout\nPYTEST\n"
+    - name: Benchmark exact-base public path
+      if: matrix.benchmark != ''
+      run: python ../harness/.validation/$ST_BENCHMARK.py before
+    - name: Verify candidate and adjacent tests
+      run: 'git restore --source="$ST_CANDIDATE" -- $ST_SOURCE
+
+        python -m pytest "$ST_TEST" $ST_ADJACENT -q --tb=short
+
+        '
+    - name: Benchmark candidate against exact-base outputs
+      if: matrix.benchmark != ''
+      run: python ../harness/.validation/$ST_BENCHMARK.py after before
+    - name: Check repository style
+      run: 'pre-commit run --all-files
+
+        git diff --exit-code
+
+        git diff --check
+
+        '
+    services:
+      qdrant:
+        image: qdrant/qdrant:v1.20.0
+        ports:
+        - 6333:6333

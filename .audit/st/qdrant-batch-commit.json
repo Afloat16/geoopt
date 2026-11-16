@@ -1,0 +1,12 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "perf/qdrant-batched-sparse-queries-20261116",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "tree": "5c3e738644b7bb84913a23cf8c5dc6a4651b9f4c",
+  "head": "aae6927d9b99bc52c1f9f42f650c42d9ddcc49d0",
+  "local_tests": {
+    "baseline_failed": 20,
+    "baseline_passed": 9,
+    "candidate_passed": 40
+  }
+}

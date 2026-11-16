@@ -1,0 +1,14 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "feat/numpy-negative-stride-inputs-20261116",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "tree": "52df3d75fb26415c613ae4950cf1c9e8656f3b41",
+  "head": "8453b7d3bcd77718d8f8d54fbd884ed599676b73",
+  "local_tests": {
+    "baseline_failed": 33,
+    "baseline_passed": 1,
+    "candidate_passed": 423,
+    "candidate_skipped": 39,
+    "candidate_deselected": 1
+  }
+}
