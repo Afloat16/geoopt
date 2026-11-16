@@ -66,10 +66,11 @@ class SGRHMC(Sampler):
                         v = self.state[p]["v"]
 
                         n = egrad2rgrad(p, torch.randn_like(v))
-                        v.mul_(1 - alpha).add_(egrad2rgrad(p, p.grad), alpha=epsilon).add_(
-                            math.sqrt(2 * alpha * epsilon) * n
-                        )
-                        p.grad.zero_()
+                        v.mul_(1 - alpha)
+                        if p.grad is not None:
+                            v.add_(egrad2rgrad(p, p.grad), alpha=epsilon)
+                            p.grad.zero_()
+                        v.add_(math.sqrt(2 * alpha * epsilon) * n)
 
                         p_, v_ = retr_transp(p, v, v)
                         p.copy_(p_)
