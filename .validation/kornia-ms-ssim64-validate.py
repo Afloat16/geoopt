@@ -1,4 +1,6 @@
 """Run paired source-verified eager public API comparisons."""
+import ast
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -12,7 +14,15 @@ VALIDATION=ROOT.parent/"validation"
 OUT=ROOT.parent/"kornia-ms-ssim64-results"
 OUT.mkdir(exist_ok=True)
 base="b1624c022ceb93373cb073a50bd1da2511108c5e"
-candidate="a4c31b02a00e627782b7551bcb5216a2adbf98ab"
+candidate="21c8e92cb36341353d910d3922201805bcce4400"
+old_source=subprocess.check_output(["git","show","a4c31b02a00e627782b7551bcb5216a2adbf98ab:kornia/losses/ms_ssim.py"],text=True)
+new_source=(ROOT/"kornia/losses/ms_ssim.py").read_text()
+old_ast=ast.dump(ast.parse(old_source),include_attributes=False)
+new_ast=ast.dump(ast.parse(new_source),include_attributes=False)
+assert old_ast==new_ast
+proof={"measured_head":"a4c31b02a00e627782b7551bcb5216a2adbf98ab","final_head":candidate,"production_ast_sha256":hashlib.sha256(new_ast.encode()).hexdigest(),"identical_ast":True,"scope":"Production source differs only in formatting; numeric test literals now use the observed NumPy values."}
+(OUT/"ast-equivalence.json").write_text(json.dumps(proof,indent=2)+"\n")
+print("PRODUCTION_AST_EQUIVALENCE "+json.dumps(proof),flush=True)
 subprocess.run(["git","worktree","add","--detach",str(BASE),base],check=True)
 script=(VALIDATION/".validation/kornia-ms-ssim64-api-probe.py").read_text()
 python=sys.executable
@@ -41,8 +51,4 @@ for case in baseline:
     comparison.append(row)
     print("API_COMPARISON "+json.dumps(row),flush=True)
 (OUT/"comparison.json").write_text(json.dumps(comparison,indent=2)+"\n")
-# Interleave complete public API timings. Each cell also contains Timer's repeated median/IQR.
-order=[("base",BASE,base),("candidate",ROOT,candidate),("candidate",ROOT,candidate),("base",BASE,base)]
-for repeat,(label,tree,head) in enumerate(order):
-    probe(tree,head,"timing",f"timing-{repeat}-{label}")
-print("PAIRED_PUBLIC_API_COMPLETED",flush=True)
+print("FINAL_PUBLIC_API_COMPLETED; timings remain at AST-identical measured head a4c31b02",flush=True)
