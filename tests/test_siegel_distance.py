@@ -4,7 +4,7 @@ import numpy as np
 import pytest
 from itertools import product
 from geoopt import UpperHalf, BoundedDomain
-from geoopt.manifolds.siegel.vvd_metrics import SiegelMetricType
+from geoopt.manifolds.siegel.vvd_metrics import SiegelMetricType, FinslerMinimumEntropyMetric
 from geoopt.manifolds.siegel.csym_math import EPS
 
 
@@ -138,3 +138,28 @@ def test_distance_from_origin_to_origin_is_zero(manifold, rank, dtype, eps):
     dist_xy = manifold.dist(x, y).detach()
 
     np.testing.assert_allclose(dist_xy, torch.zeros_like(dist_xy), atol=eps, rtol=eps)
+
+
+@pytest.mark.parametrize("device", ["cpu", "meta"])
+@pytest.mark.parametrize("value_dtype", [torch.float32, torch.float64])
+@pytest.mark.parametrize("keepdim", [False, True])
+def test_minimum_entropy_metric_follows_input_device(device, value_dtype, keepdim):
+    metric = FinslerMinimumEntropyMetric(rank=4)
+    values = torch.arange(24, dtype=value_dtype).reshape(2, 3, 4).to(device)
+    values.requires_grad_()
+    result = metric.compute_metric(values, keepdim=keepdim)
+    gradient = torch.autograd.grad(result.sum(), values)[0]
+
+    assert result.device == values.device
+    assert result.dtype == values.dtype
+    assert result.shape == ((2, 3, 1) if keepdim else (2, 3))
+    assert gradient.device == values.device
+    assert gradient.dtype == values.dtype
+    assert gradient.shape == values.shape
+    if device == "cpu":
+        expected = 2 * values[..., 1] + 4 * values[..., 2] + 6 * values[..., 3]
+        if keepdim:
+            expected = expected.unsqueeze(-1)
+        torch.testing.assert_close(result, expected)
+        expected_gradient = values.new_tensor([0, 2, 4, 6]).expand_as(values)
+        torch.testing.assert_close(gradient, expected_gradient)
