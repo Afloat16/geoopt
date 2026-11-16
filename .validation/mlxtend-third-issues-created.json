@@ -1,0 +1,38 @@
+[
+  {
+    "name": "lda-real-generalized-eigen",
+    "title": "LDA can return complex projections for real full-rank data",
+    "body": "#### Describe the bug\n\n`LinearDiscriminantAnalysis` forms `inv(S_W) @ S_B` and passes the generally nonsymmetric result to `numpy.linalg.eig`. Rounding in the null eigenspace can produce conjugate eigenvalues, which makes the entire eigenvector array complex. Even selecting only the leading real discriminant then returns a complex-typed projection that scikit-learn refuses.\n\n#### Steps/Code to Reproduce\n\n```python\nimport numpy as np\nfrom sklearn.linear_model import LogisticRegression\nfrom mlxtend.feature_extraction import LinearDiscriminantAnalysis\n\nX = np.random.RandomState(2).randint(-4, 5, size=(12, 4)).astype(float)\ny = np.repeat([0, 1], 6)\nmodel = LinearDiscriminantAnalysis(n_discriminants=1).fit(X, y)\nprojected = model.transform(X)\nprint(projected.dtype)\nLogisticRegression().fit(projected, y)\n```\n\n#### Expected Results\n\nReal input with a positive-definite within-class scatter produces a real projection usable by ordinary scikit-learn estimators. The generalized symmetric eigenproblem preserves this real-valued structure without explicitly inverting the within-class scatter.\n\n#### Actual Results\n\nThe projection has dtype `complex128`; `LogisticRegression.fit` raises `ValueError: Complex data not supported`. This also happens when the selected leading component has zero imaginary part. Keeping all components can produce nonzero imaginary projections.\n\n#### Proposed correction\n\nSolve the symmetric generalized problem with `scipy.linalg.eigh(S_B, S_W)`, sort the eigenpairs in the existing order, and retain the Euclidean unit normalization used by the existing output convention. Cover real-data downstream compatibility, generalized-eigen residuals, independent analytic scatter pairs, and the current Iris fixture.\n\nThis is separate from #1300/#1301, which correct class sample weights. The decomposition/loadings proposal #277 retained the inverse/general eigensolver in its eigen branch; this report concerns its real-valued projection failure.\n\n#### Versions\n\nCurrent master `1aee767ef57b84a8191511a08955c583b65de382`, Linux, Python 3.12.14, NumPy 2.3.5, SciPy 1.17.0, scikit-learn 1.8.0.\n",
+    "status": "published",
+    "implementation_started": false,
+    "base": "1aee767ef57b84a8191511a08955c583b65de382",
+    "history": {
+      "upstream_prs": 685,
+      "refresh_through": 1311,
+      "fork_refs": 125,
+      "intermediate_commits_checked": true
+    },
+    "number": 1312,
+    "url": "https://github.com/rasbt/mlxtend/issues/1312",
+    "created_at": "2026-11-16T13:19:06Z",
+    "body_verified": true
+  },
+  {
+    "name": "bias-variance-fresh-models",
+    "title": "bias_variance_decomp reuses warm-start state across bootstrap replicates",
+    "body": "#### Describe the bug\n\n`bias_variance_decomp` repeatedly fits the same estimator object. For a warm-start random forest with an unchanged tree count, later fits retain the first replicate's trees. The resulting bootstrap predictions are identical, so the reported variance is essentially zero even when independently fitted replicates have substantial variance.\n\n#### Steps/Code to Reproduce\n\n```python\nimport numpy as np\nfrom sklearn.base import clone\nfrom sklearn.ensemble import RandomForestRegressor\nfrom mlxtend.evaluate import bias_variance_decomp\n\nX = np.linspace(-2, 2, 20).reshape(-1, 1)\ny = np.sin(3 * X[:, 0]) + X[:, 0] ** 2\nX_test = np.linspace(-1.9, 1.9, 11).reshape(-1, 1)\ny_test = np.sin(3 * X_test[:, 0]) + X_test[:, 0] ** 2\nmodel = RandomForestRegressor(\n    n_estimators=3, max_depth=2, warm_start=True, random_state=17\n)\nprint(bias_variance_decomp(\n    model, X, y, X_test, y_test,\n    loss=\"mse\", num_rounds=10, random_seed=42,\n))\n\nrng = np.random.RandomState(42)\npredictions = np.array([\n    clone(model).fit(X[indices], y[indices]).predict(X_test)\n    for indices in [rng.choice(len(X), len(X), replace=True) for _ in range(10)]\n])\nmean_prediction = predictions.mean(axis=0)\nprint(\n    np.mean((predictions - y_test) ** 2),\n    np.mean((mean_prediction - y_test) ** 2),\n    np.mean((predictions - mean_prediction) ** 2),\n)\n```\n\n#### Expected Results\n\nEach resampled training set fits a fresh estimator using the supplied hyperparameters. The independent calculation returns approximately `(0.49549331, 0.26741517, 0.22807814)` for expected loss, squared bias, and variance.\n\n#### Actual Results\n\nThe current function returns approximately `(0.38954719, 0.38954719, 5.83e-32)`, with repeated warnings that warm-start fitting without increasing the tree count does not fit new trees.\n\n#### Proposed correction\n\nClone estimators exposing the scikit-learn parameter protocol for every replicate, while retaining the existing Keras reset path and legacy behavior for custom estimators without that protocol. Cover warm-start regression and classification, pipelines, pre-fitted input estimators, cold-start controls, and caller-state preservation.\n\nA [related earlier correction](https://github.com/Afloat16/mlxtend/commit/d80718f294561d7670099afb069815f3374cf6bb) isolates replicates in `bootstrap_point632`. That separate public function is not called by `bias_variance_decomp`; its correction leaves the variance-estimation path above unchanged.\n\n#### Versions\n\nCurrent master `1aee767ef57b84a8191511a08955c583b65de382`, Linux, Python 3.12.14, NumPy 2.3.5, SciPy 1.17.0, scikit-learn 1.8.0.\n",
+    "status": "published",
+    "implementation_started": false,
+    "base": "1aee767ef57b84a8191511a08955c583b65de382",
+    "history": {
+      "upstream_prs": 685,
+      "refresh_through": 1311,
+      "fork_refs": 125,
+      "intermediate_commits_checked": true
+    },
+    "number": 1313,
+    "url": "https://github.com/rasbt/mlxtend/issues/1313",
+    "created_at": "2026-11-16T13:19:58Z",
+    "body_verified": true
+  }
+]
