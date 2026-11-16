@@ -1,0 +1,71 @@
+name: Validate SPD membership eigenvalues only
+on:
+  push:
+    branches: ['validation/spd-membership-eigenvalues-only-20261116']
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: '3.8'
+            torch: '2.0.1'
+            numpy: '1.24.4'
+            scipy: '1.10.1'
+            benchmark: false
+          - python: '3.12'
+            torch: '2.6.0'
+            numpy: '2.2.6'
+            scipy: '1.15.3'
+            benchmark: true
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install pinned CPU dependencies
+        run: |
+          python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==${{ matrix.numpy }} scipy==${{ matrix.scipy }} pytest==8.3.5 ruff
+          python -m pip install -e . --no-deps
+      - name: Lint changed files
+        run: python -m ruff check geoopt/manifolds/symmetric_positive_definite.py tests/test_spd_membership.py
+      - name: Verify and benchmark original upstream
+        run: |
+          git fetch --depth=1 origin 4623ea1d2a9808b8e87bf10949cccb2c5ec6233c
+          git restore --source=4623ea1d2a9808b8e87bf10949cccb2c5ec6233c -- geoopt/manifolds/symmetric_positive_definite.py
+          python -m pytest -q tests/test_spd_membership.py --junitxml=baseline.xml
+          if [ "${{ matrix.benchmark }}" = "true" ]; then python validation/benchmark_spd_check.py baseline.json; fi
+      - name: Verify and benchmark exact candidate
+        run: |
+          git fetch --depth=1 origin 8412752c9805672cc691a003ed97c21ff6ee1bf3
+          git restore --source=8412752c9805672cc691a003ed97c21ff6ee1bf3 -- geoopt/manifolds/symmetric_positive_definite.py
+          python -m pytest -q tests/test_spd_membership.py tests/test_spd_norm.py tests/test_spd_distance.py tests/test_manifold_basic.py --junitxml=candidate.xml
+          if [ "${{ matrix.benchmark }}" = "true" ]; then python validation/benchmark_spd_check.py candidate.json; fi
+          git diff --exit-code
+      - name: Compare public membership-check timings
+        if: matrix.benchmark
+        run: |
+          python - <<'PY'
+          import json
+          baseline = json.load(open("baseline.json"))["results"]
+          candidate = json.load(open("candidate.json"))["results"]
+          for before, after in zip(baseline, candidate):
+              assert before["shape"] == after["shape"] and before["requires_grad"] == after["requires_grad"]
+              print(json.dumps({"shape": before["shape"], "requires_grad": before["requires_grad"], "before_ms": before["median_ms"], "after_ms": after["median_ms"], "speedup": before["median_ms"] / after["median_ms"]}))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: spd-membership-${{ matrix.python }}
+          path: |
+            baseline.xml
+            candidate.xml
+            baseline.json
+            candidate.json
