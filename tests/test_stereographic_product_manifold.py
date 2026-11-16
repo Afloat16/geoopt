@@ -345,3 +345,27 @@ def test_wrapped_normal_scalar_std_matches_component_samples(dtype, batched_mean
     assert product.check_point_on_manifold(actual)
     if std != 0:
         assert not torch.equal(actual, mean.expand_as(actual))
+
+
+@pytest.mark.parametrize("component_shape", [(2,), (2, 2), (2, 1, 2)])
+@pytest.mark.parametrize("cross_broadcast", [False, True])
+@pytest.mark.parametrize("operation", ["mobius_add", "mobius_sub", "mobius_coadd", "mobius_cosub"])
+def test_binary_mobius_operations_preserve_component_shape(
+    component_shape, cross_broadcast, operation
+):
+    first = Stereographic(k=0.0).double()
+    second = Stereographic(k=0.0).double()
+    manifold = StereographicProductManifold((first, component_shape), (second, 3))
+    width = manifold.n_elements
+    x_shape = (2, 1, width) if cross_broadcast else (width,)
+    y_shape = (1, 3, width) if cross_broadcast else (width,)
+    x = torch.linspace(-0.2, 0.3, torch.Size(x_shape).numel(), dtype=torch.float64).reshape(x_shape)
+    y = torch.linspace(0.1, -0.1, torch.Size(y_shape).numel(), dtype=torch.float64).reshape(y_shape)
+    x.requires_grad_()
+    y.requires_grad_()
+    expected = x - y if operation in ("mobius_sub", "mobius_cosub") else x + y
+    actual = getattr(manifold, operation)(x, y)
+    torch.testing.assert_close(actual, expected)
+    actual_grad = torch.autograd.grad(actual.sum(), (x, y), retain_graph=True)
+    expected_grad = torch.autograd.grad(expected.sum(), (x, y))
+    torch.testing.assert_close(actual_grad, expected_grad)

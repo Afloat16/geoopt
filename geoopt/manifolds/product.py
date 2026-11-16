@@ -542,13 +542,11 @@ class StereographicProductManifold(ProductManifold):
         *,
         project=True,
     ) -> torch.Tensor:
-        target_batch_dim = _calculate_target_batch_dim(x.dim(), y.dim())
         mapped_tensors = []
         for i, manifold in enumerate(self.manifolds):
             x_ = self.take_submanifold_value(x, i)
             y_ = self.take_submanifold_value(y, i)
             mapped = getattr(manifold, kind)(x_, y_, dim=-1, project=project)
-            mapped = mapped.reshape((*mapped.shape[:target_batch_dim], -1))
             mapped_tensors.append(mapped)
         return self.pack_point(*mapped_tensors)
 
