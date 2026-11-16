@@ -1,0 +1,177 @@
+[
+  {
+    "body": "    def perform_erosion(self, pred: torch.Tensor, target: torch.Tensor) -> torch.Tensor:\n        bound = (pred - target) ** 2\n\n        kernel = torch.as_tensor(self.kernel, device=pred.device, dtype=pred.dtype)\n        eroded = torch.zeros_like(bound, device=pred.device, dtype=pred.dtype)\n        mask = torch.ones_like(bound, device=pred.device, dtype=torch.bool)\n\n        # Same padding, assuming kernel is odd and square (cube) shaped.\n        # NOTE: int() has to be added for enabling JIT.\n        padding = int((kernel.size(-1) - 1) // 2)\n        for k in range(self.k):\n            # compute convolution with kernel\n            dilation = self.conv(bound, weight=kernel, padding=padding, groups=1)\n            # apply soft thresholding at 0.5 and normalize\n            erosion = dilation - 0.5\n            erosion[erosion < 0] = 0\n\n            # image-wise differences for 2D images\n            erosion_max = self.max_pool(erosion)\n            erosion_min = -self.max_pool(-erosion)\n            # No normalization needed if `max - min = 0`\n            _to_norm = (erosion_max - erosion_min) != 0\n            to_norm = _to_norm.squeeze()\n            if to_norm.any():\n                # NOTE: avoid in-place ops like below, which will not pass gradcheck:\n                #       erosion[to_norm] = (erosion[to_norm] - erosion_min[to_norm]) / (\n                #           erosion_max[to_norm] - erosion_min[to_norm])\n                _erosion_to_fill = (erosion - erosion_min) / (erosion_max - erosion_min)\n                erosion = torch.where(mask * _to_norm, _erosion_to_fill, erosion)\n\n            # save erosion and add to loss\n            eroded = eroded + erosion * (k + 1) ** self.alpha\n            bound = erosion\n\n        return eroded\n\n    # NOTE: we add type ignore because the forward pass does not work well with subclassing",
+    "digests": [
+      "1218c309edc449c9332999e26dd122ee79fe093ecf624e9495ca5f737e3b76ec"
+    ],
+    "blobs": [
+      "03756f803442649628e97ea2b65b2b9a97cab426",
+      "594fa79ca00691082e15265c9e247acaec053df5",
+      "b0c844fd3abe49c2e8140f0719b00302c041e1a0"
+    ]
+  },
+  {
+    "body": "    def perform_erosion(self, pred: torch.Tensor, target: torch.Tensor) -> torch.Tensor:\n        bound = (pred - target) ** 2\n\n        kernel = torch.as_tensor(self.kernel, device=pred.device, dtype=pred.dtype)\n        eroded = torch.zeros_like(bound, device=pred.device, dtype=pred.dtype)\n\n        # Same padding, assuming kernel is odd and square (cube) shaped.\n        padding = (kernel.size(-1) - 1) // 2\n        for k in range(self.k):\n            # compute convolution with kernel\n            dilation = self.conv(bound, weight=kernel, padding=padding, groups=1)\n            # apply soft thresholding at 0.5 and F.normalize. masked_fill zeroes the negatives without\n            # a data-dependent index_put_, and keeps its gradient of 1 at dilation == 0.5 exactly;\n            # clamp_min's derivative at the bound is 0 on torch >= 2.14 and 1 before.\n            erosion = (dilation - 0.5).masked_fill(dilation < 0.5, 0)\n\n            # image-wise differences for 2D images\n            erosion_max = self.max_pool(erosion)\n            erosion_min = -self.max_pool(-erosion)\n            # No normalization needed if `max - min = 0`: those lanes keep ``erosion`` through the\n            # ``where`` below and divide by a safe 1 so they stay finite (a NaN in the unselected\n            # branch would still poison the gradient). Branch-free, so the loss also traces for export.\n            # NOTE: avoid in-place ops like below, which will not pass gradcheck:\n            #       erosion[to_norm] = (erosion[to_norm] - erosion_min[to_norm]) / (\n            #           erosion_max[to_norm] - erosion_min[to_norm])\n            _range = erosion_max - erosion_min\n            _to_norm = _range != 0\n            _erosion_to_fill = (erosion - erosion_min) / torch.where(_to_norm, _range, 1.0)\n            erosion = torch.where(_to_norm, _erosion_to_fill, erosion)\n\n            # save erosion and add to loss\n            eroded = eroded + erosion * (k + 1) ** self.alpha\n            bound = erosion\n\n        return eroded\n",
+    "digests": [
+      "48b1aef935d340a2b62f46a5448878d1fb79ec81575cd26790ad1e49836aa585",
+      "bb95a11d755cbf6fbb77bf241c1dfdd4907b21b5e3b7f8335cb63ae1a3c56f20",
+      "4dd6fbb52ee0efb5aa627da6bfde95516b02a5adbfd3338082ea949e7248b76b",
+      "b2c66476c118d74ae1b0656ab9225bb83552fca2b248f86310ba0863b9211acf",
+      "bcc6f3b04a7d6d5d4643ac36321900e3bb6f63cfd9373d6507ce9821f4797aec",
+      "f79fdc79333a20c8f06018d25154919338af3294b4753f2d10d23bc3603685ed",
+      "7d88e49170278658b43f16e928c82e0d84cbad7b732a64d4076eaa85910b0bc9",
+      "cb0a89939388711266c397a4cef8dbbddcab81ba0580c053ba24ce8b389fcc0e",
+      "0dce08e367e5e180ae73c8ea518808d68b1d546d781aee0b03239ac318022d46",
+      "03df5cb644065d98d0774ac9fb1252a16f8661c8e37d7660fdb74ee401b087ee",
+      "919d859e93cfef0ebe166625cce8dcb18a51dc7ec647a2f88f6172b082fde089",
+      "b68bbf2ddd0051b5f39845a79000585be54ec046a3bcf4397f24d0add5d42781",
+      "a9d2e6710cafe1abf8aa52f24a458c6bc7f0e429ff55fb0a2ccefc863dfe3867"
+    ],
+    "blobs": [
+      "0ba977d08df49f4afeb5b5240edf70fba5ef57c9",
+      "6fa7afed332d1b0e880736e6b2241b5e10b45c8c",
+      "c165dc2487a3351f9c4df667b5fb74a1c591bef8",
+      "d24f00fd58c7b56d888f3af15081f48ed48817b2",
+      "0c5dfc602fb037a21e2c348b24713665cb86b9e4",
+      "0e00360a0fd7bd41e339b98ad1b1efb237408553",
+      "b7096e7ebc333ec0dc73c552ba0b101547c3b0e7",
+      "10de9091a83ccba51c4dece3af6187167cdae328",
+      "cdbf45585940b01ecff0f9ae7aafc893ad2e6090",
+      "1885067c9bdf519cdc32aa726d6f746420767f6d",
+      "2d651278d1d12fcc1d312bae78aae7354a413ae6",
+      "439951d8b77aa09b220cf01842fb0b56e01562fb",
+      "521a5f55fdb0c8dd8bf2c4dcbac78da1ffa6685f",
+      "720eb301f2f359eaf811f3b202edded96ec49d7e",
+      "724c171e05c056352256829a1adef72ae3f34a92",
+      "ccb8a735f64dda02be1a4c0d6729299ab6cde208",
+      "fb2af15a0ce17757479cd0c24a41afe2215337de",
+      "fda572ca4e3bbbcbe19d64038bc10a903e748fc1"
+    ]
+  },
+  {
+    "body": "    def perform_erosion(self, pred: torch.Tensor, target: torch.Tensor) -> torch.Tensor:\n        bound = (pred - target) ** 2\n\n        # The buffer holds the kernel built in the default dtype, normally float32, and ``.double()`` keeps that\n        # rounding, so a float64 prediction gets a kernel built in float64 instead.\n        kernel = self.get_kernel(torch.float64) if pred.dtype == torch.float64 else self.kernel\n        kernel = torch.as_tensor(kernel, device=pred.device, dtype=pred.dtype)\n        eroded = torch.zeros_like(bound, device=pred.device, dtype=pred.dtype)\n\n        # Same padding, assuming kernel is odd and square (cube) shaped.\n        padding = (kernel.size(-1) - 1) // 2\n        for k in range(self.k):\n            # compute convolution with kernel\n            dilation = self.conv(bound, weight=kernel, padding=padding, groups=1)\n            # apply soft thresholding at 0.5 and F.normalize. masked_fill zeroes the negatives without\n            # a data-dependent index_put_, and keeps its gradient of 1 at dilation == 0.5 exactly;\n            # clamp_min's derivative at the bound is 0 on torch >= 2.14 and 1 before.\n            erosion = (dilation - 0.5).masked_fill(dilation < 0.5, 0)\n\n            # image-wise differences for 2D images\n            erosion_max = self.max_pool(erosion)\n            erosion_min = -self.max_pool(-erosion)\n            # No normalization needed if `max - min = 0`: those lanes keep ``erosion`` through the\n            # ``where`` below and divide by a safe 1 so they stay finite (a NaN in the unselected\n            # branch would still poison the gradient). Branch-free, so the loss also traces for export.\n            # NOTE: avoid in-place ops like below, which will not pass gradcheck:\n            #       erosion[to_norm] = (erosion[to_norm] - erosion_min[to_norm]) / (\n            #           erosion_max[to_norm] - erosion_min[to_norm])\n            _range = erosion_max - erosion_min\n            _to_norm = _range != 0\n            _erosion_to_fill = (erosion - erosion_min) / torch.where(_to_norm, _range, 1.0)\n            erosion = torch.where(_to_norm, _erosion_to_fill, erosion)\n\n            # save erosion and add to loss\n            eroded = eroded + erosion * (k + 1) ** self.alpha\n            bound = erosion\n\n        return eroded\n",
+    "digests": [
+      "c146afb0e69a8d77c46c3f928790838ab285a19872e5ce2b3d28f0580c4b375e"
+    ],
+    "blobs": [
+      "0d16c253fe0451df1437357cb8bc730cf3cb6d70"
+    ]
+  },
+  {
+    "body": "    def perform_erosion(self, pred: Tensor, target: Tensor) -> Tensor:\n        bound = (pred - target) ** 2\n\n        kernel = as_tensor(self.kernel, device=pred.device, dtype=pred.dtype)\n        eroded = zeros_like(bound, device=pred.device, dtype=pred.dtype)\n        mask = torch.ones_like(bound, device=pred.device, dtype=torch.bool)\n\n        # Same padding, assuming kernel is odd and square (cube) shaped.\n        padding = (kernel.size(-1) - 1) // 2\n        for k in range(self.k):\n            # compute convolution with kernel\n            dilation = self.conv(bound, weight=kernel, padding=padding, groups=1)\n            # apply soft thresholding at 0.5 and normalize\n            erosion = dilation - 0.5\n            erosion[erosion < 0] = 0\n\n            # image-wise differences for 2D images\n            erosion_max = self.max_pool(erosion)\n            erosion_min = -self.max_pool(-erosion)\n            # No normalization needed if `max - min = 0`\n            _to_norm = (erosion_max - erosion_min) != 0\n            to_norm = _to_norm.squeeze()\n            if to_norm.any():\n                # NOTE: avoid in-place ops like below, which will not pass gradcheck:\n                #       erosion[to_norm] = (erosion[to_norm] - erosion_min[to_norm]) / (\n                #           erosion_max[to_norm] - erosion_min[to_norm])\n                _erosion_to_fill = (erosion - erosion_min) / (erosion_max - erosion_min)\n                erosion = where(mask * _to_norm, _erosion_to_fill, erosion)\n\n            # save erosion and add to loss\n            eroded = eroded + erosion * (k + 1) ** self.alpha\n            bound = erosion\n\n        return eroded\n",
+    "digests": [
+      "f4d17a0b01b5b3fce0836fb21f08b21f028d366a080feb42328685ef8d6653bd"
+    ],
+    "blobs": [
+      "0d4e03b4d0c736b80277d432598709c4137f95e9",
+      "20ff2222c4dd2eb5f40a7e23d39a4ba070815b21",
+      "3987d796895d19b7741fbe17a59720d920474e3f",
+      "53b00f16bbc8d086fe5e23b55629cd9348c62223",
+      "70a3c2cd6de36daa45de878ad4650238f849726c",
+      "7c9f3f80c79e896d2f0d1ec587df9e07aa6d0efc",
+      "954223037c630cf206b38d77f57a2cb4a24a39b2",
+      "9c96a74faded8d596b6c42f6e79ae55f10dad281",
+      "d3934bf331a4f1a48fbfcb652d11bac4881a07b2"
+    ]
+  },
+  {
+    "body": "    def perform_erosion(self, pred: torch.Tensor, target: torch.Tensor) -> torch.Tensor:\n        bound = (pred - target) ** 2\n\n        kernel = torch.as_tensor(self.kernel, device=pred.device, dtype=pred.dtype)\n        eroded = torch.zeros_like(bound, device=pred.device, dtype=pred.dtype)\n        mask = torch.ones_like(bound, device=pred.device, dtype=torch.bool)\n\n        # Same padding, assuming kernel is odd and square (cube) shaped.\n        padding = (kernel.size(-1) - 1) // 2\n        for k in range(self.k):\n            # compute convolution with kernel\n            dilation = self.conv(bound, weight=kernel, padding=padding, groups=1)\n            # apply soft thresholding at 0.5 and F.normalize\n            erosion = dilation - 0.5\n            erosion[erosion < 0] = 0\n\n            # image-wise differences for 2D images\n            erosion_max = self.max_pool(erosion)\n            erosion_min = -self.max_pool(-erosion)\n            # No normalization needed if `max - min = 0`\n            _to_norm = (erosion_max - erosion_min) != 0\n            to_norm = _to_norm.squeeze()\n            if to_norm.any():\n                # NOTE: avoid in-place ops like below, which will not pass gradcheck:\n                #       erosion[to_norm] = (erosion[to_norm] - erosion_min[to_norm]) / (\n                #           erosion_max[to_norm] - erosion_min[to_norm])\n                _erosion_to_fill = (erosion - erosion_min) / (erosion_max - erosion_min)\n                erosion = torch.where(mask * _to_norm, _erosion_to_fill, erosion)\n\n            # save erosion and add to loss\n            eroded = eroded + erosion * (k + 1) ** self.alpha\n            bound = erosion\n\n        return eroded\n",
+    "digests": [
+      "a69677de136798606ade59e913f031130ef6f38bf54f33d1f92f5e7da467308d"
+    ],
+    "blobs": [
+      "1b8bf38eaf7d55f23e4d3112e3cb4e42b2937bdf",
+      "68ffb6b04e11650e76aa7aeb649ebf1f80d8d9f1",
+      "e298ff17e9910bb2bcace679786400fc5d3a074a"
+    ]
+  },
+  {
+    "body": "    def perform_erosion(\n        self, pred: torch.Tensor, target: torch.Tensor\n    ) -> torch.Tensor:\n        bound = (pred - target) ** 2\n\n        kernel = torch.as_tensor(self.kernel, device=pred.device, dtype=pred.dtype)\n        eroted = torch.zeros_like(bound, device=pred.device, dtype=pred.dtype)\n        mask = torch.ones_like(bound, device=pred.device, dtype=torch.bool)\n\n        # Same padding, assuming kernel is odd and square (cube) shaped.\n        # NOTE: int() has to be added for enabling JIT.\n        padding = int((kernel.size(-1) - 1) // 2)\n        for k in range(self.k):\n            # compute convolution with kernel\n            dilation = self.conv(bound, weight=kernel, padding=padding, groups=1)\n            # apply soft thresholding at 0.5 and normalize\n            erosion = dilation - 0.5\n            erosion[erosion < 0] = 0\n\n            # image-wise differences for 2D images\n            erosion_max = self.max_pool(erosion)\n            erosion_min = - self.max_pool(- erosion)\n            # No normalization needed if `max - min = 0`\n            _to_norm = (erosion_max - erosion_min) != 0\n            to_norm = _to_norm.squeeze()\n            if to_norm.any():\n                # NOTE: avoid in-place ops like below, which will not pass gradcheck:\n                #       erosion[to_norm] = (erosion[to_norm] - erosion_min[to_norm]) / (\n                #           erosion_max[to_norm] - erosion_min[to_norm])\n                _erosion_to_fill = (erosion - erosion_min) / (erosion_max - erosion_min)\n                erosion = torch.where(mask * _to_norm, _erosion_to_fill, erosion)\n\n            # save erosion and add to loss\n            eroted = eroted + erosion * (k + 1) ** self.alpha\n            bound = erosion\n\n        return eroted\n",
+    "digests": [
+      "644ba8c57632a6a9576c01798467ecb1fe66e9fa6f9a530f12aa37f26abff39d"
+    ],
+    "blobs": [
+      "1ce13ce5af7b0b994bc4ada83687731c6bcca1f1"
+    ]
+  },
+  {
+    "body": "    def perform_erosion(self, pred: torch.Tensor, target: torch.Tensor) -> torch.Tensor:\n        bound = (pred - target) ** 2\n\n        # The buffer holds the kernel built in the default dtype, normally float32, and ``.double()`` keeps that\n        # rounding, so a float64 prediction gets a kernel built in float64 instead.\n        if pred.dtype == torch.float64 and self._get_kernel_takes_dtype:\n            kernel = self.get_kernel(torch.float64)\n        else:\n            kernel = self.kernel\n        kernel = torch.as_tensor(kernel, device=pred.device, dtype=pred.dtype)\n        eroded = torch.zeros_like(bound, device=pred.device, dtype=pred.dtype)\n\n        # Same padding, assuming kernel is odd and square (cube) shaped.\n        padding = (kernel.size(-1) - 1) // 2\n        for k in range(self.k):\n            # compute convolution with kernel\n            dilation = self.conv(bound, weight=kernel, padding=padding, groups=1)\n            # apply soft thresholding at 0.5 and F.normalize. masked_fill zeroes the negatives without\n            # a data-dependent index_put_, and keeps its gradient of 1 at dilation == 0.5 exactly;\n            # clamp_min's derivative at the bound is 0 on torch >= 2.14 and 1 before.\n            erosion = (dilation - 0.5).masked_fill(dilation < 0.5, 0)\n\n            # image-wise differences for 2D images\n            erosion_max = self.max_pool(erosion)\n            erosion_min = -self.max_pool(-erosion)\n            # No normalization needed if `max - min = 0`: those lanes keep ``erosion`` through the\n            # ``where`` below and divide by a safe 1 so they stay finite (a NaN in the unselected\n            # branch would still poison the gradient). Branch-free, so the loss also traces for export.\n            # NOTE: avoid in-place ops like below, which will not pass gradcheck:\n            #       erosion[to_norm] = (erosion[to_norm] - erosion_min[to_norm]) / (\n            #           erosion_max[to_norm] - erosion_min[to_norm])\n            _range = erosion_max - erosion_min\n            _to_norm = _range != 0\n            _erosion_to_fill = (erosion - erosion_min) / torch.where(_to_norm, _range, 1.0)\n            erosion = torch.where(_to_norm, _erosion_to_fill, erosion)\n\n            # save erosion and add to loss\n            eroded = eroded + erosion * (k + 1) ** self.alpha\n            bound = erosion\n\n        return eroded\n",
+    "digests": [
+      "e5e3aebf0aa8ec13b285a56fe8d92686a5b6c085e6c21a5f55a287b44dc1d661"
+    ],
+    "blobs": [
+      "1e058373a3fd2052e6e2fdbc6b51326a4fb357a9",
+      "32c77d62477753b1ff7057946f07e8aace085e9c",
+      "a28e1166cece1ee3e94038b23e28f89c199c769a",
+      "db13f0be3b63fcb7e5d9b66df3b92996eda03357"
+    ]
+  },
+  {
+    "body": "    def perform_erosion(self, pred: torch.Tensor, target: torch.Tensor) -> torch.Tensor:\n        bound = (pred - target) ** 2\n\n        kernel = torch.as_tensor(self.kernel, device=pred.device, dtype=pred.dtype)\n        eroded = torch.zeros_like(bound, device=pred.device, dtype=pred.dtype)\n\n        # Same padding, assuming kernel is odd and square (cube) shaped.\n        padding = (kernel.size(-1) - 1) // 2\n        for k in range(self.k):\n            # compute convolution with kernel\n            dilation = self.conv(bound, weight=kernel, padding=padding, groups=1)\n            # apply soft thresholding at 0.5 and F.normalize. clamp_min is one kernel with the\n            # same values and gradient as zeroing the negatives through a boolean index.\n            erosion = (dilation - 0.5).clamp_min(0)\n\n            # image-wise differences for 2D images\n            erosion_max = self.max_pool(erosion)\n            erosion_min = -self.max_pool(-erosion)\n            # No normalization needed if `max - min = 0`: those lanes keep ``erosion`` through the\n            # ``where`` below and divide by a safe 1 so they stay finite (a NaN in the unselected\n            # branch would still poison the gradient). Branch-free, so the loss also traces for export.\n            # NOTE: avoid in-place ops like below, which will not pass gradcheck:\n            #       erosion[to_norm] = (erosion[to_norm] - erosion_min[to_norm]) / (\n            #           erosion_max[to_norm] - erosion_min[to_norm])\n            _range = erosion_max - erosion_min\n            _to_norm = _range != 0\n            _erosion_to_fill = (erosion - erosion_min) / torch.where(_to_norm, _range, 1.0)\n            erosion = torch.where(_to_norm, _erosion_to_fill, erosion)\n\n            # save erosion and add to loss\n            eroded = eroded + erosion * (k + 1) ** self.alpha\n            bound = erosion\n\n        return eroded\n",
+    "digests": [
+      "61dbbf8de5e5f32c92d8f6d175234f933bb2bc631b58d94294c34f7a7796ee6f"
+    ],
+    "blobs": [
+      "2f9002bbae7a7a916298625e39814a4eecd519dc"
+    ]
+  },
+  {
+    "body": "    def perform_erosion(self, pred: torch.Tensor, target: torch.Tensor) -> torch.Tensor:\n        \"\"\"Return the per-pixel loss of one class channel.\n\n        Args:\n            pred: probabilities of the class with a shape of ``(B, 1, H, W)`` or ``(B, 1, D, H, W)``.\n            target: the binary map of the class, of the same shape.\n\n        Returns:\n            ``error * sum_i (i + 1) ** alpha * erode^(i + 1)(error > 0)`` for ``i = 0, ..., k - 1``, of the shape of\n            ``pred``.\n        \"\"\"\n        # The soft threshold sits where thresholding ``pred`` at 0.5 starts to get the pixel wrong, so every\n        # misclassified pixel counts and no correct one does; a fully wrong pixel gives 1.\n        error = ((pred - target) ** 2 - _MISCLASSIFIED_SQUARED_ERROR) / (1 - _MISCLASSIFIED_SQUARED_ERROR)\n        error = error.clamp_min(0)\n\n        # The depth weight is a constant, like the distance maps of the paper's HD-DT loss (Eq. 8): the gradient\n        # reaches each misclassified pixel through ``error``, in proportion to its depth weight. Eroding ``error``\n        # itself gives the same value on a binary prediction, but a minimum hands each window's gradient to one pixel.\n        survivors = (error > 0).to(error.dtype)\n        weight = torch.zeros_like(error)\n        for i in range(self.k):\n            survivors = self._erode(survivors)\n            weight = weight + survivors * (i + 1) ** self.alpha\n\n        return error * weight\n",
+    "digests": [
+      "b85f797dc4aaa76f8b11d0e80bcc8e9a4b03290d2c98f4d407110f1a514d96d6"
+    ],
+    "blobs": [
+      "45eb414075881b7585e81b3d280b37d5901ba5aa",
+      "5dbb28d5be934295c73fa0407c70dcf8e45374e6"
+    ]
+  },
+  {
+    "body": "    def perform_erosion(\n        self, pred: torch.Tensor, target: torch.Tensor\n    ) -> torch.Tensor:\n        bound = (pred - target) ** 2\n\n        kernel = torch.as_tensor(self.kernel, device=pred.device, dtype=pred.dtype)\n        eroded = torch.zeros_like(bound, device=pred.device, dtype=pred.dtype)\n        mask = torch.ones_like(bound, device=pred.device, dtype=torch.bool)\n\n        # Same padding, assuming kernel is odd and square (cube) shaped.\n        # NOTE: int() has to be added for enabling JIT.\n        padding = int((kernel.size(-1) - 1) // 2)\n        for k in range(self.k):\n            # compute convolution with kernel\n            dilation = self.conv(bound, weight=kernel, padding=padding, groups=1)\n            # apply soft thresholding at 0.5 and normalize\n            erosion = dilation - 0.5\n            erosion[erosion < 0] = 0\n\n            # image-wise differences for 2D images\n            erosion_max = self.max_pool(erosion)\n            erosion_min = - self.max_pool(- erosion)\n            # No normalization needed if `max - min = 0`\n            _to_norm = (erosion_max - erosion_min) != 0\n            to_norm = _to_norm.squeeze()\n            if to_norm.any():\n                # NOTE: avoid in-place ops like below, which will not pass gradcheck:\n                #       erosion[to_norm] = (erosion[to_norm] - erosion_min[to_norm]) / (\n                #           erosion_max[to_norm] - erosion_min[to_norm])\n                _erosion_to_fill = (erosion - erosion_min) / (erosion_max - erosion_min)\n                erosion = torch.where(mask * _to_norm, _erosion_to_fill, erosion)\n\n            # save erosion and add to loss\n            eroded = eroded + erosion * (k + 1) ** self.alpha\n            bound = erosion\n\n        return eroded\n",
+    "digests": [
+      "34b9d55b573e47ecd73db3fda390276f499a300ec328882b7aa30516cc2418e3",
+      "b58af58c2c239c0fe064d22044acb0eb61b52842c3ed39b1cb6984b6590d48e6",
+      "aaeed7247d6fb292b65a4df6b924bdd7f9621987ef0e2af7bef186dd3c5f2551"
+    ],
+    "blobs": [
+      "5bd6dedf288d1619e6de4749327a9f632cebb8ac",
+      "6d11897e8db45194ea37907375424aaa304650af",
+      "bdcecca2256a9bac69b2ed8d85bb03a88228f9e7",
+      "e9d835177805c9b8933119f4a366955e040f99a6",
+      "f23113d4bb6f5084a65169c2009192cff6167054",
+      "f473d6d384498c4331420f26dac811c5a98c18b2"
+    ]
+  },
+  {
+    "body": "    def perform_erosion(self, pred: Tensor, target: Tensor) -> Tensor:\n        bound = (pred - target) ** 2\n\n        kernel = as_tensor(self.kernel, device=pred.device, dtype=pred.dtype)\n        eroded = zeros_like(bound, device=pred.device, dtype=pred.dtype)\n        mask = torch.ones_like(bound, device=pred.device, dtype=torch.bool)\n\n        # Same padding, assuming kernel is odd and square (cube) shaped.\n        # NOTE: int() has to be added for enabling JIT.\n        padding = int((kernel.size(-1) - 1) // 2)\n        for k in range(self.k):\n            # compute convolution with kernel\n            dilation = self.conv(bound, weight=kernel, padding=padding, groups=1)\n            # apply soft thresholding at 0.5 and normalize\n            erosion = dilation - 0.5\n            erosion[erosion < 0] = 0\n\n            # image-wise differences for 2D images\n            erosion_max = self.max_pool(erosion)\n            erosion_min = -self.max_pool(-erosion)\n            # No normalization needed if `max - min = 0`\n            _to_norm = (erosion_max - erosion_min) != 0\n            to_norm = _to_norm.squeeze()\n            if to_norm.any():\n                # NOTE: avoid in-place ops like below, which will not pass gradcheck:\n                #       erosion[to_norm] = (erosion[to_norm] - erosion_min[to_norm]) / (\n                #           erosion_max[to_norm] - erosion_min[to_norm])\n                _erosion_to_fill = (erosion - erosion_min) / (erosion_max - erosion_min)\n                erosion = where(mask * _to_norm, _erosion_to_fill, erosion)\n\n            # save erosion and add to loss\n            eroded = eroded + erosion * (k + 1) ** self.alpha\n            bound = erosion\n\n        return eroded\n\n    # NOTE: we add type ignore because the forward pass does not work well with subclassing",
+    "digests": [
+      "a97ccd2305d9c9617c2f7d8db5832171b3496fbb15c1d4a242d814f9449c4c27",
+      "63fcf24a1f2103c903f026c0f7fce8779c9263851516a34e9d938b96d904f443",
+      "6777326f185a9abf6a0c95402f63800e45e9c0b928440d5a2ce0573bfdc6d11a"
+    ],
+    "blobs": [
+      "a3c50ac0cd942569f654dd6ce5aa664e88bb1cf3",
+      "b62a1a8356a9ee9fd62aa44d560f1cc0cbd2e4de",
+      "c236a8bc1ea5aba14343c834ceb9867c31ca5294",
+      "eb90fce1baca9ac8e18335a81e52870703bfd26c"
+    ]
+  },
+  {
+    "body": "    def perform_erosion(\n        self, pred: torch.Tensor, target: torch.Tensor\n    ) -> torch.Tensor:\n        bound = (pred - target) ** 2\n\n        kernel = torch.as_tensor(self.kernel, device=pred.device, dtype=pred.dtype)\n        eroted = torch.zeros_like(bound)\n\n        for k in range(self.erosions):\n            # Same padding, assuming kernel is odd and square (cube) shaped.\n            padding = (kernel.size(-1) - 1) // 2\n            # compute convolution with kernel\n            dilation = self.conv(bound, weight=kernel, padding=padding, groups=1)\n            # apply soft thresholding at 0.5 and normalize\n            erosion = dilation - 0.5\n            erosion[erosion < 0] = 0\n\n            # image-wise differences for 2D images\n            erosion_max = self.avg_pool(erosion)\n            erosion_min = - self.avg_pool(- erosion)\n            # No normalization needed if `max - min = 0`\n            to_norm = (erosion_max.squeeze() - erosion_min.squeeze()) != 0\n            erosion[to_norm] = (erosion[to_norm] - erosion_min[to_norm]) / (\n                erosion_max[to_norm] - erosion_min[to_norm])\n\n            # save erosion and add to loss\n            eroted = eroted + erosion * (k + 1) ** self.alpha\n            bound = erosion\n\n        return eroted\n",
+    "digests": [
+      "4507aef0e0b7956a0a735b295b9664fbc70647e9c1289f0bbbd6293a943ec40d"
+    ],
+    "blobs": [
+      "b3b6dd5ad54f26ba3ff554ec5c7d6dd68d56fd1f",
+      "c536db22f5e12e077e0665f0d683b031448daa27"
+    ]
+  },
+  {
+    "body": "    def perform_erosion(self, pred: torch.Tensor, target: torch.Tensor) -> torch.Tensor:\n        bound = (pred - target) ** 2\n\n        kernel = torch.as_tensor(self.kernel, device=pred.device, dtype=pred.dtype)\n        eroded = torch.zeros_like(bound, device=pred.device, dtype=pred.dtype)\n        mask = torch.ones_like(bound, device=pred.device, dtype=torch.bool)\n\n        # Same padding, assuming kernel is odd and square (cube) shaped.\n        padding = (kernel.size(-1) - 1) // 2\n        for k in range(self.k):\n            # compute convolution with kernel\n            dilation = self.conv(bound, weight=kernel, padding=padding, groups=1)\n            # apply soft thresholding at 0.5 and F.normalize\n            erosion = dilation - 0.5\n            erosion[erosion < 0] = 0\n\n            # image-wise differences for 2D images\n            erosion_max = self.max_pool(erosion)\n            erosion_min = -self.max_pool(-erosion)\n            # No normalization needed if `max - min = 0`: those lanes keep ``erosion`` through the\n            # ``where`` below and divide by a safe 1 so they stay finite (a NaN in the unselected\n            # branch would still poison the gradient). Branch-free, so the loss also traces for export.\n            # NOTE: avoid in-place ops like below, which will not pass gradcheck:\n            #       erosion[to_norm] = (erosion[to_norm] - erosion_min[to_norm]) / (\n            #           erosion_max[to_norm] - erosion_min[to_norm])\n            _range = erosion_max - erosion_min\n            _to_norm = _range != 0\n            _erosion_to_fill = (erosion - erosion_min) / torch.where(_to_norm, _range, torch.ones_like(_range))\n            erosion = torch.where(mask * _to_norm, _erosion_to_fill, erosion)\n\n            # save erosion and add to loss\n            eroded = eroded + erosion * (k + 1) ** self.alpha\n            bound = erosion\n\n        return eroded\n",
+    "digests": [
+      "395c270050302a40d1f18f5184217d98e95638245f0a5b52d1ef2dee212e0adb"
+    ],
+    "blobs": [
+      "d19ba3f553e0163176be3db971270b0d531db2cb"
+    ]
+  }
+]

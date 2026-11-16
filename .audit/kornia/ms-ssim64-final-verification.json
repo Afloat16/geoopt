@@ -1,0 +1,24 @@
+{
+  "head": "21c8e92cb36341353d910d3922201805bcce4400",
+  "run_id": 43964266105,
+  "jobs": [
+    133639425583,
+    133639425956
+  ],
+  "all_jobs_success": true,
+  "eager_tests_per_version": "167 passed / 5 deselected",
+  "api_comparisons_per_version": 100,
+  "fallback_bit_exact_cases_per_version": 55,
+  "full_precommit": "all hooks passed",
+  "typecheck": "passed",
+  "production_ast_sha256": "d25d5cdc3af0bb4d492b1b88c5d0b91a2d4b023386c74e47d977535d57124c31",
+  "measured_head": "a4c31b02a00e627782b7551bcb5216a2adbf98ab",
+  "measured_production_ast_identical": true,
+  "unverified": [
+    "torch.compile",
+    "TorchScript",
+    "ONNX",
+    "CUDA",
+    "MPS"
+  ]
+}

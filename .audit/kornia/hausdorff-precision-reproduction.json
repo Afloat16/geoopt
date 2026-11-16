@@ -1,0 +1,441 @@
+{
+  "candidate": "Accumulate Hausdorff erosion weights before rounding half-precision losses",
+  "base": "b1624c022ceb93373cb073a50bd1da2511108c5e",
+  "classification": "Reproduced production numerical formulation defect on valid 0..1 probabilities, with representable unreduced output and mean gradients.",
+  "history_summary": {
+    "base": "b1624c022ceb93373cb073a50bd1da2511108c5e",
+    "scope": "All fetched public upstream branches/tags/PR heads and all Afloat16 fork branch heads; every reachable intermediate source object, rename closure, and historical Hausdorff loss definitions.",
+    "ref_count": 4618,
+    "upstream_pr_refs": 4427,
+    "fork_refs": 81,
+    "aliases": [
+      "kornia/losses/hausdorff.py",
+      "test/losses/test_hd.py",
+      "tests/losses/test_hd.py",
+      "torchgeometry/losses/hausdorff.py"
+    ],
+    "source_blob_count": 110,
+    "target_source_blob_count": 110,
+    "variant_count": 103,
+    "parse_failure_count": 0,
+    "known_excluded_direction": "CPU class batching was already proposed in https://github.com/kornia/kornia/pull/6386; do not repeat it.",
+    "classification": "Evidence inventory only: inspect variants before asserting novelty. No product source was changed or imported.",
+    "report_sha256": "8c919c605aaba9db48b7462f80b77e94f60670a4342f492fbf5519990b4ddc8a",
+    "report_bytes": 2349277,
+    "base64_chunks": 99,
+    "crc32": "82611d28",
+    "size": 2349277,
+    "run_id": 43963842984,
+    "job_id": 133637956636
+  },
+  "production_source_blobs": 57,
+  "distinct_base_classes": 29,
+  "distinct_erosion_source_texts": 13,
+  "duplicate_decision": "All 29 executable base-class variants / 13 perform_erosion text variants reviewed. None promotes half-precision erosion-weight accumulation before multiplication. Float64 kernel reconstruction in #6610 and class batching in #6386 are independent old changes, not repeated.",
+  "reproduction": [
+    {
+      "torch": "2.15.0",
+      "job": 133637956349,
+      "rows": [
+        {
+          "k": 10,
+          "dtype": "torch.float64",
+          "shape": [
+            1,
+            2,
+            256,
+            256
+          ],
+          "wrong_square_side": 150,
+          "probabilities": [
+            0.125,
+            0.875
+          ],
+          "independent_maximum_loss": 264.6875,
+          "independent_mean": 72.89614868164062,
+          "output_finite": true,
+          "mean_finite": true,
+          "gradient_finite": true,
+          "nonfinite_output_count": 0,
+          "nonfinite_gradient_count": 0,
+          "mean": 72.89614868164062,
+          "max_absolute_error": 0
+        },
+        {
+          "k": 10,
+          "dtype": "torch.float32",
+          "shape": [
+            1,
+            2,
+            256,
+            256
+          ],
+          "wrong_square_side": 150,
+          "probabilities": [
+            0.125,
+            0.875
+          ],
+          "independent_maximum_loss": 264.6875,
+          "independent_mean": 72.89614868164062,
+          "output_finite": true,
+          "mean_finite": true,
+          "gradient_finite": true,
+          "nonfinite_output_count": 0,
+          "nonfinite_gradient_count": 0,
+          "mean": 72.89614868164062,
+          "max_absolute_error": 0
+        },
+        {
+          "k": 10,
+          "dtype": "torch.float16",
+          "shape": [
+            1,
+            2,
+            256,
+            256
+          ],
+          "wrong_square_side": 150,
+          "probabilities": [
+            0.125,
+            0.875
+          ],
+          "independent_maximum_loss": 264.6875,
+          "independent_mean": 72.89614868164062,
+          "output_finite": true,
+          "mean_finite": true,
+          "gradient_finite": true,
+          "nonfinite_output_count": 0,
+          "nonfinite_gradient_count": 0,
+          "mean": 72.9375,
+          "max_absolute_error": 0.0625
+        },
+        {
+          "k": 10,
+          "dtype": "torch.bfloat16",
+          "shape": [
+            1,
+            2,
+            256,
+            256
+          ],
+          "wrong_square_side": 150,
+          "probabilities": [
+            0.125,
+            0.875
+          ],
+          "independent_maximum_loss": 264.6875,
+          "independent_mean": 72.89614868164062,
+          "output_finite": true,
+          "mean_finite": true,
+          "gradient_finite": true,
+          "nonfinite_output_count": 0,
+          "nonfinite_gradient_count": 0,
+          "mean": 72.5,
+          "max_absolute_error": 0.9375
+        },
+        {
+          "k": 60,
+          "dtype": "torch.float64",
+          "shape": [
+            1,
+            2,
+            256,
+            256
+          ],
+          "wrong_square_side": 150,
+          "probabilities": [
+            0.125,
+            0.875
+          ],
+          "independent_maximum_loss": 50744.375,
+          "independent_mean": 3143.694793701172,
+          "output_finite": true,
+          "mean_finite": true,
+          "gradient_finite": true,
+          "nonfinite_output_count": 0,
+          "nonfinite_gradient_count": 0,
+          "mean": 3143.694793701172,
+          "max_absolute_error": 0
+        },
+        {
+          "k": 60,
+          "dtype": "torch.float32",
+          "shape": [
+            1,
+            2,
+            256,
+            256
+          ],
+          "wrong_square_side": 150,
+          "probabilities": [
+            0.125,
+            0.875
+          ],
+          "independent_maximum_loss": 50744.375,
+          "independent_mean": 3143.694793701172,
+          "output_finite": true,
+          "mean_finite": true,
+          "gradient_finite": true,
+          "nonfinite_output_count": 0,
+          "nonfinite_gradient_count": 0,
+          "mean": 3143.695068359375,
+          "max_absolute_error": 0
+        },
+        {
+          "k": 60,
+          "dtype": "torch.float16",
+          "shape": [
+            1,
+            2,
+            256,
+            256
+          ],
+          "wrong_square_side": 150,
+          "probabilities": [
+            0.125,
+            0.875
+          ],
+          "independent_maximum_loss": 50744.375,
+          "independent_mean": 3143.694793701172,
+          "output_finite": false,
+          "mean_finite": false,
+          "gradient_finite": false,
+          "nonfinite_output_count": 2312,
+          "nonfinite_gradient_count": 2312,
+          "mean": "inf",
+          "max_absolute_error": null
+        },
+        {
+          "k": 60,
+          "dtype": "torch.bfloat16",
+          "shape": [
+            1,
+            2,
+            256,
+            256
+          ],
+          "wrong_square_side": 150,
+          "probabilities": [
+            0.125,
+            0.875
+          ],
+          "independent_maximum_loss": 50744.375,
+          "independent_mean": 3143.694793701172,
+          "output_finite": true,
+          "mean_finite": true,
+          "gradient_finite": true,
+          "nonfinite_output_count": 0,
+          "nonfinite_gradient_count": 0,
+          "mean": 3136,
+          "max_absolute_error": 230.0625
+        }
+      ]
+    },
+    {
+      "torch": "2.5.1",
+      "job": 133637956758,
+      "rows": [
+        {
+          "k": 10,
+          "dtype": "torch.float64",
+          "shape": [
+            1,
+            2,
+            256,
+            256
+          ],
+          "wrong_square_side": 150,
+          "probabilities": [
+            0.125,
+            0.875
+          ],
+          "independent_maximum_loss": 264.6875,
+          "independent_mean": 72.89614868164062,
+          "output_finite": true,
+          "mean_finite": true,
+          "gradient_finite": true,
+          "nonfinite_output_count": 0,
+          "nonfinite_gradient_count": 0,
+          "mean": 72.89614868164062,
+          "max_absolute_error": 0
+        },
+        {
+          "k": 10,
+          "dtype": "torch.float32",
+          "shape": [
+            1,
+            2,
+            256,
+            256
+          ],
+          "wrong_square_side": 150,
+          "probabilities": [
+            0.125,
+            0.875
+          ],
+          "independent_maximum_loss": 264.6875,
+          "independent_mean": 72.89614868164062,
+          "output_finite": true,
+          "mean_finite": true,
+          "gradient_finite": true,
+          "nonfinite_output_count": 0,
+          "nonfinite_gradient_count": 0,
+          "mean": 72.89614868164062,
+          "max_absolute_error": 0
+        },
+        {
+          "k": 10,
+          "dtype": "torch.float16",
+          "shape": [
+            1,
+            2,
+            256,
+            256
+          ],
+          "wrong_square_side": 150,
+          "probabilities": [
+            0.125,
+            0.875
+          ],
+          "independent_maximum_loss": 264.6875,
+          "independent_mean": 72.89614868164062,
+          "output_finite": true,
+          "mean_finite": true,
+          "gradient_finite": true,
+          "nonfinite_output_count": 0,
+          "nonfinite_gradient_count": 0,
+          "mean": 72.9375,
+          "max_absolute_error": 0.0625
+        },
+        {
+          "k": 10,
+          "dtype": "torch.bfloat16",
+          "shape": [
+            1,
+            2,
+            256,
+            256
+          ],
+          "wrong_square_side": 150,
+          "probabilities": [
+            0.125,
+            0.875
+          ],
+          "independent_maximum_loss": 264.6875,
+          "independent_mean": 72.89614868164062,
+          "output_finite": true,
+          "mean_finite": true,
+          "gradient_finite": true,
+          "nonfinite_output_count": 0,
+          "nonfinite_gradient_count": 0,
+          "mean": 72.5,
+          "max_absolute_error": 0.9375
+        },
+        {
+          "k": 60,
+          "dtype": "torch.float64",
+          "shape": [
+            1,
+            2,
+            256,
+            256
+          ],
+          "wrong_square_side": 150,
+          "probabilities": [
+            0.125,
+            0.875
+          ],
+          "independent_maximum_loss": 50744.375,
+          "independent_mean": 3143.694793701172,
+          "output_finite": true,
+          "mean_finite": true,
+          "gradient_finite": true,
+          "nonfinite_output_count": 0,
+          "nonfinite_gradient_count": 0,
+          "mean": 3143.694793701172,
+          "max_absolute_error": 0
+        },
+        {
+          "k": 60,
+          "dtype": "torch.float32",
+          "shape": [
+            1,
+            2,
+            256,
+            256
+          ],
+          "wrong_square_side": 150,
+          "probabilities": [
+            0.125,
+            0.875
+          ],
+          "independent_maximum_loss": 50744.375,
+          "independent_mean": 3143.694793701172,
+          "output_finite": true,
+          "mean_finite": true,
+          "gradient_finite": true,
+          "nonfinite_output_count": 0,
+          "nonfinite_gradient_count": 0,
+          "mean": 3143.695068359375,
+          "max_absolute_error": 0
+        },
+        {
+          "k": 60,
+          "dtype": "torch.float16",
+          "shape": [
+            1,
+            2,
+            256,
+            256
+          ],
+          "wrong_square_side": 150,
+          "probabilities": [
+            0.125,
+            0.875
+          ],
+          "independent_maximum_loss": 50744.375,
+          "independent_mean": 3143.694793701172,
+          "output_finite": false,
+          "mean_finite": false,
+          "gradient_finite": false,
+          "nonfinite_output_count": 2312,
+          "nonfinite_gradient_count": 2312,
+          "mean": "inf",
+          "max_absolute_error": null
+        },
+        {
+          "k": 60,
+          "dtype": "torch.bfloat16",
+          "shape": [
+            1,
+            2,
+            256,
+            256
+          ],
+          "wrong_square_side": 150,
+          "probabilities": [
+            0.125,
+            0.875
+          ],
+          "independent_maximum_loss": 50744.375,
+          "independent_mean": 3143.694793701172,
+          "output_finite": true,
+          "mean_finite": true,
+          "gradient_finite": true,
+          "nonfinite_output_count": 0,
+          "nonfinite_gradient_count": 0,
+          "mean": 3136,
+          "max_absolute_error": 230.0625
+        }
+      ]
+    }
+  ],
+  "issue_scope": "The .125/.875 probabilities are in [0,1]; k=60 follows the documented error-radius parameter and does not require extreme image intensities. Independent largest loss is50744.375, mean3143.694793701172, both representable in float16. Original returns inf and2312 nonfinite gradient/output pixels. This is a synthetic square-mask reproducibility fixture, not evidence of user frequency or real-dataset exposure.",
+  "proposed_verification": [
+    "Pin closed-form sum of squared erosion depths on a 150px rectangle.",
+    "Verify finite half outputs and gradient against the independent formula, not only agreement with another implementation.",
+    "Cover both 2D and3D shared base, k=0/default10/60, reductions, tensor alpha promotion and gradients.",
+    "Measure the additional accumulation cost under the original public API and preserve float32/float64 behavior.",
+    "No compile/ONNX rejected operation retry."
+  ]
+}

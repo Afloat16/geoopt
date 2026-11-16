@@ -1,0 +1,26 @@
+{
+  "base": "b1624c022ceb93373cb073a50bd1da2511108c5e",
+  "scope": "All fetched public upstream branches/tags/PR heads and all Afloat16 fork branch heads; every reachable intermediate source object, rename closure, and historical Hausdorff loss definitions.",
+  "ref_count": 4618,
+  "upstream_pr_refs": 4427,
+  "fork_refs": 81,
+  "aliases": [
+    "kornia/losses/hausdorff.py",
+    "test/losses/test_hd.py",
+    "tests/losses/test_hd.py",
+    "torchgeometry/losses/hausdorff.py"
+  ],
+  "source_blob_count": 110,
+  "target_source_blob_count": 110,
+  "variant_count": 103,
+  "parse_failure_count": 0,
+  "known_excluded_direction": "CPU class batching was already proposed in https://github.com/kornia/kornia/pull/6386; do not repeat it.",
+  "classification": "Evidence inventory only: inspect variants before asserting novelty. No product source was changed or imported.",
+  "report_sha256": "8c919c605aaba9db48b7462f80b77e94f60670a4342f492fbf5519990b4ddc8a",
+  "report_bytes": 2349277,
+  "base64_chunks": 99,
+  "crc32": "82611d28",
+  "size": 2349277,
+  "run_id": 43963842984,
+  "job_id": 133637956636
+}
