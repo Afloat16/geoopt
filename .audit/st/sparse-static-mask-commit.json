@@ -1,0 +1,12 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "perf/sparse-static-boolean-mask-20261116",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "tree": "385b3d140ee632c32953988748fbd20facad6f45",
+  "head": "b7f9b47c9c0edb6d50a9b4c134ee9a235d95c077",
+  "local_tests": {
+    "baseline_failed": 17,
+    "baseline_passed": 9,
+    "candidate_passed": 31
+  }
+}

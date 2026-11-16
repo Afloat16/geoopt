@@ -1,0 +1,74 @@
+{
+  "run_id": 43919834477,
+  "url": "https://github.com/Afloat16/geoopt/actions/runs/43919834477",
+  "jobs": [
+    {
+      "job_id": 133483822969,
+      "url": "https://github.com/Afloat16/geoopt/actions/runs/43919834477/job/133483822969",
+      "conclusion": "success",
+      "summary": [
+        "2026-11-16T17:35:05.4948902Z   Downloading torch-2.14.1%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (37 kB)",
+        "2026-11-16T17:35:05.7848716Z Downloading torch-2.14.1%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl (196.3 MB)",
+        "2026-11-16T17:35:21.1862039Z Successfully installed MarkupSafe-3.0.3 filelock-4.2.4 fsspec-2026.9.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.7 setuptools-78.1.0 sympy-1.14.0 torch-2.14.1+cpu typing-extensions-4.16.0",
+        "2026-11-16T17:35:55.8959328Z 11 failed, 39 passed in 0.14s",
+        "2026-11-16T17:35:55.8986965Z ##[group]Run git restore --source=\"$ST_CANDIDATE\" -- $ST_SOURCE",
+        "2026-11-16T17:35:55.8987547Z \u001b[36;1mgit restore --source=\"$ST_CANDIDATE\" -- $ST_SOURCE\u001b[0m",
+        "2026-11-16T17:35:59.6335523Z 58 passed in 0.11s",
+        "2026-11-16T17:36:11.6483014Z ruff check...............................................................Passed",
+        "2026-11-16T17:36:11.8158333Z ruff format..............................................................Passed",
+        "2026-11-16T17:36:12.8558113Z typos....................................................................Passed"
+      ]
+    },
+    {
+      "job_id": 133483823277,
+      "url": "https://github.com/Afloat16/geoopt/actions/runs/43919834477/job/133483823277",
+      "conclusion": "success",
+      "summary": [
+        "2026-11-16T17:34:50.5707820Z   Downloading torch-2.14.1%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (37 kB)",
+        "2026-11-16T17:34:50.9808066Z Downloading torch-2.14.1%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl (196.3 MB)",
+        "2026-11-16T17:35:06.6999107Z Successfully installed MarkupSafe-3.0.3 filelock-4.2.4 fsspec-2026.9.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.7 setuptools-78.1.0 sympy-1.14.0 torch-2.14.1+cpu typing-extensions-4.16.0",
+        "2026-11-16T17:35:39.5212640Z 26 failed, 35 passed in 0.17s",
+        "2026-11-16T17:35:39.5233899Z ##[group]Run git restore --source=\"$ST_CANDIDATE\" -- $ST_SOURCE",
+        "2026-11-16T17:35:39.5234156Z \u001b[36;1mgit restore --source=\"$ST_CANDIDATE\" -- $ST_SOURCE\u001b[0m",
+        "2026-11-16T17:35:47.0152680Z 122 passed in 3.76s",
+        "2026-11-16T17:35:57.5809137Z ruff check...............................................................Passed",
+        "2026-11-16T17:35:57.7270941Z ruff format..............................................................Passed",
+        "2026-11-16T17:35:58.6236569Z typos....................................................................Passed"
+      ]
+    },
+    {
+      "job_id": 133483823583,
+      "url": "https://github.com/Afloat16/geoopt/actions/runs/43919834477/job/133483823583",
+      "conclusion": "success",
+      "summary": [
+        "2026-11-16T17:34:53.1754385Z   Downloading torch-2.6.0%2Bcpu-cp312-cp312-linux_x86_64.whl.metadata (26 kB)",
+        "2026-11-16T17:34:53.5311249Z Downloading torch-2.6.0%2Bcpu-cp312-cp312-linux_x86_64.whl (178.6 MB)",
+        "2026-11-16T17:35:13.4613886Z Successfully installed MarkupSafe-3.0.3 filelock-4.2.4 fsspec-2026.9.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.7 setuptools-78.1.0 sympy-1.13.1 torch-2.6.0+cpu typing-extensions-4.16.0",
+        "2026-11-16T17:36:00.3257548Z 11 failed, 39 passed in 0.23s",
+        "2026-11-16T17:36:00.3287606Z ##[group]Run git restore --source=\"$ST_CANDIDATE\" -- $ST_SOURCE",
+        "2026-11-16T17:36:00.3288100Z \u001b[36;1mgit restore --source=\"$ST_CANDIDATE\" -- $ST_SOURCE\u001b[0m",
+        "2026-11-16T17:36:06.0796413Z 58 passed in 0.17s",
+        "2026-11-16T17:36:17.5641340Z ruff check...............................................................Passed",
+        "2026-11-16T17:36:17.8355256Z ruff format..............................................................Passed",
+        "2026-11-16T17:36:19.4736610Z typos....................................................................Passed"
+      ]
+    },
+    {
+      "job_id": 133483823642,
+      "url": "https://github.com/Afloat16/geoopt/actions/runs/43919834477/job/133483823642",
+      "conclusion": "success",
+      "summary": [
+        "2026-11-16T17:34:55.3353482Z   Downloading torch-2.6.0%2Bcpu-cp312-cp312-linux_x86_64.whl.metadata (26 kB)",
+        "2026-11-16T17:34:55.6901780Z Downloading torch-2.6.0%2Bcpu-cp312-cp312-linux_x86_64.whl (178.6 MB)",
+        "2026-11-16T17:35:15.4526704Z Successfully installed MarkupSafe-3.0.3 filelock-4.2.4 fsspec-2026.9.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.7 setuptools-78.1.0 sympy-1.13.1 torch-2.6.0+cpu typing-extensions-4.16.0",
+        "2026-11-16T17:36:04.6950846Z 26 failed, 35 passed in 0.39s",
+        "2026-11-16T17:36:04.6983708Z ##[group]Run git restore --source=\"$ST_CANDIDATE\" -- $ST_SOURCE",
+        "2026-11-16T17:36:04.6984456Z \u001b[36;1mgit restore --source=\"$ST_CANDIDATE\" -- $ST_SOURCE\u001b[0m",
+        "2026-11-16T17:36:13.1114281Z 122 passed in 2.87s",
+        "2026-11-16T17:36:24.5073792Z ruff check...............................................................Passed",
+        "2026-11-16T17:36:24.7710924Z ruff format..............................................................Passed",
+        "2026-11-16T17:36:26.3781297Z typos....................................................................Passed"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "perf/ir-dcg-vectorization-20261116",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "tree": "581b84578d1f957d33ff2654776c2c226d8f0e29",
+  "head": "5551601f25d80340bf9505d225270593013f16d9",
+  "local_tests": {
+    "baseline_failed": 0,
+    "baseline_passed": 85,
+    "candidate_passed": 103,
+    "candidate_skipped": 2
+  }
+}

@@ -61,5 +61,19 @@
         ]
       }
     ]
+  },
+  {
+    "candidate": "Cached Matryoshka trainable similarity-head dimension weights",
+    "reason": "Existing upstream #4375 explicitly implements and tests Matryoshka dimension weights as part of deferred score backward, so this core change is already covered.",
+    "evidence": [
+      "https://github.com/huggingface/sentence-transformers/pull/4375"
+    ]
+  },
+  {
+    "candidate": "PhraseTokenizer do_lower_case behavior",
+    "reason": "Existing upstream #4220 covers the same behavior.",
+    "evidence": [
+      "https://github.com/huggingface/sentence-transformers/pull/4220"
+    ]
   }
 ]

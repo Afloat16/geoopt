@@ -1,0 +1,14 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "fix/margin-distillation-target-precision-20261116",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "tree": "b09c214cd5fbdba907d378051118da724b94e6b9",
+  "head": "60e76226e91d8a2648d8c1e9ccefa649288a7fb2",
+  "local_tests": {
+    "baseline_failed": 23,
+    "baseline_passed": 42,
+    "candidate_passed": 225,
+    "candidate_skipped": 6
+  },
+  "dedup": "87 reachable MarginMSE source blobs across 6 historical paths, including older forward-only implementations; no pre-subtraction low-precision target promotion or consistent MSE target matching. Existing MVE label conversion occurs after raw-score subtraction."
+}
