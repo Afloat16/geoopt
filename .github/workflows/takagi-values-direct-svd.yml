@@ -1,0 +1,74 @@
+name: Validate direct Takagi values
+on:
+  push:
+    branches: ['validation/takagi-values-direct-svd-20261116']
+permissions:
+  contents: read
+jobs:
+  numerical-contracts:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: '3.8'
+            torch: '2.0.1'
+            numpy: '1.24.4'
+            scipy: '1.10.1'
+            benchmark: false
+          - python: '3.12'
+            torch: '2.6.0'
+            numpy: '2.2.6'
+            scipy: '1.15.3'
+            benchmark: true
+    env:
+      OMP_NUM_THREADS: '1'
+      MKL_NUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 3
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install pinned CPU validation dependencies
+        run: |
+          python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==${{ matrix.numpy }} scipy==${{ matrix.scipy }} pytest==8.3.5 ruff
+          python -m pip install -e . --no-deps
+      - name: Check candidate files
+        run: python -m ruff check geoopt/manifolds/siegel/csym_math.py tests/test_takagi_values_direct.py
+      - name: Verify and measure unchanged upstream
+        run: |
+          git fetch --depth=1 origin 4623ea1d2a9808b8e87bf10949cccb2c5ec6233c
+          git restore --source=4623ea1d2a9808b8e87bf10949cccb2c5ec6233c -- geoopt/manifolds/siegel/csym_math.py
+          python -m pytest -q tests/test_takagi_values_direct.py --junitxml=baseline.xml
+          if [ "${{ matrix.benchmark }}" = "true" ]; then python validation/benchmark_takagi_values.py baseline.json; fi
+      - name: Verify and measure the exact candidate
+        run: |
+          git fetch --depth=1 origin d8898f1645ec66660631a0c52c0533220c9b97d0
+          git restore --source=d8898f1645ec66660631a0c52c0533220c9b97d0 -- geoopt/manifolds/siegel/csym_math.py
+          python -m pytest -q tests/test_takagi_values_direct.py tests/test_takagi_factorization.py tests/test_siegel_distance.py --junitxml=candidate.xml
+          if [ "${{ matrix.benchmark }}" = "true" ]; then python validation/benchmark_takagi_values.py candidate.json; fi
+          git diff --exit-code
+      - name: Compare timings
+        if: matrix.benchmark
+        run: |
+          python - <<'PY'
+          import json
+          baseline = json.load(open("baseline.json"))["results"]
+          candidate = json.load(open("candidate.json"))["results"]
+          for before, after in zip(baseline, candidate):
+              keys = ("operation", "backward", "batch", "size")
+              assert tuple(before[key] for key in keys) == tuple(after[key] for key in keys)
+              print(json.dumps({"case": {key: before[key] for key in keys}, "before_ms": before["median_ms"], "after_ms": after["median_ms"], "speedup": before["median_ms"] / after["median_ms"]}))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: takagi-values-${{ matrix.python }}
+          path: |
+            baseline.xml
+            candidate.xml
+            baseline.json
+            candidate.json
