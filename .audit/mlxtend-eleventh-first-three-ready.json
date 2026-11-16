@@ -1,0 +1,287 @@
+[
+  {
+    "name": "transaction-inverse-nonzero",
+    "issue": 1334,
+    "title": "Accelerate dense transaction decoding with NumPy nonzero indices",
+    "body": "### Description\n\n`TransactionEncoder.inverse_transform` currently evaluates every cell of every dense row in Python, even when transactions contain very few items. The dense fallback now obtains each row's nonzero indices in NumPy and builds the same ordered item list. Sparse and pandas-sparse dispatch are unchanged.\n\n### Related issues or pull requests\n\nCloses #1334.\n\nThe full reachable history of `transactionencoder.py` was inspected across upstream PR refs and fork branches, including intermediate commits (50 commits, 22 distinct source versions). The earlier sparse/container inverse-transform work leaves this scalar dense fallback unchanged. Historical class and path names were also checked.\n\n### Measurements\n\nFor 1,000 transactions over 10,000 items at 0.5% density, the median of five complete `inverse_transform` calls changes from **0.27821 s to 0.00717 s (38.8x faster)** in the same job. Both versions return the same 49,956 item entries and complete JSON output digest. This measures dense decoding of the specified sparse-content matrix.\n\n### Validation\n\n- Exact upstream base: `1aee767ef57b84a8191511a08955c583b65de382`.\n- **43 new cases pass on both base and patch**, as expected for a performance change. They cover independently computed transaction round trips, several vocabularies and seeds, C/F/strided dense arrays, empty batches/vocabularies, supported truth-value dtypes, Python rows, independent returned lists, and unchanged inputs.\n- New and adjacent tests: **51 passed**. Complete repository suite: **783 passed, 3 skipped**.\n- Baseline and patch ran in the same Python 3.11.18 job with the unchanged frozen lock.\n- Complete repository isort/Black, changed-file Flake8, `git diff --check`, package build, and strict Twine checks passed. The repository-wide Flake8 report retains existing findings and is not presented as a clean lint gate.\n\n[Baseline, complete validation, and measurement evidence](https://github.com/Afloat16/geoopt/actions/runs/43895793702/job/133398866537).\n\n### Pull Request Checklist\n\n- [x] Added a changelog entry.\n- [x] Added regression tests in the corresponding test directory.\n- [x] Preserved the public interface.\n- [x] Ran focused and full repository tests.\n- [x] Checked formatting and style with the scope described above.\n",
+    "branch": "fix/transaction-inverse-nonzero-20261116",
+    "head": "e5e4aca23c123b8100f88a580f970e0dcc5cd4de",
+    "tree": "68cc6c305c6b98044d2abfd2691181d2609316c8",
+    "status": "ready",
+    "base": "master",
+    "maintainer_can_modify": false,
+    "validation": {
+      "run_id": 43895793702,
+      "job_id": 133398866537,
+      "name": "transaction-inverse-nonzero",
+      "base": "1aee767ef57b84a8191511a08955c583b65de382",
+      "issue": 1334,
+      "baseline_focused": {
+        "total": 43,
+        "failed": 0,
+        "skipped": 0,
+        "failures": {}
+      },
+      "baseline_full": {
+        "total": 786,
+        "failed": 0,
+        "skipped": 3,
+        "failures": {}
+      },
+      "candidate_focused": {
+        "total": 51,
+        "failed": 0,
+        "skipped": 0,
+        "failures": {}
+      },
+      "candidate_full": {
+        "total": 786,
+        "failed": 0,
+        "skipped": 3,
+        "failures": {}
+      },
+      "new_full_suite_failures": []
+    },
+    "performance": {
+      "before": {
+        "kind": "runtime",
+        "results": [
+          {
+            "shape": [
+              1000,
+              10000
+            ],
+            "items": 49956,
+            "seconds": [
+              0.2785763529999983,
+              0.2764792969999945,
+              0.27821267000000205,
+              0.2786445050000026,
+              0.2758718780000038
+            ],
+            "median_seconds": 0.27821267000000205,
+            "digest": "4a3acb27eb981f4c872ee49b218ce23340633b299e6106a8fc53bfb8279dd06a"
+          }
+        ]
+      },
+      "after": {
+        "kind": "runtime",
+        "results": [
+          {
+            "shape": [
+              1000,
+              10000
+            ],
+            "items": 49956,
+            "seconds": [
+              0.008499115999995865,
+              0.007293490000009228,
+              0.007166681999990487,
+              0.006880451000000676,
+              0.00685117800000512
+            ],
+            "median_seconds": 0.007166681999990487,
+            "digest": "4a3acb27eb981f4c872ee49b218ce23340633b299e6106a8fc53bfb8279dd06a"
+          }
+        ]
+      }
+    },
+    "compare_url": "https://github.com/rasbt/mlxtend/compare/master...Afloat16:fix/transaction-inverse-nonzero-20261116?expand=1&title=Accelerate%20dense%20transaction%20decoding%20with%20NumPy%20nonzero%20indices&body=%23%23%23%20Description%0A%0A%60TransactionEncoder.inverse_transform%60%20currently%20evaluates%20every%20cell%20of%20every%20dense%20row%20in%20Python%2C%20even%20when%20transactions%20contain%20very%20few%20items.%20The%20dense%20fallback%20now%20obtains%20each%20row's%20nonzero%20indices%20in%20NumPy%20and%20builds%20the%20same%20ordered%20item%20list.%20Sparse%20and%20pandas-sparse%20dispatch%20are%20unchanged.%0A%0A%23%23%23%20Related%20issues%20or%20pull%20requests%0A%0ACloses%20%231334.%0A%0AThe%20full%20reachable%20history%20of%20%60transactionencoder.py%60%20was%20inspected%20across%20upstream%20PR%20refs%20and%20fork%20branches%2C%20including%20intermediate%20commits%20(50%20commits%2C%2022%20distinct%20source%20versions).%20The%20earlier%20sparse%2Fcontainer%20inverse-transform%20work%20leaves%20this%20scalar%20dense%20fallback%20unchanged.%20Historical%20class%20and%20path%20names%20were%20also%20checked.%0A%0A%23%23%23%20Measurements%0A%0AFor%201%2C000%20transactions%20over%2010%2C000%20items%20at%200.5%25%20density%2C%20the%20median%20of%20five%20complete%20%60inverse_transform%60%20calls%20changes%20from%20**0.27821%20s%20to%200.00717%20s%20(38.8x%20faster)**%20in%20the%20same%20job.%20Both%20versions%20return%20the%20same%2049%2C956%20item%20entries%20and%20complete%20JSON%20output%20digest.%20This%20measures%20dense%20decoding%20of%20the%20specified%20sparse-content%20matrix.%0A%0A%23%23%23%20Validation%0A%0A-%20Exact%20upstream%20base%3A%20%601aee767ef57b84a8191511a08955c583b65de382%60.%0A-%20**43%20new%20cases%20pass%20on%20both%20base%20and%20patch**%2C%20as%20expected%20for%20a%20performance%20change.%20They%20cover%20independently%20computed%20transaction%20round%20trips%2C%20several%20vocabularies%20and%20seeds%2C%20C%2FF%2Fstrided%20dense%20arrays%2C%20empty%20batches%2Fvocabularies%2C%20supported%20truth-value%20dtypes%2C%20Python%20rows%2C%20independent%20returned%20lists%2C%20and%20unchanged%20inputs.%0A-%20New%20and%20adjacent%20tests%3A%20**51%20passed**.%20Complete%20repository%20suite%3A%20**783%20passed%2C%203%20skipped**.%0A-%20Baseline%20and%20patch%20ran%20in%20the%20same%20Python%203.11.18%20job%20with%20the%20unchanged%20frozen%20lock.%0A-%20Complete%20repository%20isort%2FBlack%2C%20changed-file%20Flake8%2C%20%60git%20diff%20--check%60%2C%20package%20build%2C%20and%20strict%20Twine%20checks%20passed.%20The%20repository-wide%20Flake8%20report%20retains%20existing%20findings%20and%20is%20not%20presented%20as%20a%20clean%20lint%20gate.%0A%0A%5BBaseline%2C%20complete%20validation%2C%20and%20measurement%20evidence%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43895793702%2Fjob%2F133398866537).%0A%0A%23%23%23%20Pull%20Request%20Checklist%0A%0A-%20%5Bx%5D%20Added%20a%20changelog%20entry.%0A-%20%5Bx%5D%20Added%20regression%20tests%20in%20the%20corresponding%20test%20directory.%0A-%20%5Bx%5D%20Preserved%20the%20public%20interface.%0A-%20%5Bx%5D%20Ran%20focused%20and%20full%20repository%20tests.%0A-%20%5Bx%5D%20Checked%20formatting%20and%20style%20with%20the%20scope%20described%20above.%0A"
+  },
+  {
+    "name": "ensemble-batched-hard-votes",
+    "issue": 1335,
+    "title": "Batch hard-vote aggregation without per-row Python callbacks",
+    "body": "### Description\n\n`EnsembleVoteClassifier.predict` invokes a Python callback for every hard-vote row. Ordinary encoded votes can instead be counted together in bounded blocks using row/class offsets and NumPy `bincount`.\n\nThe optimized path preserves smallest-label tie breaking and weighted vote order. The existing row-wise implementation remains the fallback for unusual weight values or incompatible inputs, retaining its behavior and errors. Soft voting is unchanged.\n\n### Related issues or pull requests\n\nCloses #1335.\n\nCurrent and renamed predecessor histories were inspected across all reachable upstream PR refs and fork branches, including intermediate commits. The current source has 111 commits and 51 distinct versions; the earlier `classifier/ensemble.py` and `sklearn/ensemble.py` implementations were checked as well. Those versions aggregate votes row by row. This change is separate from existing fitted-class alignment and weight-validation changes.\n\n### Measurements\n\nFor complete prediction over 100,000 rows, seven inexpensive prefit classifiers, and three classes, median time over five runs changes from **0.17595 s to 0.00249 s (70.5x)** without weights, and **0.20129 s to 0.00301 s (66.9x)** with weights. Both complete prediction digests are identical on base and patch. These fixtures isolate aggregation overhead; expensive underlying models will see a smaller end-to-end speedup.\n\n### Validation\n\n- Exact upstream base: `1aee767ef57b84a8191511a08955c583b65de382`.\n- **30 new cases pass on both base and patch**. An independent per-row counting reference covers weighted/unweighted predictions, noncontiguous integer and string labels, fitted and prefit classifiers, block boundaries, ties, unusual-weight fallbacks, actual logistic-regression/tree estimators, and the existing empty-input error.\n- New and adjacent tests: **46 passed**. Complete repository suite: **770 passed, 3 skipped**.\n- Baseline and patch ran in the same Python 3.11.18 job with the unchanged frozen lock.\n- Complete repository isort/Black, changed-file Flake8, `git diff --check`, package build, and strict Twine checks passed. The repository-wide Flake8 report retains existing findings and is not presented as a clean lint gate.\n\n[Baseline, complete validation, and measurement evidence](https://github.com/Afloat16/geoopt/actions/runs/43895793702/job/133398866476).\n\n### Pull Request Checklist\n\n- [x] Added a changelog entry.\n- [x] Added regression tests in the corresponding test directory.\n- [x] Preserved the public interface.\n- [x] Ran focused and full repository tests.\n- [x] Checked formatting and style with the scope described above.\n",
+    "branch": "fix/ensemble-batched-hard-votes-20261116",
+    "head": "6670bb68e6bc232b653b2600a1d9f6f23d2a3441",
+    "tree": "9b115c7c30033a90a03cac63778478f00a113150",
+    "status": "ready",
+    "base": "master",
+    "maintainer_can_modify": false,
+    "validation": {
+      "run_id": 43895793702,
+      "job_id": 133398866476,
+      "name": "ensemble-batched-hard-votes",
+      "base": "1aee767ef57b84a8191511a08955c583b65de382",
+      "issue": 1335,
+      "baseline_focused": {
+        "total": 30,
+        "failed": 0,
+        "skipped": 0,
+        "failures": {}
+      },
+      "baseline_full": {
+        "total": 773,
+        "failed": 0,
+        "skipped": 3,
+        "failures": {}
+      },
+      "candidate_focused": {
+        "total": 46,
+        "failed": 0,
+        "skipped": 0,
+        "failures": {}
+      },
+      "candidate_full": {
+        "total": 773,
+        "failed": 0,
+        "skipped": 3,
+        "failures": {}
+      },
+      "new_full_suite_failures": []
+    },
+    "performance": {
+      "before": {
+        "kind": "runtime",
+        "results": [
+          {
+            "weighted": false,
+            "rows": 100000,
+            "seconds": [
+              0.1760347600000003,
+              0.17594827899999999,
+              0.17333439299999753,
+              0.17497164899999973,
+              0.18045049200000207
+            ],
+            "median_seconds": 0.17594827899999999,
+            "digest": "8568d6b117678d53edec66018e6d52abe48837f64aebd6aee0153ddf2001ea51"
+          },
+          {
+            "weighted": true,
+            "rows": 100000,
+            "seconds": [
+              0.2245757899999994,
+              0.20063430499999768,
+              0.1996134670000025,
+              0.20321971999999988,
+              0.20129482099999763
+            ],
+            "median_seconds": 0.20129482099999763,
+            "digest": "8568d6b117678d53edec66018e6d52abe48837f64aebd6aee0153ddf2001ea51"
+          }
+        ]
+      },
+      "after": {
+        "kind": "runtime",
+        "results": [
+          {
+            "weighted": false,
+            "rows": 100000,
+            "seconds": [
+              0.005299100000001999,
+              0.004125340000001643,
+              0.0024949419999984457,
+              0.002483264000005647,
+              0.0024894839999944907
+            ],
+            "median_seconds": 0.0024949419999984457,
+            "digest": "8568d6b117678d53edec66018e6d52abe48837f64aebd6aee0153ddf2001ea51"
+          },
+          {
+            "weighted": true,
+            "rows": 100000,
+            "seconds": [
+              0.0031045909999960486,
+              0.002999773000013306,
+              0.003008625999996184,
+              0.0030046800000036455,
+              0.0031052810000034015
+            ],
+            "median_seconds": 0.003008625999996184,
+            "digest": "8568d6b117678d53edec66018e6d52abe48837f64aebd6aee0153ddf2001ea51"
+          }
+        ]
+      }
+    },
+    "compare_url": "https://github.com/rasbt/mlxtend/compare/master...Afloat16:fix/ensemble-batched-hard-votes-20261116?expand=1&title=Batch%20hard-vote%20aggregation%20without%20per-row%20Python%20callbacks&body=%23%23%23%20Description%0A%0A%60EnsembleVoteClassifier.predict%60%20invokes%20a%20Python%20callback%20for%20every%20hard-vote%20row.%20Ordinary%20encoded%20votes%20can%20instead%20be%20counted%20together%20in%20bounded%20blocks%20using%20row%2Fclass%20offsets%20and%20NumPy%20%60bincount%60.%0A%0AThe%20optimized%20path%20preserves%20smallest-label%20tie%20breaking%20and%20weighted%20vote%20order.%20The%20existing%20row-wise%20implementation%20remains%20the%20fallback%20for%20unusual%20weight%20values%20or%20incompatible%20inputs%2C%20retaining%20its%20behavior%20and%20errors.%20Soft%20voting%20is%20unchanged.%0A%0A%23%23%23%20Related%20issues%20or%20pull%20requests%0A%0ACloses%20%231335.%0A%0ACurrent%20and%20renamed%20predecessor%20histories%20were%20inspected%20across%20all%20reachable%20upstream%20PR%20refs%20and%20fork%20branches%2C%20including%20intermediate%20commits.%20The%20current%20source%20has%20111%20commits%20and%2051%20distinct%20versions%3B%20the%20earlier%20%60classifier%2Fensemble.py%60%20and%20%60sklearn%2Fensemble.py%60%20implementations%20were%20checked%20as%20well.%20Those%20versions%20aggregate%20votes%20row%20by%20row.%20This%20change%20is%20separate%20from%20existing%20fitted-class%20alignment%20and%20weight-validation%20changes.%0A%0A%23%23%23%20Measurements%0A%0AFor%20complete%20prediction%20over%20100%2C000%20rows%2C%20seven%20inexpensive%20prefit%20classifiers%2C%20and%20three%20classes%2C%20median%20time%20over%20five%20runs%20changes%20from%20**0.17595%20s%20to%200.00249%20s%20(70.5x)**%20without%20weights%2C%20and%20**0.20129%20s%20to%200.00301%20s%20(66.9x)**%20with%20weights.%20Both%20complete%20prediction%20digests%20are%20identical%20on%20base%20and%20patch.%20These%20fixtures%20isolate%20aggregation%20overhead%3B%20expensive%20underlying%20models%20will%20see%20a%20smaller%20end-to-end%20speedup.%0A%0A%23%23%23%20Validation%0A%0A-%20Exact%20upstream%20base%3A%20%601aee767ef57b84a8191511a08955c583b65de382%60.%0A-%20**30%20new%20cases%20pass%20on%20both%20base%20and%20patch**.%20An%20independent%20per-row%20counting%20reference%20covers%20weighted%2Funweighted%20predictions%2C%20noncontiguous%20integer%20and%20string%20labels%2C%20fitted%20and%20prefit%20classifiers%2C%20block%20boundaries%2C%20ties%2C%20unusual-weight%20fallbacks%2C%20actual%20logistic-regression%2Ftree%20estimators%2C%20and%20the%20existing%20empty-input%20error.%0A-%20New%20and%20adjacent%20tests%3A%20**46%20passed**.%20Complete%20repository%20suite%3A%20**770%20passed%2C%203%20skipped**.%0A-%20Baseline%20and%20patch%20ran%20in%20the%20same%20Python%203.11.18%20job%20with%20the%20unchanged%20frozen%20lock.%0A-%20Complete%20repository%20isort%2FBlack%2C%20changed-file%20Flake8%2C%20%60git%20diff%20--check%60%2C%20package%20build%2C%20and%20strict%20Twine%20checks%20passed.%20The%20repository-wide%20Flake8%20report%20retains%20existing%20findings%20and%20is%20not%20presented%20as%20a%20clean%20lint%20gate.%0A%0A%5BBaseline%2C%20complete%20validation%2C%20and%20measurement%20evidence%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43895793702%2Fjob%2F133398866476).%0A%0A%23%23%23%20Pull%20Request%20Checklist%0A%0A-%20%5Bx%5D%20Added%20a%20changelog%20entry.%0A-%20%5Bx%5D%20Added%20regression%20tests%20in%20the%20corresponding%20test%20directory.%0A-%20%5Bx%5D%20Preserved%20the%20public%20interface.%0A-%20%5Bx%5D%20Ran%20focused%20and%20full%20repository%20tests.%0A-%20%5Bx%5D%20Checked%20formatting%20and%20style%20with%20the%20scope%20described%20above.%0A"
+  },
+  {
+    "name": "rbf-transform-blocks",
+    "issue": 1336,
+    "title": "Bound RBF kernel PCA projection memory with reusable query blocks",
+    "body": "### Description\n\n`RBFKernelPCA.transform` builds the complete query-by-training distance matrix and several similarly sized temporaries before projection. Large query batches therefore consume memory proportional to all query/training pairs.\n\nThe transform now reuses a query-block kernel buffer, computes squared distances directly into it, exponentiates in place, and writes each projected block into the result. The cross-kernel buffer is at most 4 MiB unless one query row itself is larger. The projection formula and fitted component selection are unchanged.\n\n### Related issues or pull requests\n\nCloses #1336. The existing centering/fitted-component work in #1305 and earlier zero-eigenvalue changes address different behavior and are not included here.\n\nFull reachable source history was inspected across upstream PR refs and fork branches, including intermediate commits: 57 commits and 23 distinct versions. No equivalent bounded cross-kernel projection was found; historical path/rename records were also checked.\n\n### Measurements\n\nWith 256 training vectors, 12,000 query vectors, four input features, and three components, separately measured peak allocation drops from **73,728,512 to 4,546,320 bytes (93.8%)**. The median of five untraced complete transforms changes from **0.09906 s to 0.00926 s (10.7x faster)** in the same job. All 36,000 projected values are compared directly with the base result; the measured maximum absolute difference is zero. Tests additionally use dtype-appropriate tolerances for float32 distance rounding.\n\n### Validation\n\n- Exact upstream base: `1aee767ef57b84a8191511a08955c583b65de382`.\n- **1 of 33 new cases fails on unchanged source**: the peak-allocation bound. All 33 pass after the change. Tests compare with an independent full-matrix formula around block boundaries, cover C/F/strided arrays and float32/float64 inputs, empty and single-query batches, query reordering, separate calls, and unchanged input/training arrays.\n- New and adjacent tests: **41 passed**. Complete repository suite: **773 passed, 3 skipped**.\n- Baseline and patch ran in the same Python 3.11.18 job with the unchanged frozen lock.\n- Complete repository isort/Black, changed-file Flake8, `git diff --check`, package build, and strict Twine checks passed. The repository-wide Flake8 report retains existing findings and is not presented as a clean lint gate.\n\n[Baseline, complete validation, and measurement evidence](https://github.com/Afloat16/geoopt/actions/runs/43895793702/job/133398866000).\n\n### Pull Request Checklist\n\n- [x] Added a changelog entry.\n- [x] Added regression tests in the corresponding test directory.\n- [x] Preserved the public interface.\n- [x] Ran focused and full repository tests.\n- [x] Checked formatting and style with the scope described above.\n",
+    "branch": "fix/rbf-transform-blocks-20261116",
+    "head": "7f9ffa81f67ad66d85d2dcac64535574abfef8b8",
+    "tree": "c48be5c2524512e002befd8bed2125993bd35a14",
+    "status": "ready",
+    "base": "master",
+    "maintainer_can_modify": false,
+    "validation": {
+      "run_id": 43895793702,
+      "job_id": 133398866000,
+      "name": "rbf-transform-blocks",
+      "base": "1aee767ef57b84a8191511a08955c583b65de382",
+      "issue": 1336,
+      "baseline_focused": {
+        "total": 33,
+        "failed": 1,
+        "skipped": 0,
+        "failures": {
+          "mlxtend.feature_extraction.tests.test_rbf_kernel_pca_blocks::test_transform_peak_memory_is_bounded_for_large_query_batches": "AssertionError: 73728512\nassert 73728512 < ((8 * 1024) * 1024)"
+        }
+      },
+      "baseline_full": {
+        "total": 776,
+        "failed": 1,
+        "skipped": 3,
+        "failures": {
+          "mlxtend.feature_extraction.tests.test_rbf_kernel_pca_blocks::test_transform_peak_memory_is_bounded_for_large_query_batches": "AssertionError: 73728512\nassert 73728512 < ((8 * 1024) * 1024)"
+        }
+      },
+      "candidate_focused": {
+        "total": 41,
+        "failed": 0,
+        "skipped": 0,
+        "failures": {}
+      },
+      "candidate_full": {
+        "total": 776,
+        "failed": 0,
+        "skipped": 3,
+        "failures": {}
+      },
+      "new_full_suite_failures": []
+    },
+    "performance": {
+      "before": {
+        "kind": "memory",
+        "peak_bytes": 73728512,
+        "seconds": [
+          0.10416225200000895,
+          0.1002746499999887,
+          0.09895894799998928,
+          0.09905976999999666,
+          0.09881634899997493
+        ],
+        "median_seconds": 0.09905976999999666,
+        "shape": [
+          12000,
+          3
+        ],
+        "compared_values": 36000,
+        "max_absolute_difference": 0
+      },
+      "after": {
+        "kind": "memory",
+        "peak_bytes": 4546320,
+        "seconds": [
+          0.009978567000018757,
+          0.010587998000005427,
+          0.009257118000022047,
+          0.009246165999996947,
+          0.009232380000014473
+        ],
+        "median_seconds": 0.009257118000022047,
+        "shape": [
+          12000,
+          3
+        ],
+        "compared_values": 36000,
+        "max_absolute_difference": 0
+      }
+    },
+    "compare_url": "https://github.com/rasbt/mlxtend/compare/master...Afloat16:fix/rbf-transform-blocks-20261116?expand=1&title=Bound%20RBF%20kernel%20PCA%20projection%20memory%20with%20reusable%20query%20blocks&body=%23%23%23%20Description%0A%0A%60RBFKernelPCA.transform%60%20builds%20the%20complete%20query-by-training%20distance%20matrix%20and%20several%20similarly%20sized%20temporaries%20before%20projection.%20Large%20query%20batches%20therefore%20consume%20memory%20proportional%20to%20all%20query%2Ftraining%20pairs.%0A%0AThe%20transform%20now%20reuses%20a%20query-block%20kernel%20buffer%2C%20computes%20squared%20distances%20directly%20into%20it%2C%20exponentiates%20in%20place%2C%20and%20writes%20each%20projected%20block%20into%20the%20result.%20The%20cross-kernel%20buffer%20is%20at%20most%204%20MiB%20unless%20one%20query%20row%20itself%20is%20larger.%20The%20projection%20formula%20and%20fitted%20component%20selection%20are%20unchanged.%0A%0A%23%23%23%20Related%20issues%20or%20pull%20requests%0A%0ACloses%20%231336.%20The%20existing%20centering%2Ffitted-component%20work%20in%20%231305%20and%20earlier%20zero-eigenvalue%20changes%20address%20different%20behavior%20and%20are%20not%20included%20here.%0A%0AFull%20reachable%20source%20history%20was%20inspected%20across%20upstream%20PR%20refs%20and%20fork%20branches%2C%20including%20intermediate%20commits%3A%2057%20commits%20and%2023%20distinct%20versions.%20No%20equivalent%20bounded%20cross-kernel%20projection%20was%20found%3B%20historical%20path%2Frename%20records%20were%20also%20checked.%0A%0A%23%23%23%20Measurements%0A%0AWith%20256%20training%20vectors%2C%2012%2C000%20query%20vectors%2C%20four%20input%20features%2C%20and%20three%20components%2C%20separately%20measured%20peak%20allocation%20drops%20from%20**73%2C728%2C512%20to%204%2C546%2C320%20bytes%20(93.8%25)**.%20The%20median%20of%20five%20untraced%20complete%20transforms%20changes%20from%20**0.09906%20s%20to%200.00926%20s%20(10.7x%20faster)**%20in%20the%20same%20job.%20All%2036%2C000%20projected%20values%20are%20compared%20directly%20with%20the%20base%20result%3B%20the%20measured%20maximum%20absolute%20difference%20is%20zero.%20Tests%20additionally%20use%20dtype-appropriate%20tolerances%20for%20float32%20distance%20rounding.%0A%0A%23%23%23%20Validation%0A%0A-%20Exact%20upstream%20base%3A%20%601aee767ef57b84a8191511a08955c583b65de382%60.%0A-%20**1%20of%2033%20new%20cases%20fails%20on%20unchanged%20source**%3A%20the%20peak-allocation%20bound.%20All%2033%20pass%20after%20the%20change.%20Tests%20compare%20with%20an%20independent%20full-matrix%20formula%20around%20block%20boundaries%2C%20cover%20C%2FF%2Fstrided%20arrays%20and%20float32%2Ffloat64%20inputs%2C%20empty%20and%20single-query%20batches%2C%20query%20reordering%2C%20separate%20calls%2C%20and%20unchanged%20input%2Ftraining%20arrays.%0A-%20New%20and%20adjacent%20tests%3A%20**41%20passed**.%20Complete%20repository%20suite%3A%20**773%20passed%2C%203%20skipped**.%0A-%20Baseline%20and%20patch%20ran%20in%20the%20same%20Python%203.11.18%20job%20with%20the%20unchanged%20frozen%20lock.%0A-%20Complete%20repository%20isort%2FBlack%2C%20changed-file%20Flake8%2C%20%60git%20diff%20--check%60%2C%20package%20build%2C%20and%20strict%20Twine%20checks%20passed.%20The%20repository-wide%20Flake8%20report%20retains%20existing%20findings%20and%20is%20not%20presented%20as%20a%20clean%20lint%20gate.%0A%0A%5BBaseline%2C%20complete%20validation%2C%20and%20measurement%20evidence%5D(https%3A%2F%2Fgithub.com%2FAfloat16%2Fgeoopt%2Factions%2Fruns%2F43895793702%2Fjob%2F133398866000).%0A%0A%23%23%23%20Pull%20Request%20Checklist%0A%0A-%20%5Bx%5D%20Added%20a%20changelog%20entry.%0A-%20%5Bx%5D%20Added%20regression%20tests%20in%20the%20corresponding%20test%20directory.%0A-%20%5Bx%5D%20Preserved%20the%20public%20interface.%0A-%20%5Bx%5D%20Ran%20focused%20and%20full%20repository%20tests.%0A-%20%5Bx%5D%20Checked%20formatting%20and%20style%20with%20the%20scope%20described%20above.%0A"
+  }
+]
