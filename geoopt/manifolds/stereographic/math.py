@@ -2001,7 +2001,6 @@ def _weighted_midpoint(
     if reducedim is None:
         reducedim = list_range(xs.dim())
         reducedim.pop(dim)
-    gamma = _lambda_x(xs, k=k, dim=dim, keepdim=True)
     if weights is None:
         weights = torch.tensor(1.0, dtype=xs.dtype, device=xs.device)
     else:
@@ -2009,6 +2008,7 @@ def _weighted_midpoint(
     if posweight and weights.lt(0).any():
         xs = torch.where(weights.lt(0), _antipode(xs, k=k, dim=dim), xs)
         weights = weights.abs()
+    gamma = _lambda_x(xs, k=k, dim=dim, keepdim=True)
     denominator = ((gamma - 1) * weights).sum(reducedim, keepdim=True)
     nominator = (gamma * weights * xs).sum(reducedim, keepdim=True)
     two_mean = nominator / clamp_abs(denominator, 1e-10)
@@ -2018,12 +2018,13 @@ def _weighted_midpoint(
     if torch.any(k.gt(0)):
         # check antipode
         b_mean = _antipode(a_mean, k, dim=dim)
-        a_dist = _dist(a_mean, xs, k=k, keepdim=True, dim=dim).sum(
-            reducedim, keepdim=True
-        )
-        b_dist = _dist(b_mean, xs, k=k, keepdim=True, dim=dim).sum(
-            reducedim, keepdim=True
-        )
+        distance_weights = weights.abs()
+        a_dist = (
+            _dist(a_mean, xs, k=k, keepdim=True, dim=dim) * distance_weights
+        ).sum(reducedim, keepdim=True)
+        b_dist = (
+            _dist(b_mean, xs, k=k, keepdim=True, dim=dim) * distance_weights
+        ).sum(reducedim, keepdim=True)
         better = k.gt(0) & (b_dist < a_dist)
         a_mean = torch.where(better, b_mean, a_mean)
     if lincomb:
