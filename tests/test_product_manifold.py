@@ -94,3 +94,35 @@ def test_unpack_tensor_method():
     assert parts[0].shape == (4, 10)
     assert parts[1].shape == (4, 3, 2)
     assert parts[2].shape == (4,)
+
+
+@pytest.mark.parametrize("batch_shape", [(), (2,), (0,), (2, 0)])
+def test_pack_point_with_empty_batches(batch_shape):
+    manifold = ProductManifold((Euclidean(), ()), (Sphere(), 3), (Euclidean(ndim=2), (2, 2)))
+    parts = [
+        torch.zeros(batch_shape, dtype=torch.float64),
+        torch.tensor([1.0, 0.0, 0.0], dtype=torch.float64).expand(batch_shape + (3,)).clone(),
+        torch.arange(4, dtype=torch.float64).reshape(2, 2).expand(batch_shape + (2, 2)).clone(),
+    ]
+    for part in parts:
+        part.requires_grad_()
+    packed = manifold.pack_point(*parts)
+    expected = torch.cat((parts[0].unsqueeze(-1), parts[1], parts[2].flatten(-2)), dim=-1)
+    torch.testing.assert_close(packed, expected)
+    assert packed.shape == batch_shape + (8,)
+    for restored, original in zip(manifold.unpack_tensor(packed), parts):
+        torch.testing.assert_close(restored, original)
+    packed.sum().backward()
+    for part in parts:
+        torch.testing.assert_close(part.grad, torch.ones_like(part))
+
+
+@pytest.mark.parametrize("batch_shape", [(), (2,), (0,), (2, 0)])
+@pytest.mark.parametrize("factory", ["origin", "random"])
+def test_product_factories_with_empty_batches(batch_shape, factory):
+    manifold = ProductManifold((Euclidean(), ()), (Sphere(), 3), (Euclidean(ndim=2), (2, 2)))
+    point = getattr(manifold, factory)(batch_shape + (8,), dtype=torch.float64)
+    assert point.shape == batch_shape + (8,)
+    assert point.dtype == torch.float64
+    assert point.manifold is manifold
+    manifold.assert_check_point_on_manifold(point)

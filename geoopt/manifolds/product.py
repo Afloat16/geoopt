@@ -374,9 +374,9 @@ class ProductManifold(Manifold):
                             part.shape[-len(shape) :], shape
                         )
                     )
-                new_shape = (*part.shape[: -len(shape)], -1)
+                new_shape = (*part.shape[: -len(shape)], _shape2size(shape))
             else:
-                new_shape = (*part.shape, -1)
+                new_shape = (*part.shape, 1)
             flattened.append(part.reshape(new_shape))
         return torch.cat(flattened, -1)
 
