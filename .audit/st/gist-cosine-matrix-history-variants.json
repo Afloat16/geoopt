@@ -1,0 +1,1314 @@
+{
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "aliases": [
+    "sentence_transformers/losses/CachedGISTEmbedLoss.py",
+    "sentence_transformers/losses/GISTEmbedLoss.py",
+    "sentence_transformers/sentence_transformer/losses/CachedGISTEmbedLoss.py",
+    "sentence_transformers/sentence_transformer/losses/GISTEmbedLoss.py",
+    "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py",
+    "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+  ],
+  "ref_count": 1665,
+  "scanned_blob_count": 164,
+  "scanned_blobs": [
+    {
+      "oid": "4751a6145a5ed5af48a753c522b5b54e6d56f753",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "4dc572ff772f4d3a9176ec52d889fcfa2124d765",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "d2ce35f29c352e40db80f7fc46359bdab8a578a9",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "745976386fff589c9f8998163781537cd37a46cb",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "3316c912196182f4688a9cd8835cb4657306bbf2",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "1df18e897f0d17509df616cbf266a8c250e40c8b",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "64d6474d305bcc5263f2ee1a904dff9c8aa9e475",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "2c70bbecff6b735587a7c46e487c25901642df0f",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "cdc41d62579afdaea815810b2fe072e118d5129d",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "93670f3159b8e518aa3913db0587615f36d43f01",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "1e56ed6fa3742113a5b6cef60e19e97c72f7c7ca",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "951b50fe920ad8ffd54b2705da4a2bcab2dbc0cf",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "e41851d416c2ddb1a4b918e56f4934c73801ad7e",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "a115f86095467abfb82e834a38167120d559b4e6",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "758f771e9742be3f177cd1d8c85c65b14444f7fe",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "69ccf20c6289518018ccdbd14b1199e8abeab76d",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "15a83526dba8143139527a5fc00d78737de577fb",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "24e310daedcc2b15bad5219dce8867502f42cbfe",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "ede932b1d14dda5039ced447c57ef7465cf6185b",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "24ef200516b04f6314c7676e4357f74a2dc4c3fe",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "c566e503f284386cd42273357551ab6141ff8863",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "e6105ac4e7635b0b7a986dfd6e8995ff1c16678e",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "d33070bfcc4956bce83998b4890a7326536248ce",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "c435284e079f5e66c430a08ac7b8216794e3730d",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "0135c5f357d38c581ea04fbe89d25b225e999104",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "8659d4f17a24dec9c95e10b16015134627435800",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "2601aa1181d60928ae986a20b82e69a35e5717d3",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "044a7da16a34dd6a588303e8b70d65bc469e3983",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "07bfd5a09cb45e2fb0aebb4d77679f0b5ace890a",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "aab70b8601d40813eafa7673ac9079a76d1de613",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "ec1b516612d4bc4328a988d1ec4ce0a7d84720ca",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "bb5fe38ac98551d982269e6534708c425b0e3de3",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "9710125223ac608c00b386316feac2f662ccc4a9",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "39a315417d5d12fe5184b56ecb3bbc3373ba57d8",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "0007e521af8012e7a196993cdac7cda5264fdd9c",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "6bf3b7d38f0717471597b830ceb3b4ff43ebdb56",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "3e3f593715cc3e290fdf975b4ba0b30a28289d45",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "9f020f741b19fdcdd32fb36ff8d596f6f59a9dae",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "854b87fe6bc7d4460f4bcb91b5b7dc969847fd47",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "9bade48963ad632f67f00c34dae9c123702285a6",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "5c813d966a57792c426291fe43028985acfa7ba3",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "b97760ccdcae58af9135107ed2f70e7ba4a29aa2",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "be3b4a6e3ec64c8e49653bf48efe7fbf2de7538b",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "1ebbe72ac30e21fb36ae13e56ff93557e101ce75",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "f0e472b30d45ff206c33884390b33ca15d6e6689",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "266a28f96adf987269d1998dc6f5a298cebf2dd1",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "07cd5a65ae8efdb97d321bf8397128fdc32a63e4",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "55ae847af6b47282d0f3ecf4d95a23705ea5ded6",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "85efa10b42736d2858df9a8827ccc24625a9ac8b",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "e352058f8bfe94f056198eb896aec55a49ee9312",
+      "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+    },
+    {
+      "oid": "3bed04605553a8fbe40ac2a66f402cccd0ff8083",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "3a87e7ff05d15d1303ca62f7dc23e6618b5571f9",
+      "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+    },
+    {
+      "oid": "5435fee59b41fb087c52550d0a020dffcd860c81",
+      "path": "sentence_transformers/sentence_transformer/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "17f7ec144f97b82e9b184c4978cdde6d62998d20",
+      "path": "sentence_transformers/sentence_transformer/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "93db32fe139354233ab9903c9f7443363e3d771c",
+      "path": "sentence_transformers/sentence_transformer/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "63df0c27c3f64658dfd63ee9349e6635d9b4c973",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "aee957673cb07fb6782efa51fc76ea275dca630a",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "1d36b9696a4e2187df64f4462faee1ec93ea619b",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "dc2e06871527460b7a95fc641032046e879ef872",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "750cbf87df59d3e4e184a90fac6867b77987d714",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "c90a8caac9f9be3e4cd6bf47d8410471df8a4813",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "7ad2e91c5102a6b4c418ea7c4029b1bcb4efb9d3",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "7dd0815c41df62249377ea157d5ef40ee17ee226",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "a1c23fa3e5a8b3730e89cddf40b73e20ed8f2669",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "d74b53404e021c23f956246161776459c897851a",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "3950f3a943eec6465660e4d8a29d200146bdbca4",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "f1f2abddd37c661e6f72e46638772c11b98618bf",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "4ab046cf4d073971d40bd3aa2274c2e72c7b84ef",
+      "path": "sentence_transformers/sentence_transformer/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "deb7c52254d8505f704b6b030abf46ec5546ed67",
+      "path": "sentence_transformers/sentence_transformer/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "df3b5330b8af4d51edadacf521bc000c10ec1043",
+      "path": "sentence_transformers/sentence_transformer/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "96cd71877f99eac1ecd561c2892fd411cbda3435",
+      "path": "sentence_transformers/sentence_transformer/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "06d377f818dde57d182abd530eaa10b51024cdba",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "8f3f796fe0f8d7f706e4f290e22653efb6620d77",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "b6924618c5b39261951a3c4e037a5627b66bd47d",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "f22758ccc307c550466b662c9c512298dbd6d36a",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "8479ee9f3a0741f3324d1c334b788789853164ed",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "82be25453ea881cf4470385f7c3c66afa84caa1e",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "ae0e159dcce6f2a6a2bf84cb85efbf21752ffe19",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "fb8b0858db41b90199830b115930519d4fb50a5f",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "a56811cb706a65ae92ef2c5a1905f8ac17c4a2fa",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "d353f13b59752bff4bd841e17031d096cec59f1c",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "47b8f885a4c28a1b04d43d8cc63ceb4c2c6de758",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "de99b2772032b8ea9967f08846e4234864ffc06a",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "7b329ba2320572e30745afb3e2bf297ecc5d7557",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "1de36ea2dd56b431e73b12a8570ce3be19d1cb04",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "eb068ec5a519b5c55b2010b9a3db7707d94d19f1",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "1290a6a5c56ad233362b1cf18214079cf98d2332",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "be67efa29dcd7f36086866628f7596dbb95d453d",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "d72ce984d2a8dc7248cc43a6ccd1005adc8bc18c",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "b41764142f374cf9c9cc9ac0f08d9059119a2924",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "f46096f52b1d4553959043b17541a3a940569af3",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "6a63dc72c61e6df587ff91e2dd874c96354ba1fc",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "6d7b1602214605b64433cd741f67a28b44d56c8f",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "bd98be0c5101c8e89bde29240dda0226ad7d8375",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "7b4e874ed5d89f704777502f007e1103f55856a8",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "b5f087ad7a77bf2af69f6b52d4582104d8430d13",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "5c8bb0d62bcddfabdeb5dd3baf55531a341f617b",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "cf72387fc1e9cf1dc05ebe2f6f092ec74e0d4522",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "f0c39b7b13ee65657d8b13b44d80d2137d7a86db",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "7c65f5553cb3dbfb5d7bb15cefdc00724e97735a",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "cc04fd6d79ef719422827345dd18a21a3930c94b",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "37c2c67a93264dc8519c64a017a42774d5670782",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "cb8ce5a878e17790c7c5dbd082be4b6248d4470b",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "d92967cde7399660728d4d84719c60c785b1f679",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "d9439b53fa3068aa78f010fe72cf48f387ca6e8a",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "5d21e3466dd541944978ebaac9a25553f2f493a5",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "d76d3338e2bc0dccd64cc9d13cd9d184736613a0",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "03f45fe482975f1fdb5ce388e1ba0711107062a0",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "13d7fe0039e49ac4e4428e8cc40de4fba20eb323",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "5111b2b0c8b9970456e2935fd4714a3f24b96f0f",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "53e39a5313e5b5fd4205d5d4baea51858dd385df",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "747b4c54002fb1ce8a7ba57a2667aea98200990c",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "51bc1c02b794660cc719028b3f6aa073166fc5c9",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "4b79b39f6758b3a8b22f51a1aa899ce14d2a479b",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "e8e1315821f5b6fd23d33aaf6eba6c166b21ee20",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "aa83c59e86ec9561873e615feba8d1d3f3fb0cca",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "51958da5eed7d387b2ef71edce0475d0a80d3041",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "5a99fa419727f2e7110e2ea5ac52b8ba4692c9ab",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "f1bb833bd9f02d66a0270c7c8360d2a460fb015a",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "2ed6c1b9002d5417db7b3f6e659dff30f1987693",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "83e755d1c1ac59603f9211c39b0a36fa9e1b5ec5",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "243022d64f84c05209bc8d5b60286d2cb721c567",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "c1df1e0ae7af0789bdef799481c10a65c0da8b88",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "d185a3b97aafe5257c72caeb9b3e84d1620953e7",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "281f84ee8323be65fe7e40ad731d05f3d995842a",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "aed90d88ba9a1ea4c3b392a4dec6fcecd37e1ac9",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "2819dfa6c195702fff8b2b405b000c9a46ebff64",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "66d39ba00f1b4a2eb2f96020f1eceeff3b04bd91",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "d9de70317e2536de36b499cd015d195adf3bcfa5",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "85c903b2f2f2532fb1c38f037403f26e8a2b60f2",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "e1ee73c8667a3421f9656131bd606c175cb9b455",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "81ee68933ed87b93d1fc2af4cc8acd8ac0319a3b",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "b62828ef4618e1f4422acdc08bf177f8ed971277",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "592b55b12126a192097bb89c3699020bad3ae45b",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "9480263d1e5eae6b795a45f24645b12fa4d42663",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "9646402e4db5ea4af563a2e8c227192d506abe8e",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "e3208298f68a9bc923c3ca7370d967b4e5ff51f5",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "cf3392456fb59d1cebbb774e4dff2969929c2c0b",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "6c719d511fb083d7334d0b7a0f355f69e34d7aec",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "903f7e4dc35508a9de596db3ceb43858648cfdad",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "6612a1773a389079ffc7b03fdb99977f240afa2f",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "ff8d3d288fae4f866a59985a61a00c6db0ce4395",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "1b8f97455001f706724a6c54d8a5862d01e42050",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "3e536a48ee8872ffe7b2de9e6a2ec400382a569c",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "f8623e32547de209dc9ceb8ed58bca56074b769e",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "1fdc753ef460c7e6521354c57f72b93121053fd0",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "c1175baed7b6d168f1f2fda3cd5ae37ba0552de9",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "9e0e1e17007e616ae58a469eeb9c66935c56f13f",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "ccc79f4d75f77f1228e7dc727944f7984c6db55e",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "a791fe7361a4d565726cefd840f5295c4ed30379",
+      "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+    },
+    {
+      "oid": "de609446a0ee7059bf9dc6e71f46255c86ce861f",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "a3d20aeb0a10ae12b9e871432b20b27dc8ed44f1",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "da8adeae9f962995c7f8e482f966e3605cfaf2b8",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "c40e2ed91240062dd3261e56d29fff811da0cd3d",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "d58319690317e1d7abdcc56e3c28991808fce36c",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "ca0e038892349abb781d226ea9512c9c18d8716a",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "0cebb765421e517d71b7a2ce8a233f419482e728",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "fd1308765c194b45459b1ca66991c735d7ff6fd6",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "9e78ce1bbb943491defa354d1748c3c14e4990f0",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "5a85212375006376a36b7dda21feaa6d3fd1ec7c",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "95cc634148757874276d14f1ee43a1a03e7587c4",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "330dfcbabcea97d6c7b05fd823b0c8210b0f28f7",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "a19beb54076a10b065d56a2e5f42246c3ac581de",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    },
+    {
+      "oid": "81937bedb6a9861ebd32c085803a645b4a6e74b0",
+      "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+    }
+  ],
+  "parse_failures": [],
+  "variants": {
+    "73fda1c7e57f31751f465ed643744e99fbc5fbc88d93d5d67150c015b3a4ea52": {
+      "name": "sim_matrix",
+      "source": "def sim_matrix(self, embed1: Tensor, embed2: Tensor) -> Tensor:\n        return self.similarity_fct(embed1.unsqueeze(1), embed2.unsqueeze(0))",
+      "blobs": [
+        {
+          "oid": "4751a6145a5ed5af48a753c522b5b54e6d56f753",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "4dc572ff772f4d3a9176ec52d889fcfa2124d765",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "d2ce35f29c352e40db80f7fc46359bdab8a578a9",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "745976386fff589c9f8998163781537cd37a46cb",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "3316c912196182f4688a9cd8835cb4657306bbf2",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "1df18e897f0d17509df616cbf266a8c250e40c8b",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "64d6474d305bcc5263f2ee1a904dff9c8aa9e475",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "2c70bbecff6b735587a7c46e487c25901642df0f",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "cdc41d62579afdaea815810b2fe072e118d5129d",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "93670f3159b8e518aa3913db0587615f36d43f01",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "1e56ed6fa3742113a5b6cef60e19e97c72f7c7ca",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "951b50fe920ad8ffd54b2705da4a2bcab2dbc0cf",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "e41851d416c2ddb1a4b918e56f4934c73801ad7e",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "a115f86095467abfb82e834a38167120d559b4e6",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "758f771e9742be3f177cd1d8c85c65b14444f7fe",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "69ccf20c6289518018ccdbd14b1199e8abeab76d",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "15a83526dba8143139527a5fc00d78737de577fb",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "24e310daedcc2b15bad5219dce8867502f42cbfe",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "ede932b1d14dda5039ced447c57ef7465cf6185b",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "24ef200516b04f6314c7676e4357f74a2dc4c3fe",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "c566e503f284386cd42273357551ab6141ff8863",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "e6105ac4e7635b0b7a986dfd6e8995ff1c16678e",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "d33070bfcc4956bce83998b4890a7326536248ce",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "c435284e079f5e66c430a08ac7b8216794e3730d",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "0135c5f357d38c581ea04fbe89d25b225e999104",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "8659d4f17a24dec9c95e10b16015134627435800",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "2601aa1181d60928ae986a20b82e69a35e5717d3",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "044a7da16a34dd6a588303e8b70d65bc469e3983",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "07bfd5a09cb45e2fb0aebb4d77679f0b5ace890a",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "aab70b8601d40813eafa7673ac9079a76d1de613",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "ec1b516612d4bc4328a988d1ec4ce0a7d84720ca",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "bb5fe38ac98551d982269e6534708c425b0e3de3",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "9710125223ac608c00b386316feac2f662ccc4a9",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "39a315417d5d12fe5184b56ecb3bbc3373ba57d8",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "0007e521af8012e7a196993cdac7cda5264fdd9c",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "6bf3b7d38f0717471597b830ceb3b4ff43ebdb56",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "3e3f593715cc3e290fdf975b4ba0b30a28289d45",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "9f020f741b19fdcdd32fb36ff8d596f6f59a9dae",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "854b87fe6bc7d4460f4bcb91b5b7dc969847fd47",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "9bade48963ad632f67f00c34dae9c123702285a6",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "5c813d966a57792c426291fe43028985acfa7ba3",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "b97760ccdcae58af9135107ed2f70e7ba4a29aa2",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "be3b4a6e3ec64c8e49653bf48efe7fbf2de7538b",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "1ebbe72ac30e21fb36ae13e56ff93557e101ce75",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "f0e472b30d45ff206c33884390b33ca15d6e6689",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "266a28f96adf987269d1998dc6f5a298cebf2dd1",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "07cd5a65ae8efdb97d321bf8397128fdc32a63e4",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "55ae847af6b47282d0f3ecf4d95a23705ea5ded6",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "85efa10b42736d2858df9a8827ccc24625a9ac8b",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "e352058f8bfe94f056198eb896aec55a49ee9312",
+          "path": "sentence_transformers/sentence_transformer/losses/gist_embed.py"
+        },
+        {
+          "oid": "3bed04605553a8fbe40ac2a66f402cccd0ff8083",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "3a87e7ff05d15d1303ca62f7dc23e6618b5571f9",
+          "path": "sentence_transformers/sentence_transformer/losses/cached_gist_embed.py"
+        },
+        {
+          "oid": "5435fee59b41fb087c52550d0a020dffcd860c81",
+          "path": "sentence_transformers/sentence_transformer/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "17f7ec144f97b82e9b184c4978cdde6d62998d20",
+          "path": "sentence_transformers/sentence_transformer/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "93db32fe139354233ab9903c9f7443363e3d771c",
+          "path": "sentence_transformers/sentence_transformer/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "63df0c27c3f64658dfd63ee9349e6635d9b4c973",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "aee957673cb07fb6782efa51fc76ea275dca630a",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "1d36b9696a4e2187df64f4462faee1ec93ea619b",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "dc2e06871527460b7a95fc641032046e879ef872",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "750cbf87df59d3e4e184a90fac6867b77987d714",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "c90a8caac9f9be3e4cd6bf47d8410471df8a4813",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "7ad2e91c5102a6b4c418ea7c4029b1bcb4efb9d3",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "7dd0815c41df62249377ea157d5ef40ee17ee226",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "a1c23fa3e5a8b3730e89cddf40b73e20ed8f2669",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "d74b53404e021c23f956246161776459c897851a",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "3950f3a943eec6465660e4d8a29d200146bdbca4",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "f1f2abddd37c661e6f72e46638772c11b98618bf",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "4ab046cf4d073971d40bd3aa2274c2e72c7b84ef",
+          "path": "sentence_transformers/sentence_transformer/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "deb7c52254d8505f704b6b030abf46ec5546ed67",
+          "path": "sentence_transformers/sentence_transformer/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "df3b5330b8af4d51edadacf521bc000c10ec1043",
+          "path": "sentence_transformers/sentence_transformer/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "96cd71877f99eac1ecd561c2892fd411cbda3435",
+          "path": "sentence_transformers/sentence_transformer/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "06d377f818dde57d182abd530eaa10b51024cdba",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "8f3f796fe0f8d7f706e4f290e22653efb6620d77",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "b6924618c5b39261951a3c4e037a5627b66bd47d",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "f22758ccc307c550466b662c9c512298dbd6d36a",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "8479ee9f3a0741f3324d1c334b788789853164ed",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "82be25453ea881cf4470385f7c3c66afa84caa1e",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "ae0e159dcce6f2a6a2bf84cb85efbf21752ffe19",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "fb8b0858db41b90199830b115930519d4fb50a5f",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "a56811cb706a65ae92ef2c5a1905f8ac17c4a2fa",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "d353f13b59752bff4bd841e17031d096cec59f1c",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "47b8f885a4c28a1b04d43d8cc63ceb4c2c6de758",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "de99b2772032b8ea9967f08846e4234864ffc06a",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "7b329ba2320572e30745afb3e2bf297ecc5d7557",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "1de36ea2dd56b431e73b12a8570ce3be19d1cb04",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "eb068ec5a519b5c55b2010b9a3db7707d94d19f1",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "1290a6a5c56ad233362b1cf18214079cf98d2332",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "be67efa29dcd7f36086866628f7596dbb95d453d",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "d72ce984d2a8dc7248cc43a6ccd1005adc8bc18c",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "b41764142f374cf9c9cc9ac0f08d9059119a2924",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "f46096f52b1d4553959043b17541a3a940569af3",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "6a63dc72c61e6df587ff91e2dd874c96354ba1fc",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "6d7b1602214605b64433cd741f67a28b44d56c8f",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "bd98be0c5101c8e89bde29240dda0226ad7d8375",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "7b4e874ed5d89f704777502f007e1103f55856a8",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "b5f087ad7a77bf2af69f6b52d4582104d8430d13",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "5c8bb0d62bcddfabdeb5dd3baf55531a341f617b",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "cf72387fc1e9cf1dc05ebe2f6f092ec74e0d4522",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "f0c39b7b13ee65657d8b13b44d80d2137d7a86db",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "7c65f5553cb3dbfb5d7bb15cefdc00724e97735a",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "cc04fd6d79ef719422827345dd18a21a3930c94b",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "37c2c67a93264dc8519c64a017a42774d5670782",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "cb8ce5a878e17790c7c5dbd082be4b6248d4470b",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "d92967cde7399660728d4d84719c60c785b1f679",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "d9439b53fa3068aa78f010fe72cf48f387ca6e8a",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "5d21e3466dd541944978ebaac9a25553f2f493a5",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "d76d3338e2bc0dccd64cc9d13cd9d184736613a0",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "03f45fe482975f1fdb5ce388e1ba0711107062a0",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "13d7fe0039e49ac4e4428e8cc40de4fba20eb323",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "5111b2b0c8b9970456e2935fd4714a3f24b96f0f",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "53e39a5313e5b5fd4205d5d4baea51858dd385df",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "747b4c54002fb1ce8a7ba57a2667aea98200990c",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "51bc1c02b794660cc719028b3f6aa073166fc5c9",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "4b79b39f6758b3a8b22f51a1aa899ce14d2a479b",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "e8e1315821f5b6fd23d33aaf6eba6c166b21ee20",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "aa83c59e86ec9561873e615feba8d1d3f3fb0cca",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "51958da5eed7d387b2ef71edce0475d0a80d3041",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "5a99fa419727f2e7110e2ea5ac52b8ba4692c9ab",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "f1bb833bd9f02d66a0270c7c8360d2a460fb015a",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "2ed6c1b9002d5417db7b3f6e659dff30f1987693",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "83e755d1c1ac59603f9211c39b0a36fa9e1b5ec5",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "243022d64f84c05209bc8d5b60286d2cb721c567",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "c1df1e0ae7af0789bdef799481c10a65c0da8b88",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "d185a3b97aafe5257c72caeb9b3e84d1620953e7",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "281f84ee8323be65fe7e40ad731d05f3d995842a",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "aed90d88ba9a1ea4c3b392a4dec6fcecd37e1ac9",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "2819dfa6c195702fff8b2b405b000c9a46ebff64",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "66d39ba00f1b4a2eb2f96020f1eceeff3b04bd91",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "d9de70317e2536de36b499cd015d195adf3bcfa5",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "85c903b2f2f2532fb1c38f037403f26e8a2b60f2",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "e1ee73c8667a3421f9656131bd606c175cb9b455",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "81ee68933ed87b93d1fc2af4cc8acd8ac0319a3b",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "b62828ef4618e1f4422acdc08bf177f8ed971277",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "592b55b12126a192097bb89c3699020bad3ae45b",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        }
+      ]
+    },
+    "fc731047a6cbec723e4aab8f9ac05db52c6c16af1bf8a452140fddde6f8c12ee": {
+      "name": "sim_matrix",
+      "source": "def sim_matrix(self, embed1, embed2):\n        return self.similarity_fct(embed1.unsqueeze(1), embed2.unsqueeze(0))",
+      "blobs": [
+        {
+          "oid": "9480263d1e5eae6b795a45f24645b12fa4d42663",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "9646402e4db5ea4af563a2e8c227192d506abe8e",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "e3208298f68a9bc923c3ca7370d967b4e5ff51f5",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "cf3392456fb59d1cebbb774e4dff2969929c2c0b",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "6c719d511fb083d7334d0b7a0f355f69e34d7aec",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "903f7e4dc35508a9de596db3ceb43858648cfdad",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "6612a1773a389079ffc7b03fdb99977f240afa2f",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "ff8d3d288fae4f866a59985a61a00c6db0ce4395",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "1b8f97455001f706724a6c54d8a5862d01e42050",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "3e536a48ee8872ffe7b2de9e6a2ec400382a569c",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "f8623e32547de209dc9ceb8ed58bca56074b769e",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "1fdc753ef460c7e6521354c57f72b93121053fd0",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "c1175baed7b6d168f1f2fda3cd5ae37ba0552de9",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "9e0e1e17007e616ae58a469eeb9c66935c56f13f",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "ccc79f4d75f77f1228e7dc727944f7984c6db55e",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "a791fe7361a4d565726cefd840f5295c4ed30379",
+          "path": "sentence_transformers/losses/CachedGISTEmbedLoss.py"
+        },
+        {
+          "oid": "de609446a0ee7059bf9dc6e71f46255c86ce861f",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "a3d20aeb0a10ae12b9e871432b20b27dc8ed44f1",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "da8adeae9f962995c7f8e482f966e3605cfaf2b8",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "c40e2ed91240062dd3261e56d29fff811da0cd3d",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "d58319690317e1d7abdcc56e3c28991808fce36c",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "ca0e038892349abb781d226ea9512c9c18d8716a",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        },
+        {
+          "oid": "0cebb765421e517d71b7a2ce8a233f419482e728",
+          "path": "sentence_transformers/losses/GISTEmbedLoss.py"
+        }
+      ]
+    }
+  }
+}

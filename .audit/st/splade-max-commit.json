@@ -1,0 +1,13 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "perf/splade-max-inference-20261116",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "head": "c8af6717da005b8b2b578a0ef72b65bc000db349",
+  "tree": "be52e97f9249db6caf1eed33828e96632f474cb9",
+  "local_tests": {
+    "baseline_pass": 101,
+    "candidate_pass": 101
+  },
+  "dedup": "33 reachable blobs, 3 historical aliases, 20 forward variants all transforming full token/vocabulary tensors before max; all-state upstream1479 and1484 gitPR refs, prior33 fork heads and intermediate commits; no parse failures",
+  "scope": "Inference-only reordering; training retains original transform-first ties and gradient distribution."
+}

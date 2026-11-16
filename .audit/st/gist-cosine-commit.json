@@ -1,0 +1,12 @@
+{
+  "repository": "Afloat16/sentence-transformers",
+  "branch": "perf/gist-cosine-matrix-20261116",
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "head": "40e003bbf17af8a792399a28a7f0aade4da32ec7",
+  "tree": "b98a7118a540e4fab725b9dacb8c442d58b33bb1",
+  "local_tests": {
+    "baseline_pass": 82,
+    "candidate_pass": 82
+  },
+  "dedup": "164 reachable source blobs, 6 historical aliases, 2 sim_matrix variants both broadcasting cosine; all-state upstream 1479 PRs plus 1484 git PR refs, old 33 fork heads and intermediate commits"
+}

@@ -1,0 +1,92 @@
+name: Validate GIST and SPLADE performance improvements
+
+on:
+  push:
+    branches: [validation/st-perf-4-5-20261116]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - key: gist
+            torch: '2.6.0'
+            candidate: 40e003bbf17af8a792399a28a7f0aade4da32ec7
+            sources: 'sentence_transformers/sentence_transformer/losses/gist_embed.py sentence_transformers/sentence_transformer/losses/cached_gist_embed.py'
+            tests: 'tests/sentence_transformer/losses/test_gist_similarity_matrix.py tests/sentence_transformer/losses/test_gist_embed.py tests/sentence_transformer/losses/test_cached_gist_embed.py'
+            benchmark: 'st-gist-cosine-benchmark.py'
+          - key: gist
+            torch: '2.14.1'
+            candidate: 40e003bbf17af8a792399a28a7f0aade4da32ec7
+            sources: 'sentence_transformers/sentence_transformer/losses/gist_embed.py sentence_transformers/sentence_transformer/losses/cached_gist_embed.py'
+            tests: 'tests/sentence_transformer/losses/test_gist_similarity_matrix.py tests/sentence_transformer/losses/test_gist_embed.py tests/sentence_transformer/losses/test_cached_gist_embed.py'
+            benchmark: 'st-gist-cosine-benchmark.py'
+          - key: splade
+            torch: '2.6.0'
+            candidate: c8af6717da005b8b2b578a0ef72b65bc000db349
+            sources: 'sentence_transformers/sparse_encoder/modules/splade_pooling.py'
+            tests: 'tests/sparse_encoder/modules/test_splade_max_inference.py tests/sparse_encoder/modules/test_splade_pooling.py'
+            benchmark: 'st-splade-max-benchmark.py'
+          - key: splade
+            torch: '2.14.1'
+            candidate: c8af6717da005b8b2b578a0ef72b65bc000db349
+            sources: 'sentence_transformers/sparse_encoder/modules/splade_pooling.py'
+            tests: 'tests/sparse_encoder/modules/test_splade_max_inference.py tests/sparse_encoder/modules/test_splade_pooling.py'
+            benchmark: 'st-splade-max-benchmark.py'
+    defaults:
+      run:
+        working-directory: project
+    env:
+      OMP_NUM_THREADS: 1
+      OPENBLAS_NUM_THREADS: 1
+      PYTHONPATH: .
+      ST_BASE: 9ac7fdb4edce2f1dbc171b036ecbb60383653e74
+      ST_CANDIDATE: ${{ matrix.candidate }}
+      ST_SOURCES: ${{ matrix.sources }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          path: harness
+          persist-credentials: false
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: Afloat16/sentence-transformers
+          ref: ${{ matrix.candidate }}
+          path: project
+          fetch-depth: 2
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: '3.12'
+      - name: Install CPU dependencies
+        run: |
+          python -m pip install torch==${{ matrix.torch }} --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install numpy==2.3.5 scipy==1.17.0 scikit-learn==1.8.0 transformers==5.23.0 huggingface-hub==2.4.0 datasets==5.2.0 accelerate==1.15.0 pytest==9.2.0 pytest-env pytest-subtests pre-commit socksio pillow
+          python -m pip install -e . --no-deps
+      - name: Verify and benchmark unchanged baseline
+        run: |
+          test "$(git rev-parse HEAD)" = "$ST_CANDIDATE"
+          for source in $ST_SOURCES; do
+            git show "$ST_BASE:$source" > "$source"
+          done
+          python -m pytest ${{ matrix.tests }} -q --tb=short
+          python ../harness/.validation/${{ matrix.benchmark }} before
+      - name: Restore candidate and compare results
+        run: |
+          git restore --source="$ST_CANDIDATE" -- $ST_SOURCES
+          python -m pytest ${{ matrix.tests }} -q --tb=short
+          python ../harness/.validation/${{ matrix.benchmark }} after before
+      - name: Check public sparse encoding
+        if: matrix.key == 'splade'
+        run: python -m pytest tests/sparse_encoder/test_model.py -k 'decode_shapes or splade_pooling_chunk_size or encode_query or encode_document or sparsity' -q --tb=short
+      - name: Check repository style
+        run: |
+          pre-commit run --all-files
+          git diff --exit-code
+          git diff --check

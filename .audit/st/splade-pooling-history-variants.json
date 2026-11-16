@@ -1,0 +1,423 @@
+{
+  "base": "9ac7fdb4edce2f1dbc171b036ecbb60383653e74",
+  "aliases": [
+    "sentence_transformers/sparse_encoder/models/SpladePooling.py",
+    "sentence_transformers/sparse_encoder/modules/SpladePooling.py",
+    "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+  ],
+  "ref_count": 1665,
+  "scanned_blob_count": 33,
+  "scanned_blobs": [
+    {
+      "oid": "57fdccb44e8d76bddab08accc47e569471604b48",
+      "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+    },
+    {
+      "oid": "707d31a466e8aef6253a2f27359a554369e5679a",
+      "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+    },
+    {
+      "oid": "07b01762ce8e9355ecdf6a8dd07c0b8d11e76255",
+      "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+    },
+    {
+      "oid": "784290bb5fc3c76ccb00bc3d9f5b0f307a18781c",
+      "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+    },
+    {
+      "oid": "250fe9c61e22974c13dff394e09db89c33ea626b",
+      "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+    },
+    {
+      "oid": "71d2834e2112ea27282d8cc4a7767710b5f85aea",
+      "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+    },
+    {
+      "oid": "07393527a0b04a45fbf17a53d335fdf54b8a8581",
+      "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+    },
+    {
+      "oid": "40270b821a4d8756e2a927779b63680d4c5dd6ed",
+      "path": "sentence_transformers/sparse_encoder/modules/SpladePooling.py"
+    },
+    {
+      "oid": "d1db2a0096c65a61b17c5d158835638a1686f542",
+      "path": "sentence_transformers/sparse_encoder/modules/SpladePooling.py"
+    },
+    {
+      "oid": "70961915da401b39425899ae5e63366a7fa12b91",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "979bf86f3e1a5700415004728c50476fe89e07ff",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "b2bab9bbe732555aaf3f690e279797374148239e",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "a9798e1919ad2377d28e0e1dc3a8ea4087010341",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "21eca98db7e9985f5204fe635fa5f2abe1c71104",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "41050e96a14a01095b3159342bd65965d9798950",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "4ccaac337a72834577234ecf7a43c9e322a201a7",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "f206c765026c5d61cb3bc39ecdaa1fb900d50ad7",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "ee7b58b830f48a27199708e97db5a0f50d8c088a",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "293555ba9490c5eaa25e01a69098c454a653ce9b",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "5f746fa1c8e33b1fb694db52e4885311b301bb51",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "b60f5ddcaf0d1bca0e9f01e3b3a616177b2154c8",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "937da07fb55a9d25442ed50f710508701190c076",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "71d8ed85f5bbd80433a6e1b5ba81e20276b0476b",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "c1cc329e0df4283bce4b09a42d001c81a57d7b45",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "4a97cf481907cb6a5544b4b05cf70808acfb4166",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "808f0aa7d16934be59a54224c903ad2dfbfe8ee1",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "8f74acee95ecbe853a210028315efe97febe1212",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "a26494370cba6373d1ccb9008d972c7a673cf28f",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "f79f334437b1ef186d68305454636ed9cd516579",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "8d533f3413db68a525f7d3e5fc06630cb270e073",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "86f019052623a2bb69885f4f7cdf029c9e9f0565",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "c38499884db26130394cca7efa74fd1680e315a4",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    },
+    {
+      "oid": "a1b954bbc7bbd31cfd6a676dab9ed2b0d83a9bf0",
+      "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+    }
+  ],
+  "parse_failures": [],
+  "variants": {
+    "454797034234cb9cf355950d3b3f34657dbba55efd7449bab8f27ba8f81d15a5": {
+      "name": "forward",
+      "source": "def forward(\n        self,\n        features: dict[str, torch.Tensor],\n    ) -> dict[str, torch.Tensor]:\n        \"\"\"\n        Forward pass of the model.\n        Args:\n            features: Dictionary containing input features. Expects:\n                - 'token_embeddings': MLM logits (shape: batch_size, seq_length, vocab_size).\n                - 'attention_mask': Attention mask (shape: batch_size, seq_length).\n        Returns:\n            Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        if \"cu_seq_lens_q\" in features:\n            # FA2 input unpadding kept the MLM logits flat (`(1, sum_lens, vocab)`). Pool each\n            # sequence's segment directly on the flat tensor: re-padding at vocab width would be\n            # the expensive part, and the flat segments contain no padding to mask out.\n            return self._forward_flattened(features)\n\n        mlm_logits = features[\"token_embeddings\"]\n        attention_mask = features[\"attention_mask\"]  # Shape: [batch_size, seq_length]\n\n        # Unsqueeze attention_mask to be [batch_size, seq_length, 1] for broadcasting\n        # Cast before unsqueezing as reverse order results in outputs mismatch for OpenVINO converted models\n        attention_mask_expanded = attention_mask.to(mlm_logits.dtype).unsqueeze(-1)\n\n        batch_size, seq_len, vocab_s = mlm_logits.shape\n        device = mlm_logits.device\n\n        # Initialize pooled scores based on pooling strategy, validated in __init__ like the flattened path does.\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.full((batch_size, vocab_s), float(\"-inf\"), dtype=mlm_logits.dtype, device=device)\n        else:\n            pooled_scores = torch.zeros((batch_size, vocab_s), dtype=mlm_logits.dtype, device=device)\n\n        # Process in chunks if chunk_size is set, otherwise process the entire sequence at once\n        # Without chunking, the sequence is not sliced, so that tracing the module for export keeps the sequence length dynamic\n        chunked = self.chunk_size is not None and self.chunk_size > 0\n        chunk_size = self.chunk_size if chunked else seq_len\n\n        for i in range(0, seq_len, chunk_size) if chunked else [0]:\n            try:\n                current_chunk_logits = mlm_logits[:, i : i + chunk_size, :] if chunked else mlm_logits\n                current_chunk_mask = (\n                    attention_mask_expanded[:, i : i + chunk_size, :] if chunked else attention_mask_expanded\n                )\n\n                masked_current_chunk_logits = current_chunk_logits * current_chunk_mask\n\n                current_chunk_transformed = masked_current_chunk_logits.relu_()\n                if not self.training:\n                    current_chunk_transformed = current_chunk_transformed.log1p_()\n                else:\n                    current_chunk_transformed = current_chunk_transformed.log1p()\n                # With \"log1p_relu\", we apply a second log1p\n                if self.activation_function == \"log1p_relu\":\n                    if not self.training:\n                        current_chunk_transformed = current_chunk_transformed.log1p_()\n                    else:\n                        current_chunk_transformed = current_chunk_transformed.log1p()\n\n                if self.pooling_strategy == \"max\":\n                    chunk_pooled = torch.max(current_chunk_transformed, dim=1)[0]\n                    pooled_scores = torch.maximum(pooled_scores, chunk_pooled)\n                else:\n                    chunk_pooled = torch.sum(current_chunk_transformed, dim=1)\n                    pooled_scores += chunk_pooled\n            except RuntimeError as e:\n                if \"out of memory\" in str(e).lower():\n                    logger.warning(\n                        \"Ran out of memory during SpladePooling. \"\n                        \"Consider setting or decreasing the 'chunk_size' parameter. \"\n                        \"Smaller chunk_size reduces memory usage at the cost of slower processing, \"\n                        \"but will allow for larger batch sizes.\"\n                    )\n                raise e\n\n        if self.embedding_dimension is None:\n            self.embedding_dimension = pooled_scores.shape[1]\n        features[\"sentence_embedding\"] = pooled_scores\n        return features",
+      "blobs": [
+        {
+          "oid": "57fdccb44e8d76bddab08accc47e569471604b48",
+          "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+        }
+      ]
+    },
+    "3fb1bf6b99238e5748e11e8c101ae1541f36cf1f04499c787f1268c8c7e6daed": {
+      "name": "_forward_flattened",
+      "source": "def _forward_flattened(self, features: dict[str, torch.Tensor]) -> dict[str, torch.Tensor]:\n        flat_logits = features[\"token_embeddings\"].squeeze(0)  # (total_tokens, vocab_size)\n        cu_seq_lens = features[\"cu_seq_lens_q\"].tolist()\n\n        # Transform per segment inside the loop: a transformed copy of the full flat logits would\n        # double this module's peak memory, which is what caps the reachable batch size.\n        reduce = torch.amax if self.pooling_strategy == \"max\" else torch.sum\n        pooled = []\n        for start, end in zip(cu_seq_lens[:-1], cu_seq_lens[1:]):\n            transformed = flat_logits[start:end].relu()\n            transformed = transformed.log1p() if self.training else transformed.log1p_()\n            if self.activation_function == \"log1p_relu\":\n                transformed = transformed.log1p() if self.training else transformed.log1p_()\n            pooled.append(reduce(transformed, dim=0))\n        pooled_scores = torch.stack(pooled)\n\n        if self.embedding_dimension is None:\n            self.embedding_dimension = pooled_scores.shape[1]\n        features[\"sentence_embedding\"] = pooled_scores\n        return features",
+      "blobs": [
+        {
+          "oid": "57fdccb44e8d76bddab08accc47e569471604b48",
+          "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+        },
+        {
+          "oid": "707d31a466e8aef6253a2f27359a554369e5679a",
+          "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+        },
+        {
+          "oid": "07b01762ce8e9355ecdf6a8dd07c0b8d11e76255",
+          "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+        },
+        {
+          "oid": "784290bb5fc3c76ccb00bc3d9f5b0f307a18781c",
+          "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+        },
+        {
+          "oid": "250fe9c61e22974c13dff394e09db89c33ea626b",
+          "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+        },
+        {
+          "oid": "71d2834e2112ea27282d8cc4a7767710b5f85aea",
+          "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+        }
+      ]
+    },
+    "d54a47162bc7dfd006a15d3c3346a945bb7730155eb9d28e2e2abd24b69b9688": {
+      "name": "forward",
+      "source": "def forward(\n        self,\n        features: dict[str, torch.Tensor],\n    ) -> dict[str, torch.Tensor]:\n        \"\"\"\n        Forward pass of the model.\n        Args:\n            features: Dictionary containing input features. Expects:\n                - 'token_embeddings': MLM logits (shape: batch_size, seq_length, vocab_size).\n                - 'attention_mask': Attention mask (shape: batch_size, seq_length).\n        Returns:\n            Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        if \"cu_seq_lens_q\" in features:\n            # FA2 input unpadding kept the MLM logits flat (`(1, sum_lens, vocab)`). Pool each\n            # sequence's segment directly on the flat tensor: re-padding at vocab width would be\n            # the expensive part, and the flat segments contain no padding to mask out.\n            return self._forward_flattened(features)\n\n        mlm_logits = features[\"token_embeddings\"]\n        attention_mask = features[\"attention_mask\"]  # Shape: [batch_size, seq_length]\n\n        # Unsqueeze attention_mask to be [batch_size, seq_length, 1] for broadcasting\n        # Cast before unsqueezing as reverse order results in inference mismatch for OpenVINO converted models\n        attention_mask_expanded = attention_mask.to(mlm_logits.dtype).unsqueeze(-1)\n\n        batch_size, seq_len, vocab_s = mlm_logits.shape\n        device = mlm_logits.device\n\n        # Initialize pooled scores based on pooling strategy, validated in __init__ like the flattened path does.\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.full((batch_size, vocab_s), float(\"-inf\"), dtype=mlm_logits.dtype, device=device)\n        else:\n            pooled_scores = torch.zeros((batch_size, vocab_s), dtype=mlm_logits.dtype, device=device)\n\n        # Process in chunks if chunk_size is set, otherwise process the entire sequence at once\n        # Without chunking, the sequence is not sliced, so that tracing the module for export keeps the sequence length dynamic\n        chunked = self.chunk_size is not None and self.chunk_size > 0\n        chunk_size = self.chunk_size if chunked else seq_len\n\n        for i in range(0, seq_len, chunk_size) if chunked else [0]:\n            try:\n                current_chunk_logits = mlm_logits[:, i : i + chunk_size, :] if chunked else mlm_logits\n                current_chunk_mask = (\n                    attention_mask_expanded[:, i : i + chunk_size, :] if chunked else attention_mask_expanded\n                )\n\n                masked_current_chunk_logits = current_chunk_logits * current_chunk_mask\n\n                current_chunk_transformed = masked_current_chunk_logits.relu_()\n                if not self.training:\n                    current_chunk_transformed = current_chunk_transformed.log1p_()\n                else:\n                    current_chunk_transformed = current_chunk_transformed.log1p()\n                # With \"log1p_relu\", we apply a second log1p\n                if self.activation_function == \"log1p_relu\":\n                    if not self.training:\n                        current_chunk_transformed = current_chunk_transformed.log1p_()\n                    else:\n                        current_chunk_transformed = current_chunk_transformed.log1p()\n\n                if self.pooling_strategy == \"max\":\n                    chunk_pooled = torch.max(current_chunk_transformed, dim=1)[0]\n                    pooled_scores = torch.maximum(pooled_scores, chunk_pooled)\n                else:\n                    chunk_pooled = torch.sum(current_chunk_transformed, dim=1)\n                    pooled_scores += chunk_pooled\n            except RuntimeError as e:\n                if \"out of memory\" in str(e).lower():\n                    logger.warning(\n                        \"Ran out of memory during SpladePooling. \"\n                        \"Consider setting or decreasing the 'chunk_size' parameter. \"\n                        \"Smaller chunk_size reduces memory usage at the cost of slower processing, \"\n                        \"but will allow for larger batch sizes.\"\n                    )\n                raise e\n\n        if self.embedding_dimension is None:\n            self.embedding_dimension = pooled_scores.shape[1]\n        features[\"sentence_embedding\"] = pooled_scores\n        return features",
+      "blobs": [
+        {
+          "oid": "707d31a466e8aef6253a2f27359a554369e5679a",
+          "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+        }
+      ]
+    },
+    "f3498ce63d0711af1604bc153c4bc0f14f059af9693a385a6265cb0919d0e610": {
+      "name": "forward",
+      "source": "def forward(\n        self,\n        features: dict[str, torch.Tensor],\n    ) -> dict[str, torch.Tensor]:\n        \"\"\"\n        Forward pass of the model.\n        Args:\n            features: Dictionary containing input features. Expects:\n                - 'token_embeddings': MLM logits (shape: batch_size, seq_length, vocab_size).\n                - 'attention_mask': Attention mask (shape: batch_size, seq_length).\n        Returns:\n            Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        if \"cu_seq_lens_q\" in features:\n            # FA2 input unpadding kept the MLM logits flat (`(1, sum_lens, vocab)`). Pool each\n            # sequence's segment directly on the flat tensor: re-padding at vocab width would be\n            # the expensive part, and the flat segments contain no padding to mask out.\n            return self._forward_flattened(features)\n\n        mlm_logits = features[\"token_embeddings\"]\n        attention_mask = features[\"attention_mask\"]  # Shape: [batch_size, seq_length]\n\n        # Unsqueeze attention_mask to be [batch_size, seq_length, 1] for broadcasting\n        # Casting before unsqueezing, as the reverse order is mis-converted by the OpenVINO exporter\n        attention_mask_expanded = attention_mask.to(mlm_logits.dtype).unsqueeze(-1)\n\n        batch_size, seq_len, vocab_s = mlm_logits.shape\n        device = mlm_logits.device\n\n        # Initialize pooled scores based on pooling strategy, validated in __init__ like the flattened path does.\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.full((batch_size, vocab_s), float(\"-inf\"), dtype=mlm_logits.dtype, device=device)\n        else:\n            pooled_scores = torch.zeros((batch_size, vocab_s), dtype=mlm_logits.dtype, device=device)\n\n        # Process in chunks if chunk_size is set, otherwise process the entire sequence at once\n        # Without chunking, the sequence is not sliced, so that tracing the module for export keeps the sequence length dynamic\n        chunked = self.chunk_size is not None and self.chunk_size > 0\n        chunk_size = self.chunk_size if chunked else seq_len\n\n        for i in range(0, seq_len, chunk_size) if chunked else [0]:\n            try:\n                current_chunk_logits = mlm_logits[:, i : i + chunk_size, :] if chunked else mlm_logits\n                current_chunk_mask = (\n                    attention_mask_expanded[:, i : i + chunk_size, :] if chunked else attention_mask_expanded\n                )\n\n                masked_current_chunk_logits = current_chunk_logits * current_chunk_mask\n\n                current_chunk_transformed = masked_current_chunk_logits.relu_()\n                if not self.training:\n                    current_chunk_transformed = current_chunk_transformed.log1p_()\n                else:\n                    current_chunk_transformed = current_chunk_transformed.log1p()\n                # With \"log1p_relu\", we apply a second log1p\n                if self.activation_function == \"log1p_relu\":\n                    if not self.training:\n                        current_chunk_transformed = current_chunk_transformed.log1p_()\n                    else:\n                        current_chunk_transformed = current_chunk_transformed.log1p()\n\n                if self.pooling_strategy == \"max\":\n                    chunk_pooled = torch.max(current_chunk_transformed, dim=1)[0]\n                    pooled_scores = torch.maximum(pooled_scores, chunk_pooled)\n                else:\n                    chunk_pooled = torch.sum(current_chunk_transformed, dim=1)\n                    pooled_scores += chunk_pooled\n            except RuntimeError as e:\n                if \"out of memory\" in str(e).lower():\n                    logger.warning(\n                        \"Ran out of memory during SpladePooling. \"\n                        \"Consider setting or decreasing the 'chunk_size' parameter. \"\n                        \"Smaller chunk_size reduces memory usage at the cost of slower processing, \"\n                        \"but will allow for larger batch sizes.\"\n                    )\n                raise e\n\n        if self.embedding_dimension is None:\n            self.embedding_dimension = pooled_scores.shape[1]\n        features[\"sentence_embedding\"] = pooled_scores\n        return features",
+      "blobs": [
+        {
+          "oid": "07b01762ce8e9355ecdf6a8dd07c0b8d11e76255",
+          "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+        }
+      ]
+    },
+    "400f2fc6c33258cec7b5c7a10f800f53f8d4224aa10404c840118c9d8e9622b0": {
+      "name": "forward",
+      "source": "def forward(\n        self,\n        features: dict[str, torch.Tensor],\n    ) -> dict[str, torch.Tensor]:\n        \"\"\"\n        Forward pass of the model.\n        Args:\n            features: Dictionary containing input features. Expects:\n                - 'token_embeddings': MLM logits (shape: batch_size, seq_length, vocab_size).\n                - 'attention_mask': Attention mask (shape: batch_size, seq_length).\n        Returns:\n            Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        if \"cu_seq_lens_q\" in features:\n            # FA2 input unpadding kept the MLM logits flat (`(1, sum_lens, vocab)`). Pool each\n            # sequence's segment directly on the flat tensor: re-padding at vocab width would be\n            # the expensive part, and the flat segments contain no padding to mask out.\n            return self._forward_flattened(features)\n\n        mlm_logits = features[\"token_embeddings\"]\n        attention_mask = features[\"attention_mask\"]  # Shape: [batch_size, seq_length]\n\n        # Unsqueeze attention_mask to be [batch_size, seq_length, 1] for broadcasting\n        # Ccasting before unsqueezing, as the reverse order is mis-converted by the OpenVINO exporter\n        attention_mask_expanded = attention_mask.to(mlm_logits.dtype).unsqueeze(-1)\n\n        batch_size, seq_len, vocab_s = mlm_logits.shape\n        device = mlm_logits.device\n\n        # Initialize pooled scores based on pooling strategy, validated in __init__ like the flattened path does.\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.full((batch_size, vocab_s), float(\"-inf\"), dtype=mlm_logits.dtype, device=device)\n        else:\n            pooled_scores = torch.zeros((batch_size, vocab_s), dtype=mlm_logits.dtype, device=device)\n\n        # Process in chunks if chunk_size is set, otherwise process the entire sequence at once\n        # Without chunking, the sequence is not sliced, so that tracing the module for export keeps the sequence length dynamic\n        chunked = self.chunk_size is not None and self.chunk_size > 0\n        chunk_size = self.chunk_size if chunked else seq_len\n\n        for i in range(0, seq_len, chunk_size) if chunked else [0]:\n            try:\n                current_chunk_logits = mlm_logits[:, i : i + chunk_size, :] if chunked else mlm_logits\n                current_chunk_mask = (\n                    attention_mask_expanded[:, i : i + chunk_size, :] if chunked else attention_mask_expanded\n                )\n\n                masked_current_chunk_logits = current_chunk_logits * current_chunk_mask\n\n                current_chunk_transformed = masked_current_chunk_logits.relu_()\n                if not self.training:\n                    current_chunk_transformed = current_chunk_transformed.log1p_()\n                else:\n                    current_chunk_transformed = current_chunk_transformed.log1p()\n                # With \"log1p_relu\", we apply a second log1p\n                if self.activation_function == \"log1p_relu\":\n                    if not self.training:\n                        current_chunk_transformed = current_chunk_transformed.log1p_()\n                    else:\n                        current_chunk_transformed = current_chunk_transformed.log1p()\n\n                if self.pooling_strategy == \"max\":\n                    chunk_pooled = torch.max(current_chunk_transformed, dim=1)[0]\n                    pooled_scores = torch.maximum(pooled_scores, chunk_pooled)\n                else:\n                    chunk_pooled = torch.sum(current_chunk_transformed, dim=1)\n                    pooled_scores += chunk_pooled\n            except RuntimeError as e:\n                if \"out of memory\" in str(e).lower():\n                    logger.warning(\n                        \"Ran out of memory during SpladePooling. \"\n                        \"Consider setting or decreasing the 'chunk_size' parameter. \"\n                        \"Smaller chunk_size reduces memory usage at the cost of slower processing, \"\n                        \"but will allow for larger batch sizes.\"\n                    )\n                raise e\n\n        if self.embedding_dimension is None:\n            self.embedding_dimension = pooled_scores.shape[1]\n        features[\"sentence_embedding\"] = pooled_scores\n        return features",
+      "blobs": [
+        {
+          "oid": "784290bb5fc3c76ccb00bc3d9f5b0f307a18781c",
+          "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+        }
+      ]
+    },
+    "f10a6613b7667c8310bfa1226fee0a9177046fb2b10050212923de8b7b4c05e3": {
+      "name": "forward",
+      "source": "def forward(\n        self,\n        features: dict[str, torch.Tensor],\n    ) -> dict[str, torch.Tensor]:\n        \"\"\"\n        Forward pass of the model.\n        Args:\n            features: Dictionary containing input features. Expects:\n                - 'token_embeddings': MLM logits (shape: batch_size, seq_length, vocab_size).\n                - 'attention_mask': Attention mask (shape: batch_size, seq_length).\n        Returns:\n            Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        if \"cu_seq_lens_q\" in features:\n            # FA2 input unpadding kept the MLM logits flat (`(1, sum_lens, vocab)`). Pool each\n            # sequence's segment directly on the flat tensor: re-padding at vocab width would be\n            # the expensive part, and the flat segments contain no padding to mask out.\n            return self._forward_flattened(features)\n\n        mlm_logits = features[\"token_embeddings\"]\n        attention_mask = features[\"attention_mask\"]  # Shape: [batch_size, seq_length]\n\n        # Unsqueeze attention_mask to be [batch_size, seq_length, 1] for broadcasting\n        attention_mask_expanded = attention_mask.unsqueeze(-1).to(mlm_logits.dtype)\n\n        batch_size, seq_len, vocab_s = mlm_logits.shape\n        device = mlm_logits.device\n\n        # Initialize pooled scores based on pooling strategy, validated in __init__ like the flattened path does.\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.full((batch_size, vocab_s), float(\"-inf\"), dtype=mlm_logits.dtype, device=device)\n        else:\n            pooled_scores = torch.zeros((batch_size, vocab_s), dtype=mlm_logits.dtype, device=device)\n\n        # Process in chunks if chunk_size is set, otherwise process the entire sequence at once\n        chunk_size = seq_len if (self.chunk_size is None or self.chunk_size <= 0) else self.chunk_size\n\n        for i in range(0, seq_len, chunk_size):\n            try:\n                current_chunk_logits = mlm_logits[:, i : i + chunk_size, :]\n                current_chunk_mask = attention_mask_expanded[:, i : i + chunk_size, :]\n\n                masked_current_chunk_logits = current_chunk_logits * current_chunk_mask\n\n                current_chunk_transformed = masked_current_chunk_logits.relu_()\n                if not self.training:\n                    current_chunk_transformed = current_chunk_transformed.log1p_()\n                else:\n                    current_chunk_transformed = current_chunk_transformed.log1p()\n                # With \"log1p_relu\", we apply a second log1p\n                if self.activation_function == \"log1p_relu\":\n                    if not self.training:\n                        current_chunk_transformed = current_chunk_transformed.log1p_()\n                    else:\n                        current_chunk_transformed = current_chunk_transformed.log1p()\n\n                if self.pooling_strategy == \"max\":\n                    chunk_pooled = torch.max(current_chunk_transformed, dim=1)[0]\n                    pooled_scores = torch.maximum(pooled_scores, chunk_pooled)\n                else:\n                    chunk_pooled = torch.sum(current_chunk_transformed, dim=1)\n                    pooled_scores += chunk_pooled\n            except RuntimeError as e:\n                if \"out of memory\" in str(e).lower():\n                    logger.warning(\n                        \"Ran out of memory during SpladePooling. \"\n                        \"Consider setting or decreasing the 'chunk_size' parameter. \"\n                        \"Smaller chunk_size reduces memory usage at the cost of slower processing, \"\n                        \"but will allow for larger batch sizes.\"\n                    )\n                raise e\n\n        if self.embedding_dimension is None:\n            self.embedding_dimension = pooled_scores.shape[1]\n        features[\"sentence_embedding\"] = pooled_scores\n        return features",
+      "blobs": [
+        {
+          "oid": "250fe9c61e22974c13dff394e09db89c33ea626b",
+          "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+        }
+      ]
+    },
+    "648cca4dc9364a20602b7b579f538547d5c225cf4aea2c42129ea0df3dbdc50b": {
+      "name": "forward",
+      "source": "def forward(\n        self,\n        features: dict[str, torch.Tensor],\n    ) -> dict[str, torch.Tensor]:\n        \"\"\"\n        Forward pass of the model.\n        Args:\n            features: Dictionary containing input features. Expects:\n                - 'token_embeddings': MLM logits (shape: batch_size, seq_length, vocab_size).\n                - 'attention_mask': Attention mask (shape: batch_size, seq_length).\n        Returns:\n            Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        if \"cu_seq_lens_q\" in features:\n            # FA2 input unpadding kept the MLM logits flat (`(1, sum_lens, vocab)`). Pool each\n            # sequence's segment directly on the flat tensor: re-padding at vocab width would be\n            # the expensive part, and the flat segments contain no padding to mask out.\n            return self._forward_flattened(features)\n\n        mlm_logits = features[\"token_embeddings\"]\n        attention_mask = features[\"attention_mask\"]  # Shape: [batch_size, seq_length]\n\n        # Unsqueeze attention_mask to be [batch_size, seq_length, 1] for broadcasting\n        attention_mask_expanded = attention_mask.unsqueeze(-1).to(mlm_logits.dtype)\n\n        batch_size, seq_len, vocab_s = mlm_logits.shape\n        device = mlm_logits.device\n\n        # Initialize pooled scores based on pooling strategy\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.full((batch_size, vocab_s), float(\"-inf\"), dtype=mlm_logits.dtype, device=device)\n        elif self.pooling_strategy == \"sum\":\n            pooled_scores = torch.zeros((batch_size, vocab_s), dtype=mlm_logits.dtype, device=device)\n        else:\n            raise ValueError(f\"Unsupported pooling_strategy: {self.pooling_strategy}\")\n\n        # Process in chunks if chunk_size is set, otherwise process the entire sequence at once\n        chunk_size = seq_len if (self.chunk_size is None or self.chunk_size <= 0) else self.chunk_size\n\n        for i in range(0, seq_len, chunk_size):\n            try:\n                current_chunk_logits = mlm_logits[:, i : i + chunk_size, :]\n                current_chunk_mask = attention_mask_expanded[:, i : i + chunk_size, :]\n\n                masked_current_chunk_logits = current_chunk_logits * current_chunk_mask\n\n                current_chunk_transformed = masked_current_chunk_logits.relu_()\n                if not self.training:\n                    current_chunk_transformed = current_chunk_transformed.log1p_()\n                else:\n                    current_chunk_transformed = current_chunk_transformed.log1p()\n                # With \"log1p_relu\", we apply a second log1p\n                if self.activation_function == \"log1p_relu\":\n                    if not self.training:\n                        current_chunk_transformed = current_chunk_transformed.log1p_()\n                    else:\n                        current_chunk_transformed = current_chunk_transformed.log1p()\n\n                if self.pooling_strategy == \"max\":\n                    chunk_pooled = torch.max(current_chunk_transformed, dim=1)[0]\n                    pooled_scores = torch.maximum(pooled_scores, chunk_pooled)\n                else:\n                    chunk_pooled = torch.sum(current_chunk_transformed, dim=1)\n                    pooled_scores += chunk_pooled\n            except RuntimeError as e:\n                if \"out of memory\" in str(e).lower():\n                    logger.warning(\n                        \"Ran out of memory during SpladePooling. \"\n                        \"Consider setting or decreasing the 'chunk_size' parameter. \"\n                        \"Smaller chunk_size reduces memory usage at the cost of slower processing, \"\n                        \"but will allow for larger batch sizes.\"\n                    )\n                raise e\n\n        if self.embedding_dimension is None:\n            self.embedding_dimension = pooled_scores.shape[1]\n        features[\"sentence_embedding\"] = pooled_scores\n        return features",
+      "blobs": [
+        {
+          "oid": "71d2834e2112ea27282d8cc4a7767710b5f85aea",
+          "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+        }
+      ]
+    },
+    "9cf1a14b1c7f490dd54eeb68c99fec3c3ab1bdf76365804d0b093604943c5300": {
+      "name": "forward",
+      "source": "def forward(\n        self,\n        features: dict[str, torch.Tensor],\n    ) -> dict[str, torch.Tensor]:\n        \"\"\"\n        Forward pass of the model.\n        Args:\n            features: Dictionary containing input features. Expects:\n                - 'token_embeddings': MLM logits (shape: batch_size, seq_length, vocab_size).\n                - 'attention_mask': Attention mask (shape: batch_size, seq_length).\n        Returns:\n            Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        mlm_logits = features[\"token_embeddings\"]\n        attention_mask = features[\"attention_mask\"]  # Shape: [batch_size, seq_length]\n\n        # Unsqueeze attention_mask to be [batch_size, seq_length, 1] for broadcasting\n        attention_mask_expanded = attention_mask.unsqueeze(-1).to(mlm_logits.dtype)\n\n        batch_size, seq_len, vocab_s = mlm_logits.shape\n        device = mlm_logits.device\n\n        # Initialize pooled scores based on pooling strategy\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.full((batch_size, vocab_s), float(\"-inf\"), dtype=mlm_logits.dtype, device=device)\n        elif self.pooling_strategy == \"sum\":\n            pooled_scores = torch.zeros((batch_size, vocab_s), dtype=mlm_logits.dtype, device=device)\n        else:\n            raise ValueError(f\"Unsupported pooling_strategy: {self.pooling_strategy}\")\n\n        # Process in chunks if chunk_size is set, otherwise process the entire sequence at once\n        chunk_size = seq_len if (self.chunk_size is None or self.chunk_size <= 0) else self.chunk_size\n\n        for i in range(0, seq_len, chunk_size):\n            try:\n                current_chunk_logits = mlm_logits[:, i : i + chunk_size, :]\n                current_chunk_mask = attention_mask_expanded[:, i : i + chunk_size, :]\n\n                masked_current_chunk_logits = current_chunk_logits * current_chunk_mask\n\n                current_chunk_transformed = masked_current_chunk_logits.relu_()\n                if not self.training:\n                    current_chunk_transformed = current_chunk_transformed.log1p_()\n                else:\n                    current_chunk_transformed = current_chunk_transformed.log1p()\n                # With \"log1p_relu\", we apply a second log1p\n                if self.activation_function == \"log1p_relu\":\n                    if not self.training:\n                        current_chunk_transformed = current_chunk_transformed.log1p_()\n                    else:\n                        current_chunk_transformed = current_chunk_transformed.log1p()\n\n                if self.pooling_strategy == \"max\":\n                    chunk_pooled = torch.max(current_chunk_transformed, dim=1)[0]\n                    pooled_scores = torch.maximum(pooled_scores, chunk_pooled)\n                else:\n                    chunk_pooled = torch.sum(current_chunk_transformed, dim=1)\n                    pooled_scores += chunk_pooled\n            except RuntimeError as e:\n                if \"out of memory\" in str(e).lower():\n                    logger.warning(\n                        \"Ran out of memory during SpladePooling. \"\n                        \"Consider setting or decreasing the 'chunk_size' parameter. \"\n                        \"Smaller chunk_size reduces memory usage at the cost of slower processing, \"\n                        \"but will allow for larger batch sizes.\"\n                    )\n                raise e\n\n        if self.embedding_dimension is None:\n            self.embedding_dimension = pooled_scores.shape[1]\n        features[\"sentence_embedding\"] = pooled_scores\n        return features",
+      "blobs": [
+        {
+          "oid": "07393527a0b04a45fbf17a53d335fdf54b8a8581",
+          "path": "sentence_transformers/sparse_encoder/modules/splade_pooling.py"
+        },
+        {
+          "oid": "40270b821a4d8756e2a927779b63680d4c5dd6ed",
+          "path": "sentence_transformers/sparse_encoder/modules/SpladePooling.py"
+        }
+      ]
+    },
+    "d9e59eb36ceabce389484a0732057679ae6d87394e4e99490f500103f87b8df1": {
+      "name": "forward",
+      "source": "def forward(\n        self,\n        features: dict[str, torch.Tensor],\n    ) -> dict[str, torch.Tensor]:\n        \"\"\"\n        Forward pass of the model.\n        Args:\n            features: Dictionary containing input features. Expects:\n                - 'token_embeddings': MLM logits (shape: batch_size, seq_length, vocab_size).\n                - 'attention_mask': Attention mask (shape: batch_size, seq_length).\n        Returns:\n            Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        mlm_logits = features[\"token_embeddings\"]\n        attention_mask = features[\"attention_mask\"]  # Shape: [batch_size, seq_length]\n\n        # Unsqueeze attention_mask to be [batch_size, seq_length, 1] for broadcasting\n        attention_mask_expanded = attention_mask.unsqueeze(-1).to(mlm_logits.dtype)\n\n        batch_size, seq_len, vocab_s = mlm_logits.shape\n        device = mlm_logits.device\n\n        # Initialize pooled scores based on pooling strategy\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.full((batch_size, vocab_s), float(\"-inf\"), dtype=mlm_logits.dtype, device=device)\n        elif self.pooling_strategy == \"sum\":\n            pooled_scores = torch.zeros((batch_size, vocab_s), dtype=mlm_logits.dtype, device=device)\n        else:\n            raise ValueError(f\"Unsupported pooling_strategy: {self.pooling_strategy}\")\n\n        # Process in chunks if chunk_size is set, otherwise process the entire sequence at once\n        chunk_size = seq_len if (self.chunk_size is None or self.chunk_size <= 0) else self.chunk_size\n\n        for i in range(0, seq_len, chunk_size):\n            try:\n                current_chunk_logits = mlm_logits[:, i : i + chunk_size, :]\n                current_chunk_mask = attention_mask_expanded[:, i : i + chunk_size, :]\n\n                masked_current_chunk_logits = current_chunk_logits * current_chunk_mask\n\n                current_chunk_transformed = masked_current_chunk_logits.relu_()\n                if not self.training:\n                    current_chunk_transformed = current_chunk_transformed.log1p_()\n                else:\n                    current_chunk_transformed = current_chunk_transformed.log1p()\n                # With \"log1p_relu\", we apply a second log1p\n                if self.activation_function == \"log1p_relu\":\n                    if not self.training:\n                        current_chunk_transformed = current_chunk_transformed.log1p_()\n                    else:\n                        current_chunk_transformed = current_chunk_transformed.log1p()\n\n                if self.pooling_strategy == \"max\":\n                    chunk_pooled = torch.max(current_chunk_transformed, dim=1)[0]\n                    pooled_scores = torch.maximum(pooled_scores, chunk_pooled)\n                else:\n                    chunk_pooled = torch.sum(current_chunk_transformed, dim=1)\n                    pooled_scores += chunk_pooled\n            except RuntimeError as e:\n                if \"out of memory\" in str(e).lower():\n                    logger.warning(\n                        \"Ran out of memory during SpladePooling. \"\n                        \"Consider setting or decreasing the 'chunk_size' parameter. \"\n                        \"Smaller chunk_size reduces memory usage at the cost of slower processing, \"\n                        \"but will allow for larger batch sizes.\"\n                    )\n                raise e\n\n        if self.word_embedding_dimension is None:\n            self.word_embedding_dimension = pooled_scores.shape[1]\n        features[\"sentence_embedding\"] = pooled_scores\n        return features",
+      "blobs": [
+        {
+          "oid": "d1db2a0096c65a61b17c5d158835638a1686f542",
+          "path": "sentence_transformers/sparse_encoder/modules/SpladePooling.py"
+        },
+        {
+          "oid": "70961915da401b39425899ae5e63366a7fa12b91",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        },
+        {
+          "oid": "979bf86f3e1a5700415004728c50476fe89e07ff",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        },
+        {
+          "oid": "b2bab9bbe732555aaf3f690e279797374148239e",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        },
+        {
+          "oid": "a9798e1919ad2377d28e0e1dc3a8ea4087010341",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        },
+        {
+          "oid": "21eca98db7e9985f5204fe635fa5f2abe1c71104",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        },
+        {
+          "oid": "41050e96a14a01095b3159342bd65965d9798950",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        }
+      ]
+    },
+    "f724f1af0091dd1ccc72b1d65ca54f7e619f6e68b4a43750ee9baee4bb2d5040": {
+      "name": "forward",
+      "source": "def forward(\n        self,\n        features: dict[str, torch.Tensor],\n    ) -> dict[str, torch.Tensor]:\n        \"\"\"\n        Forward pass of the model.\n        Args:\n            features: Dictionary containing input features. Expects:\n                - 'token_embeddings': MLM logits (shape: batch_size, seq_length, vocab_size).\n                - 'attention_mask': Attention mask (shape: batch_size, seq_length).\n        Returns:\n            Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        mlm_logits = features[\"token_embeddings\"]\n        attention_mask = features[\"attention_mask\"]  # Shape: [batch_size, seq_length]\n\n        # Unsqueeze attention_mask to be [batch_size, seq_length, 1] for broadcasting\n        attention_mask_expanded = attention_mask.unsqueeze(-1).to(mlm_logits.dtype)\n\n        batch_size, seq_len, vocab_s = mlm_logits.shape\n        device = mlm_logits.device\n\n        # Initialize pooled scores based on pooling strategy\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.full((batch_size, vocab_s), float(\"-inf\"), dtype=mlm_logits.dtype, device=device)\n        elif self.pooling_strategy == \"sum\":\n            pooled_scores = torch.zeros((batch_size, vocab_s), dtype=mlm_logits.dtype, device=device)\n        else:\n            raise ValueError(f\"Unsupported pooling_strategy: {self.pooling_strategy}\")\n\n        # Process in chunks if chunk_size is set, otherwise process the entire sequence at once\n        chunk_size = seq_len if (self.chunk_size is None or self.chunk_size <= 0) else self.chunk_size\n\n        for i in range(0, seq_len, chunk_size):\n            try:\n                current_chunk_logits = mlm_logits[:, i : i + chunk_size, :]\n                current_chunk_mask = attention_mask_expanded[:, i : i + chunk_size, :]\n\n                masked_current_chunk_logits = current_chunk_logits * current_chunk_mask\n\n                if not self.training:\n                    current_chunk_transformed = masked_current_chunk_logits.relu_().log1p_()\n                else:\n                    current_chunk_transformed = masked_current_chunk_logits.relu().log1p()\n                # With \"log1p_relu\", we apply a second log1p\n                if self.activation_function == \"log1p_relu\":\n                    if not self.training:\n                        current_chunk_transformed = current_chunk_transformed.log1p_()\n                    else:\n                        current_chunk_transformed = current_chunk_transformed.log1p()\n\n                current_chunk_transformed = current_chunk_transformed.to(mlm_logits.dtype)\n\n                if self.pooling_strategy == \"max\":\n                    chunk_pooled = torch.max(current_chunk_transformed, dim=1)[0]\n                    pooled_scores = torch.maximum(pooled_scores, chunk_pooled)\n                else:\n                    chunk_pooled = torch.sum(current_chunk_transformed, dim=1)\n                    pooled_scores += chunk_pooled\n            except RuntimeError as e:\n                if \"out of memory\" in str(e).lower():\n                    logger.warning(\n                        \"Ran out of memory during SpladePooling. \"\n                        \"Consider setting or decreasing the 'chunk_size' parameter. \"\n                        \"Smaller chunk_size reduces memory usage at the cost of slower processing, \"\n                        \"but will allow for larger batch sizes.\"\n                    )\n                raise e\n\n        if self.word_embedding_dimension is None:\n            self.word_embedding_dimension = pooled_scores.shape[1]\n        features[\"sentence_embedding\"] = pooled_scores\n        return features",
+      "blobs": [
+        {
+          "oid": "4ccaac337a72834577234ecf7a43c9e322a201a7",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        },
+        {
+          "oid": "f206c765026c5d61cb3bc39ecdaa1fb900d50ad7",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        }
+      ]
+    },
+    "fda9ffd73daf26b849178528a4f4a44ac1ca81ebcbb6eedc344831da04405b0f": {
+      "name": "forward",
+      "source": "def forward(\n        self,\n        features: dict[str, torch.Tensor],\n    ) -> dict[str, torch.Tensor]:\n        \"\"\"\n        Forward pass of the model.\n        Args:\n            features: Dictionary containing input features. Expects:\n                - 'token_embeddings': MLM logits (shape: batch_size, seq_length, vocab_size).\n                - 'attention_mask': Attention mask (shape: batch_size, seq_length).\n        Returns:\n            Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        mlm_logits = features[\"token_embeddings\"]\n        attention_mask = features[\"attention_mask\"]  # Shape: [batch_size, seq_length]\n\n        # Unsqueeze attention_mask to be [batch_size, seq_length, 1] for broadcasting\n        attention_mask_expanded = attention_mask.unsqueeze(-1).to(mlm_logits.dtype)\n\n        batch_size, seq_len, vocab_s = mlm_logits.shape\n        device = mlm_logits.device\n\n        # Initialize pooled scores based on pooling strategy\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.full((batch_size, vocab_s), float(\"-inf\"), dtype=mlm_logits.dtype, device=device)\n        elif self.pooling_strategy == \"sum\":\n            pooled_scores = torch.zeros((batch_size, vocab_s), dtype=mlm_logits.dtype, device=device)\n        else:\n            raise ValueError(f\"Unsupported pooling_strategy: {self.pooling_strategy}\")\n\n        # Process in chunks if chunk_size is set, otherwise process the entire sequence at once\n        chunk_size = seq_len if self.chunk_size is None else self.chunk_size\n\n        for i in range(0, seq_len, chunk_size):\n            try:\n                current_chunk_logits = mlm_logits[:, i : i + chunk_size, :]\n                current_chunk_mask = attention_mask_expanded[:, i : i + chunk_size, :]\n\n                masked_current_chunk_logits = current_chunk_logits * current_chunk_mask\n\n                if self.activation_function == \"relu\":\n                    if not self.training:\n                        current_chunk_transformed = masked_current_chunk_logits.relu_().log1p_()\n                    else:\n                        current_chunk_transformed = torch.log1p(torch.relu(masked_current_chunk_logits))\n                elif self.activation_function == \"log1p_relu\":\n                    if not self.training:\n                        current_chunk_transformed = masked_current_chunk_logits.relu_().log1p_().log1p_()\n                    else:\n                        current_chunk_transformed = torch.log1p(torch.log1p(torch.relu(masked_current_chunk_logits)))\n\n                current_chunk_transformed = current_chunk_transformed.to(mlm_logits.dtype)\n\n                if self.pooling_strategy == \"max\":\n                    chunk_pooled = torch.max(current_chunk_transformed, dim=1)[0]\n                    pooled_scores = torch.maximum(pooled_scores, chunk_pooled)\n                else:\n                    chunk_pooled = torch.sum(current_chunk_transformed, dim=1)\n                    pooled_scores += chunk_pooled\n            except RuntimeError as e:\n                if \"out of memory\" in str(e).lower():\n                    logger.warning(\n                        \"Ran out of memory during SpladePooling. \"\n                        \"Consider setting or decreasing the 'chunk_size' parameter. \"\n                        \"Smaller chunk_size reduces memory usage at the cost of slower processing, \"\n                        \"but will allow for larger batch sizes.\"\n                    )\n                raise e\n\n        if self.word_embedding_dimension is None:\n            self.word_embedding_dimension = pooled_scores.shape[1]\n        features[\"sentence_embedding\"] = pooled_scores\n        return features",
+      "blobs": [
+        {
+          "oid": "ee7b58b830f48a27199708e97db5a0f50d8c088a",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        }
+      ]
+    },
+    "570e528ca66a1408aa7f7bb81fdfbfa2765ea2cb58c38a9df82423d7e3757949": {
+      "name": "forward",
+      "source": "def forward(\n        self,\n        features: dict[str, torch.Tensor],\n    ) -> dict[str, torch.Tensor]:\n        \"\"\"\n        Forward pass of the model.\n        Args:\n            features: Dictionary containing input features. Expects:\n                - 'token_embeddings': MLM logits (shape: batch_size, seq_length, vocab_size).\n                - 'attention_mask': Attention mask (shape: batch_size, seq_length).\n        Returns:\n            Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        mlm_logits = features[\"token_embeddings\"]\n        attention_mask = features[\"attention_mask\"]  # Shape: [batch_size, seq_length]\n\n        # Unsqueeze attention_mask to be [batch_size, seq_length, 1] for broadcasting\n        attention_mask_expanded = attention_mask.unsqueeze(-1).to(mlm_logits.dtype)\n\n        batch_size, seq_len, vocab_s = mlm_logits.shape\n        device = mlm_logits.device\n\n        # Initialize pooled scores based on pooling strategy\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.full((batch_size, vocab_s), float(\"-inf\"), dtype=mlm_logits.dtype, device=device)\n        elif self.pooling_strategy == \"sum\":\n            pooled_scores = torch.zeros((batch_size, vocab_s), dtype=mlm_logits.dtype, device=device)\n        else:\n            raise ValueError(f\"Unsupported pooling_strategy: {self.pooling_strategy}\")\n\n        # Process in chunks if chunk_size is set, otherwise process the entire sequence at once\n        chunk_size = seq_len if self.chunk_size is None else self.chunk_size\n\n        for i in range(0, seq_len, chunk_size):\n            current_chunk_logits = mlm_logits[:, i : i + chunk_size, :]\n            current_chunk_mask = attention_mask_expanded[:, i : i + chunk_size, :]\n\n            masked_current_chunk_logits = current_chunk_logits * current_chunk_mask\n\n            if self.activation_function == \"relu\":\n                if not self.training:\n                    current_chunk_transformed = masked_current_chunk_logits.relu_().log1p_()\n                else:\n                    current_chunk_transformed = torch.log1p(torch.relu(masked_current_chunk_logits))\n            elif self.activation_function == \"log1p_relu\":\n                if not self.training:\n                    current_chunk_transformed = masked_current_chunk_logits.relu_().log1p_().log1p_()\n                else:\n                    current_chunk_transformed = torch.log1p(torch.log1p(torch.relu(masked_current_chunk_logits)))\n\n            current_chunk_transformed = current_chunk_transformed.to(mlm_logits.dtype)\n\n            if self.pooling_strategy == \"max\":\n                chunk_pooled = torch.max(current_chunk_transformed, dim=1)[0]\n                pooled_scores = torch.maximum(pooled_scores, chunk_pooled)\n            else:  # sum\n                chunk_pooled = torch.sum(current_chunk_transformed, dim=1)\n                pooled_scores += chunk_pooled\n\n        if self.word_embedding_dimension is None:\n            self.word_embedding_dimension = pooled_scores.shape[1]\n        features[\"sentence_embedding\"] = pooled_scores\n        return features",
+      "blobs": [
+        {
+          "oid": "293555ba9490c5eaa25e01a69098c454a653ce9b",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        }
+      ]
+    },
+    "31a4f17eb7a36d285afc9c5643ad7847f026b36e15eba0d84cab455c8b246ab9": {
+      "name": "forward",
+      "source": "def forward(self, features: dict[str, torch.Tensor], memory_efficient: bool = False) -> dict[str, torch.Tensor]:\n        \"\"\"Forward pass of the model.\n        Args:\n            features: Dictionary containing input features with 'token_embeddings' key as MLM logits.\n        Returns:\n            Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        # Get the MLM head logits (shape: batch_size, seq_length, vocab_size)\n        mlm_logits = features[\"token_embeddings\"]\n        if memory_efficient:\n            batch_size, seq_len, vocab_s = mlm_logits.shape\n\n            effective_computation_dtype = mlm_logits.dtype\n\n            if self.pooling_strategy == \"max\":\n                pooled_scores = torch.full(\n                    (batch_size, vocab_s), float(\"-inf\"), dtype=effective_computation_dtype, device=mlm_logits.device\n                )\n            elif self.pooling_strategy == \"sum\":\n                pooled_scores = torch.zeros(\n                    (batch_size, vocab_s), dtype=effective_computation_dtype, device=mlm_logits.device\n                )\n            else:\n                raise ValueError(f\"Unsupported pooling_strategy: {self.pooling_strategy}\")\n\n            chunk_size = 32\n\n            for i in range(0, seq_len, chunk_size):\n                current_chunk_logits = mlm_logits[:, i : i + chunk_size, :]\n\n                if self.activation_function == \"relu\":\n                    current_chunk_transformed = torch.log1p(torch.relu(current_chunk_logits))\n                elif self.activation_function == \"log1p_relu\":\n                    current_chunk_transformed = torch.log1p(torch.log1p(torch.relu(current_chunk_logits)))\n                # current_chunk_transformed now has the dtype that log1p naturally produced.\n\n                # Ensure it's consistent with our determined effective_computation_dtype for pooling/accumulation.\n                current_chunk_transformed = current_chunk_transformed.to(effective_computation_dtype)\n\n                if self.pooling_strategy == \"max\":\n                    chunk_pooled = torch.max(current_chunk_transformed, dim=1)[0]\n                    # Avoid in-place update with out= for torch.maximum when grads are required\n                    pooled_scores = torch.maximum(pooled_scores, chunk_pooled)\n                else:  # sum\n                    chunk_pooled = torch.sum(current_chunk_transformed, dim=1)\n                    pooled_scores += chunk_pooled\n        else:\n            # Apply ReLU and log transformation for SPLADE\n            if self.activation_function == \"relu\":\n                splade_scores = torch.log1p(torch.relu(mlm_logits))\n            elif self.activation_function == \"log1p_relu\":\n                splade_scores = torch.log1p(torch.log1p(torch.relu(mlm_logits)))\n            else:\n                raise ValueError(\"activation_function must be either 'relu' or 'log1p_relu'\")\n\n            # Pool across sequence length dimension\n            if self.pooling_strategy == \"max\":\n                pooled_scores = torch.max(splade_scores, dim=1)[0]  # shape: batch_size, vocab_size\n            else:  # sum\n                pooled_scores = torch.sum(splade_scores, dim=1)  # shape: batch_size, vocab_size\n\n        del features[\"token_embeddings\"]\n\n        if self.word_embedding_dimension is None:\n            self.word_embedding_dimension = pooled_scores.shape[1]\n        features[\"sentence_embedding\"] = pooled_scores\n        return features",
+      "blobs": [
+        {
+          "oid": "5f746fa1c8e33b1fb694db52e4885311b301bb51",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        }
+      ]
+    },
+    "d0ecf06f0e0598f581e38e6dca1388a2cc48eac6aa1c307b3a05c9b685d436d6": {
+      "name": "forward",
+      "source": "def forward(self, features: dict[str, torch.Tensor]) -> dict[str, torch.Tensor]:\n        \"\"\"Forward pass of the model.\n        Args:\n            features: Dictionary containing input features with 'token_embeddings' key as MLM logits.\n        Returns:\n            Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        # Get the MLM head logits (shape: batch_size, seq_length, vocab_size)\n        mlm_logits = features[\"token_embeddings\"]\n\n        # Apply ReLU and log transformation for SPLADE\n        if self.activation_function == \"relu\":\n            splade_scores = torch.log1p(torch.relu(mlm_logits))\n        elif self.activation_function == \"log1p_relu\":\n            splade_scores = torch.log1p(torch.log1p(torch.relu(mlm_logits)))\n        else:\n            raise ValueError(\"activation_function must be either 'relu' or 'log1p_relu'\")\n\n        # Pool across sequence length dimension\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.max(splade_scores, dim=1)[0]  # shape: batch_size, vocab_size\n        else:  # sum\n            pooled_scores = torch.sum(splade_scores, dim=1)  # shape: batch_size, vocab_size\n\n        # Set the word embedding dimension\n        if self.word_embedding_dimension is None:\n            self.word_embedding_dimension = pooled_scores.shape[1]\n        features[\"sentence_embedding\"] = pooled_scores\n        return features",
+      "blobs": [
+        {
+          "oid": "b60f5ddcaf0d1bca0e9f01e3b3a616177b2154c8",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        },
+        {
+          "oid": "937da07fb55a9d25442ed50f710508701190c076",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        }
+      ]
+    },
+    "bb6dd20e5dd4fa53f22721aed3a707045e9d87b28b1d87b6c031f2ba0049c93f": {
+      "name": "forward",
+      "source": "def forward(self, features: dict[str, torch.Tensor]) -> dict[str, torch.Tensor]:\n        \"\"\"Forward pass of the model.\n        Args:\n            features: Dictionary containing input features with 'mlm_logits' key\n        Returns:\n            Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        # Get the MLM head logits (shape: batch_size, seq_length, vocab_size)\n        mlm_logits = features[\"token_embeddings\"]\n\n        # Apply ReLU and log transformation for SPLADE\n        if self.activation_function == \"relu\":\n            splade_scores = torch.log1p(torch.relu(mlm_logits))\n        elif self.activation_function == \"log1p_relu\":\n            splade_scores = torch.log1p(torch.log1p(torch.relu(mlm_logits)))\n        else:\n            raise ValueError(\"activation_function must be either 'relu' or 'log1p_relu'\")\n\n        # Pool across sequence length dimension\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.max(splade_scores, dim=1)[0]  # shape: batch_size, vocab_size\n        else:  # sum\n            pooled_scores = torch.sum(splade_scores, dim=1)  # shape: batch_size, vocab_size\n\n        # Set the word embedding dimension\n        if self.word_embedding_dimension is None:\n            self.word_embedding_dimension = pooled_scores.shape[1]\n        features[\"sentence_embedding\"] = pooled_scores\n        return features",
+      "blobs": [
+        {
+          "oid": "71d8ed85f5bbd80433a6e1b5ba81e20276b0476b",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        }
+      ]
+    },
+    "2bb4913ede26f635070a8f6b586e33283c15b1b35dabbc444b386a754ab5f7eb": {
+      "name": "forward",
+      "source": "def forward(self, features: dict[str, torch.Tensor]) -> dict[str, torch.Tensor]:\n        \"\"\"Forward pass of the model.\n        Args:\n            features: Dictionary containing input features with 'mlm_logits' key\n        Returns:\n            Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        # Get the MLM head logits (shape: batch_size, seq_length, vocab_size)\n        mlm_logits = features[\"token_embeddings\"]\n\n        # Apply ReLU and log transformation for SPLADE\n        splade_scores = torch.log1p(torch.relu(mlm_logits))\n\n        # Pool across sequence length dimension\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.max(splade_scores, dim=1)[0]  # shape: batch_size, vocab_size\n        else:  # sum\n            pooled_scores = torch.sum(splade_scores, dim=1)  # shape: batch_size, vocab_size\n\n        # Set the word embedding dimension\n        if self.word_embedding_dimension is None:\n            self.word_embedding_dimension = pooled_scores.shape[1]\n        features[\"sentence_embedding\"] = pooled_scores\n        return features",
+      "blobs": [
+        {
+          "oid": "c1cc329e0df4283bce4b09a42d001c81a57d7b45",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        },
+        {
+          "oid": "4a97cf481907cb6a5544b4b05cf70808acfb4166",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        },
+        {
+          "oid": "808f0aa7d16934be59a54224c903ad2dfbfe8ee1",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        }
+      ]
+    },
+    "8dcc344e640f86add9504a227a46a09eadcfe36a0309c72c1ac197ed8576886f": {
+      "name": "forward",
+      "source": "def forward(self, features: dict[str, torch.Tensor]) -> dict[str, torch.Tensor]:\n        \"\"\"Forward pass of the model.\n        Args:\n            features: Dictionary containing input features with 'mlm_logits' key\n        Returns:\n            Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        # Get the MLM head logits (shape: batch_size, seq_length, vocab_size)\n        mlm_logits = features[\"mlm_logits\"]\n\n        # Apply ReLU and log transformation for SPLADE\n        splade_scores = torch.log1p(torch.relu(mlm_logits))\n\n        # Pool across sequence length dimension\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.max(splade_scores, dim=1)[0]  # shape: batch_size, vocab_size\n        else:  # sum\n            pooled_scores = torch.sum(splade_scores, dim=1)  # shape: batch_size, vocab_size\n\n        # Set the word embedding dimension\n        if self.word_embedding_dimension is None:\n            self.word_embedding_dimension = pooled_scores.shape[1]\n\n        return {\"sentence_embedding\": pooled_scores}",
+      "blobs": [
+        {
+          "oid": "8f74acee95ecbe853a210028315efe97febe1212",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        }
+      ]
+    },
+    "066f0a98fa5084cdac0579fa9fd6688a487027334cbe95ba95d2c5b9802045eb": {
+      "name": "forward",
+      "source": "def forward(self, features: dict[str, torch.Tensor]) -> dict[str, torch.Tensor]:\n        \"\"\"FForward pass of the model.\n        Args:\n            features: Dictionary containing input features with 'mlm_logits' key\n        Returns:\n            Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        # Get the MLM head logits (shape: batch_size, seq_length, vocab_size)\n        mlm_logits = features[\"mlm_logits\"]\n\n        # Apply ReLU and log transformation for SPLADE\n        splade_scores = torch.log1p(torch.relu(mlm_logits))\n\n        # Pool across sequence length dimension\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.max(splade_scores, dim=1)[0]  # shape: batch_size, vocab_size\n        else:  # sum\n            pooled_scores = torch.sum(splade_scores, dim=1)  # shape: batch_size, vocab_size\n\n        return {\"sentence_embedding\": pooled_scores}",
+      "blobs": [
+        {
+          "oid": "a26494370cba6373d1ccb9008d972c7a673cf28f",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        },
+        {
+          "oid": "f79f334437b1ef186d68305454636ed9cd516579",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        }
+      ]
+    },
+    "d203f0428be3bf5a71a785e41ad594c5f837068597bb47776e6d3912198288ee": {
+      "name": "forward",
+      "source": "def forward(self, features: dict[str, torch.Tensor]) -> dict[str, torch.Tensor]:\n        \"\"\"Forward pass of the mofrom ...models.Pooling import Pooling\n        del.\n\n                Args:\n                    features: Dictionary containing input features with 'mlm_logits' key\n\n                Returns:\n                    Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        # Get the MLM head logits (shape: batch_size, seq_length, vocab_size)\n        mlm_logits = features[\"mlm_logits\"]\n\n        # Apply ReLU and log transformation for SPLADE\n        splade_scores = torch.log1p(torch.relu(mlm_logits))\n\n        # Pool across sequence length dimension\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.max(splade_scores, dim=1)[0]  # shape: batch_size, vocab_size\n        else:  # sum\n            pooled_scores = torch.sum(splade_scores, dim=1)  # shape: batch_size, vocab_size\n\n        return {\"sentence_embedding\": pooled_scores}",
+      "blobs": [
+        {
+          "oid": "8d533f3413db68a525f7d3e5fc06630cb270e073",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        },
+        {
+          "oid": "86f019052623a2bb69885f4f7cdf029c9e9f0565",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        },
+        {
+          "oid": "c38499884db26130394cca7efa74fd1680e315a4",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        }
+      ]
+    },
+    "b354f05c0d788ab019537256c3ec373e2bb81f8b67d6b9686cb8940019c4681e": {
+      "name": "forward",
+      "source": "def forward(self, features: dict[str, torch.Tensor]) -> dict[str, torch.Tensor]:\n        \"\"\"Forward pass of the mofrom ...models.Pooling import Pooling\n        del.\n\n                Args:\n                    features: Dictionary containing input features with 'mlm_logits' key\n\n                Returns:\n                    Dictionary containing SPLADE pooled embeddings\n        \"\"\"\n        # Get the MLM head logits (shape: batch_size, seq_length, vocab_size)\n        mlm_logits = features[\"mlm_logits\"]\n\n        # Apply ReLU and log transformation for SPLADE\n        splade_scores = torch.log1p(torch.relu(mlm_logits))\n\n        # Pool across sequence length dimension\n        if self.pooling_strategy == \"max\":\n            pooled_scores = torch.max(splade_scores, dim=1)[0]  # shape: batch_size, vocab_size\n        else:  # sum\n            pooled_scores = torch.sum(splade_scores, dim=1)  # shape: batch_size, vocab_size\n\n        return {\"sparse_embedding\": pooled_scores}",
+      "blobs": [
+        {
+          "oid": "a1b954bbc7bbd31cfd6a676dab9ed2b0d83a9bf0",
+          "path": "sentence_transformers/sparse_encoder/models/SpladePooling.py"
+        }
+      ]
+    }
+  }
+}
