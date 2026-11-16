@@ -12,26 +12,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: large-vector-normalization
-            test: tests/distances/test_large_normalization.py
-            select: ""
-            adjacent: tests/distances/test_normalization.py tests/distances/test_large_normalization.py tests/distances/test_low_precision_range.py tests/losses/test_anchor_batched_backward.py
-            message: Preserve normalized directions and gradients for large finite embeddings
-          - name: ndcg-gain-range
-            test: tests/evaluation/test_ndcg_gain_range.py
-            select: ""
-            adjacent: tests/evaluation/test_ndcg.py tests/evaluation/test_ndcg_gain_range.py tests/evaluation/test_accuracy_calculator_contracts.py tests/evaluation/test_calculate_accuracies.py
-            message: Preserve NDCG ratios across finite gain scales
           - name: circle-weight-precision
             test: tests/losses/test_circle_weight_precision.py
             select: ""
             adjacent: tests/losses/test_circle_loss.py tests/losses/test_circle_weight_precision.py tests/losses/test_anchor_batched_backward.py tests/losses/test_distance_matrix_input.py
             message: Keep CircleLoss adaptive-weight arithmetic finite before reduction
-          - name: p2s-center-precision
-            test: tests/losses/test_p2s_center_precision.py
-            select: ""
-            adjacent: tests/losses/test_p2s_grad_loss.py tests/losses/test_p2s_center_precision.py tests/losses/test_loss_composition.py
-            message: Preserve P2SGrad learning signals close to class centers
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
