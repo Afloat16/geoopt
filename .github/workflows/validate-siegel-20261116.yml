@@ -1,0 +1,85 @@
+name: Validate Siegel regressions
+on:
+  pull_request:
+    branches: [master]
+    paths:
+      - '.github/workflows/validate-siegel-20261116.yml'
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - label: bounded-gradient
+            candidate: d721bed27a3ea40c260b2d878f452009d7b58048
+            source: geoopt/manifolds/siegel/bounded_domain.py
+            suite: tests/test_bounded_domain_gradient.py
+            failures: 9
+            passes: 2
+            skips: 0
+          - label: finsler-device
+            candidate: eadf3363b408a25174e9de3b6c21fc8c73299a19
+            source: geoopt/manifolds/siegel/vvd_metrics.py
+            suite: tests/test_finsler_metric_device.py
+            failures: 8
+            passes: 8
+            skips: 2
+    name: ${{ matrix.label }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.candidate }}
+          fetch-depth: 2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install CPU test dependencies
+        run: |
+          python -m pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e . pytest ruff
+      - name: Check the new test file
+        run: python -m ruff check ${{ matrix.suite }}
+      - name: Reproduce the baseline failures with identical tests
+        env:
+          SOURCE_PATH: ${{ matrix.source }}
+          TEST_SUITE: ${{ matrix.suite }}
+          EXPECTED_FAILURES: ${{ matrix.failures }}
+          EXPECTED_PASSES: ${{ matrix.passes }}
+          EXPECTED_SKIPS: ${{ matrix.skips }}
+        run: |
+          git show 4623ea1d2a9808b8e87bf10949cccb2c5ec6233c:$SOURCE_PATH > "$SOURCE_PATH"
+          set +e
+          python -m pytest -q "$TEST_SUITE" --junitxml=baseline.xml
+          baseline_status=$?
+          set -e
+          test "$baseline_status" -eq 1
+          python - <<'PY'
+          import os
+          import xml.etree.ElementTree as ET
+          suites = ET.parse('baseline.xml').getroot().findall('testsuite')
+          counts = {key: sum(int(s.get(key, 0)) for s in suites) for key in ('tests', 'failures', 'errors', 'skipped')}
+          print(counts)
+          assert counts['errors'] == 0, counts
+          assert counts['failures'] == int(os.environ['EXPECTED_FAILURES']), counts
+          assert counts['skipped'] == int(os.environ['EXPECTED_SKIPS']), counts
+          assert counts['tests'] == sum(int(os.environ[key]) for key in ('EXPECTED_FAILURES', 'EXPECTED_PASSES', 'EXPECTED_SKIPS')), counts
+          PY
+      - name: Restore and test the exact candidate
+        env:
+          CANDIDATE_SHA: ${{ matrix.candidate }}
+          SOURCE_PATH: ${{ matrix.source }}
+          TEST_SUITE: ${{ matrix.suite }}
+        run: |
+          git restore --source="$CANDIDATE_SHA" -- "$SOURCE_PATH"
+          python -m pytest -q "$TEST_SUITE" tests/test_siegel_distance.py tests/test_upper_half_origin.py --junitxml=candidate.xml
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ matrix.label }}-results
+          path: |
+            baseline.xml
+            candidate.xml
