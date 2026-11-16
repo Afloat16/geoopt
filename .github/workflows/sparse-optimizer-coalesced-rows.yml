@@ -46,8 +46,8 @@ jobs:
           if [ "${{ matrix.benchmark }}" = "true" ]; then python validation/benchmark_sparse_gradient_rows.py baseline.json; fi
       - name: Verify and measure the exact candidate
         run: |
-          git fetch --depth=1 origin 9b348472f807b68590c137bbd798be621b64f642
-          git restore --source=9b348472f807b68590c137bbd798be621b64f642 -- geoopt/optim/mixin.py geoopt/optim/sparse_radam.py geoopt/optim/sparse_rsgd.py
+          git fetch --depth=1 origin fd116ecb8fb2619eba52c4fc530456dd4d999e0a
+          git restore --source=fd116ecb8fb2619eba52c4fc530456dd4d999e0a -- geoopt/optim/mixin.py geoopt/optim/sparse_radam.py geoopt/optim/sparse_rsgd.py
           python -m pytest -q tests/test_sparse_gradient_rows.py tests/test_sparse_adam.py tests/test_sparse_rsgd.py tests/test_sparse_amsgrad_raw_second_moment.py --junitxml=candidate.xml
           if [ "${{ matrix.benchmark }}" = "true" ]; then python validation/benchmark_sparse_gradient_rows.py candidate.json; fi
           git diff --exit-code
