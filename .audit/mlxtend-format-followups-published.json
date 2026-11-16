@@ -1,0 +1,114 @@
+[
+  {
+    "number": 1314,
+    "head": "0fd48aba62d99ea0bf84e1523d037978b8abee62",
+    "note": "### Official formatting CI follow-up\n\nThe [official formatting job](https://github.com/rasbt/mlxtend/actions/runs/43877679562/job/133334889646) fails while installing its dependencies, before running style checks. Its `python-version: 3.x` selects Python 3.15.2; the locked SciPy 1.16.3 source build then reports `Dependency \"OpenBLAS\" not found`. The [unchanged upstream base reproduces the same installation failure](https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092). Complete repository isort/Black and changed-file Flake8 passed under the frozen Python 3.11 validation linked above. Both official functional jobs now pass: [locked dependencies](https://github.com/rasbt/mlxtend/actions/runs/43877679729/job/133334890507) and [latest scikit-learn](https://github.com/rasbt/mlxtend/actions/runs/43877679729/job/133334890169).\n",
+    "checks": [
+      {
+        "name": "build-linux",
+        "url": "https://github.com/rasbt/mlxtend/actions/runs/43877679729/job/133334890507",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "build-linux-latest-sklearn",
+        "url": "https://github.com/rasbt/mlxtend/actions/runs/43877679729/job/133334890169",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "formatting",
+        "url": "https://github.com/rasbt/mlxtend/actions/runs/43877679562/job/133334889646",
+        "status": "completed",
+        "conclusion": "failure"
+      }
+    ],
+    "published": true,
+    "api_verified": true,
+    "maintainer_can_modify": false
+  },
+  {
+    "number": 1315,
+    "head": "e4bfd36113426a9459b66d976ee76dd776d557b9",
+    "note": "### Official formatting CI follow-up\n\nThe [official formatting job](https://github.com/rasbt/mlxtend/actions/runs/43881853676/job/133349505260) fails while installing its dependencies, before running style checks. Its `python-version: 3.x` selects Python 3.15.2; the locked SciPy 1.16.3 source build then reports `Dependency \"OpenBLAS\" not found`. The [unchanged upstream base reproduces the same installation failure](https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092). Complete repository isort/Black and changed-file Flake8 passed under the frozen Python 3.11 validation linked above. Both official functional jobs now pass: [locked dependencies](https://github.com/rasbt/mlxtend/actions/runs/43881853416/job/133349504829) and [latest scikit-learn](https://github.com/rasbt/mlxtend/actions/runs/43881853416/job/133349504506).\n",
+    "checks": [
+      {
+        "name": "formatting",
+        "url": "https://github.com/rasbt/mlxtend/actions/runs/43881853676/job/133349505260",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "name": "build-linux",
+        "url": "https://github.com/rasbt/mlxtend/actions/runs/43881853416/job/133349504829",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "build-linux-latest-sklearn",
+        "url": "https://github.com/rasbt/mlxtend/actions/runs/43881853416/job/133349504506",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "published": true,
+    "api_verified": true,
+    "maintainer_can_modify": false
+  },
+  {
+    "number": 1320,
+    "head": "b951b78ba08bb404d58390dc21e6f68fc36b4537",
+    "note": "### Official formatting CI follow-up\n\nThe [official formatting job](https://github.com/rasbt/mlxtend/actions/runs/43882055545/job/133350222357) fails while installing its dependencies, before running style checks. Its `python-version: 3.x` selects Python 3.15.2; the locked SciPy 1.16.3 source build then reports `Dependency \"OpenBLAS\" not found`. The [unchanged upstream base reproduces the same installation failure](https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092). Complete repository isort/Black and changed-file Flake8 passed under the frozen Python 3.11 validation linked above. Both official functional jobs now pass: [locked dependencies](https://github.com/rasbt/mlxtend/actions/runs/43882055441/job/133350222157) and [latest scikit-learn](https://github.com/rasbt/mlxtend/actions/runs/43882055441/job/133350222657).\n",
+    "checks": [
+      {
+        "name": "build-linux-latest-sklearn",
+        "url": "https://github.com/rasbt/mlxtend/actions/runs/43882055441/job/133350222657",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "formatting",
+        "url": "https://github.com/rasbt/mlxtend/actions/runs/43882055545/job/133350222357",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "name": "build-linux",
+        "url": "https://github.com/rasbt/mlxtend/actions/runs/43882055441/job/133350222157",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "published": true,
+    "api_verified": true,
+    "maintainer_can_modify": false
+  },
+  {
+    "number": 1321,
+    "head": "e1a4bca765f8aed5f24d670f1c4d44a781628b88",
+    "note": "### Official formatting CI follow-up\n\nThe [official formatting job](https://github.com/rasbt/mlxtend/actions/runs/43882130199/job/133350482439) fails while installing its dependencies, before running style checks. Its `python-version: 3.x` selects Python 3.15.2; the locked SciPy 1.16.3 source build then reports `Dependency \"OpenBLAS\" not found`. The [unchanged upstream base reproduces the same installation failure](https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092). Complete repository isort/Black and changed-file Flake8 passed under the frozen Python 3.11 validation linked above. Both official functional jobs now pass: [locked dependencies](https://github.com/rasbt/mlxtend/actions/runs/43882130013/job/133350482894) and [latest scikit-learn](https://github.com/rasbt/mlxtend/actions/runs/43882130013/job/133350482422).\n",
+    "checks": [
+      {
+        "name": "build-linux",
+        "url": "https://github.com/rasbt/mlxtend/actions/runs/43882130013/job/133350482894",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "formatting",
+        "url": "https://github.com/rasbt/mlxtend/actions/runs/43882130199/job/133350482439",
+        "status": "completed",
+        "conclusion": "failure"
+      },
+      {
+        "name": "build-linux-latest-sklearn",
+        "url": "https://github.com/rasbt/mlxtend/actions/runs/43882130013/job/133350482422",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "published": true,
+    "api_verified": true,
+    "maintainer_can_modify": false
+  }
+]

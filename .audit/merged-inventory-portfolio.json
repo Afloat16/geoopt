@@ -4090,7 +4090,7 @@
         "formatting": "Dependency installation selects Python 3.15.2 and locked SciPy 1.16.3 source build fails for missing OpenBLAS before style checks; exact base replay has same failure.",
         "base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
         "functional_builds": "Both locked and latest sklearn succeeded",
-        "notes_published": false
+        "notes_published": true
       }
     },
     {
@@ -4157,7 +4157,7 @@
         "formatting": "Dependency installation selects Python 3.15.2 and locked SciPy 1.16.3 source build fails for missing OpenBLAS before style checks; exact base replay has same failure.",
         "base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
         "functional_builds": "Both locked and latest sklearn succeeded",
-        "notes_published": false
+        "notes_published": true
       }
     },
     {
@@ -4224,7 +4224,7 @@
         "formatting": "Dependency installation selects Python 3.15.2 and locked SciPy 1.16.3 source build fails for missing OpenBLAS before style checks; exact base replay has same failure.",
         "base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
         "functional_builds": "Both locked and latest sklearn succeeded",
-        "notes_published": false
+        "notes_published": true
       }
     },
     {
@@ -4291,7 +4291,7 @@
         "formatting": "Dependency installation selects Python 3.15.2 and locked SciPy 1.16.3 source build fails for missing OpenBLAS before style checks; exact base replay has same failure.",
         "base_evidence": "https://github.com/Afloat16/geoopt/actions/runs/43867750166/job/133300579092",
         "functional_builds": "Both locked and latest sklearn succeeded",
-        "notes_published": false
+        "notes_published": true
       }
     },
     {
