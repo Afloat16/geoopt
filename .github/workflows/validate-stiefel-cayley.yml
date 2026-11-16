@@ -1,0 +1,53 @@
+name: Validate low-rank Stiefel Cayley solves
+on:
+  push:
+    branches: ['validation/stiefel-low-rank-cayley-20261116']
+permissions:
+  contents: read
+jobs:
+  correctness-and-performance:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 3
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install CPU validation dependencies
+        run: |
+          python -m pip install torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install -e . pytest ruff
+      - name: Check the candidate files
+        run: python -m ruff check geoopt/manifolds/stiefel.py tests/test_stiefel_cayley.py
+      - name: Verify and measure unchanged upstream
+        run: |
+          git show 4623ea1d2a9808b8e87bf10949cccb2c5ec6233c:geoopt/manifolds/stiefel.py > geoopt/manifolds/stiefel.py
+          python -m pytest -q tests/test_stiefel_cayley.py --junitxml=baseline.xml
+          python validation/benchmark_stiefel_cayley.py baseline.json
+      - name: Verify and measure the exact candidate
+        run: |
+          git restore --source=2846064db5d6d637cf683167fc257507d301a8af -- geoopt/manifolds/stiefel.py
+          python -m pytest -q tests/test_stiefel_cayley.py tests/test_manifold_basic.py tests/test_canonical_stiefel_projection.py tests/test_rlinesearch_retraction_derivative.py tests/test_rsgd.py tests/test_adam.py --junitxml=candidate.xml
+          python validation/benchmark_stiefel_cayley.py candidate.json
+          git diff --exit-code
+      - name: Compare coefficient sizes and timings
+        run: |
+          python - <<'PY'
+          import json
+          baseline = json.load(open("baseline.json"))["results"]
+          candidate = json.load(open("candidate.json"))["results"]
+          for before, after in zip(baseline, candidate):
+              keys = ("operation", "backward", "batch", "rows", "columns")
+              assert tuple(before[key] for key in keys) == tuple(after[key] for key in keys)
+              print(json.dumps({"case": {key: before[key] for key in keys}, "before_ms": before["median_ms"], "after_ms": after["median_ms"], "speedup": before["median_ms"] / after["median_ms"], "before_solve_shapes": before["solve_shapes"], "after_solve_shapes": after["solve_shapes"]}))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stiefel-cayley-results
+          path: |
+            baseline.xml
+            candidate.xml
+            baseline.json
+            candidate.json
