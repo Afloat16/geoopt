@@ -3,8 +3,8 @@
   "scope": "new contributions prepared by merged_inventory agent in current task",
   "counts": {
     "published": 62,
-    "merged": 0,
-    "open": 62,
+    "merged": 1,
+    "open": 61,
     "draft": 0,
     "closed_unmerged": 0,
     "prepared_not_created": 20
@@ -1646,8 +1646,8 @@
       "number": 2238,
       "url": "https://github.com/geomstats/geomstats/pull/2238",
       "title": "Preserve batch axes in pointwise Jacobians and Hessians",
-      "state": "open",
-      "merged_at": null,
+      "state": "closed",
+      "merged_at": "2026-11-17T02:56:17Z",
       "head": "411a6a7cdec459db8c72842d824e90cdaa35639d",
       "head_ref": "fix/pointwise-derivative-batch-axes-20261116",
       "maintainer_can_modify": false,
@@ -1763,8 +1763,12 @@
         "additional_investigation_remaining": false
       },
       "draft": false,
-      "last_submission_check_at": "2026-11-16T21:17:37.706Z",
-      "official_checks_snapshot_note": "Recovered earlier checks and diagnosis for the same unchanged head; submission state and head were refreshed during recovery."
+      "last_submission_check_at": "2026-11-17T06:37:39.814Z",
+      "official_checks_snapshot_note": "Recovered earlier checks and diagnosis for the same unchanged head; submission state and head were refreshed during recovery.",
+      "merged": true,
+      "closed_at": "2026-11-17T02:56:17Z",
+      "merged_by": "luisfpereira",
+      "merge_commit_sha": "930742c822b077e30292a157f8f0f050524ca39e"
     },
     {
       "repo": "geomstats/geomstats",
@@ -6820,5 +6824,18 @@
     },
     "environment": "Recovery used GitHub MCP and pure JavaScript only; no local execution or CUA."
   },
-  "kornia_ci_updated_at": "2026-11-16T21:36:05.918Z"
+  "kornia_ci_updated_at": "2026-11-16T21:36:05.918Z",
+  "latest_partial_status_refresh": {
+    "checked_at": "2026-11-17T06:37:39.814Z",
+    "entries": [
+      {
+        "repo": "geomstats/geomstats",
+        "number": 2238,
+        "url": "https://github.com/geomstats/geomstats/pull/2238",
+        "merged_at": "2026-11-17T02:56:17Z",
+        "head": "411a6a7cdec459db8c72842d824e90cdaa35639d"
+      }
+    ],
+    "note": "Only geomstats/geomstats#2238 was refreshed in this update. Other entries retain their individual previous submission-state and CI check timestamps; aggregate counts describe the combined snapshot, not a fresh all-PR audit."
+  }
 }

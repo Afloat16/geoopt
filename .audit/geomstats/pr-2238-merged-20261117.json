@@ -1,0 +1,12 @@
+{
+  "repo": "geomstats/geomstats",
+  "number": 2238,
+  "url": "https://github.com/geomstats/geomstats/pull/2238",
+  "author": "Afloat16",
+  "state": "closed",
+  "merged": true,
+  "merged_at": "2026-11-17T02:56:17Z",
+  "head": "411a6a7cdec459db8c72842d824e90cdaa35639d",
+  "merge_commit_sha": "930742c822b077e30292a157f8f0f050524ca39e",
+  "checked_at": "2026-11-17T06:37:39.814Z"
+}
